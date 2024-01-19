@@ -12,33 +12,37 @@ Function loadgame%(arg0$)
     Local local10%
     Local local11%
     Local local12%
-    Local local13.roomtemplates
-    Local local14.rooms
-    Local local15#
-    Local local16%
-    Local local17#
-    Local local18%
+    Local local13%
+    Local local14.roomtemplates
+    Local local15.rooms
+    Local local16#
+    Local local17%
+    Local local18#
     Local local19%
-    Local local20#
+    Local local20%
     Local local21#
     Local local22#
     Local local23#
-    Local local24%
-    Local local25#
-    Local local26.doors
-    Local local27%
-    Local local28.npcs
-    Local local30#
-    Local local32%
-    Local local33#
-    Local local34#
-    Local local35#
-    Local local36.decals
-    Local local37.events
-    Local local38.items
-    Local local39$
-    Local local40$
-    Local local41%
+    Local local24#
+    Local local25%
+    Local local26#
+    Local local27.doors
+    Local local28%
+    Local local29.npcs
+    Local local31.waypoints
+    Local local32#
+    Local local34.npcs
+    Local local35%
+    Local local36#
+    Local local37#
+    Local local38#
+    Local local39.decals
+    Local local40.events
+    Local local41.items
+    Local local42$
+    Local local43$
+    Local local44%
+    Local local45.itemtemplates
     gamesaved = $01
     local6 = readfile((arg0 + "save.txt"))
     playtime = readint(local6)
@@ -71,6 +75,21 @@ Function loadgame%(arg0$)
     remotedooron = readbyte(local6)
     soundtransmission = readbyte(local6)
     contained106 = readbyte(local6)
+    achv420 = readbyte(local6)
+    achv106 = readbyte(local6)
+    achv372 = readbyte(local6)
+    achv895 = readbyte(local6)
+    achv079 = readbyte(local6)
+    achv914 = readbyte(local6)
+    achv789 = readbyte(local6)
+    achvtesla = readbyte(local6)
+    achvmaynard = readbyte(local6)
+    achvharp = readbyte(local6)
+    achvpd = readbyte(local6)
+    achvsnav = readbyte(local6)
+    achvomni = readbyte(local6)
+    achvconsole = readbyte(local6)
+    refineditems = readint(local6)
     mapwidth = readint(local6)
     mapheight = readint(local6)
     For local8 = $00 To $00 Step $01
@@ -91,24 +110,27 @@ Function loadgame%(arg0$)
         local0 = readfloat(local6)
         local1 = readfloat(local6)
         local2 = readfloat(local6)
-        local11 = readint(local6)
-        local12 = readbyte(local6)
-        For local13 = Each roomtemplates
-            If (local13\Field1 = local9) Then
-                local14 = createroom(local11, local13\Field3, local0, local1, local2, local13\Field4)
-                turnentity(local14\Field1, 0.0, (Float local10), 0.0, $00)
-                local14\Field5 = local10
+        local11 = readbyte(local6)
+        local12 = readint(local6)
+        local13 = readbyte(local6)
+        For local14 = Each roomtemplates
+            If (local14\Field1 = local9) Then
+                local15 = createroom(local12, local14\Field3, local0, local1, local2, local14\Field4)
+                turnentity(local15\Field2, 0.0, (Float local10), 0.0, $00)
+                local15\Field6 = local10
+                local15\Field1 = local11
                 Exit
             EndIf
         Next
-        If (local12 = $01) Then
-            playerroom = local14
+        If (local13 = $01) Then
+            playerroom = local15
         EndIf
     Next
+    initwaypoints($3C)
     If (readint(local6) <> $3BA) Then
         runtimeerror("Couldn't load the game, save file may be corrupted (error 2)")
     EndIf
-    local15 = 8.0
+    local16 = 8.0
     For local8 = $00 To $00 Step $01
         local1 = (Float (mapheight - $02))
         While (1.0 <= local1)
@@ -116,16 +138,16 @@ Function loadgame%(arg0$)
                 If (maptemp(local8, (Int local0), (Int local1)) > $00) Then
                     If (ceil(((local0 + local1) / 2.0)) = floor(((local0 + local1) / 2.0))) Then
                         If (maptemp(local8, (Int (local0 + 1.0)), (Int local1)) <> 0) Then
-                            createdoor(local8, ((local0 * local15) + (local15 / 2.0)), 0.0, (local1 * local15), 90.0, (Int max((Float rand($FFFFFFFD, $01)), 0.0)), $00, $00, $00, "")
+                            createdoor(local8, ((local0 * local16) + (local16 / 2.0)), 0.0, (local1 * local16), 90.0, Null, (Int max((Float rand($FFFFFFFD, $01)), 0.0)), $00, $00, "")
                         EndIf
                         If (maptemp(local8, (Int (local0 - 1.0)), (Int local1)) <> 0) Then
-                            createdoor(local8, ((local0 * local15) - (local15 / 2.0)), 0.0, (local1 * local15), 90.0, (Int max((Float rand($FFFFFFFD, $01)), 0.0)), $00, $00, $00, "")
+                            createdoor(local8, ((local0 * local16) - (local16 / 2.0)), 0.0, (local1 * local16), 90.0, Null, (Int max((Float rand($FFFFFFFD, $01)), 0.0)), $00, $00, "")
                         EndIf
                         If (maptemp(local8, (Int local0), (Int (local1 + 1.0))) <> 0) Then
-                            createdoor(local8, (local0 * local15), 0.0, ((local1 * local15) + (local15 / 2.0)), 0.0, (Int max((Float rand($FFFFFFFD, $01)), 0.0)), $00, $00, $00, "")
+                            createdoor(local8, (local0 * local16), 0.0, ((local1 * local16) + (local16 / 2.0)), 0.0, Null, (Int max((Float rand($FFFFFFFD, $01)), 0.0)), $00, $00, "")
                         EndIf
                         If (maptemp(local8, (Int local0), (Int (local1 - 1.0))) <> 0) Then
-                            createdoor(local8, (local0 * local15), 0.0, ((local1 * local15) - (local15 / 2.0)), 0.0, (Int max((Float rand($FFFFFFFD, $01)), 0.0)), $00, $00, $00, "")
+                            createdoor(local8, (local0 * local16), 0.0, ((local1 * local16) - (local16 / 2.0)), 0.0, Null, (Int max((Float rand($FFFFFFFD, $01)), 0.0)), $00, $00, "")
                         EndIf
                     EndIf
                 EndIf
@@ -137,27 +159,27 @@ Function loadgame%(arg0$)
     For local3 = $01 To local4 Step $01
         local0 = readfloat(local6)
         local2 = readfloat(local6)
-        local16 = readbyte(local6)
-        local17 = readfloat(local6)
-        local18 = readbyte(local6)
+        local17 = readbyte(local6)
+        local18 = readfloat(local6)
         local19 = readbyte(local6)
-        local20 = readfloat(local6)
+        local20 = readbyte(local6)
         local21 = readfloat(local6)
         local22 = readfloat(local6)
         local23 = readfloat(local6)
-        local24 = readbyte(local6)
-        local25 = readfloat(local6)
-        For local26 = Each doors
-            If (((local0 = entityx(local26\Field2, $00)) And (local2 = entityz(local26\Field2, $00))) <> 0) Then
-                local26\Field5 = local16
-                local26\Field7 = local17
-                local26\Field4 = local18
-                local26\Field16 = local19
-                local26\Field9 = local24
-                local26\Field10 = local25
-                positionentity(local26\Field0, local20, entityy(local26\Field0, $00), local21, $01)
-                If (local26\Field1 <> $00) Then
-                    positionentity(local26\Field1, local22, entityy(local26\Field1, $00), local23, $01)
+        local24 = readfloat(local6)
+        local25 = readbyte(local6)
+        local26 = readfloat(local6)
+        For local27 = Each doors
+            If (((local0 = entityx(local27\Field2, $00)) And (local2 = entityz(local27\Field2, $00))) <> 0) Then
+                local27\Field5 = local17
+                local27\Field7 = local18
+                local27\Field4 = local19
+                local27\Field18 = local20
+                local27\Field9 = local25
+                local27\Field10 = local26
+                positionentity(local27\Field0, local21, entityy(local27\Field0, $00), local22, $01)
+                If (local27\Field1 <> $00) Then
+                    positionentity(local27\Field1, local23, entityy(local27\Field1, $00), local24, $01)
                 EndIf
                 Exit
             EndIf
@@ -168,98 +190,137 @@ Function loadgame%(arg0$)
     EndIf
     local4 = readint(local6)
     For local3 = $01 To local4 Step $01
-        local27 = readbyte(local6)
+        local28 = readbyte(local6)
         local0 = readfloat(local6)
         local1 = readfloat(local6)
         local2 = readfloat(local6)
-        local28 = createnpc(local27, local0, local1, local2)
-        Select local27
+        local29 = createnpc(local28, local0, local1, local2)
+        Select local28
             Case $01
-                curr173 = local28
+                curr173 = local29
             Case $02
-                curr106 = local28
+                curr106 = local29
         End Select
         local0 = readfloat(local6)
         local1 = readfloat(local6)
         local2 = readfloat(local6)
-        rotateentity(local28\Field2, local0, local1, local2, $00)
-        local28\Field6 = readfloat(local6)
-        local28\Field7 = readint(local6)
-        local28\Field12 = readbyte(local6)
-        local28\Field15 = readfloat(local6)
-        local28\Field14 = readint(local6)
-        local28\Field19 = readfloat(local6)
-        local28\Field20 = readfloat(local6)
-        local28\Field21 = readfloat(local6)
-        local30 = readfloat(local6)
-        Select local27
+        rotateentity(local29\Field4, local0, local1, local2, $00)
+        local29\Field9 = readfloat(local6)
+        local29\Field10 = readfloat(local6)
+        local29\Field11 = readfloat(local6)
+        local29\Field12 = readint(local6)
+        local29\Field19 = readbyte(local6)
+        local29\Field22 = readfloat(local6)
+        local29\Field21 = readint(local6)
+        local29\Field18 = (Float readint(local6))
+        local29\Field13 = readfloat(local6)
+        local29\Field20 = readfloat(local6)
+        local29\Field6 = readint(local6)
+        local29\Field27 = readint(local6)
+        local29\Field32 = readbyte(local6)
+        If (local29\Field32 = $01) Then
+            For local3 = $00 To $13 Step $01
+                local0 = readfloat(local6)
+                local1 = readfloat(local6)
+                local2 = readfloat(local6)
+                If ((((0.0 <> local0) Or (0.0 <> local1)) Or (0.0 <> local2)) <> 0) Then
+                    For local31 = Each waypoints
+                        If ((((local0 = entityx(local31\Field0, $00)) And (local1 = entityy(local31\Field0, $00))) And (local2 = entityz(local31\Field0, $00))) <> 0) Then
+                            local29\Field31[local3] = local31
+                        EndIf
+                    Next
+                EndIf
+            Next
+            local29\Field34 = readint(local6)
+        EndIf
+        local29\Field33 = readfloat(local6)
+        local29\Field28 = readfloat(local6)
+        local29\Field29 = readfloat(local6)
+        local29\Field30 = readfloat(local6)
+        local32 = readfloat(local6)
+        Select local28
             Case $02,$04
-                setanimtime(local28\Field0, local30, $00)
+                setanimtime(local29\Field0, local32, $00)
         End Select
+    Next
+    For local29 = Each npcs
+        If (local29\Field27 <> $00) Then
+            For local34 = Each npcs
+                If (local34 <> local29) Then
+                    If (local34\Field6 = local29\Field27) Then
+                        local29\Field26 = local34
+                    EndIf
+                EndIf
+            Next
+        EndIf
     Next
     If (readint(local6) <> $735) Then
         runtimeerror("Couldn't load the game, save file corrupted (error 3)")
     EndIf
     local4 = readint(local6)
     For local3 = $01 To local4 Step $01
-        local32 = readint(local6)
+        local35 = readint(local6)
         local0 = readfloat(local6)
         local1 = readfloat(local6)
         local2 = readfloat(local6)
-        local33 = readfloat(local6)
-        local34 = readfloat(local6)
-        local35 = readfloat(local6)
-        local36 = createdecal(local32, local0, local1, local2, local33, local34, local35)
-        local36\Field2 = readfloat(local6)
-        local36\Field4 = readfloat(local6)
-        local36\Field3 = readfloat(local6)
-        local36\Field6 = readfloat(local6)
-        scalesprite(local36\Field0, local36\Field2, local36\Field2)
+        local36 = readfloat(local6)
+        local37 = readfloat(local6)
+        local38 = readfloat(local6)
+        local39 = createdecal(local35, local0, local1, local2, local36, local37, local38)
+        local39\Field2 = readfloat(local6)
+        local39\Field4 = readfloat(local6)
+        local39\Field3 = readfloat(local6)
+        local39\Field7 = readfloat(local6)
+        local39\Field8 = readfloat(local6)
+        scalesprite(local39\Field0, local39\Field2, local39\Field2)
     Next
     local4 = readint(local6)
     For local3 = $01 To local4 Step $01
-        local37 = (New events)
-        local37\Field0 = readstring(local6)
-        local37\Field2 = readfloat(local6)
-        local37\Field3 = readfloat(local6)
-        local37\Field4 = readfloat(local6)
+        local40 = (New events)
+        local40\Field0 = readstring(local6)
+        local40\Field2 = readfloat(local6)
+        local40\Field3 = readfloat(local6)
+        local40\Field4 = readfloat(local6)
         local0 = readfloat(local6)
         local2 = readfloat(local6)
-        For local14 = Each rooms
-            If (((local0 = entityx(local14\Field1, $00)) And (local2 = entityz(local14\Field1, $00))) <> 0) Then
-                local37\Field1 = local14
+        For local15 = Each rooms
+            If (((local0 = entityx(local15\Field2, $00)) And (local2 = entityz(local15\Field2, $00))) <> 0) Then
+                local40\Field1 = local15
                 Exit
             EndIf
         Next
     Next
-    For local38 = Each items
-        removeitem(local38)
+    For local41 = Each items
+        removeitem(local41)
     Next
     local4 = readint(local6)
     For local3 = $01 To local4 Step $01
-        local39 = readstring(local6)
-        local40 = readstring(local6)
+        local42 = readstring(local6)
+        local43 = readstring(local6)
         local0 = readfloat(local6)
         local1 = readfloat(local6)
         local2 = readfloat(local6)
-        local38 = createitem(local39, local40, local0, local1, local2)
-        entitytype(local38\Field0, $03, $00)
+        local41 = createitem(local42, local43, local0, local1, local2)
+        entitytype(local41\Field0, $03, $00)
         local0 = readfloat(local6)
         local1 = readfloat(local6)
-        rotateentity(local38\Field0, local0, local1, 0.0, $00)
-        local38\Field5 = readfloat(local6)
-        local38\Field7 = readbyte(local6)
-        If (local38\Field7 <> 0) Then
-            hideentity(local38\Field0)
+        rotateentity(local41\Field0, local0, local1, 0.0, $00)
+        local41\Field5 = readfloat(local6)
+        local41\Field7 = readbyte(local6)
+        If (local41\Field7 <> 0) Then
+            hideentity(local41\Field0)
         EndIf
-        local41 = readbyte(local6)
-        If (local41 = $01) Then
-            selecteditem = local38
+        local44 = readbyte(local6)
+        If (local44 = $01) Then
+            selecteditem = local41
         EndIf
-        local41 = readbyte(local6)
-        If (local41 < $42) Then
-            inventory(local41) = local38
+        local44 = readbyte(local6)
+        If (local44 < $42) Then
+            inventory(local44) = local41
         EndIf
+    Next
+    For local45 = Each itemtemplates
+        local45\Field3 = readbyte(local6)
     Next
     If (readint(local6) <> $3E2) Then
         runtimeerror("Couldn't load the game, save file corrupted (error 4)")

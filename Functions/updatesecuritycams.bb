@@ -52,7 +52,7 @@ Function updatesecuritycams%()
                         EndIf
                     EndIf
                 EndIf
-                rotateentity(local0\Field0, 0.0, (((Float local0\Field18\Field5) + local0\Field11) + max(min(local0\Field13, local0\Field12), (- local0\Field12))), 0.0, $00)
+                rotateentity(local0\Field0, 0.0, (((Float local0\Field18\Field6) + local0\Field11) + max(min(local0\Field13, local0\Field12), (- local0\Field12))), 0.0, $00)
                 positionentity(local0\Field3, entityx(local0\Field0, $01), (entityy(local0\Field0, $01) - 0.083), entityz(local0\Field0, $01), $00)
                 rotateentity(local0\Field3, entitypitch(local0\Field3, $00), entityyaw(local0\Field0, $00), 0.0, $00)
                 positionentity(local0\Field8, entityx(local0\Field3, $01), entityy(local0\Field3, $01), entityz(local0\Field3, $01), $00)

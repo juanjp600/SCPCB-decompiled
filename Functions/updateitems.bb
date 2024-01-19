@@ -1,31 +1,31 @@
 Function updateitems%()
-    Local local0.items
-    Local local1#
-    Local local2%
+    Local local0%
+    Local local1.items
+    Local local2#
     Local local3$
     closestitem = Null
-    For local0 = Each items
-        If (local0\Field7 = $00) Then
-            local1 = entitydistance(collider, local0\Field0)
-            If (1.2 > local1) Then
-                If (entityinview(local0\Field0, camera) <> 0) Then
+    For local1 = Each items
+        If (local1\Field7 = $00) Then
+            local2 = entitydistance(collider, local1\Field0)
+            If (1.2 > local2) Then
+                If (entityinview(local1\Field0, camera) <> 0) Then
                     If (closestitem = Null) Then
-                        closestitem = local0
-                    ElseIf (local1 < entitydistance(collider, closestitem\Field0)) Then
-                        closestitem = local0
+                        closestitem = local1
+                    ElseIf (local2 < entitydistance(collider, closestitem\Field0)) Then
+                        closestitem = local1
                     EndIf
                 EndIf
             EndIf
-            If (local1 < (hidedistance * 0.5)) Then
-                If (entitycollided(local0\Field0, $01) <> 0) Then
-                    local0\Field2 = 0.0
+            If (local2 < (hidedistance * 0.5)) Then
+                If (entitycollided(local1\Field0, $01) <> 0) Then
+                    local1\Field2 = 0.0
                 Else
-                    local0\Field2 = (local0\Field2 - ((0.004 * fpsfactor) * 0.1))
-                    translateentity(local0\Field0, 0.0, (local0\Field2 * fpsfactor), 0.0, $00)
+                    local1\Field2 = (local1\Field2 - ((0.004 * fpsfactor) * 0.1))
+                    translateentity(local1\Field0, 0.0, (local1\Field2 * fpsfactor), 0.0, $00)
                 EndIf
-                If (-20.0 > entityy(local0\Field0, $00)) Then
-                    debuglog(("poistetaan: " + local0\Field1\Field0))
-                    removeitem(local0)
+                If (-20.0 > entityy(local1\Field0, $00)) Then
+                    debuglog(("poistetaan: " + local1\Field1\Field0))
+                    removeitem(local1)
                 EndIf
             EndIf
         EndIf
@@ -33,8 +33,8 @@ Function updateitems%()
     If (closestitem <> Null) Then
         If (mousehit1 <> 0) Then
             If (itemamount < $0A) Then
-                For local2 = $00 To $09 Step $01
-                    If (inventory(local2) = Null) Then
+                For local0 = $00 To $09 Step $01
+                    If (inventory(local0) = Null) Then
                         local3 = closestitem\Field1\Field1
                         If (local3 = "killbat") Then
                             showentity(light)
@@ -46,13 +46,14 @@ Function updateitems%()
                             playsound(picksfx(closestitem\Field1\Field2))
                         EndIf
                         closestitem\Field7 = $01
-                        inventory(local2) = closestitem
+                        closestitem\Field1\Field3 = $01
+                        inventory(local0) = closestitem
                         hideentity(closestitem\Field0)
                         Exit
                     EndIf
                 Next
             Else
-                msg = "You can;t carry any more items"
+                msg = "You can't carry any more items"
                 msgtimer = 350.0
             EndIf
         EndIf

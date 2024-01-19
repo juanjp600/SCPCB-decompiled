@@ -2,6 +2,7 @@ Function use914%(arg0.items, arg1$, arg2#, arg3#, arg4#)
     Local local0.items
     Local local1%
     Local local4.decals
+    refineditems = (refineditems + $01)
     Select arg0\Field1\Field0
         Case "Document SCP-106","Note","Notification","Document","Security Clearance Levels","Mobile Task Forces","Object Classes","Document SCP-173","Document SCP-895","Document SCP-079","Origami","Document SCP-860","Document SCP-682","Document SCP-860-1","SCP-093 Recovered Materials"
             Select arg1

@@ -3,16 +3,16 @@ Function drawgui%()
     Local local1%
     Local local2%
     Local local3%
-    Local local4#
+    Local local4%
     Local local5#
+    Local local6#
     Local local7%
     Local local8%
     Local local9%
-    Local local10%
     Local local11%
     Local local12%
     Local local13%
-    Local local15%
+    Local local14%
     Local local16%
     Local local17%
     Local local24$
@@ -23,7 +23,7 @@ Function drawgui%()
     Local local31%
     Local local32%
     Local local33%
-    If (((menuopen Or (selecteddoor <> Null)) Or invopen) <> 0) Then
+    If ((((menuopen Or (selecteddoor <> Null)) Or invopen) Or (0.0 > endingtimer)) <> 0) Then
         showpointer()
     Else
         hidepointer()
@@ -32,63 +32,72 @@ Function drawgui%()
         local0 = createpivot($00)
         positionentity(local0, entityx(camera, $00), entityy(camera, $00), entityz(camera, $00), $00)
         pointentity(local0, closestbutton, 0.0)
-        local4 = wrapangle((entityyaw(camera, $00) - entityyaw(local0, $00)))
-        If (((90.0 < local4) And (180.0 >= local4)) <> 0) Then
-            local4 = 90.0
-        EndIf
-        If (((180.0 < local4) And (270.0 > local4)) <> 0) Then
-            local4 = 270.0
-        EndIf
-        local5 = wrapangle((entitypitch(camera, $00) - entitypitch(local0, $00)))
+        local5 = wrapangle((entityyaw(camera, $00) - entityyaw(local0, $00)))
         If (((90.0 < local5) And (180.0 >= local5)) <> 0) Then
             local5 = 90.0
         EndIf
         If (((180.0 < local5) And (270.0 > local5)) <> 0) Then
             local5 = 270.0
         EndIf
+        local6 = wrapangle((entitypitch(camera, $00) - entitypitch(local0, $00)))
+        If (((90.0 < local6) And (180.0 >= local6)) <> 0) Then
+            local6 = 90.0
+        EndIf
+        If (((180.0 < local6) And (270.0 > local6)) <> 0) Then
+            local6 = 270.0
+        EndIf
         freeentity(local0)
-        drawimage(handicon, (Int ((((Float (graphicwidth / $03)) * sin(local4)) + (Float (graphicwidth Sar $01))) - 32.0)), (Int (((Float (graphicheight Sar $01)) - ((Float (graphicheight / $03)) * sin(local5))) - 32.0)), $00)
+        drawimage(handicon, (Int ((((Float (graphicwidth / $03)) * sin(local5)) + (Float (graphicwidth Sar $01))) - 32.0)), (Int (((Float (graphicheight Sar $01)) - ((Float (graphicheight / $03)) * sin(local6))) - 32.0)), $00)
         If (mouseup1 <> 0) Then
             mouseup1 = $00
             If (closestdoor <> Null) Then
-                If (closestdoor\Field12 <> "") Then
+                If (closestdoor\Field14 <> "") Then
                     selecteddoor = closestdoor
                 Else
-                    playsound2(buttonsfx, camera, closestbutton, 10.0, 1.0)
-                    usedoor(closestdoor)
+                    playsound2(buttonsfx, camera, closestbutton, 10.0, 1.0, $01)
+                    usedoor(closestdoor, $01)
                 EndIf
             EndIf
+        EndIf
+    EndIf
+    If (selectedscreen <> Null) Then
+        drawimage(selectedscreen\Field2, ((graphicwidth Sar $01) - (imagewidth(selectedscreen\Field2) Sar $01)), ((graphicheight Sar $01) - (imageheight(selectedscreen\Field2) Sar $01)), $00)
+        If ((mouseup1 Or mousehit2) <> 0) Then
+            freeimage(selectedscreen\Field2)
+            selectedscreen\Field2 = $00
+            selectedscreen = Null
+            mouseup1 = $00
         EndIf
     EndIf
     If (closestitem <> Null) Then
         local0 = createpivot($00)
         positionentity(local0, entityx(camera, $00), entityy(camera, $00), entityz(camera, $00), $00)
         pointentity(local0, closestitem\Field0, 0.0)
-        local4 = wrapangle((entityyaw(camera, $00) - entityyaw(local0, $00)))
-        If (((90.0 < local4) And (180.0 >= local4)) <> 0) Then
-            local4 = 90.0
-        EndIf
-        If (((180.0 < local4) And (270.0 > local4)) <> 0) Then
-            local4 = 270.0
-        EndIf
-        local5 = wrapangle((entitypitch(camera, $00) - entitypitch(local0, $00)))
+        local5 = wrapangle((entityyaw(camera, $00) - entityyaw(local0, $00)))
         If (((90.0 < local5) And (180.0 >= local5)) <> 0) Then
             local5 = 90.0
         EndIf
         If (((180.0 < local5) And (270.0 > local5)) <> 0) Then
             local5 = 270.0
         EndIf
+        local6 = wrapangle((entitypitch(camera, $00) - entitypitch(local0, $00)))
+        If (((90.0 < local6) And (180.0 >= local6)) <> 0) Then
+            local6 = 90.0
+        EndIf
+        If (((180.0 < local6) And (270.0 > local6)) <> 0) Then
+            local6 = 270.0
+        EndIf
         freeentity(local0)
-        drawimage(handicon, (Int ((((Float (graphicwidth / $03)) * sin(local4)) + (Float (graphicwidth Sar $01))) - 32.0)), (Int (((Float (graphicheight Sar $01)) - ((Float (graphicheight / $03)) * sin(local5))) - 32.0)), $00)
+        drawimage(handicon, (Int ((((Float (graphicwidth / $03)) * sin(local5)) + (Float (graphicwidth Sar $01))) - 32.0)), (Int (((Float (graphicheight Sar $01)) - ((Float (graphicheight / $03)) * sin(local6))) - 32.0)), $00)
     EndIf
     If (drawhandicon <> 0) Then
         drawimage(handicon, ((graphicwidth Sar $01) - $20), ((graphicheight Sar $01) - $20), $00)
     EndIf
-    For local3 = $00 To $03 Step $01
-        If (drawarrowicon(local3) <> 0) Then
+    For local4 = $00 To $03 Step $01
+        If (drawarrowicon(local4) <> 0) Then
             local1 = ((graphicwidth Sar $01) - $20)
             local2 = ((graphicheight Sar $01) - $20)
-            Select local3
+            Select local4
                 Case $00
                     local2 = ((local2 - $40) - $05)
                 Case $01
@@ -101,23 +110,23 @@ Function drawgui%()
             drawimage(handicon, local1, local2, $00)
             color($00, $00, $00)
             rect((local1 + $04), (local2 + $04), $38, $38, $01)
-            drawimage(arrowimg(local3), (local1 + $15), (local2 + $15), $00)
-            drawarrowicon(local3) = $00
+            drawimage(arrowimg(local4), (local1 + $15), (local2 + $15), $00)
+            drawarrowicon(local4) = $00
         EndIf
     Next
     If (hudenabled <> 0) Then
-        local7 = $CC
-        local8 = $14
+        local11 = $CC
+        local12 = $14
         local1 = $50
         local2 = (graphicheight - $5F)
         color($FF, $FF, $FF)
-        rect(local1, local2, local7, local8, $00)
+        rect(local1, local2, local11, local12, $00)
         color($57, $65, $69)
         If (60.0 > blinktimer) Then
             color($C8, $00, $00)
         EndIf
-        For local3 = $01 To (Int (((blinktimer / 560.0) * (Float (local7 - $02))) / 10.0)) Step $01
-            drawimage(blinkmeterimg, ((local1 + $03) + ((local3 - $01) * $0A)), (local2 + $03), $00)
+        For local4 = $01 To (Int (((blinktimer / 560.0) * (Float (local11 - $02))) / 10.0)) Step $01
+            drawimage(blinkmeterimg, ((local1 + $03) + ((local4 - $01) * $0A)), (local2 + $03), $00)
         Next
         color($00, $00, $00)
         rect((local1 - $32), local2, $1E, $1E, $01)
@@ -130,13 +139,13 @@ Function drawgui%()
         drawimage(blinkicon, (local1 - $32), local2, $00)
         local2 = (graphicheight - $37)
         color($FF, $FF, $FF)
-        rect(local1, local2, local7, local8, $00)
+        rect(local1, local2, local11, local12, $00)
         color($35, $44, $25)
         If (10.0 > stamina) Then
             color($C8, $00, $00)
         EndIf
-        For local3 = $01 To (Int (((stamina / 100.0) * (Float (local7 - $02))) / 10.0)) Step $01
-            drawimage(staminameterimg, ((local1 + $03) + ((local3 - $01) * $0A)), (local2 + $03), $00)
+        For local4 = $01 To (Int (((stamina / 100.0) * (Float (local11 - $02))) / 10.0)) Step $01
+            drawimage(staminameterimg, ((local1 + $03) + ((local4 - $01) * $0A)), (local2 + $03), $00)
         Next
         color($00, $00, $00)
         rect((local1 - $32), local2, $1E, $1E, $01)
@@ -144,14 +153,13 @@ Function drawgui%()
         rect(((local1 - $32) - $01), (local2 - $01), $20, $20, $00)
         drawimage(sprinticon, (local1 - $32), local2, $00)
     EndIf
-    local9 = invopen
-    local10 = $42
+    local13 = invopen
+    local14 = $42
     If (selecteddoor <> Null) Then
         selecteditem = Null
         local1 = ((graphicwidth Sar $01) - (imagewidth(keypadhud) Sar $01))
         local2 = ((graphicheight Sar $01) - (imageheight(keypadhud) Sar $01))
         drawimage(keypadhud, local1, local2, $00)
-        debuglog(accesscode)
         If (keypadmsg <> "") Then
             keypadtimer = (keypadtimer - fpsfactor2)
             If (35.0 > (keypadtimer Mod 70.0)) Then
@@ -169,34 +177,39 @@ Function drawgui%()
         EndIf
         local1 = (local1 + $2A)
         local2 = (local2 + $E9)
-        For local11 = $00 To $03 Step $01
-            For local3 = $00 To $02 Step $01
-                local12 = (($3D * local11) + local1)
-                local13 = (($35 * local3) + local2)
+        For local7 = $00 To $03 Step $01
+            For local4 = $00 To $02 Step $01
+                local8 = (($3D * local7) + local1)
+                local9 = (($35 * local4) + local2)
                 local0 = $00
-                If ((mouseon(local12, local13, $36, $33) And (keypadmsg = "")) <> 0) Then
+                If ((mouseon(local8, local9, $36, $33) And (keypadmsg = "")) <> 0) Then
                     If (mouseup1 <> 0) Then
-                        Select ((local11 + $01) + (local3 Shl $02))
+                        Select ((local7 + $01) + (local4 Shl $02))
                             Case $01,$02,$03
-                                keypadinput = (keypadinput + (Str ((local11 + $01) + (local3 Shl $02))))
+                                keypadinput = (keypadinput + (Str ((local7 + $01) + (local4 Shl $02))))
                             Case $04
                                 keypadinput = (keypadinput + "0")
                             Case $05,$06,$07
-                                keypadinput = (keypadinput + (Str (((local11 + $01) + (local3 Shl $02)) - $01)))
+                                keypadinput = (keypadinput + (Str (((local7 + $01) + (local4 Shl $02)) - $01)))
                             Case $08
-                                debuglog(selecteddoor\Field12)
+                                debuglog(selecteddoor\Field14)
                                 debuglog(keypadinput)
-                                If (keypadinput = selecteddoor\Field12) Then
+                                If (keypadinput = selecteddoor\Field14) Then
                                     selecteddoor\Field4 = $00
-                                    usedoor(selecteddoor)
+                                    usedoor(selecteddoor, $01)
                                     selecteddoor = Null
+                                    If (selecteddoor\Field14 = accesscode) Then
+                                        achvmaynard = $01
+                                    ElseIf (selecteddoor\Field14 = "7816") Then
+                                        achvharp = $01
+                                    EndIf
                                 Else
                                     keypadmsg = "ACCESS DENIED"
                                     keypadtimer = 210.0
                                     keypadinput = ""
                                 EndIf
                             Case $09,$0A,$0B
-                                keypadinput = (keypadinput + (Str (((local11 + $01) + (local3 Shl $02)) - $02)))
+                                keypadinput = (keypadinput + (Str (((local7 + $01) + (local4 Shl $02)) - $02)))
                             Case $0C
                                 keypadinput = ""
                         End Select
@@ -211,9 +224,9 @@ Function drawgui%()
                     local0 = $00
                 EndIf
                 If (local0 = $01) Then
-                    drawimage(buttondown, local12, local13, $00)
+                    drawimage(buttondown, local8, local9, $00)
                 Else
-                    drawimage(buttonup, local12, local13, $00)
+                    drawimage(buttonup, local8, local9, $00)
                 EndIf
             Next
         Next
@@ -228,52 +241,58 @@ Function drawgui%()
         keypadtimer = 0.0
         keypadmsg = ""
     EndIf
-    If (keyhit($01) <> 0) Then
+    If ((keyhit($01) And (0.0 = endingtimer)) <> 0) Then
+        If (menuopen <> 0) Then
+            resumesounds()
+        Else
+            pausesounds()
+        EndIf
         menuopen = (menuopen = $00)
         selecteddoor = Null
+        selectedscreen = Null
     EndIf
     If (invopen <> 0) Then
         selecteddoor = Null
-        local7 = $46
-        local8 = $46
-        local15 = $23
-        local1 = ((graphicwidth Sar $01) - ((((local7 * $0A) Sar $01) + (local15 Shl $02)) Sar $01))
-        local2 = ((graphicheight Sar $01) - local8)
+        local11 = $46
+        local12 = $46
+        local16 = $23
+        local1 = ((graphicwidth Sar $01) - ((((local11 * $0A) Sar $01) + (local16 Shl $02)) Sar $01))
+        local2 = ((graphicheight Sar $01) - local12)
         itemamount = $00
-        For local11 = $00 To $09 Step $01
-            local16 = $00
-            If (((mousex() > local1) And (mousex() < (local1 + local7))) <> 0) Then
-                If (((mousey() > local2) And (mousey() < (local2 + local8))) <> 0) Then
-                    local16 = $01
+        For local7 = $00 To $09 Step $01
+            local17 = $00
+            If (((mousex() > local1) And (mousex() < (local1 + local11))) <> 0) Then
+                If (((mousey() > local2) And (mousey() < (local2 + local12))) <> 0) Then
+                    local17 = $01
                 EndIf
             EndIf
-            If (local16 <> 0) Then
-                local10 = local11
+            If (local17 <> 0) Then
+                local14 = local7
                 color($FF, $00, $00)
-                rect((local1 - $01), (local2 - $01), (local7 + $02), (local8 + $02), $01)
+                rect((local1 - $01), (local2 - $01), (local11 + $02), (local12 + $02), $01)
             EndIf
             color($FF, $FF, $FF)
-            rect(local1, local2, local7, local8, $00)
+            rect(local1, local2, local11, local12, $00)
             color($7D, $7D, $7D)
-            rect((local1 + $01), (local2 + $01), (local7 - $02), (local8 - $02), $00)
+            rect((local1 + $01), (local2 + $01), (local11 - $02), (local12 - $02), $00)
             color($00, $00, $00)
-            rect((local1 + $05), (local2 + $05), (local7 - $0A), (local8 - $0A), $01)
-            If (inventory(local11) <> Null) Then
-                If (((selecteditem <> inventory(local11)) Or local16) <> 0) Then
-                    drawimage(inventory(local11)\Field1\Field4, (((local7 Sar $01) + local1) - $20), (((local8 Sar $01) + local2) - $20), $00)
+            rect((local1 + $05), (local2 + $05), (local11 - $0A), (local12 - $0A), $01)
+            If (inventory(local7) <> Null) Then
+                If (((selecteditem <> inventory(local7)) Or local17) <> 0) Then
+                    drawimage(inventory(local7)\Field1\Field5, (((local11 Sar $01) + local1) - $20), (((local12 Sar $01) + local2) - $20), $00)
                 EndIf
             EndIf
-            If (((inventory(local11) <> Null) And (selecteditem <> inventory(local11))) <> 0) Then
-                If (local16 <> 0) Then
+            If (((inventory(local7) <> Null) And (selecteditem <> inventory(local7))) <> 0) Then
+                If (local17 <> 0) Then
                     color($FF, $FF, $FF)
-                    text(((local7 Sar $01) + local1), (((local2 + local8) + local15) - $0F), inventory(local11)\Field1\Field0, $01, $00)
+                    text(((local11 Sar $01) + local1), (((local2 + local12) + local16) - $0F), inventory(local7)\Field1\Field0, $01, $00)
                     If (selecteditem = Null) Then
                         If (mousehit1 <> 0) Then
-                            selecteditem = inventory(local11)
+                            selecteditem = inventory(local7)
                             mousehit1 = $00
                             If (doubleclick <> 0) Then
-                                If (inventory(local11)\Field1\Field2 <> $42) Then
-                                    playsound(picksfx(inventory(local11)\Field1\Field2))
+                                If (inventory(local7)\Field1\Field2 <> $42) Then
+                                    playsound(picksfx(inventory(local7)\Field1\Field2))
                                 EndIf
                                 invopen = $00
                                 doubleclick = $00
@@ -282,29 +301,29 @@ Function drawgui%()
                     EndIf
                 EndIf
                 itemamount = (itemamount + $01)
-            ElseIf ((local16 And mousehit1) <> 0) Then
-                For local17 = $00 To $09 Step $01
-                    If (inventory(local17) = selecteditem) Then
-                        inventory(local17) = Null
+            ElseIf ((local17 And mousehit1) <> 0) Then
+                For local3 = $00 To $09 Step $01
+                    If (inventory(local3) = selecteditem) Then
+                        inventory(local3) = Null
                     EndIf
                 Next
-                inventory(local11) = selecteditem
+                inventory(local7) = selecteditem
             EndIf
-            local1 = ((local1 + local7) + local15)
-            If (local11 = $04) Then
-                local2 = (local2 + (local8 Shl $01))
-                local1 = ((graphicwidth Sar $01) - ((((local7 * $0A) Sar $01) + (local15 Shl $02)) Sar $01))
+            local1 = ((local1 + local11) + local16)
+            If (local7 = $04) Then
+                local2 = (local2 + (local12 Shl $01))
+                local1 = ((graphicwidth Sar $01) - ((((local11 * $0A) Sar $01) + (local16 Shl $02)) Sar $01))
             EndIf
         Next
         If (selecteditem <> Null) Then
             If (mousedown1 <> 0) Then
-                If (local10 = $42) Then
-                    drawimage(selecteditem\Field1\Field4, (mousex() - (imagewidth(selecteditem\Field1\Field4) Sar $01)), (mousey() - (imageheight(selecteditem\Field1\Field4) Sar $01)), $00)
-                ElseIf (selecteditem <> inventory(local10)) Then
-                    drawimage(selecteditem\Field1\Field4, (mousex() - (imagewidth(selecteditem\Field1\Field4) Sar $01)), (mousey() - (imageheight(selecteditem\Field1\Field4) Sar $01)), $00)
+                If (local14 = $42) Then
+                    drawimage(selecteditem\Field1\Field5, (mousex() - (imagewidth(selecteditem\Field1\Field5) Sar $01)), (mousey() - (imageheight(selecteditem\Field1\Field5) Sar $01)), $00)
+                ElseIf (selecteditem <> inventory(local14)) Then
+                    drawimage(selecteditem\Field1\Field5, (mousex() - (imagewidth(selecteditem\Field1\Field5) Sar $01)), (mousey() - (imageheight(selecteditem\Field1\Field5) Sar $01)), $00)
                 EndIf
             Else
-                If (local10 = $42) Then
+                If (local14 = $42) Then
                     If (selecteditem\Field1\Field2 <> $42) Then
                         playsound(picksfx(selecteditem\Field1\Field2))
                     EndIf
@@ -315,9 +334,9 @@ Function drawgui%()
                     rotateentity(selecteditem\Field0, 0.0, (Float rand($168, $01)), 0.0, $00)
                     resetentity(selecteditem\Field0)
                     selecteditem\Field7 = $00
-                    For local17 = $00 To $09 Step $01
-                        If (inventory(local17) = selecteditem) Then
-                            inventory(local17) = Null
+                    For local3 = $00 To $09 Step $01
+                        If (inventory(local3) = selecteditem) Then
+                            inventory(local3) = Null
                         EndIf
                     Next
                     If (((selecteditem\Field1\Field1 = "gasmask") Or (selecteditem\Field1\Field1 = "supergasmask")) <> 0) Then
@@ -327,33 +346,33 @@ Function drawgui%()
                     invopen = $00
                     movemouse(viewport_center_x, viewport_center_y)
                 Else
-                    debuglog(("mouseslot " + (Str local10)))
-                    If (inventory(local10) = Null) Then
-                        For local17 = $00 To $09 Step $01
-                            If (inventory(local17) = selecteditem) Then
-                                inventory(local17) = Null
+                    debuglog(("mouseslot " + (Str local14)))
+                    If (inventory(local14) = Null) Then
+                        For local3 = $00 To $09 Step $01
+                            If (inventory(local3) = selecteditem) Then
+                                inventory(local3) = Null
                             EndIf
                         Next
-                        inventory(local10) = selecteditem
+                        inventory(local14) = selecteditem
                         selecteditem = Null
-                    ElseIf (inventory(local10) <> selecteditem) Then
+                    ElseIf (inventory(local14) <> selecteditem) Then
                         Select selecteditem\Field1\Field1
                             Case "battery","bat"
-                                Select inventory(local10)\Field1\Field0
+                                Select inventory(local14)\Field1\Field0
                                     Case "S-NAV Navigator","S-NAV 300 Navigator","S-NAV 310 Navigator"
                                         If (selecteditem\Field1\Field2 <> $42) Then
                                             playsound(picksfx(selecteditem\Field1\Field2))
                                         EndIf
                                         removeitem(selecteditem)
                                         selecteditem = Null
-                                        inventory(local10)\Field5 = 100.0
+                                        inventory(local14)\Field5 = 100.0
                                         msg = "You replaced the battery of the navigator"
                                         msgtimer = 350.0
                                     Case "S-NAV Navigator Ultimate"
                                         msg = "There seems to be no place for batteries in the navigator"
                                         msgtimer = 350.0
                                     Case "Radio Transceiver"
-                                        Select inventory(local10)\Field1\Field1
+                                        Select inventory(local14)\Field1\Field1
                                             Case "fineradio","veryfineradio"
                                                 msg = "There seems to be no place for batteries in the radio"
                                                 msgtimer = 350.0
@@ -366,17 +385,17 @@ Function drawgui%()
                                                 EndIf
                                                 removeitem(selecteditem)
                                                 selecteditem = Null
-                                                inventory(local10)\Field5 = 100.0
+                                                inventory(local14)\Field5 = 100.0
                                                 msg = "You replaced the battery of the radio"
                                                 msgtimer = 350.0
                                         End Select
                                     Default
-                                        debuglog(inventory(local10)\Field1\Field0)
+                                        debuglog(inventory(local14)\Field1\Field0)
                                         msg = "This item can't be used this way"
                                         msgtimer = 350.0
                                 End Select
                             Case "18vbat"
-                                Select inventory(local10)\Field1\Field0
+                                Select inventory(local14)\Field1\Field0
                                     Case "S-NAV Navigator","S-NAV 300 Navigator","S-NAV 310 Navigator"
                                         msg = "The battery doesn't seem to fit"
                                         msgtimer = 350.0
@@ -384,7 +403,7 @@ Function drawgui%()
                                         msg = "There seems to be no place for batteries in the navigator"
                                         msgtimer = 350.0
                                     Case "Radio Transceiver"
-                                        Select inventory(local10)\Field1\Field1
+                                        Select inventory(local14)\Field1\Field1
                                             Case "fineradio","veryfineradio"
                                                 msg = "There seems to be no place for batteries in the radio"
                                                 msgtimer = 350.0
@@ -394,7 +413,7 @@ Function drawgui%()
                                                 EndIf
                                                 removeitem(selecteditem)
                                                 selecteditem = Null
-                                                inventory(local10)\Field5 = 100.0
+                                                inventory(local14)\Field5 = 100.0
                                                 msg = "You replaced the battery of the radio"
                                                 msgtimer = 350.0
                                         End Select
@@ -418,7 +437,7 @@ Function drawgui%()
         Select selecteditem\Field1\Field1
             Case "battery"
             Case "key1","key2","key3","key4","key5","key6","keyomni"
-                drawimage(selecteditem\Field1\Field4, ((graphicwidth Sar $01) - (imagewidth(selecteditem\Field1\Field4) Sar $01)), ((graphicheight Sar $01) - (imageheight(selecteditem\Field1\Field4) Sar $01)), $00)
+                drawimage(selecteditem\Field1\Field5, ((graphicwidth Sar $01) - (imagewidth(selecteditem\Field1\Field5) Sar $01)), ((graphicheight Sar $01) - (imageheight(selecteditem\Field1\Field5) Sar $01)), $00)
             Case "eyedrops"
                 eyesuper = (Float (rand($14, $1E) * $46))
                 blurtimer = 200.0
@@ -433,7 +452,7 @@ Function drawgui%()
                 blurtimer = 1000.0
                 removeitem(selecteditem)
             Case "paper"
-                drawimage(selecteditem\Field1\Field5, ((graphicwidth Sar $01) - (imagewidth(selecteditem\Field1\Field5) Sar $01)), ((graphicheight Sar $01) - (imageheight(selecteditem\Field1\Field5) Sar $01)), $00)
+                drawimage(selecteditem\Field1\Field6, ((graphicwidth Sar $01) - (imagewidth(selecteditem\Field1\Field6) Sar $01)), ((graphicheight Sar $01) - (imageheight(selecteditem\Field1\Field6) Sar $01)), $00)
             Case "radio","18vradio","fineradio","veryfineradio"
                 If (100.0 >= selecteditem\Field5) Then
                     selecteditem\Field5 = max(0.0, (selecteditem\Field5 - (fpsfactor * 0.01)))
@@ -444,11 +463,11 @@ Function drawgui%()
                     radiostate($05) = 1.0
                 EndIf
                 local24 = ""
-                local1 = ((graphicwidth - imagewidth(selecteditem\Field1\Field5)) + $78)
-                local2 = ((graphicheight - imageheight(selecteditem\Field1\Field5)) - $1E)
-                drawimage(selecteditem\Field1\Field5, local1, local2, $00)
+                local1 = ((graphicwidth - imagewidth(selecteditem\Field1\Field6)) + $78)
+                local2 = ((graphicheight - imageheight(selecteditem\Field1\Field6)) - $1E)
+                drawimage(selecteditem\Field1\Field6, local1, local2, $00)
                 If (0.0 < selecteditem\Field5) Then
-                    If (((playerroom\Field6\Field4 = "pocketdimension") Or (4.0 > coffindistance)) <> 0) Then
+                    If (((playerroom\Field7\Field4 = "pocketdimension") Or (4.0 > coffindistance)) <> 0) Then
                         resumechannel(radiochn($00))
                         If (channelplaying(radiochn($00)) = $00) Then
                             radiochn($00) = playsound(radiostatic)
@@ -490,6 +509,7 @@ Function drawgui%()
                                 EndIf
                             Case $03
                                 resumechannel(radiochn($03))
+                                local24 = "EMERGENCY CHANNEL - RESERVED FOR COMMUNICATION IN THE EVENT OF A CONTAINMENT BREACH"
                                 If (channelplaying(radiochn($03)) = $00) Then
                                     radiochn($03) = playsound(radiostatic)
                                 EndIf
@@ -564,15 +584,15 @@ Function drawgui%()
                             setfont(font2)
                             text((local1 + $D6), (local2 + $136), (Str rand($00, $09)), $01, $01)
                         Else
-                            For local3 = $02 To $06 Step $01
-                                If (keyhit(local3) <> 0) Then
-                                    If ((Float (local3 - $02)) <> selecteditem\Field6) Then
+                            For local4 = $02 To $06 Step $01
+                                If (keyhit(local4) <> 0) Then
+                                    If ((Float (local4 - $02)) <> selecteditem\Field6) Then
                                         playsound(radiosquelch)
                                         If (radiochn((Int selecteditem\Field6)) <> $00) Then
                                             pausechannel(radiochn((Int selecteditem\Field6)))
                                         EndIf
                                     EndIf
-                                    selecteditem\Field6 = (Float (local3 - $02))
+                                    selecteditem\Field6 = (Float (local4 - $02))
                                     If (radiochn((Int selecteditem\Field6)) <> $00) Then
                                         resumechannel(radiochn((Int selecteditem\Field6)))
                                     EndIf
@@ -588,11 +608,11 @@ Function drawgui%()
                         local1 = (local1 + $141)
                         local2 = (local2 + $108)
                         If (100.0 >= selecteditem\Field5) Then
-                            For local3 = $01 To $05 Step $01
-                                If ((Float ($05 - local3)) < ceil((selecteditem\Field5 / 20.0))) Then
-                                    rect((local1 - ($28 - (local3 * $06))), local2, ($28 - (local3 * $06)), $05, $01)
+                            For local4 = $01 To $05 Step $01
+                                If ((Float ($05 - local4)) < ceil((selecteditem\Field5 / 20.0))) Then
+                                    rect((local1 - ($28 - (local4 * $06))), local2, ($28 - (local4 * $06)), $05, $01)
                                 Else
-                                    rect((local1 - ($28 - (local3 * $06))), local2, ($28 - (local3 * $06)), $05, $00)
+                                    rect((local1 - ($28 - (local4 * $06))), local2, ($28 - (local4 * $06)), $05, $00)
                                 EndIf
                                 local2 = (local2 + $0A)
                             Next
@@ -600,13 +620,17 @@ Function drawgui%()
                     EndIf
                 EndIf
             Case "cigarette"
-                msg = "Nah, a cigarette won't help me relax in a situation like this"
+                msg = "I don't have anything to light it with. Umm, what about that... Nevermind."
                 msgtimer = 350.0
                 removeitem(selecteditem)
             Case "420"
                 msg = "MAN DATS SUM GOOD ASS SHIT"
                 msgtimer = 350.0
                 removeitem(selecteditem)
+                blurtimer = 500.0
+                achv420 = $01
+                tempsound = loadsound("SFX\Mandeville.ogg")
+                playsound(tempsound)
             Case "420s"
                 msg = "UH WHERE... WHAT WAS I DOING AGAIN... MAN I NEED TO TAKE A NAP..."
                 killtimer = -1.0
@@ -628,48 +652,48 @@ Function drawgui%()
                 EndIf
                 local1 = ((graphicwidth Sar $01) + $07)
                 local2 = ((graphicheight Sar $01) - $1C)
-                local7 = $11F
-                local8 = $100
-                drawimage(selecteditem\Field1\Field5, ((graphicwidth Sar $01) - (imagewidth(selecteditem\Field1\Field5) Sar $01)), ((graphicheight Sar $01) - (imageheight(selecteditem\Field1\Field5) Sar $01)), $00)
-                If (playerroom\Field6\Field4 = "pocketdimension") Then
+                local11 = $11F
+                local12 = $100
+                drawimage(selecteditem\Field1\Field6, ((graphicwidth Sar $01) - (imagewidth(selecteditem\Field1\Field6) Sar $01)), ((graphicheight Sar $01) - (imageheight(selecteditem\Field1\Field6) Sar $01)), $00)
+                If (playerroom\Field7\Field4 = "pocketdimension") Then
                     If ((millisecs() Mod $3E8) > $12C) Then
-                        text(local1, (((local8 Sar $01) + local2) - $50), "ERROR 06", $01, $00)
-                        text(local1, (((local8 Sar $01) + local2) - $3C), "LOCATION UNKNOWN", $01, $00)
+                        text(local1, (((local12 Sar $01) + local2) - $50), "ERROR 06", $01, $00)
+                        text(local1, (((local12 Sar $01) + local2) - $3C), "LOCATION UNKNOWN", $01, $00)
                     EndIf
-                ElseIf (((0.0 < selecteditem\Field5) And ((1.0 < rnd((coffindistance + 15.0), 0.0)) Or (playerroom\Field6\Field4 <> "coffin"))) <> 0) Then
+                ElseIf (((0.0 < selecteditem\Field5) And ((1.0 < rnd((coffindistance + 15.0), 0.0)) Or (playerroom\Field7\Field4 <> "coffin"))) <> 0) Then
                     color($E6, $DF, $CC)
                     If (selecteditem\Field1\Field0 = "S-NAV Navigator") Then
                         color($FF, $00, $00)
                     EndIf
                     If ((millisecs() Mod $3E8) > $12C) Then
                         If (((selecteditem\Field1\Field0 <> "S-NAV 310 Navigator") And (selecteditem\Field1\Field0 <> "S-NAV Navigator Ultimate")) <> 0) Then
-                            text(local1, (((local8 Sar $01) + local2) - $28), "COULDN'T CONNECT", $01, $00)
-                            text(local1, (((local8 Sar $01) + local2) - $14), "TO MAP DATABASE", $01, $00)
+                            text(local1, (((local12 Sar $01) + local2) - $28), "COULDN'T CONNECT", $01, $00)
+                            text(local1, (((local12 Sar $01) + local2) - $14), "TO MAP DATABASE", $01, $00)
                         EndIf
                         rect((local1 - $04), ((local2 - $04) - $07), $08, $08, $00)
                     EndIf
-                    local27 = (Int floor(((entityx(playerroom\Field1, $00) / 8.0) + 0.5)))
-                    local28 = (Int floor(((entityz(playerroom\Field1, $00) / 8.0) + 0.5)))
+                    local27 = (Int floor(((entityx(playerroom\Field2, $00) / 8.0) + 0.5)))
+                    local28 = (Int floor(((entityz(playerroom\Field2, $00) / 8.0) + 0.5)))
                     If (((selecteditem\Field1\Field0 = "S-NAV Navigator Ultimate") And ((millisecs() Mod $258) < $190)) <> 0) Then
                         local29 = entitydistance(camera, curr173\Field0)
                         local29 = (ceil((local29 / 8.0)) * 8.0)
                         If (32.0 > local29) Then
                             color($FF, $00, $00)
                             oval((Int ((Float local1) - (local29 * 3.0))), (Int ((Float (local2 - $07)) - (local29 * 3.0))), (Int ((local29 * 3.0) * 2.0)), (Int ((local29 * 3.0) * 2.0)), $00)
-                            text(((local1 - (local7 Sar $01)) + $14), ((local2 - (local8 Sar $01)) + $14), "SCP-173", $00, $00)
+                            text(((local1 - (local11 Sar $01)) + $14), ((local2 - (local12 Sar $01)) + $14), "SCP-173", $00, $00)
                         EndIf
                         local29 = entitydistance(camera, curr106\Field0)
                         If (32.0 > local29) Then
                             color($FF, $00, $00)
                             oval((Int ((Float local1) - (local29 * 1.5))), (Int ((Float (local2 - $07)) - (local29 * 1.5))), (Int (local29 * 3.0)), (Int (local29 * 3.0)), $00)
-                            text(((local1 - (local7 Sar $01)) + $14), ((local2 - (local8 Sar $01)) + $28), "SCP-106", $00, $00)
+                            text(((local1 - (local11 Sar $01)) + $14), ((local2 - (local12 Sar $01)) + $28), "SCP-106", $00, $00)
                         EndIf
-                        If (playerroom\Field6\Field4 = "coffin") Then
+                        If (playerroom\Field7\Field4 = "coffin") Then
                             If (8.0 > coffindistance) Then
                                 local29 = rnd(4.0, 8.0)
                                 color($FF, $00, $00)
                                 oval((Int ((Float local1) - (local29 * 1.5))), (Int ((Float (local2 - $07)) - (local29 * 1.5))), (Int (local29 * 3.0)), (Int (local29 * 3.0)), $00)
-                                text(((local1 - (local7 Sar $01)) + $14), ((local2 - (local8 Sar $01)) + $28), "SCP-895", $00, $00)
+                                text(((local1 - (local11 Sar $01)) + $14), ((local2 - (local12 Sar $01)) + $28), "SCP-895", $00, $00)
                             EndIf
                         EndIf
                     EndIf
@@ -678,7 +702,7 @@ Function drawgui%()
                         For local31 = (Int max(1.0, ((Float local28) - local29))) To (Int min((Float (mapheight - $02)), ((Float local28) + local29))) Step $01
                             local32 = (((local27 - local30) * $18) + local1)
                             local33 = ((local2 - ((local28 - local31) * $18)) - $07)
-                            If (playerroom\Field6\Field4 = "coffin") Then
+                            If (playerroom\Field7\Field4 = "coffin") Then
                                 If (((8.0 > coffindistance) And (0.5 > rnd(coffindistance, 0.0))) <> 0) Then
                                     local32 = (Int (((15.0 - coffindistance) * rnd(-1.0, 1.0)) + (Float local32)))
                                     local33 = (Int (((15.0 - coffindistance) * rnd(-1.0, 1.0)) + (Float local33)))
@@ -711,19 +735,19 @@ Function drawgui%()
                             EndIf
                         Next
                     Next
-                    local1 = (((graphicwidth Sar $01) + (local7 Sar $01)) - $0A)
-                    local2 = ((graphicheight Sar $01) - (local8 Sar $01))
+                    local1 = (((graphicwidth Sar $01) + (local11 Sar $01)) - $0A)
+                    local2 = ((graphicheight Sar $01) - (local12 Sar $01))
                     color($E6, $DF, $CC)
                     If (selecteditem\Field1\Field0 = "S-NAV Navigator") Then
                         color($FF, $00, $00)
                     EndIf
                     If (100.0 >= selecteditem\Field5) Then
                         text((local1 - $3C), (local2 - $14), "BATTERY", $00, $00)
-                        For local3 = $01 To $05 Step $01
-                            If ((Float ($05 - local3)) < ceil((selecteditem\Field5 / 20.0))) Then
-                                rect((local1 - ($28 - (local3 * $06))), local2, ($28 - (local3 * $06)), $05, $01)
+                        For local4 = $01 To $05 Step $01
+                            If ((Float ($05 - local4)) < ceil((selecteditem\Field5 / 20.0))) Then
+                                rect((local1 - ($28 - (local4 * $06))), local2, ($28 - (local4 * $06)), $05, $01)
                             Else
-                                rect((local1 - ($28 - (local3 * $06))), local2, ($28 - (local3 * $06)), $05, $00)
+                                rect((local1 - ($28 - (local4 * $06))), local2, ($28 - (local4 * $06)), $05, $00)
                             EndIf
                             local2 = (local2 + $0F)
                         Next
@@ -739,15 +763,15 @@ Function drawgui%()
         EndIf
     EndIf
     If (selecteditem = Null) Then
-        For local3 = $00 To $06 Step $01
-            If (radiochn(local3) <> $00) Then
-                If (channelplaying(radiochn(local3)) <> 0) Then
-                    pausechannel(radiochn(local3))
+        For local4 = $00 To $06 Step $01
+            If (radiochn(local4) <> $00) Then
+                If (channelplaying(radiochn(local4)) <> 0) Then
+                    pausechannel(radiochn(local4))
                 EndIf
             EndIf
         Next
     EndIf
-    If ((local9 And (invopen = $00)) <> 0) Then
+    If ((local13 And (invopen = $00)) <> 0) Then
         movemouse(viewport_center_x, viewport_center_y)
     EndIf
     Return $00

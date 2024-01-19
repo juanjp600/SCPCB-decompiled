@@ -8,9 +8,10 @@ Function initevents%()
         createevent("lockroom173", "lockroom", $00, 0.0)
     EndIf
     createevent("lockroom173", "lockroom", $00, 0.3)
-    createevent("tunnel2smoke", "tunnel2", $00, 0.1)
+    createevent("tunnel2smoke", "tunnel2", $00, 0.2)
     createevent("tunnel2", "tunnel2", rand($00, $02), 0.0)
-    createevent("room2doors173", "room2doors", $00, 0.3)
+    createevent("room2doors173", "room2doors", $00, 0.5)
+    createevent("room2offices3", "room2offices3", $00, 1.0)
     If (rand($05, $01) < $05) Then
         Select rand($03, $01)
             Case $01
@@ -23,6 +24,10 @@ Function initevents%()
     EndIf
     createevent("testroom173", "room2testroom2", $00, 1.0)
     createevent("room2tesla", "room2tesla", $00, 0.9)
+    local0 = createevent("room2nuke", "room2nuke", $00, 0.0)
+    If (local0 <> Null) Then
+        local0\Field2 = 1.0
+    EndIf
     If (rand($05, $01) < $05) Then
         createevent("coffin106", "coffin", $00, 0.0)
     Else
@@ -37,9 +42,10 @@ Function initevents%()
     createevent("914", "914", $00, 0.0)
     createevent("buttghost", "room2toilets", $00, 0.8)
     createevent("room2pipes106", "room2pipes", rand($00, $03), 0.0)
-    createevent("room2pit", "room2pit", $00, 0.3)
+    createevent("room2pit", "room2pit", $00, 0.4)
     createevent("testroom", "testroom", $00, 0.0)
     createevent("room2tunnel", "room2tunnel", $00, 0.0)
     createevent("room2ccont", "room2ccont", $00, 0.0)
+    createevent("exit1", "exit1", $00, 0.0)
     Return $00
 End Function

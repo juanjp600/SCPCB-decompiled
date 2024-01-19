@@ -30,7 +30,6 @@ Function loadroomtemplates%(arg0$)
                 Case "room4","4"
                     local4\Field3 = $05
             End Select
-            debuglog(((local4\Field4 + " - ") + (Str local4\Field3)))
             local4\Field6 = (Int max(min((Float getiniint(arg0, local0, "commonness")), 100.0), 0.0))
             local4\Field7 = getiniint(arg0, local0, "disabledecals")
             local4\Field8 = getiniint(arg0, local0, "walksound")

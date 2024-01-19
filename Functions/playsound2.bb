@@ -1,4 +1,4 @@
-Function playsound2%(arg0%, arg1%, arg2%, arg3#, arg4#)
+Function playsound2%(arg0%, arg1%, arg2%, arg3#, arg4#, arg5%)
     Local local0%
     Local local1#
     Local local2%
@@ -11,7 +11,9 @@ Function playsound2%(arg0%, arg1%, arg2%, arg3#, arg4#)
         positionentity(local2, entityx(arg1, $00), entityy(arg1, $00), entityz(arg1, $00), $00)
         pointentity(local2, arg2, 0.0)
         local3 = sin((entityyaw(arg1, $00) - entityyaw(local2, $00)))
-        local0 = playsound(arg0)
+        If (arg5 <> 0) Then
+            local0 = playsound(arg0)
+        EndIf
         channelvolume(local0, ((1.0 - (local1 / arg3)) * arg4))
         channelpan(local0, local3)
         freeentity(local2)

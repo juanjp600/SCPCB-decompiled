@@ -3,26 +3,35 @@ Type npcs
     Field Field1%
     Field Field2%
     Field Field3%
-    Field Field4#
+    Field Field4%
     Field Field5%
-    Field Field6#
-    Field Field7%
-    Field Field8#
-    Field Field9%
-    Field Field10%
+    Field Field6%
+    Field Field7#
+    Field Field8%
+    Field Field9#
+    Field Field10#
     Field Field11#
     Field Field12%
     Field Field13#
     Field Field14%
-    Field Field15#
+    Field Field15%
     Field Field16#
     Field Field17#
     Field Field18#
-    Field Field19#
+    Field Field19%
     Field Field20#
-    Field Field21#
-    Field Field22.waypoints[20]
-    Field Field23%
+    Field Field21%
+    Field Field22#
+    Field Field23#
     Field Field24#
-    Field Field25%
+    Field Field25#
+    Field Field26.npcs
+    Field Field27%
+    Field Field28#
+    Field Field29#
+    Field Field30#
+    Field Field31.waypoints[20]
+    Field Field32%
+    Field Field33#
+    Field Field34%
 End Type

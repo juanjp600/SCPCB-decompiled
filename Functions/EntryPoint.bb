@@ -7,18 +7,13 @@ Function EntryPoint%()
     Local local5#
     Local local6%
     Local local7%
-    Local local8%
+    Local local8$
     Local local9$
-    Local local10$
+    Local local10%
     Local local11%
     Local local12%
     Local local13%
-    Local local14%
-    Local local15%
-    Local local16#
-    Local local17%
-    Local local18%
-    Local local19.rooms
+    Local local14#
     gfxdrivercapsex = (New gfxdrivercapsex_type)
     fe_pivotsys = $00
     fe_initextflag = $00
@@ -37,7 +32,7 @@ Function EntryPoint%()
     mirrorcameraaz = 0.0
     mirrorcameraparent = $00
     optionfile = "options.ini"
-    versionnumber = "0.3.1"
+    versionnumber = "0.5"
     local0 = $00
     Dim arrowimg%($04)
     launcherwidth = (Int min((Float getiniint(optionfile, "launcher", "launcher width")), 1024.0))
@@ -66,12 +61,13 @@ Function EntryPoint%()
     local4 = $3C
     seedrnd(millisecs())
     cursorimg = loadimage("GFX\cursor.png")
-    cwmimg = loadimage("GFX\cwm.jpg")
+    loadingback = loadimage("Loadingscreens\loadingback.jpg")
+    initloadingscreens("Loadingscreens\loadingscreens.ini")
     font1 = loadfont("GFX\TI-83.ttf", (Int (((Float graphicheight) / 1024.0) * 18.0)), $00, $00, $00)
     font2 = loadfont("GFX\TI-83.ttf", (Int (((Float graphicheight) / 1024.0) * 60.0)), $00, $00, $00)
     setfont(font2)
     blinkmeterimg = loadimage("GFX\blinkmeter.jpg")
-    drawloading($00)
+    drawloading($00, $01)
     viewport_center_x = (graphicwidth Sar $01)
     viewport_center_y = (graphicheight Sar $01)
     mouselook_x_inc = 0.3
@@ -97,6 +93,7 @@ Function EntryPoint%()
     createconsolemsg("  - 173state")
     createconsolemsg("  - 106state")
     createconsolemsg("  - status")
+    createconsolemsg("  - wireframe on/off")
     bumpenabled = getiniint("options.ini", "options", "bump mapping enabled")
     hudenabled = getiniint("options.ini", "options", "HUD enabled")
     brightness = $23
@@ -104,16 +101,14 @@ Function EntryPoint%()
     camerafogfar = getinifloat("options.ini", "options", "camera fog far")
     mousesens = getinifloat("options.ini", "options", "mouse sensitivity")
     Dim lightspritetex%($0A)
-    Dim music%($05)
+    Dim music%($08)
     music($00) = loadsound("SFX\Music\The Dread.ogg")
     music($01) = loadsound("SFX\Music\Bump in the Night.ogg")
     music($02) = loadsound("SFX\Music\MenuAmbience.ogg")
-    music($03) = loadsound("SFX\Ambient\PocketDimension.ogg")
-    music($04) = loadsound("SFX\Music\AI.ogg")
     musicvolume = getinifloat(optionfile, "options", "music volume")
     musicchn = playsound(music($02))
     channelvolume(musicchn, musicvolume)
-    drawloading($0A)
+    drawloading($0A, $01)
     Dim opendoorsfx%($03)
     Dim closedoorsfx%($03)
     For local6 = $00 To $02 Step $01
@@ -124,11 +119,10 @@ Function EntryPoint%()
     bigdoorclosesfx = loadsound("SFX\bigdoorclose.ogg")
     bigdooropensfx = loadsound("SFX\bigdooropen.ogg")
     stonedragsfx = loadsound("SFX\StoneDrag.ogg")
-    stonestopsfx = loadsound("SFX\StoneDrag2.ogg")
     gunshotsfx = loadsound("SFX\gunshot.ogg")
+    gunshot2sfx = loadsound("SFX\gunshot2.ogg")
+    gunshot3sfx = loadsound("SFX\bulletmiss.ogg")
     bullethitsfx = loadsound("SFX\bullethit.ogg")
-    msg079 = loadsound("SFX\msg.ogg")
-    error079 = loadsound("SFX\error.ogg")
     teslaidlesfx = loadsound("SFX\teslaidle.ogg")
     teslaactivatesfx = loadsound("SFX\teslaactivate.ogg")
     teslapowerupsfx = loadsound("SFX\teslapowerup.ogg")
@@ -139,7 +133,7 @@ Function EntryPoint%()
         decaysfx(local6) = loadsound((("SFX\decay" + (Str local6)) + ".ogg"))
     Next
     burstsfx = loadsound("SFX\burst.ogg")
-    drawloading($14)
+    drawloading($14, $01)
     Dim rustlesfx%($03)
     For local6 = $00 To $02 Step $01
         rustlesfx(local6) = loadsound((("SFX\rustle" + (Str local6)) + ".ogg"))
@@ -165,11 +159,8 @@ Function EntryPoint%()
     For local6 = $00 To $02 Step $01
         picksfx(local6) = loadsound((("SFX\PickItem" + (Str local6)) + ".ogg"))
     Next
-    ambientsfxamount = $0B
+    ambientsfxamount = $12
     Dim ambientsfx%(ambientsfxamount)
-    For local6 = $00 To (ambientsfxamount - $01) Step $01
-        ambientsfx(local6) = loadsound((("SFX\Ambient\Ambient" + (Str (local6 + $01))) + ".ogg"))
-    Next
     Dim oldmansfx%($06)
     For local6 = $00 To $04 Step $01
         oldmansfx(local6) = loadsound((("SFX\oldman" + (Str (local6 + $01))) + ".ogg"))
@@ -183,7 +174,7 @@ Function EntryPoint%()
     For local6 = $00 To $0A Step $01
         horrorsfx(local6) = loadsound((("SFX\horror" + (Str (local6 + $01))) + ".ogg"))
     Next
-    drawloading($19)
+    drawloading($19, $01)
     Dim introsfx%($10)
     For local6 = $07 To $09 Step $01
         introsfx(local6) = loadsound((("SFX\intro\bang" + (Str (local6 - $06))) + ".ogg"))
@@ -197,31 +188,37 @@ Function EntryPoint%()
     Dim alarmsfx%($05)
     alarmsfx($00) = loadsound("SFX\alarm.ogg")
     alarmsfx($01) = loadsound("SFX\alarm2.ogg")
+    alarmsfx($02) = loadsound("SFX\alarm3.ogg")
     Dim damagesfx%($05)
-    damagesfx($00) = loadsound("SFX\NeckSnap1.ogg")
-    damagesfx($01) = loadsound("SFX\NeckSnap2.ogg")
-    damagesfx($02) = loadsound("SFX\NeckSnap3.ogg")
+    For local6 = $00 To $02 Step $01
+        damagesfx($00) = loadsound((("SFX\NeckSnap" + (Str (local6 + $01))) + ".ogg"))
+    Next
     Dim deathsfx%($05)
     deathsfx($00) = loadsound("SFX\death1.ogg")
     deathsfx($01) = loadsound("SFX\death2.ogg")
+    Dim mtfsfx%($0A)
     glassbreaksfx = loadsound("SFX\glassbreak.ogg")
     Dim coughsfx%($03)
     For local6 = $00 To $02 Step $01
         coughsfx(local6) = loadsound((("SFX\cough" + (Str (local6 + $01))) + ".ogg"))
     Next
     machinesfx = loadsound("SFX\Machine.ogg")
-    Dim stepsfx%($02, $02, $04)
+    apachesfx = loadsound("SFX\apache.ogg")
+    Dim stepsfx%($03, $02, $04)
     For local6 = $00 To $03 Step $01
         stepsfx($00, $00, local6) = loadsound((("SFX\step" + (Str (local6 + $01))) + ".ogg"))
         stepsfx($01, $00, local6) = loadsound((("SFX\stepmetal" + (Str (local6 + $01))) + ".ogg"))
         stepsfx($00, $01, local6) = loadsound((("SFX\run" + (Str (local6 + $01))) + ".ogg"))
         stepsfx($01, $01, local6) = loadsound((("SFX\runmetal" + (Str (local6 + $01))) + ".ogg"))
+        If (local6 < $03) Then
+            stepsfx($02, $00, local6) = loadsound((("SFX\MTF\StepMTF" + (Str (local6 + $01))) + ".ogg"))
+        EndIf
     Next
     Dim steppdsfx%($04)
     For local6 = $00 To $02 Step $01
         steppdsfx(local6) = loadsound((("SFX\stepPD" + (Str (local6 + $01))) + ".ogg"))
     Next
-    drawloading($1E)
+    drawloading($1E, $01)
     pausemenuimg = loadimage("GFX\menu\pausemenu.jpg")
     maskimage(pausemenuimg, $FF, $FF, $00)
     sprinticon = loadimage("GFX\sprinticon.jpg")
@@ -233,12 +230,12 @@ Function EntryPoint%()
     maskimage(keypadhud, $FF, $00, $FF)
     buttonup = loadimage("GFX\buttonup.png")
     buttondown = loadimage("GFX\buttondown.png")
-    drawloading($23)
+    drawloading($23, $01)
     Dim inventory.items($0B)
     Dim particletextures%($0A)
     hisssfx = loadsound("SFX\hiss.ogg")
     Dim bigdoorobj%($02)
-    drawloading($28)
+    drawloading($28, $01)
     loadroomtemplates("Data\rooms.ini")
     roomscale = (1.0 / 256.0)
     mapwidth = getiniint("options.ini", "options", "map size")
@@ -251,17 +248,17 @@ Function EntryPoint%()
     contained106 = $00
     Dim mapname$(mapwidth, mapheight)
     Dim maproomid%($06)
-    Dim maproom$($06, local7)
-    drawloading($50)
+    Dim maproom$($06, $00)
+    drawloading($50, $01)
     collisions($02, $01, $02, $02)
     collisions($02, $02, $01, $03)
     collisions($03, $01, $02, $02)
-    drawloading($5A)
+    drawloading($5A, $01)
     Dim lightspritetex%($05)
     Dim bigdoorobj%($02)
     Dim gorepics%($0A)
     Dim decaltextures%($14)
-    bumppower(0.05)
+    bumppower(0.03)
     menuback = loadimage("GFX\menu\back.jpg")
     menutext = loadimage("GFX\menu\scptext.jpg")
     menu173 = loadimage("GFX\menu\173back.jpg")
@@ -283,42 +280,43 @@ Function EntryPoint%()
     menublinktimer($01) = $01
     introenabled = $01
     savepath = "Saves\"
-    local8 = readdir(savepath)
+    local7 = readdir(savepath)
     Repeat
-        local9 = nextfile(local8)
-        If (local9 = "") Then
+        local8 = nextfile(local7)
+        If (local8 = "") Then
             Exit
         EndIf
-        If (filetype(((local10 + "\") + local9)) = $02) Then
+        If (filetype(((local9 + "\") + local8)) = $02) Then
             savegameamount = (savegameamount + $01)
         EndIf
     Forever
-    closedir(local8)
+    closedir(local7)
     Dim savegames$((savegameamount + $01))
-    local8 = readdir(savepath)
+    local7 = readdir(savepath)
     local6 = $00
     Repeat
-        local9 = nextfile(local8)
-        If (local9 = "") Then
+        local8 = nextfile(local7)
+        If (local8 = "") Then
             Exit
         EndIf
-        If (filetype(((local10 + "\") + local9)) = $02) Then
-            savegames(local6) = local9
+        If (filetype(((local9 + "\") + local8)) = $02) Then
+            savegames(local6) = local8
             local6 = (local6 + $01)
         EndIf
     Forever
-    closedir(local8)
+    closedir(local7)
     Dim savegametime%((savegameamount + $01))
-    Dim savegamedate%((local11 + $01))
-    For local6 = $01 To local11 Step $01
-        local12 = readfile(((savepath + savegames((local6 - $01))) + "\save.txt"))
-        savegametime((local6 - $01)) = readint(local12)
-        closefile(local12)
+    Dim savegamedate%((local10 + $01))
+    For local6 = $01 To local10 Step $01
+        local11 = readfile(((savepath + savegames((local6 - $01))) + "\save.txt"))
+        savegametime((local6 - $01)) = readint(local11)
+        closefile(local11)
     Next
     mainmenuopen = $01
     flushkeys()
     flushmouse()
-    drawloading($64)
+    drawloading($64, $01)
+    loopdelay = millisecs()
     Repeat
         cls($01, $01)
         curtime = millisecs()
@@ -326,12 +324,12 @@ Function EntryPoint%()
         prevtime = curtime
         fpsfactor = max(min((local5 * 70.0), 5.0), 0.2)
         fpsfactor2 = fpsfactor
-        If ((((menuopen Or invopen) Or consoleopen) Or (selecteddoor <> Null)) <> 0) Then
+        If (((((menuopen Or invopen) Or consoleopen) Or (selecteddoor <> Null)) Or (selectedscreen <> Null)) <> 0) Then
             fpsfactor = 0.0
         EndIf
         If (((local4 > $00) Or (local4 < $FF)) <> 0) Then
-            local13 = (Int ((1000.0 / (Float local4)) - (Float (millisecs() - loopdelay))))
-            delay(local13)
+            local12 = (Int ((1000.0 / (Float local4)) - (Float (millisecs() - loopdelay))))
+            delay(local12)
             loopdelay = millisecs()
         EndIf
         If (local1 < millisecs()) Then
@@ -348,9 +346,9 @@ Function EntryPoint%()
             EndIf
             lastmousehit1 = millisecs()
         EndIf
-        local14 = mousedown1
+        local13 = mousedown1
         mousedown1 = mousedown($01)
-        If (((local14 = $01) And (mousedown1 = $00)) <> 0) Then
+        If (((local13 = $01) And (mousedown1 = $00)) <> 0) Then
             mouseup1 = $01
         Else
             mouseup1 = $00
@@ -369,35 +367,53 @@ Function EntryPoint%()
             ambientlight((Float brightness), (Float brightness), (Float brightness))
             updatesecuritycams()
             If (keyhit($0F) <> 0) Then
+                If (invopen <> 0) Then
+                    resumesounds()
+                Else
+                    pausesounds()
+                EndIf
                 invopen = (invopen = $00)
                 selecteditem = Null
             EndIf
-            If (playerroom\Field6\Field4 <> "pocketdimension") Then
+            If (playerroom\Field7\Field4 <> "pocketdimension") Then
                 If (rand($5DC, $01) = $01) Then
                     positionentity(soundemitter, (entityx(camera, $00) + rnd(-1.0, 1.0)), 0.0, (entityz(camera, $00) + rnd(-1.0, 1.0)), $00)
-                    playsound2(ambientsfx(rand($00, (ambientsfxamount - $01))), camera, soundemitter, 10.0, 1.0)
+                    currambientsfx = rand($00, (ambientsfxamount - $01))
+                    If (ambientsfx(currambientsfx) = $00) Then
+                        ambientsfx(currambientsfx) = loadsound((("SFX\ambient\ambient" + (Str (currambientsfx + $01))) + ".ogg"))
+                    EndIf
+                    ambientsfxchn = playsound2(ambientsfx(currambientsfx), camera, soundemitter, 10.0, 1.0, $01)
                 EndIf
             EndIf
-            If ((keyhit(local15) And $00) <> 0) Then
-                kill()
+            If (ambientsfx(currambientsfx) <> $00) Then
+                If (channelplaying(ambientsfxchn) = $00) Then
+                    freesound(ambientsfx(currambientsfx))
+                    ambientsfx(currambientsfx) = $00
+                EndIf
             EndIf
             lightvolume = curvevalue(templightvolume, lightvolume, 50.0)
             If (((((menuopen = $00) And (invopen = $00)) And (selecteddoor = Null)) And (consoleopen = $00)) <> 0) Then
                 camerafogrange(camera, (camerafognear * lightvolume), (camerafogfar * lightvolume))
+                camerafogcolor(camera, 0.0, 0.0, 0.0)
+                camerafogmode(camera, $01)
+                camerarange(camera, 0.05, 16.0)
                 updateroomtimer = (updateroomtimer - fpsfactor)
                 If (0.0 >= updateroomtimer) Then
                     updaterooms()
                     updateroomtimer = 10.0
                 EndIf
+                playersoundvolume = curvevalue(0.0, playersoundvolume, 5.0)
                 updateemitters()
                 mouselook()
                 moveplayer()
                 updatedoors()
                 updateevents()
                 updatedecals()
+                updatemtf()
                 updatenpcs()
                 updateitems()
                 updateparticles()
+                updatescreens()
             EndIf
             updateworld(1.0)
             renderworld(1.0)
@@ -407,23 +423,23 @@ Function EntryPoint%()
                 blurtimer = max((blurtimer - fpsfactor), 0.0)
             EndIf
             updateblur(blurvolume)
-            local16 = (sin((Float (millisecs() / $1388))) * 0.08)
+            local14 = (sin((Float (millisecs() / $1388))) * 0.08)
             If (menuopen = $00) Then
                 If (0.0 > sanity) Then
                     sanity = min((sanity + fpsfactor), 0.0)
                     If (-200.0 > sanity) Then
-                        local16 = max(min((((- sanity) - 200.0) / 500.0), 0.8), local16)
+                        local14 = max(min((((- sanity) - 200.0) / 500.0), 0.8), local14)
                     EndIf
                 EndIf
                 If (0.0 < eyestuck) Then
                     blinktimer = 560.0
-                    eyestuck = max((eyestuck - fpsfactor), 0.0)
+                    eyestuck = max((eyestuck - fpsfactor), 1.0)
                     debuglog(("eyestuck: " + (Str eyestuck)))
                     If (9000.0 > eyestuck) Then
                         blurtimer = max(blurtimer, ((9000.0 - eyestuck) * 0.5))
                     EndIf
                     If (6000.0 > eyestuck) Then
-                        local16 = min(max(local16, ((6000.0 - eyestuck) / 5000.0)), 1.0)
+                        local14 = min(max(local14, ((6000.0 - eyestuck) / 5000.0)), 1.0)
                     EndIf
                     If (((9000.0 > eyestuck) And (9000.0 <= (eyestuck + fpsfactor))) <> 0) Then
                         msg = "Your eyes are starting to hurt"
@@ -432,11 +448,11 @@ Function EntryPoint%()
                 EndIf
                 If (0.0 > blinktimer) Then
                     If (-5.0 < blinktimer) Then
-                        local16 = max(local16, sin((Abs (blinktimer * 18.0))))
+                        local14 = max(local14, sin((Abs (blinktimer * 18.0))))
                     ElseIf (-15.0 < blinktimer) Then
-                        local16 = 1.0
+                        local14 = 1.0
                     Else
-                        local16 = max(local16, (Abs sin((blinktimer * 18.0))))
+                        local14 = max(local14, (Abs sin((blinktimer * 18.0))))
                     EndIf
                     If (-20.0 >= blinktimer) Then
                         blinktimer = 560.0
@@ -450,42 +466,64 @@ Function EntryPoint%()
                     If (0.0 < eyesuper) Then
                         blinktimer = ((min((eyesuper / 1000.0), 0.3) * fpsfactor) + blinktimer)
                     EndIf
-                    local16 = max(local16, 0.0)
+                    local14 = max(local14, 0.0)
                 EndIf
                 eyeirritation = max(0.0, (eyeirritation - fpsfactor))
                 eyesuper = max(0.0, (eyesuper - fpsfactor))
                 lightblink = max((lightblink - (fpsfactor / 35.0)), 0.0)
                 If (0.0 < lightblink) Then
-                    local16 = min(max(local16, (((1.0 - lightblink) * rnd(0.3, 0.8)) + lightblink)), 1.0)
+                    local14 = min(max(local14, (((1.0 - lightblink) * rnd(0.3, 0.8)) + lightblink)), 1.0)
                 EndIf
-                local16 = max(((1.0 - secondarylighton) * 0.91), local16)
+                local14 = max(((1.0 - secondarylighton) * 0.91), local14)
                 If (0.0 > killtimer) Then
                     invopen = $00
                     selecteditem = Null
+                    selectedscreen = Null
                     blurtimer = (Abs (killtimer * 10.0))
                     killtimer = (killtimer - fpsfactor)
                     If (-360.0 > killtimer) Then
                         menuopen = $01
+                        If (selectedending <> "") Then
+                            endingtimer = min(killtimer, -0.1)
+                        EndIf
                     EndIf
-                    local16 = max(local16, min((Abs (killtimer / 400.0)), 1.0))
+                    local14 = max(local14, min((Abs (killtimer / 400.0)), 1.0))
+                EndIf
+                If (0.0 > falltimer) Then
+                    invopen = $00
+                    selecteditem = Null
+                    selectedscreen = Null
+                    blurtimer = (Abs (falltimer * 10.0))
+                    falltimer = (falltimer - fpsfactor)
+                    local14 = max(local14, min((Abs (falltimer / 400.0)), 1.0))
                 EndIf
                 If (selecteditem <> Null) Then
                     If (((selecteditem\Field1\Field1 = "navigator") Or (selecteditem\Field1\Field1 = "nav")) <> 0) Then
-                        local16 = max(local16, 0.5)
+                        local14 = max(local14, 0.5)
                     EndIf
                 EndIf
-                entityalpha(dark, local16)
+                If (selectedscreen <> Null) Then
+                    local14 = max(local14, 0.5)
+                EndIf
+                entityalpha(dark, local14)
             EndIf
             If (0.0 < lightflash) Then
-                lightflash = max((lightflash - (fpsfactor / 70.0)), 0.0)
+                showentity(light)
+                debuglog(("lightflash: " + (Str lightflash)))
                 entityalpha(light, max(min((rnd(-0.2, 0.2) + lightflash), 1.0), 0.0))
+                lightflash = max((lightflash - (fpsfactor / 70.0)), 0.0)
             Else
-                entityalpha(light, lightflash)
+                hideentity(light)
             EndIf
-            If (keyhit($3B) <> 0) Then
-                savegame(((savepath + currsave) + "\"))
-                msg = "Game saved"
-                msgtimer = 280.0
+            If (keyhit($3F) <> 0) Then
+                If (((playerroom\Field7\Field4 = "exit1") Or (playerroom\Field7\Field4 = "room173")) <> 0) Then
+                    msg = "You can't save in this location"
+                    msgtimer = 280.0
+                Else
+                    savegame(((savepath + currsave) + "\"))
+                    msg = "Game saved"
+                    msgtimer = 280.0
+                EndIf
             EndIf
             If (keyhit($3D) <> 0) Then
                 consoleopen = (consoleopen = $00)
@@ -493,8 +531,12 @@ Function EntryPoint%()
             EndIf
             drawgui()
             drawmenu()
+            If (0.0 > endingtimer) Then
+                If (selectedending <> "") Then
+                    drawending()
+                EndIf
+            EndIf
             updateconsole()
-            local17 = millisecs()
             If (0.0 < msgtimer) Then
                 color((Int min((msgtimer / 2.0), 255.0)), (Int min((msgtimer / 2.0), 255.0)), (Int min((msgtimer / 2.0), 255.0)))
                 text((graphicwidth Sar $01), ((graphicheight Sar $01) + $C8), msg, $01, $00)
@@ -504,15 +546,6 @@ Function EntryPoint%()
             If (showfps <> 0) Then
                 text($14, $14, ("FPS: " + (Str local3)), $00, $00)
             EndIf
-        EndIf
-        If ((keyhit(local18) And $00) <> 0) Then
-            For local19 = Each rooms
-                If (local19\Field6\Field4 = "coffin") Then
-                    positionentity(collider, entityx(local19\Field1, $00), 0.7, entityz(local19\Field1, $00), $00)
-                    Exit
-                EndIf
-            Next
-            resetentity(collider)
         EndIf
         flip($01)
     Forever

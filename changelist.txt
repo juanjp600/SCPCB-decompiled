@@ -1,4 +1,31 @@
 
+
+v0.5
+- GATE B and multiple endings. So now it's possible to get out and BEAT THE GAME.
+- Mobile Task Force groups whose job is to clear the facility of the escaped
+SCPs and other potential hazards (they still need some tweaking and their AI may 
+be a bit buggy at times)
+- some new rooms (including the silo of the Omega Warhead)
+- improved map generation algorithm:
+	- it shouldn't generate maps that are impossible to get through anymore
+	- no more of those black "fake walls"
+- SCP-106 uses an A*-based pathfinding algorithm, so now it won't just float
+towards the player through the map
+- sound clips for the lure subject used in SCP-106's recall protocol
+- some computer screens that you can click on and read
+- some new ambient sounds (thanks to Peanut)
+- improved loading screen
+- better sound clips for SCP-079
+- slightly improved SCP-173 model
+- wireframe console command
+- fixed some texture bugs in the map
+- DAT 420-J SHIT IS EVEN BETER THAN B4 MAN
+- a secret console command that has something to do with Halloween
+- plenty of small bugfixes
+
+----------------------------------------------------------------------------------
+
+
 v0.3.2
 - SCP-106's recall procedure finally works (even though the voice acting is still missing)
 - Improved pause menu

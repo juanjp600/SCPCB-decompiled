@@ -14,7 +14,7 @@ Function loadroommeshes%()
             runtimeerror((((("Failed to load map file " + chr($22)) + (Str local3)) + chr($22)) + "."))
         EndIf
         hideentity(local1\Field0)
-        drawloading((Int (((20.0 / (Float local0)) * (Float local2)) + 40.0)))
+        drawloading((Int (((20.0 / (Float local0)) * (Float local2)) + 40.0)), $00)
         local2 = (local2 + $01)
     Next
     Return $00

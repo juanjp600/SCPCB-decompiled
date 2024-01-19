@@ -25,11 +25,11 @@ Function updatelever%(arg0%, arg1%)
                 EndIf
                 If (80.0 < entitypitch(arg0, $01)) Then
                     If (80.0 >= local1) Then
-                        playsound2(leversfx, camera, arg0, 3.0, 1.0)
+                        playsound2(leversfx, camera, arg0, 3.0, 1.0, $01)
                     EndIf
                 ElseIf (-80.0 > entitypitch(arg0, $01)) Then
                     If (-80.0 <= local1) Then
-                        playsound2(leversfx, camera, arg0, 3.0, 1.0)
+                        playsound2(leversfx, camera, arg0, 3.0, 1.0, $01)
                     EndIf
                 EndIf
             EndIf

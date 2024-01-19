@@ -2,7 +2,7 @@ Function initloadgame%()
     Local local0.doors
     Local local1.securitycams
     Local local2.roomtemplates
-    drawloading($3C)
+    drawloading($50, $00)
     For local0 = Each doors
         entityparent(local0\Field0, $00, $01)
         If (local0\Field1 > $00) Then
@@ -29,17 +29,15 @@ Function initloadgame%()
     text($115, $1D5, accesscode, $01, $01)
     color($FF, $FF, $FF)
     setbuffer(backbuffer())
-    drawloading($41)
     For local1 = Each securitycams
         local1\Field11 = (entityyaw(local1\Field0, $00) + local1\Field11)
         entityparent(local1\Field0, $00, $01)
     Next
     resetentity(collider)
     initevents()
-    drawloading($46)
+    drawloading($5A, $00)
     movemouse($140, $F0)
     setfont(font1)
-    drawloading($50)
     hidepointer()
     blinktimer = 560.0
     stamina = 100.0
@@ -47,6 +45,6 @@ Function initloadgame%()
         freeentity(local2\Field0)
     Next
     prevtime = millisecs()
-    drawloading($64)
+    drawloading($64, $00)
     Return $00
 End Function

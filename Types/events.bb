@@ -6,4 +6,5 @@ Type events
     Field Field4#
     Field Field5%
     Field Field6%
+    Field Field7%
 End Type

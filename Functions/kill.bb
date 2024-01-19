@@ -3,6 +3,7 @@ Function kill%()
         Return $00
     EndIf
     If (0.0 <= killtimer) Then
+        killanim = rand($00, $01)
         playsound(deathsfx($00))
         If (selectedmode = $01) Then
             deletedir(((savepath + currsave) + "\"))

@@ -7,9 +7,11 @@ Function updateparticles%()
         positionentity(local0\Field0, entityx(local0\Field1, $00), entityy(local0\Field1, $00), entityz(local0\Field1, $00), $01)
         local0\Field16 = (local0\Field16 - fpsfactor)
         turnentity(local0\Field0, 0.0, 0.0, fpsfactor, $00)
+        entityalpha(local0\Field0, local0\Field6)
         scalesprite(local0\Field0, local0\Field7, local0\Field7)
+        local0\Field6 = min(max(((local0\Field14 * fpsfactor) + local0\Field6), 0.0), 1.0)
         local0\Field7 = ((local0\Field15 * fpsfactor) + local0\Field7)
-        If (((0.0 >= local0\Field16) Or (0.00001 > local0\Field7)) <> 0) Then
+        If ((((0.0 >= local0\Field16) Or (0.00001 > local0\Field7)) Or (0.0 >= local0\Field6)) <> 0) Then
             removeparticle(local0)
         EndIf
     Next

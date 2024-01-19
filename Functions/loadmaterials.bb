@@ -18,7 +18,6 @@ Function loadmaterials%(arg0$)
             local0 = mid(local0, $02, (len(local0) - $02))
             local4 = (New materials)
             local4\Field0 = lower(local0)
-            local4\Field1 = loadtexture(getinistring(arg0, local0, "diff"), $01)
             local4\Field2 = loadtexture(getinistring(arg0, local0, "bump"), $01)
             textureblend(local4\Field2, $1603)
         EndIf

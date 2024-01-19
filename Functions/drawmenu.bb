@@ -37,7 +37,7 @@ Function drawmenu%()
                 If (drawbutton((((local2 Sar $01) + local0) - $96), (local1 + $9A), $12C, $3C, "Resume", $01) <> 0) Then
                     menuopen = $00
                 EndIf
-                If (playerroom\Field6\Field4 <> "room173") Then
+                If (((playerroom\Field7\Field4 <> "room173") And (playerroom\Field7\Field4 <> "exit1")) <> 0) Then
                     If (drawbutton((((local2 Sar $01) + local0) - $96), ((local1 + $9A) + $50), $12C, $3C, "Save & quit", $01) <> 0) Then
                         savegame(((savepath + currsave) + "\"))
                         nullgame()
@@ -87,7 +87,7 @@ Function drawmenu%()
             If (drawbutton((((local2 Sar $01) + local0) - $96), (local1 + $9A), $12C, $3C, "Resume", $01) <> 0) Then
                 menuopen = $00
             EndIf
-            If (playerroom\Field6\Field4 <> "room173") Then
+            If (playerroom\Field7\Field4 <> "room173") Then
                 If (drawbutton((((local2 Sar $01) + local0) - $96), ((local1 + $9A) + $50), $12C, $3C, "Save & quit", $01) <> 0) Then
                     savegame(((savepath + currsave) + "\"))
                     nullgame()

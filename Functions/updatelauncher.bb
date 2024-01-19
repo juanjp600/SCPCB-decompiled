@@ -85,8 +85,8 @@ Function updatelauncher%()
             EndIf
             local4 = (local4 + $14)
         Next
-        fullscreen = drawtick($1D6, $CF, fullscreen)
-        launcherenabled = drawtick($1D6, $F5, launcherenabled)
+        fullscreen = drawtick($1D6, $CF, fullscreen, $00)
+        launcherenabled = drawtick($1D6, $F5, launcherenabled, $00)
         color($FF, $FF, $FF)
         text($1F9, $CF, "Fullscreen", $00, $00)
         text($1F9, $F7, "Use launcher", $00, $00)

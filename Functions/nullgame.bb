@@ -3,20 +3,21 @@ Function nullgame%()
     Local local1%
     Local local2%
     Local local3%
-    Local local4.doors
-    Local local5.lighttemplates
-    Local local6.materials
-    Local local7.waypoints
-    Local local8.tempwaypoints
-    Local local9.rooms
-    Local local10.itemtemplates
-    Local local11.items
-    Local local12.decals
-    Local local13.npcs
-    Local local14.events
-    Local local15.securitycams
-    Local local16.emitters
-    Local local17.particles
+    Local local4.itemtemplates
+    Local local5.screens
+    Local local6.lighttemplates
+    Local local7.doors
+    Local local8.materials
+    Local local9.waypoints
+    Local local10.tempwaypoints
+    Local local11.rooms
+    Local local12.items
+    Local local13.decals
+    Local local14.npcs
+    Local local15.events
+    Local local16.securitycams
+    Local local17.emitters
+    Local local18.particles
     doortempid = $00
     roomtempid = $00
     gamesaved = $00
@@ -28,10 +29,47 @@ Function nullgame%()
             Next
         Next
     Next
+    For local4 = Each itemtemplates
+        local4\Field3 = $00
+    Next
     dropspeed = 0.0
+    selectedending = ""
+    endingtimer = 0.0
+    explosiontimer = 0.0
+    camerashake = 0.0
+    shake = 0.0
+    lightflash = 0.0
     godmode = $00
     noclip = $00
     wearinggasmask = $00
+    contained106 = $00
+    mtftimer = 0.0
+    For local0 = $00 To $09 Step $01
+        mtfrooms[local0] = Null
+        mtfroomstate[local0] = $00
+    Next
+    For local5 = Each screens
+        If (local5\Field2 <> $00) Then
+            freeimage(local5\Field2)
+            local5\Field2 = $00
+        EndIf
+        Delete local5
+    Next
+    achv420 = $00
+    achv106 = $00
+    achv372 = $00
+    achv895 = $00
+    achv079 = $00
+    achv914 = $00
+    achv789 = $00
+    achvtesla = $00
+    achvmaynard = $00
+    achvharp = $00
+    achvpd = $00
+    achvsnav = $00
+    achvomni = $00
+    achvconsole = $01
+    refineditems = $00
     consoleinput = ""
     consoleopen = $00
     playerlevel = $00
@@ -51,49 +89,50 @@ Function nullgame%()
     Next
     selecteditem = Null
     closestbutton = $00
-    For local4 = Each doors
-        Delete local4
-    Next
-    For local5 = Each lighttemplates
-        Delete local5
-    Next
-    For local6 = Each materials
-        Delete local6
-    Next
-    For local7 = Each waypoints
+    For local7 = Each doors
         Delete local7
     Next
-    For local8 = Each tempwaypoints
+    clearworld($01, $01, $01)
+    For local6 = Each lighttemplates
+        Delete local6
+    Next
+    For local8 = Each materials
         Delete local8
     Next
-    For local9 = Each rooms
+    For local9 = Each waypoints
         Delete local9
     Next
-    For local10 = Each itemtemplates
+    For local10 = Each tempwaypoints
         Delete local10
     Next
-    For local11 = Each items
+    For local11 = Each rooms
         Delete local11
     Next
-    For local12 = Each decals
+    For local4 = Each itemtemplates
+        Delete local4
+    Next
+    For local12 = Each items
         Delete local12
     Next
-    For local13 = Each npcs
+    For local13 = Each decals
         Delete local13
+    Next
+    For local14 = Each npcs
+        Delete local14
     Next
     curr173 = Null
     curr106 = Null
-    For local14 = Each events
-        Delete local14
-    Next
-    For local15 = Each securitycams
+    For local15 = Each events
         Delete local15
     Next
-    For local16 = Each emitters
+    For local16 = Each securitycams
         Delete local16
     Next
-    For local17 = Each particles
+    For local17 = Each emitters
         Delete local17
+    Next
+    For local18 = Each particles
+        Delete local18
     Next
     debuglog("d")
     For local0 = $00 To $05 Step $01

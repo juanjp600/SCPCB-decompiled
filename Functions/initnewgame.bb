@@ -1,72 +1,73 @@
 Function initnewgame%()
-    Local local0.doors
-    Local local1.items
-    Local local2.securitycams
-    Local local3.rooms
-    Local local4%
-    Local local5.decals
+    Local local0%
+    Local local1.decals
+    Local local2.doors
+    Local local3.items
+    Local local4.rooms
+    Local local5.securitycams
     Local local6.roomtemplates
     Local local7.tempwaypoints
-    drawloading($3C)
+    drawloading($3C, $00)
     createmap()
-    initwaypoints()
-    drawloading($46)
+    initwaypoints($3C)
+    drawloading($4F, $00)
+    achvconsole = $01
     curr173 = createnpc($01, 0.0, -30.0, 0.0)
     curr106 = createnpc($02, 0.0, -30.0, 0.0)
-    curr106\Field6 = (Float (rand($0C, $11) * $1068))
-    For local0 = Each doors
-        entityparent(local0\Field0, $00, $01)
-        If (local0\Field1 > $00) Then
-            entityparent(local0\Field1, $00, $01)
-        EndIf
-        If (local0\Field2 > $00) Then
-            entityparent(local0\Field2, $00, $01)
-        EndIf
-        If (local0\Field3[$00] > $00) Then
-            entityparent(local0\Field3[$00], $00, $01)
-        EndIf
-        If (local0\Field3[$01] > $00) Then
-            entityparent(local0\Field3[$01], $00, $01)
-        EndIf
-        If (((local0\Field1 <> $00) And (local0\Field8 = $00)) <> 0) Then
-            moveentity(local0\Field0, 0.0, 0.0, (8.0 * roomscale))
-            moveentity(local0\Field1, 0.0, 0.0, (8.0 * roomscale))
-        EndIf
-    Next
-    For local1 = Each items
-        entitytype(local1\Field0, $03, $00)
-        entityparent(local1\Field0, $00, $01)
-    Next
-    drawloading($50)
-    For local2 = Each securitycams
-        local2\Field11 = (entityyaw(local2\Field0, $00) + local2\Field11)
+    curr106\Field9 = (Float (rand($0C, $11) * $1068))
+    For local2 = Each doors
         entityparent(local2\Field0, $00, $01)
+        If (local2\Field1 > $00) Then
+            entityparent(local2\Field1, $00, $01)
+        EndIf
+        If (local2\Field2 > $00) Then
+            entityparent(local2\Field2, $00, $01)
+        EndIf
+        If (local2\Field3[$00] > $00) Then
+            entityparent(local2\Field3[$00], $00, $01)
+        EndIf
+        If (local2\Field3[$01] > $00) Then
+            entityparent(local2\Field3[$01], $00, $01)
+        EndIf
+        If (((local2\Field1 <> $00) And (local2\Field8 = $00)) <> 0) Then
+            moveentity(local2\Field0, 0.0, 0.0, (8.0 * roomscale))
+            moveentity(local2\Field1, 0.0, 0.0, (8.0 * roomscale))
+        EndIf
     Next
-    For local3 = Each rooms
-        For local4 = $00 To $13 Step $01
-            If (local3\Field7[local4] <> $00) Then
-                entityparent(local3\Field7[local4], $00, $01)
+    For local3 = Each items
+        entitytype(local3\Field0, $03, $00)
+        entityparent(local3\Field0, $00, $01)
+    Next
+    drawloading($50, $00)
+    For local5 = Each securitycams
+        local5\Field11 = (entityyaw(local5\Field0, $00) + local5\Field11)
+        entityparent(local5\Field0, $00, $01)
+    Next
+    For local4 = Each rooms
+        For local0 = $00 To $13 Step $01
+            If (local4\Field8[local0] <> $00) Then
+                entityparent(local4\Field8[local0], $00, $01)
             EndIf
         Next
-        If (local3\Field6\Field7 = $00) Then
+        If (local4\Field7\Field7 = $00) Then
             If (rand($04, $01) = $01) Then
-                local5 = createdecal(rand($02, $03), (entityx(local3\Field1, $00) + rnd(-2.0, 2.0)), 0.003, (entityz(local3\Field1, $00) + rnd(-2.0, 2.0)), 90.0, (Float rand($168, $01)), 0.0)
-                local5\Field2 = rnd(0.1, 0.4)
-                scalesprite(local5\Field0, local5\Field2, local5\Field2)
-                entityalpha(local5\Field0, rnd(0.85, 0.95))
+                local1 = createdecal(rand($02, $03), (entityx(local4\Field2, $00) + rnd(-2.0, 2.0)), 0.003, (entityz(local4\Field2, $00) + rnd(-2.0, 2.0)), 90.0, (Float rand($168, $01)), 0.0)
+                local1\Field2 = rnd(0.1, 0.4)
+                scalesprite(local1\Field0, local1\Field2, local1\Field2)
+                entityalpha(local1\Field0, rnd(0.85, 0.95))
             EndIf
             If (rand($04, $01) = $01) Then
-                local5 = createdecal($00, (entityx(local3\Field1, $00) + rnd(-2.0, 2.0)), 0.003, (entityz(local3\Field1, $00) + rnd(-2.0, 2.0)), 90.0, (Float rand($168, $01)), 0.0)
-                local5\Field2 = rnd(0.5, 0.7)
-                entityalpha(local5\Field0, 0.7)
-                local5\Field5 = $01
-                scalesprite(local5\Field0, local5\Field2, local5\Field2)
-                entityalpha(local5\Field0, rnd(0.7, 0.85))
+                local1 = createdecal($00, (entityx(local4\Field2, $00) + rnd(-2.0, 2.0)), 0.003, (entityz(local4\Field2, $00) + rnd(-2.0, 2.0)), 90.0, (Float rand($168, $01)), 0.0)
+                local1\Field2 = rnd(0.5, 0.7)
+                entityalpha(local1\Field0, 0.7)
+                local1\Field6 = $01
+                scalesprite(local1\Field0, local1\Field2, local1\Field2)
+                entityalpha(local1\Field0, rnd(0.7, 0.85))
             EndIf
         EndIf
-        If ((((local3\Field6\Field4 = "start") And (introenabled = $00)) Or ((local3\Field6\Field4 = "room173") And introenabled)) <> 0) Then
-            positionentity(collider, entityx(local3\Field1, $00), 1.0, entityz(local3\Field1, $00), $00)
-            playerroom = local3
+        If ((((local4\Field7\Field4 = "start") And (introenabled = $00)) Or ((local4\Field7\Field4 = "room173") And introenabled)) <> 0) Then
+            positionentity(collider, entityx(local4\Field2, $00), 1.0, entityz(local4\Field2, $00), $00)
+            playerroom = local4
         EndIf
     Next
     For local6 = Each roomtemplates
@@ -83,16 +84,18 @@ Function initnewgame%()
     hidepointer()
     blinktimer = 560.0
     stamina = 100.0
-    For local4 = $00 To $46 Step $01
+    For local0 = $00 To $46 Step $01
         fpsfactor = 1.0
         flushkeys()
         moveplayer()
         updatedoors()
         updatenpcs()
         updateworld(1.0)
-        cls($01, $01)
-        drawloading(((local4 / $28) + $50))
+        drawloading(((Int ((Float local0) * 0.27)) + $50), $00)
     Next
+    drawloading($64, $00)
+    flushkeys()
+    flushmouse()
     dropspeed = 0.0
     prevtime = millisecs()
     Return $00

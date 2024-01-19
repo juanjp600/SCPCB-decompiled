@@ -1,24 +1,38 @@
 Function updaterooms%()
-    Local local0.rooms
-    Local local1#
-    Local local2%
+    Local local0#
+    Local local1%
+    Local local2.rooms
+    Local local3%
+    Local local4%
     templightvolume = 0.0
-    For local0 = Each rooms
-        local1 = distance(entityx(collider, $00), entityz(collider, $00), local0\Field2, local0\Field4)
-        If (((hidedistance <= local1) And (playerroom <> local0)) <> 0) Then
-            hideentity(local0\Field1)
-            For local2 = $00 To $13 Step $01
-                If (local0\Field7[local2] <> $00) Then
-                    hideentity(local0\Field7[local2])
+    For local2 = Each rooms
+        local3 = $00
+        If (playerroom = local2) Then
+            local2\Field1 = $01
+        ElseIf (hidedistance < (Abs (entityx(collider, $00) - local2\Field3))) Then
+            local3 = $01
+        ElseIf (hidedistance < (Abs (entityz(collider, $00) - local2\Field5))) Then
+            local3 = $01
+        Else
+            local0 = distance(entityx(collider, $00), entityz(collider, $00), local2\Field3, local2\Field5)
+            If (hidedistance < local0) Then
+                local3 = $01
+            EndIf
+        EndIf
+        If (local3 = $01) Then
+            hideentity(local2\Field2)
+            For local4 = $00 To $13 Step $01
+                If (local2\Field8[local4] <> $00) Then
+                    hideentity(local2\Field8[local4])
                 EndIf
             Next
         Else
-            showentity(local0\Field1)
-            For local2 = $00 To $13 Step $01
-                If (local0\Field7[local2] <> $00) Then
-                    local1 = entitydistance(collider, local0\Field7[local2])
-                    templightvolume = (((local0\Field8[local2] * local0\Field8[local2]) * ((hidedistance - local1) / hidedistance)) + templightvolume)
-                    showentity(local0\Field7[local2])
+            showentity(local2\Field2)
+            For local4 = $00 To $13 Step $01
+                If (local2\Field8[local4] <> $00) Then
+                    local0 = entitydistance(collider, local2\Field8[local4])
+                    templightvolume = (((local2\Field9[local4] * local2\Field9[local4]) * ((hidedistance - local0) / hidedistance)) + templightvolume)
+                    showentity(local2\Field8[local4])
                 EndIf
             Next
         EndIf
