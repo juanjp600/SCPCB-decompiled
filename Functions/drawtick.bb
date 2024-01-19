@@ -23,7 +23,7 @@ Function drawtick%(arg0%, arg1%, arg2%, arg3%)
         Else
             color($C8, $C8, $C8)
         EndIf
-        rect((arg0 + $06), (arg1 + $06), (local0 - $0C), (local1 - $0C), $01)
+        rect((arg0 + $04), (arg1 + $04), (local0 - $08), (local1 - $08), $01)
     EndIf
     color($FF, $FF, $FF)
     Return arg2

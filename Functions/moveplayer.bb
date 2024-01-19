@@ -27,10 +27,14 @@ Function moveplayer%()
     For local2 = $00 To $09 Step $01
         If (inventory(local2) <> Null) Then
             If (inventory(local2)\Field1\Field1 = "finevest") Then
-                stamina = max(stamina, 60.0)
+                stamina = min(stamina, 60.0)
             EndIf
         EndIf
     Next
+    If (wearing714 <> 0) Then
+        stamina = min(stamina, 10.0)
+        sanity = max(-850.0, sanity)
+    EndIf
     If (0.001 > (Abs (crouchstate - (Float crouch)))) Then
         crouchstate = (Float crouch)
     Else

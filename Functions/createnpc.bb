@@ -101,10 +101,17 @@ Function createnpc.npcs(arg0%, arg1#, arg2#, arg3#)
             local0\Field4 = createpivot($00)
             entityradius(local0\Field4, 0.32, 0.0)
             entitytype(local0\Field4, $02, $00)
-            local0\Field0 = loadanimmesh("GFX\npcs\classd.b3d", $00)
-            local0\Field9 = 200.0
-            local2 = (0.25 / meshwidth(local0\Field0))
-            scaleentity(local0\Field0, local2, local2, local2, $00)
+            For local1 = Each npcs
+                If (((local0\Field5 = local1\Field5) And (local0 <> local1)) <> 0) Then
+                    local0\Field0 = copyentity(local1\Field0, $00)
+                    Exit
+                EndIf
+            Next
+            If (local0\Field0 = $00) Then
+                local0\Field0 = loadanimmesh("GFX\npcs\classd.b3d", $00)
+                local2 = (0.5 / meshwidth(local0\Field0))
+                scaleentity(local0\Field0, local2, local2, local2, $00)
+            EndIf
         Case $06
             local0\Field4 = createpivot($00)
             entityradius(local0\Field4, 0.2, 0.0)

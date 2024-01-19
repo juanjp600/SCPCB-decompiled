@@ -112,7 +112,7 @@ Function savegame%(arg0$)
             writefloat(local4, 0.0)
             writefloat(local4, 0.0)
         EndIf
-        writebyte(local4, local7\Field10)
+        writefloat(local4, (Float local7\Field10))
         writefloat(local4, local7\Field11)
     Next
     writeint(local4, $71)
@@ -167,21 +167,21 @@ Function savegame%(arg0$)
     Next
     writeint(local4, local3)
     For local9 = Each decals
-        writeint(local4, local9\Field7)
-        writefloat(local4, local9\Field10)
+        writeint(local4, local9\Field8)
         writefloat(local4, local9\Field11)
         writefloat(local4, local9\Field12)
         writefloat(local4, local9\Field13)
         writefloat(local4, local9\Field14)
         writefloat(local4, local9\Field15)
-        writebyte(local4, local9\Field5)
-        writeint(local4, local9\Field6)
+        writefloat(local4, local9\Field16)
+        writebyte(local4, local9\Field6)
+        writeint(local4, local9\Field7)
         debuglog("eeeeeeeeee")
         writefloat(local4, local9\Field2)
+        writefloat(local4, local9\Field5)
         writefloat(local4, local9\Field4)
-        writefloat(local4, local9\Field3)
-        writefloat(local4, local9\Field8)
         writefloat(local4, local9\Field9)
+        writefloat(local4, local9\Field10)
     Next
     local3 = $00
     For local10 = Each events

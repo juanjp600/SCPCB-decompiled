@@ -34,7 +34,7 @@ Function EntryPoint%()
     mirrorcameraaz = 0.0
     mirrorcameraparent = $00
     optionfile = "options.ini"
-    versionnumber = "0.6.3"
+    versionnumber = "0.6.4"
     local0 = $00
     Dim arrowimg%($04)
     launcherwidth = (Int min((Float getiniint(optionfile, "launcher", "launcher width")), 1024.0))
@@ -544,13 +544,16 @@ Function EntryPoint%()
                 If (0.0 > sanity) Then
                     sanity = min((sanity + fpsfactor), 0.0)
                     If (-200.0 > sanity) Then
-                        local16 = max(min((((- sanity) - 200.0) / 500.0), 0.8), local16)
+                        local16 = max(min((((- sanity) - 200.0) / 700.0), 0.6), local16)
+                        If (0.0 <= killtimer) Then
+                            heartbeatvolume = min(((Abs (sanity + 200.0)) / 500.0), 1.0)
+                            heartbeatrate = max((((Abs (sanity + 200.0)) / 6.0) + 70.0), heartbeatrate)
+                        EndIf
                     EndIf
                 EndIf
                 If (0.0 < eyestuck) Then
                     blinktimer = 560.0
                     eyestuck = max((eyestuck - fpsfactor), 1.0)
-                    debuglog(("eyestuck: " + (Str eyestuck)))
                     If (9000.0 > eyestuck) Then
                         blurtimer = max(blurtimer, ((9000.0 - eyestuck) * 0.5))
                     EndIf

@@ -106,7 +106,7 @@ Function updatedoors%()
                     If (local1\Field1 <> $00) Then
                         resetentity(local1\Field1)
                     EndIf
-                    If (0.0 < local1\Field11) Then
+                    If (((local1\Field10 > $00) And (0.0 < local1\Field11)) <> 0) Then
                         local1\Field11 = max(0.0, (local1\Field11 - fpsfactor))
                         If (((110.0 < (local1\Field11 + fpsfactor)) And (110.0 >= local1\Field11)) <> 0) Then
                             playsound2(cautionsfx, camera, local1\Field0, 10.0, 1.0, $01)
@@ -117,8 +117,10 @@ Function updatedoors%()
                         EndIf
                     EndIf
                     If ((local1\Field21 And (remotedooron = $01)) <> 0) Then
-                        If (1.8 > entitydistance(camera, local1\Field0)) Then
-                            playsound(horrorsfx($07))
+                        If (2.1 > entitydistance(camera, local1\Field0)) Then
+                            If (wearing714 = $00) Then
+                                playsound(horrorsfx($07))
+                            EndIf
                             local1\Field5 = $00
                             playsound2(closedoorsfx(rand($00, $02)), camera, local1\Field0, 10.0, 1.0, $01)
                             local1\Field21 = $00

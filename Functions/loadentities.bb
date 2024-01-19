@@ -90,7 +90,7 @@ Function loadentities%()
         EndIf
     Next
     drawloading($0F, $00)
-    For local0 = $00 To $05 Step $01
+    For local0 = $00 To $06 Step $01
         gorepics(local0) = loadtexture((("GFX\895pics\pic" + (Str (local0 + $01))) + ".jpg"), $01)
     Next
     oldaipics($00) = loadtexture("GFX\AIface.jpg", $01)
@@ -109,6 +109,7 @@ Function loadentities%()
     For local0 = $0F To $10 Step $01
         decaltextures(local0) = loadtexture((("GFX\blooddrop" + (Str (local0 - $0E))) + ".png"), $03)
     Next
+    decaltextures($11) = loadtexture("GFX\decal8.png", $03)
     drawloading($19, $00)
     monitor = loadmesh("GFX\map\monitor.b3d", $00)
     hideentity(monitor)

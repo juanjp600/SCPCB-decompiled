@@ -8,9 +8,14 @@ Function removeitem%(arg0.items)
         EndIf
     Next
     If (selecteditem = arg0) Then
-        If (((selecteditem\Field1\Field1 = "gasmask") Or (selecteditem\Field1\Field1 = "supergasmask")) <> 0) Then
-            wearinggasmask = $00
-        EndIf
+        Select selecteditem\Field1\Field1
+            Case "gasmask","supergasmask"
+                wearinggasmask = $00
+            Case "vest","finevest"
+                wearingvest = $00
+            Case "scp714"
+                wearing714 = $00
+        End Select
         selecteditem = Null
     EndIf
     Delete arg0

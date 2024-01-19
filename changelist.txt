@@ -1,6 +1,17 @@
 
 ----------------------------------------------------------------------------------
 
+v0.6.4
+- new Class D models
+- one new SCP
+- fixed the bug that caused some of the doors to close after opening them
+- small bugfixes in SCP-096's pathfinding
+- the MTF shouldn't get stuck behind doors anymore
+- the checkboxes in the menu are now drawn properly even when using a lower resolution
+- the cursor is now shown in the ending screen
+
+----------------------------------------------------------------------------------
+
 V0.6.3
 - significantly reduced loading times when loading a game after dying
 - SCP-173 has different poses

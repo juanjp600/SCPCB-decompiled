@@ -16,16 +16,16 @@ Function drawgui%()
     Local local15%
     Local local17%
     Local local18%
-    Local local26.rooms
-    Local local28$
-    Local local31%
+    Local local27.rooms
+    Local local29$
     Local local32%
-    Local local33#
-    Local local34.npcs
-    Local local35%
+    Local local33%
+    Local local34#
+    Local local35.npcs
     Local local36%
     Local local37%
     Local local38%
+    Local local39%
     If ((((menuopen Or (selecteddoor <> Null)) Or invopen) Or (0.0 > endingtimer)) <> 0) Then
         showpointer()
     Else
@@ -299,24 +299,28 @@ Function drawgui%()
             EndIf
             If (inventory(local7) <> Null) Then
                 color($C8, $C8, $C8)
-                If (wearinggasmask = $01) Then
-                    If (inventory(local7)\Field1\Field1 = "gasmask") Then
-                        rect((local1 - $03), (local2 - $03), (local12 + $06), (local13 + $06), $01)
-                    EndIf
-                ElseIf (wearinggasmask = $02) Then
-                    If (inventory(local7)\Field1\Field1 = "supergasmask") Then
-                        rect((local1 - $03), (local2 - $03), (local12 + $06), (local13 + $06), $01)
-                    EndIf
-                EndIf
-                If (wearingvest = $01) Then
-                    If (inventory(local7)\Field1\Field1 = "vest") Then
-                        rect((local1 - $03), (local2 - $03), (local12 + $06), (local13 + $06), $01)
-                    EndIf
-                ElseIf (wearingvest = $02) Then
-                    If (inventory(local7)\Field1\Field1 = "finevest") Then
-                        rect((local1 - $03), (local2 - $03), (local12 + $06), (local13 + $06), $01)
-                    EndIf
-                EndIf
+                Select inventory(local7)\Field1\Field1
+                    Case "gasmask"
+                        If (wearinggasmask = $01) Then
+                            rect((local1 - $03), (local2 - $03), (local12 + $06), (local13 + $06), $01)
+                        EndIf
+                    Case "supergasmask"
+                        If (wearinggasmask = $02) Then
+                            rect((local1 - $03), (local2 - $03), (local12 + $06), (local13 + $06), $01)
+                        EndIf
+                    Case "vest"
+                        If (wearingvest = $01) Then
+                            rect((local1 - $03), (local2 - $03), (local12 + $06), (local13 + $06), $01)
+                        EndIf
+                    Case "finevest"
+                        If (wearingvest = $02) Then
+                            rect((local1 - $03), (local2 - $03), (local12 + $06), (local13 + $06), $01)
+                        EndIf
+                    Case "scp714"
+                        If (wearing714 <> 0) Then
+                            rect((local1 - $03), (local2 - $03), (local12 + $06), (local13 + $06), $01)
+                        EndIf
+                End Select
             EndIf
             If (local18 <> 0) Then
                 local15 = local7
@@ -523,9 +527,9 @@ Function drawgui%()
                         msgtimer = 490.0
                     Case $05
                         blinktimer = -10.0
-                        For local26 = Each rooms
-                            If (local26\Field7\Field4 = "pocketdimension") Then
-                                positionentity(collider, entityx(local26\Field2, $00), 0.8, entityz(local26\Field2, $00), $00)
+                        For local27 = Each rooms
+                            If (local27\Field7\Field4 = "pocketdimension") Then
+                                positionentity(collider, entityx(local27\Field2, $00), 0.8, entityz(local27\Field2, $00), $00)
                                 resetentity(collider)
                                 updatedoors()
                                 updaterooms()
@@ -616,17 +620,23 @@ Function drawgui%()
                     EndIf
                 EndIf
             Case "eyedrops"
-                eyesuper = (Float (rand($14, $1E) * $46))
+                If (wearing714 = $00) Then
+                    eyesuper = (Float (rand($14, $1E) * $46))
+                EndIf
                 blurtimer = 200.0
                 removeitem(selecteditem)
             Case "fineeyedrops"
-                eyesuper = (Float (rand($28, $32) * $46))
+                If (wearing714 = $00) Then
+                    eyesuper = (Float (rand($1E, $28) * $46))
+                    bloodloss = max((bloodloss - 1.0), 0.0)
+                EndIf
                 blurtimer = 200.0
-                bloodloss = max((bloodloss - 10.0), 0.0)
                 removeitem(selecteditem)
             Case "supereyedrops"
-                eyesuper = 70000.0
-                eyestuck = 10000.0
+                If (wearing714 = $00) Then
+                    eyesuper = 70000.0
+                    eyestuck = 10000.0
+                EndIf
                 blurtimer = 1000.0
                 removeitem(selecteditem)
             Case "paper"
@@ -658,7 +668,7 @@ Function drawgui%()
                     msgtimer = 350.0
                     radiostate($05) = 1.0
                 EndIf
-                local28 = ""
+                local29 = ""
                 local1 = ((graphicwidth - imagewidth(selecteditem\Field1\Field7)) + $78)
                 local2 = ((graphicheight - imageheight(selecteditem\Field1\Field7)) - $1E)
                 drawimage(selecteditem\Field1\Field7, local1, local2, $00)
@@ -678,7 +688,7 @@ Function drawgui%()
                             Case $01
                                 debuglog((Str radiostate($01)))
                                 resumechannel(radiochn($01))
-                                local28 = "        WARNING - CONTAINMENT BREACH          "
+                                local29 = "        WARNING - CONTAINMENT BREACH          "
                                 If (channelplaying(radiochn($01)) = $00) Then
                                     If (5.0 <= radiostate($01)) Then
                                         radiochn($01) = playsound(radiosfx($01, $01))
@@ -690,7 +700,7 @@ Function drawgui%()
                                 EndIf
                             Case $02
                                 resumechannel(radiochn($02))
-                                local28 = "        SCP Foundation On-Site Radio          "
+                                local29 = "        SCP Foundation On-Site Radio          "
                                 If (channelplaying(radiochn($02)) = $00) Then
                                     debuglog("bim")
                                     radiostate($02) = (radiostate($02) + 1.0)
@@ -705,7 +715,7 @@ Function drawgui%()
                                 EndIf
                             Case $03
                                 resumechannel(radiochn($03))
-                                local28 = "EMERGENCY CHANNEL - RESERVED FOR COMMUNICATION IN THE EVENT OF A CONTAINMENT BREACH"
+                                local29 = "EMERGENCY CHANNEL - RESERVED FOR COMMUNICATION IN THE EVENT OF A CONTAINMENT BREACH"
                                 If (channelplaying(radiochn($03)) = $00) Then
                                     radiochn($03) = playsound(radiostatic)
                                 EndIf
@@ -795,8 +805,8 @@ Function drawgui%()
                             text((local1 + $D6), (local2 + $136), (Str (Int (selecteditem\Field8 + 1.0))), $01, $01)
                         EndIf
                         setfont(font1)
-                        If (local28 <> "") Then
-                            text((local1 + $FA), (local2 + $145), right(left(local28, ((millisecs() / $1F4) Mod len(local28))), $07), $00, $00)
+                        If (local29 <> "") Then
+                            text((local1 + $FA), (local2 + $145), right(left(local29, ((millisecs() / $1F4) Mod len(local29))), $07), $00, $00)
                         EndIf
                         local1 = (local1 + $141)
                         local2 = (local2 + $108)
@@ -817,19 +827,37 @@ Function drawgui%()
                 msgtimer = 350.0
                 removeitem(selecteditem)
             Case "420"
-                msg = "MAN DATS SUM GOOD ASS SHIT"
+                If (wearing714 <> 0) Then
+                    msg = "DUDE WTF THIS SHIT DOESN'T EVEN WORK"
+                Else
+                    msg = "MAN DATS SUM GOOD ASS SHIT"
+                    injuries = max((injuries - 0.5), 0.0)
+                    blurtimer = 500.0
+                    achv420 = $01
+                    tempsound = loadsound("SFX\Mandeville.ogg")
+                    playsound(tempsound)
+                EndIf
                 msgtimer = 350.0
                 removeitem(selecteditem)
-                injuries = max((injuries - 0.5), 0.0)
-                blurtimer = 500.0
-                achv420 = $01
-                tempsound = loadsound("SFX\Mandeville.ogg")
-                playsound(tempsound)
             Case "420s"
-                msg = "UH WHERE... WHAT WAS I DOING AGAIN... MAN I NEED TO TAKE A NAP..."
-                killtimer = -1.0
+                If (wearing714 <> 0) Then
+                    msg = "DUDE WTF THIS SHIT DOESN'T EVEN WORK"
+                Else
+                    msg = "UH WHERE... WHAT WAS I DOING AGAIN... MAN I NEED TO TAKE A NAP..."
+                    killtimer = -1.0
+                EndIf
                 msgtimer = 420.0
                 removeitem(selecteditem)
+            Case "scp714"
+                If (wearing714 <> 0) Then
+                    msg = "You took off the ring."
+                    wearing714 = $00
+                Else
+                    msg = "You put on the ring."
+                    wearing714 = $01
+                EndIf
+                msgtimer = 350.0
+                selecteditem = Null
             Case "vest"
                 If (wearingvest <> 0) Then
                     msg = "You took off the vest."
@@ -901,55 +929,55 @@ Function drawgui%()
                         EndIf
                         rect((local1 - $04), ((local2 - $04) - $07), $08, $08, $00)
                     EndIf
-                    local31 = (Int floor(((entityx(playerroom\Field2, $00) / 8.0) + 0.5)))
-                    local32 = (Int floor(((entityz(playerroom\Field2, $00) / 8.0) + 0.5)))
+                    local32 = (Int floor(((entityx(playerroom\Field2, $00) / 8.0) + 0.5)))
+                    local33 = (Int floor(((entityz(playerroom\Field2, $00) / 8.0) + 0.5)))
                     If (((selecteditem\Field1\Field0 = "S-NAV Navigator Ultimate") And ((millisecs() Mod $258) < $190)) <> 0) Then
-                        local33 = entitydistance(camera, curr173\Field0)
-                        local33 = (ceil((local33 / 8.0)) * 8.0)
-                        If (32.0 > local33) Then
+                        local34 = entitydistance(camera, curr173\Field0)
+                        local34 = (ceil((local34 / 8.0)) * 8.0)
+                        If (32.0 > local34) Then
                             color($FF, $00, $00)
-                            oval((Int ((Float local1) - (local33 * 3.0))), (Int ((Float (local2 - $07)) - (local33 * 3.0))), (Int ((local33 * 3.0) * 2.0)), (Int ((local33 * 3.0) * 2.0)), $00)
+                            oval((Int ((Float local1) - (local34 * 3.0))), (Int ((Float (local2 - $07)) - (local34 * 3.0))), (Int ((local34 * 3.0) * 2.0)), (Int ((local34 * 3.0) * 2.0)), $00)
                             text(((local1 - (local12 Sar $01)) + $14), ((local2 - (local13 Sar $01)) + $14), "SCP-173", $00, $00)
                         EndIf
-                        local33 = entitydistance(camera, curr106\Field0)
-                        If (32.0 > local33) Then
+                        local34 = entitydistance(camera, curr106\Field0)
+                        If (32.0 > local34) Then
                             color($FF, $00, $00)
-                            oval((Int ((Float local1) - (local33 * 1.5))), (Int ((Float (local2 - $07)) - (local33 * 1.5))), (Int (local33 * 3.0)), (Int (local33 * 3.0)), $00)
+                            oval((Int ((Float local1) - (local34 * 1.5))), (Int ((Float (local2 - $07)) - (local34 * 1.5))), (Int (local34 * 3.0)), (Int (local34 * 3.0)), $00)
                             text(((local1 - (local12 Sar $01)) + $14), ((local2 - (local13 Sar $01)) + $28), "SCP-106", $00, $00)
                         EndIf
                         If (playerroom\Field7\Field4 = "coffin") Then
                             If (8.0 > coffindistance) Then
-                                local33 = rnd(4.0, 8.0)
+                                local34 = rnd(4.0, 8.0)
                                 color($FF, $00, $00)
-                                oval((Int ((Float local1) - (local33 * 1.5))), (Int ((Float (local2 - $07)) - (local33 * 1.5))), (Int (local33 * 3.0)), (Int (local33 * 3.0)), $00)
+                                oval((Int ((Float local1) - (local34 * 1.5))), (Int ((Float (local2 - $07)) - (local34 * 1.5))), (Int (local34 * 3.0)), (Int (local34 * 3.0)), $00)
                                 text(((local1 - (local12 Sar $01)) + $14), ((local2 - (local13 Sar $01)) + $28), "SCP-895", $00, $00)
                             EndIf
                         EndIf
-                        For local34 = Each npcs
-                            If (local34\Field5 = $09) Then
-                                local33 = entitydistance(camera, local34\Field0)
-                                If (32.0 > local33) Then
+                        For local35 = Each npcs
+                            If (local35\Field5 = $09) Then
+                                local34 = entitydistance(camera, local35\Field0)
+                                If (32.0 > local34) Then
                                     color($FF, $00, $00)
-                                    oval((Int ((Float local1) - (local33 * 1.5))), (Int ((Float (local2 - $07)) - (local33 * 1.5))), (Int (local33 * 3.0)), (Int (local33 * 3.0)), $00)
+                                    oval((Int ((Float local1) - (local34 * 1.5))), (Int ((Float (local2 - $07)) - (local34 * 1.5))), (Int (local34 * 3.0)), (Int (local34 * 3.0)), $00)
                                     text(((local1 - (local12 Sar $01)) + $14), ((local2 - (local13 Sar $01)) + $28), "SCP-096", $00, $00)
                                 EndIf
                                 Exit
                             EndIf
                         Next
                     EndIf
-                    local33 = 4.0
-                    For local35 = (Int max(1.0, ((Float local31) - local33))) To (Int min((Float (mapwidth - $02)), ((Float local31) + local33))) Step $01
-                        For local36 = (Int max(1.0, ((Float local32) - local33))) To (Int min((Float (mapheight - $02)), ((Float local32) + local33))) Step $01
-                            If ((maptemp(playerlevel, local35, local36) And (((mapfound(playerlevel, local35, local36) > $00) Or (selecteditem\Field1\Field0 = "S-NAV 310 Navigator")) Or (selecteditem\Field1\Field0 = "S-NAV Navigator Ultimate"))) <> 0) Then
-                                local37 = (((local31 - local35) * $18) + local1)
-                                local38 = ((local2 - ((local32 - local36) * $18)) - $07)
+                    local34 = 4.0
+                    For local36 = (Int max(1.0, ((Float local32) - local34))) To (Int min((Float (mapwidth - $02)), ((Float local32) + local34))) Step $01
+                        For local37 = (Int max(1.0, ((Float local33) - local34))) To (Int min((Float (mapheight - $02)), ((Float local33) + local34))) Step $01
+                            If ((maptemp(playerlevel, local36, local37) And (((mapfound(playerlevel, local36, local37) > $00) Or (selecteditem\Field1\Field0 = "S-NAV 310 Navigator")) Or (selecteditem\Field1\Field0 = "S-NAV Navigator Ultimate"))) <> 0) Then
+                                local38 = (((local32 - local36) * $18) + local1)
+                                local39 = ((local2 - ((local33 - local37) * $18)) - $07)
                                 If (playerroom\Field7\Field4 = "coffin") Then
                                     If (((8.0 > coffindistance) And (0.5 > rnd(coffindistance, 0.0))) <> 0) Then
-                                        local37 = (Int (((15.0 - coffindistance) * rnd(-1.0, 1.0)) + (Float local37)))
                                         local38 = (Int (((15.0 - coffindistance) * rnd(-1.0, 1.0)) + (Float local38)))
+                                        local39 = (Int (((15.0 - coffindistance) * rnd(-1.0, 1.0)) + (Float local39)))
                                     EndIf
                                 EndIf
-                                If (mapfound(playerlevel, local35, local36) = $01) Then
+                                If (mapfound(playerlevel, local36, local37) = $01) Then
                                     color($73, $70, $66)
                                     If (selecteditem\Field1\Field0 = "S-NAV Navigator") Then
                                         color($80, $00, $00)
@@ -960,17 +988,17 @@ Function drawgui%()
                                         color($FF, $00, $00)
                                     EndIf
                                 EndIf
-                                If (maptemp(playerlevel, (local35 + $01), local36) = $00) Then
-                                    line((local37 - $0C), (local38 - $0C), (local37 - $0C), (local38 + $0C))
+                                If (maptemp(playerlevel, (local36 + $01), local37) = $00) Then
+                                    line((local38 - $0C), (local39 - $0C), (local38 - $0C), (local39 + $0C))
                                 EndIf
-                                If (maptemp(playerlevel, (local35 - $01), local36) = $00) Then
-                                    line((local37 + $0C), (local38 - $0C), (local37 + $0C), (local38 + $0C))
+                                If (maptemp(playerlevel, (local36 - $01), local37) = $00) Then
+                                    line((local38 + $0C), (local39 - $0C), (local38 + $0C), (local39 + $0C))
                                 EndIf
-                                If (maptemp(playerlevel, local35, (local36 - $01)) = $00) Then
-                                    line((local37 - $0C), (local38 - $0C), (local37 + $0C), (local38 - $0C))
+                                If (maptemp(playerlevel, local36, (local37 - $01)) = $00) Then
+                                    line((local38 - $0C), (local39 - $0C), (local38 + $0C), (local39 - $0C))
                                 EndIf
-                                If (maptemp(playerlevel, local35, (local36 + $01)) = $00) Then
-                                    line((local37 - $0C), (local38 + $0C), (local37 + $0C), (local38 + $0C))
+                                If (maptemp(playerlevel, local36, (local37 + $01)) = $00) Then
+                                    line((local38 - $0C), (local39 + $0C), (local38 + $0C), (local39 + $0C))
                                 EndIf
                             EndIf
                         Next

@@ -50,6 +50,7 @@ Function nullgame%()
     noclip = $00
     wearinggasmask = $00
     wearingvest = $00
+    wearing714 = $00
     contained106 = $00
     disabled173 = $00
     mtftimer = 0.0
@@ -86,6 +87,7 @@ Function nullgame%()
     eyeirritation = 0.0
     eyestuck = 0.0
     eyesuper = 0.0
+    shouldplay = $00
     killtimer = 0.0
     falltimer = 0.0
     stamina = 100.0

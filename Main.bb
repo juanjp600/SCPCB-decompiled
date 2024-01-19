@@ -1,5 +1,5 @@
-; SCP - Containment Breach v0.6.3_disasm
-; Decompiled on 1/19/2024 5:31:03 PM
+; SCP - Containment Breach v0.6.4_disasm
+; Decompiled on 1/19/2024 5:33:00 PM
 
 Include "Globals.bb"
 
@@ -72,8 +72,6 @@ Include "Functions/createnpc.bb"
 Include "Functions/usedoor.bb"
 Include "Functions/findpath.bb"
 Include "Functions/createemitter.bb"
-Include "Functions/strippath.bb"
-Include "Functions/freetexture.bb"
 Include "Functions/updateelevators.bb"
 Include "Functions/updatelever.bb"
 Include "Functions/playmtfmessage.bb"
@@ -86,11 +84,13 @@ Include "Functions/removeparticle.bb"
 Include "Functions/nullgame.bb"
 Include "Functions/loadgamequick.bb"
 Include "Functions/clscolor.bb"
+Include "Functions/strippath.bb"
 Include "Functions/createitem.bb"
 Include "Functions/wireframe.bb"
 Include "Functions/ini_filetostring.bb"
 Include "Functions/ini_createkey.bb"
 Include "Functions/ini_createsection.bb"
+Include "Functions/freetexture.bb"
 Include "Functions/rinput.bb"
 Include "Functions/createblurimage.bb"
 Include "Functions/textureblend.bb"

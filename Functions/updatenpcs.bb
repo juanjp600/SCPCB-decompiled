@@ -21,7 +21,7 @@ Function updatenpcs%()
     Local local23#
     Local local25.particles
     Local local27%
-    Local local29%
+    Local local30%
     For local0 = Each npcs
         Select local0\Field5
             Case $01
@@ -506,6 +506,9 @@ Function updatenpcs%()
                                             local11 = (Abs (entityz(local0\Field4, $00) - entityz(local15\Field0, $01)))
                                             If (((28.0 > local11) And (20.0 < local11)) <> 0) Then
                                                 debuglog(("TELEPORTING 096 - " + local15\Field2\Field7\Field4))
+                                                local0\Field32 = $00
+                                                local0\Field33 = 0.0
+                                                local0\Field34 = $00
                                                 positionentity(local0\Field4, entityx(local15\Field0, $01), (entityy(local15\Field0, $01) + 0.25), entityz(local15\Field0, $01), $00)
                                                 resetentity(local0\Field4)
                                                 Exit
@@ -978,6 +981,16 @@ Function updatenpcs%()
                             EndIf
                         Next
                     EndIf
+                    For local2 = Each doors
+                        If (local2\Field5 = $00) Then
+                            If (1.5 > (Abs (entityx(local2\Field0, $01) - entityx(local0\Field4, $00)))) Then
+                                If (1.5 > (Abs (entityz(local2\Field0, $01) - entityz(local0\Field4, $00)))) Then
+                                    usedoor(local2, $00)
+                                    Exit
+                                EndIf
+                            EndIf
+                        EndIf
+                    Next
                     If (0.0 = local0\Field24) Then
                         If (-10.0 > curr106\Field9) Then
                             If (4.0 > (Abs (entityx(local0\Field4, $00) - entityx(curr106\Field4, $00)))) Then
@@ -1049,11 +1062,24 @@ Function updatenpcs%()
                 rotateentity(local0\Field0, entitypitch(local0\Field4, $00), entityyaw(local0\Field4, $00), 0.0, $00)
             Case $04
                 rotateentity(local0\Field4, 0.0, entityyaw(local0\Field4, $00), 0.0, $01)
-                If (1.0 = local0\Field9) Then
-                    moveentity(local0\Field4, 0.0, 0.0, (0.015 * fpsfactor))
-                    animate2(local0\Field0, animtime(local0\Field0), $00, $0E, 0.15, $01)
+                local23 = animtime(local0\Field0)
+                Select local0\Field9
+                    Case 0.0
+                        local0\Field18 = curvevalue(0.0, local0\Field18, 5.0)
+                        animate2(local0\Field0, animtime(local0\Field0), $D2, $EB, 0.1, $01)
+                    Case 1.0
+                        local0\Field18 = curvevalue(0.015, local0\Field18, 5.0)
+                        animate2(local0\Field0, animtime(local0\Field0), $EC, $104, (local0\Field18 * 18.0), $01)
+                End Select
+                If (0.01 < local0\Field18) Then
+                    If (((244.0 > local23) And (244.0 <= animtime(local0\Field0))) <> 0) Then
+                        playsound2(stepsfx($02, $00, rand($00, $02)), camera, local0\Field4, 8.0, rnd(0.3, 0.5), $01)
+                    ElseIf (((256.0 > local23) And (256.0 <= animtime(local0\Field0))) <> 0) Then
+                        playsound2(stepsfx($02, $00, rand($00, $02)), camera, local0\Field4, 8.0, rnd(0.3, 0.5), $01)
+                    EndIf
                 EndIf
-                positionentity(local0\Field0, entityx(local0\Field4, $00), (entityy(local0\Field4, $00) - 0.25), entityz(local0\Field4, $00), $00)
+                moveentity(local0\Field4, 0.0, 0.0, (local0\Field18 * fpsfactor))
+                positionentity(local0\Field0, entityx(local0\Field4, $00), (entityy(local0\Field4, $00) - 0.32), entityz(local0\Field4, $00), $00)
                 rotateentity(local0\Field0, entitypitch(local0\Field4, $00), (entityyaw(local0\Field4, $00) - 180.0), 0.0, $00)
             Case $06
                 If (playerroom\Field7\Field4 <> "pocketdimension") Then
@@ -1213,13 +1239,13 @@ Function updatenpcs%()
         End Select
         If ((hidedistance * 0.7) > distance(entityx(collider, $00), entityz(collider, $00), entityx(local0\Field4, $00), entityz(local0\Field4, $00))) Then
             translateentity(local0\Field4, 0.0, local0\Field7, 0.0, $00)
-            local29 = $00
+            local30 = $00
             For local5 = $01 To countcollisions(local0\Field4) Step $01
                 If ((entityy(local0\Field4, $00) - 0.01) > collisiony(local0\Field4, local5)) Then
-                    local29 = $01
+                    local30 = $01
                 EndIf
             Next
-            If (local29 = $01) Then
+            If (local30 = $01) Then
                 local0\Field7 = 0.0
             Else
                 local0\Field7 = max((local0\Field7 - (0.001 * fpsfactor)), -0.1)

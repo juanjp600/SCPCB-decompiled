@@ -297,5 +297,6 @@ Global user_camera_pitch#
 Global versionnumber$
 Global viewport_center_x%
 Global viewport_center_y%
+Global wearing714%
 Global wearinggasmask%
 Global wearingvest%

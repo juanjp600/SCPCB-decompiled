@@ -10,6 +10,7 @@ Function drawending%()
     Local local10%
     Local local11%
     Local local12%
+    showpointer()
     fpsfactor = 0.0
     endingtimer = (endingtimer - fpsfactor2)
     Select lower(selectedending)
@@ -118,6 +119,9 @@ Function drawending%()
                 EndIf
             EndIf
         EndIf
+    EndIf
+    If (fullscreen <> 0) Then
+        drawimage(cursorimg, mousex(), mousey(), $00)
     EndIf
     setfont(font1)
     Return $00
