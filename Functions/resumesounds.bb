@@ -14,9 +14,9 @@ Function resumesounds%()
         EndIf
     Next
     For local1 = Each doors
-        If (local1\Field13 <> $00) Then
-            If (channelplaying(local1\Field13) <> 0) Then
-                resumechannel(local1\Field13)
+        If (local1\Field14 <> $00) Then
+            If (channelplaying(local1\Field14) <> 0) Then
+                resumechannel(local1\Field14)
             EndIf
         EndIf
     Next

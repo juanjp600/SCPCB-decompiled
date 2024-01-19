@@ -267,6 +267,7 @@ Global teslapowerupsfx%
 Global teslatexture%
 Global totalgfxmodes%
 Global up%
+Global updatedoorstimer#
 Global updateroomtimer#
 Global use914sfx%
 Global user_camera_pitch#

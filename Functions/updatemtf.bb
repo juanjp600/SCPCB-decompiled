@@ -61,7 +61,7 @@ Function updatemtf%()
     Else
         mtftimer = (mtftimer + fpsfactor)
         If (700.0 < mtftimer) Then
-            For local4 = $00 To $05 Step $01
+            For local4 = $00 To $06 Step $01
                 If (mtfroomstate[local4] = $01) Then
                     mtfroomstate[local4] = $00
                 EndIf
@@ -74,7 +74,7 @@ Function updatemtf%()
                     debuglog("asdfadsfasdfsdafasdfasdf")
                     If (local1\Field32 <> $01) Then
                         local6 = 500.0
-                        For local4 = $00 To $05 Step $01
+                        For local4 = $00 To $06 Step $01
                             If (mtfrooms[local4] <> Null) Then
                                 If (mtfroomstate[local4] = $00) Then
                                     local7 = entitydistance(local1\Field4, mtfrooms[local4]\Field2)

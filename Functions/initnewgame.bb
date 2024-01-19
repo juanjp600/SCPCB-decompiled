@@ -60,7 +60,7 @@ Function initnewgame%()
                 local1 = createdecal($00, (entityx(local4\Field2, $00) + rnd(-2.0, 2.0)), 0.003, (entityz(local4\Field2, $00) + rnd(-2.0, 2.0)), 90.0, (Float rand($168, $01)), 0.0)
                 local1\Field2 = rnd(0.5, 0.7)
                 entityalpha(local1\Field0, 0.7)
-                local1\Field6 = $01
+                local1\Field7 = $01
                 scalesprite(local1\Field0, local1\Field2, local1\Field2)
                 entityalpha(local1\Field0, rnd(0.7, 0.85))
             EndIf

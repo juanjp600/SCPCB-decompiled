@@ -102,6 +102,8 @@ Function updateconsole%()
                         If (local8\Field7\Field4 = local4) Then
                             positionentity(collider, entityx(local8\Field2, $00), 0.7, entityz(local8\Field2, $00), $00)
                             resetentity(collider)
+                            updatedoors()
+                            updaterooms()
                             playerroom = local8
                             Exit
                         EndIf

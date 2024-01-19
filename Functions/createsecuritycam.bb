@@ -26,7 +26,7 @@ Function createsecuritycam.securitycams(arg0#, arg1#, arg2#, arg3.rooms, arg4%)
         scaleentity(local0\Field1, local1, local1, local1, $00)
         local0\Field8 = createcamera($00)
         cameraviewport(local0\Field8, $00, $00, $200, $200)
-        camerarange(local0\Field8, 0.05, 32.0)
+        camerarange(local0\Field8, 0.05, 6.0)
         camerazoom(local0\Field8, 0.8)
         hideentity(local0\Field8)
     EndIf

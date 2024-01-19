@@ -51,7 +51,7 @@ Function drawgui%()
         If (mouseup1 <> 0) Then
             mouseup1 = $00
             If (closestdoor <> Null) Then
-                If (closestdoor\Field14 <> "") Then
+                If (closestdoor\Field15 <> "") Then
                     selecteddoor = closestdoor
                 Else
                     playsound2(buttonsfx, camera, closestbutton, 10.0, 1.0, $01)
@@ -192,17 +192,17 @@ Function drawgui%()
                             Case $05,$06,$07
                                 keypadinput = (keypadinput + (Str (((local7 + $01) + (local4 Shl $02)) - $01)))
                             Case $08
-                                debuglog(selecteddoor\Field14)
+                                debuglog(selecteddoor\Field15)
                                 debuglog(keypadinput)
-                                If (keypadinput = selecteddoor\Field14) Then
+                                If (keypadinput = selecteddoor\Field15) Then
+                                    If (selecteddoor\Field15 = accesscode) Then
+                                        achvmaynard = $01
+                                    ElseIf (selecteddoor\Field15 = "7816") Then
+                                        achvharp = $01
+                                    EndIf
                                     selecteddoor\Field4 = $00
                                     usedoor(selecteddoor, $01)
                                     selecteddoor = Null
-                                    If (selecteddoor\Field14 = accesscode) Then
-                                        achvmaynard = $01
-                                    ElseIf (selecteddoor\Field14 = "7816") Then
-                                        achvharp = $01
-                                    EndIf
                                 Else
                                     keypadmsg = "ACCESS DENIED"
                                     keypadtimer = 210.0

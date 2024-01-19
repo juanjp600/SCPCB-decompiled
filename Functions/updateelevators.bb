@@ -39,6 +39,8 @@ Function updateelevators#(arg0#, arg1.doors, arg2.doors, arg3%, arg4%, arg5.even
                 If (local0 <> 0) Then
                     positionentity(collider, ((entityx(collider, $00) - entityx(arg3, $01)) + entityx(arg4, $01)), ((entityy(collider, $00) - entityy(arg3, $01)) + (entityy(arg4, $01) + 0.05)), ((entityz(collider, $00) - entityz(arg3, $01)) + entityz(arg4, $01)), $01)
                     resetentity(collider)
+                    updatedoors()
+                    updaterooms()
                 EndIf
                 playsound2(elevatorbeepsfx, camera, arg3, 4.0, 1.0, $01)
             EndIf
@@ -64,6 +66,8 @@ Function updateelevators#(arg0#, arg1.doors, arg2.doors, arg3%, arg4%, arg5.even
                 If (local0 <> 0) Then
                     positionentity(collider, ((entityx(collider, $00) - entityx(arg4, $01)) + entityx(arg3, $01)), ((entityy(collider, $00) - entityy(arg4, $01)) + (entityy(arg3, $01) + 0.05)), ((entityz(collider, $00) - entityz(arg4, $01)) + entityz(arg3, $01)), $01)
                     resetentity(collider)
+                    updatedoors()
+                    updaterooms()
                 EndIf
                 playsound2(elevatorbeepsfx, camera, arg4, 4.0, 1.0, $01)
             EndIf

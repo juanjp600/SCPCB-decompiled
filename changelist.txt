@@ -1,3 +1,11 @@
+----------------------------------------------------------------------------------
+
+v0.5.2
+- fixed the save file corruption bug
+- optimized map rendering a bit, should help with the FPS issues
+- fixed the decals in the pocket dimension
+- fixed the bug that crashed the game when opening the doors to Harp's or Maynard's office
+- the lure subject can no longer appear outside 106's cell
 
 ----------------------------------------------------------------------------------
 

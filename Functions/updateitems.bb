@@ -2,7 +2,6 @@ Function updateitems%()
     Local local0%
     Local local1.items
     Local local2#
-    Local local3$
     closestitem = Null
     For local1 = Each items
         If (local1\Field7 = $00) Then
@@ -35,13 +34,19 @@ Function updateitems%()
             If (itemamount < $0A) Then
                 For local0 = $00 To $09 Step $01
                     If (inventory(local0) = Null) Then
-                        local3 = closestitem\Field1\Field1
-                        If (local3 = "killbat") Then
-                            showentity(light)
-                            lightflash = 1.0
-                            playsound(introsfx($0B))
-                            kill()
-                        EndIf
+                        Select closestitem\Field1\Field1
+                            Case "killbat"
+                                showentity(light)
+                                lightflash = 1.0
+                                playsound(introsfx($0B))
+                                kill()
+                            Case "keyomni"
+                                achvomni = $01
+                            Case "navigator","nav"
+                                If (closestitem\Field1\Field0 = "S-NAV Navigator Ultimate") Then
+                                    achvomni = $01
+                                EndIf
+                        End Select
                         If (closestitem\Field1\Field2 <> $42) Then
                             playsound(picksfx(closestitem\Field1\Field2))
                         EndIf

@@ -37,7 +37,7 @@ Function fillroom%(arg0.rooms)
         Case "lockroom"
             local0 = createdoor(arg0\Field0, (arg0\Field3 - (736.0 * roomscale)), 0.0, (arg0\Field5 - (104.0 * roomscale)), 0.0, arg0, $01, $00, $00, "")
             local0\Field9 = $15E
-            local0\Field18 = $00
+            local0\Field19 = $00
             local0\Field5 = $00
             entityparent(local0\Field3[$00], $00, $01)
             positionentity(local0\Field3[$00], (arg0\Field3 - (288.0 * roomscale)), 0.7, (arg0\Field5 - (640.0 * roomscale)), $00)
@@ -46,7 +46,7 @@ Function fillroom%(arg0.rooms)
             local0\Field3[$01] = $00
             local1 = createdoor(arg0\Field0, ((104.0 * roomscale) + arg0\Field3), 0.0, ((736.0 * roomscale) + arg0\Field5), 270.0, arg0, $01, $00, $00, "")
             local1\Field9 = $15E
-            local1\Field18 = $00
+            local1\Field19 = $00
             local1\Field5 = $00
             entityparent(local1\Field3[$00], $00, $01)
             positionentity(local1\Field3[$00], ((640.0 * roomscale) + arg0\Field3), 0.7, ((288.0 * roomscale) + arg0\Field5), $00)
@@ -54,8 +54,8 @@ Function fillroom%(arg0.rooms)
             entityparent(local1\Field3[$00], arg0\Field2, $01)
             freeentity(local1\Field3[$01])
             local1\Field3[$01] = $00
-            local0\Field19 = local1
-            local1\Field19 = local0
+            local0\Field20 = local1
+            local1\Field20 = local0
             local2 = createsecuritycam((arg0\Field3 - (688.0 * roomscale)), ((384.0 * roomscale) + arg0\Field4), ((688.0 * roomscale) + arg0\Field5), arg0, $01)
             local2\Field11 = 225.0
             local2\Field12 = 45.0
@@ -114,7 +114,7 @@ Function fillroom%(arg0.rooms)
             EndIf
             arg0\Field12[$04] = createdoor(arg0\Field0, arg0\Field3, 0.0, (arg0\Field5 - (320.0 * roomscale)), 0.0, arg0, $00, $01, $03, "")
             arg0\Field12[$04]\Field8 = $01
-            arg0\Field12[$04]\Field18 = $00
+            arg0\Field12[$04]\Field19 = $00
             arg0\Field12[$04]\Field5 = $00
             positionentity(arg0\Field12[$04]\Field3[$01], arg0\Field3, 8.0, arg0\Field5, $01)
             positionentity(arg0\Field12[$04]\Field3[$00], arg0\Field3, 8.0, arg0\Field5, $01)
@@ -162,7 +162,7 @@ Function fillroom%(arg0.rooms)
             positionentity(arg0\Field11[$07], ((5192.0 * roomscale) + arg0\Field3), (12192.0 * roomscale), (arg0\Field5 - (4352.0 * roomscale)), $01)
             entityparent(arg0\Field11[$07], arg0\Field2, $01)
             arg0\Field12[$00] = createdoor($00, ((720.0 * roomscale) + arg0\Field3), 0.0, ((1432.0 * roomscale) + arg0\Field5), 0.0, arg0, $01, $00, $00, "")
-            arg0\Field12[$00]\Field18 = $00
+            arg0\Field12[$00]\Field19 = $00
             arg0\Field12[$00]\Field5 = $01
             moveentity(arg0\Field12[$00]\Field3[$00], 0.0, 0.0, (22.0 * roomscale))
             moveentity(arg0\Field12[$00]\Field3[$01], 0.0, 0.0, (22.0 * roomscale))
@@ -170,7 +170,7 @@ Function fillroom%(arg0.rooms)
             positionentity(arg0\Field11[$08], ((720.0 * roomscale) + arg0\Field3), 0.0, ((1744.0 * roomscale) + arg0\Field5), $01)
             entityparent(arg0\Field11[$08], arg0\Field2, $01)
             arg0\Field12[$01] = createdoor($00, (arg0\Field3 - (5424.0 * roomscale)), (10784.0 * roomscale), (arg0\Field5 - (1380.0 * roomscale)), 0.0, arg0, $00, $00, $00, "")
-            arg0\Field12[$01]\Field18 = $00
+            arg0\Field12[$01]\Field19 = $00
             arg0\Field12[$01]\Field5 = $00
             moveentity(arg0\Field12[$01]\Field3[$00], 0.0, 0.0, (22.0 * roomscale))
             moveentity(arg0\Field12[$01]\Field3[$01], 0.0, 0.0, (22.0 * roomscale))
@@ -178,10 +178,10 @@ Function fillroom%(arg0.rooms)
             positionentity(arg0\Field11[$09], (arg0\Field3 - (5424.0 * roomscale)), (10784.0 * roomscale), (arg0\Field5 - (1068.0 * roomscale)), $01)
             entityparent(arg0\Field11[$09], arg0\Field2, $01)
             arg0\Field12[$02] = createdoor($00, ((4352.0 * roomscale) + arg0\Field3), (10784.0 * roomscale), (arg0\Field5 - (492.0 * roomscale)), 0.0, arg0, $00, $00, $00, "")
-            arg0\Field12[$02]\Field18 = $00
+            arg0\Field12[$02]\Field19 = $00
             arg0\Field12[$02]\Field5 = $00
             arg0\Field12[$03] = createdoor($00, ((4352.0 * roomscale) + arg0\Field3), (10784.0 * roomscale), ((500.0 * roomscale) + arg0\Field5), 0.0, arg0, $00, $00, $00, "")
-            arg0\Field12[$03]\Field18 = $00
+            arg0\Field12[$03]\Field19 = $00
             arg0\Field12[$03]\Field5 = $00
             arg0\Field11[$0A] = createpivot($00)
             positionentity(arg0\Field11[$0A], ((4352.0 * roomscale) + arg0\Field3), (10778.0 * roomscale), ((1344.0 * roomscale) + arg0\Field5), $01)
@@ -190,10 +190,10 @@ Function fillroom%(arg0.rooms)
             positionentity(arg0\Field11[$0B], ((2816.0 * roomscale) + arg0\Field3), (11024.0 * roomscale), (arg0\Field5 - (2816.0 * roomscale)), $01)
             entityparent(arg0\Field11[$0B], arg0\Field2, $01)
             arg0\Field12[$05] = createdoor($00, ((3248.0 * roomscale) + arg0\Field3), (9856.0 * roomscale), ((6400.0 * roomscale) + arg0\Field5), 0.0, arg0, $00, $00, $00, "ABCD")
-            arg0\Field12[$05]\Field18 = $00
+            arg0\Field12[$05]\Field19 = $00
             arg0\Field12[$05]\Field5 = $00
             local0 = createdoor($00, ((3072.0 * roomscale) + arg0\Field3), (9856.0 * roomscale), ((5800.0 * roomscale) + arg0\Field5), 90.0, arg0, $00, $00, $03, "")
-            local0\Field18 = $00
+            local0\Field19 = $00
             local0\Field5 = $00
             arg0\Field11[$0E] = createpivot($00)
             positionentity(arg0\Field11[$0E], ((3536.0 * roomscale) + arg0\Field3), (10256.0 * roomscale), ((5512.0 * roomscale) + arg0\Field5), $01)
@@ -219,13 +219,13 @@ Function fillroom%(arg0.rooms)
         Case "room079"
             local0 = createdoor(arg0\Field0, arg0\Field3, (-448.0 * roomscale), ((1136.0 * roomscale) + arg0\Field5), 0.0, arg0, $00, $01, $03, "")
             local0\Field8 = $01
-            local0\Field18 = $00
+            local0\Field19 = $00
             local0\Field5 = $00
             positionentity(local0\Field3[$01], ((224.0 * roomscale) + arg0\Field3), (-250.0 * roomscale), ((918.0 * roomscale) + arg0\Field5), $01)
             positionentity(local0\Field3[$00], (arg0\Field3 - (240.0 * roomscale)), (-250.0 * roomscale), ((1366.0 * roomscale) + arg0\Field5), $01)
             arg0\Field12[$00] = createdoor(arg0\Field0, ((384.0 * roomscale) + arg0\Field3), (-448.0 * roomscale), ((3088.0 * roomscale) + arg0\Field5), 0.0, arg0, $00, $01, $03, "")
             arg0\Field12[$00]\Field8 = $01
-            arg0\Field12[$00]\Field18 = $00
+            arg0\Field12[$00]\Field19 = $00
             arg0\Field12[$00]\Field5 = $00
             positionentity(arg0\Field12[$00]\Field3[$01], ((736.0 * roomscale) + arg0\Field3), (-250.0 * roomscale), ((2870.0 * roomscale) + arg0\Field5), $01)
             positionentity(arg0\Field12[$00]\Field3[$00], ((128.0 * roomscale) + arg0\Field3), (-250.0 * roomscale), ((3286.0 * roomscale) + arg0\Field5), $01)
@@ -268,7 +268,7 @@ Function fillroom%(arg0.rooms)
             positionentity(arg0\Field11[$00], (arg0\Field3 - (640.0 * roomscale)), 0.5, (arg0\Field5 - (912.0 * roomscale)), $00)
             entityparent(arg0\Field11[$00], arg0\Field2, $01)
             arg0\Field11[$01] = createpivot($00)
-            positionentity(arg0\Field11[$01], (arg0\Field3 - (632.0 * roomscale)), 0.5, (arg0\Field5 - (192.0 * roomscale)), $00)
+            positionentity(arg0\Field11[$01], (arg0\Field3 - (632.0 * roomscale)), 0.5, (arg0\Field5 - (16.0 * roomscale)), $00)
             entityparent(arg0\Field11[$01], arg0\Field2, $01)
             local22 = loadtexture("GFX\map\glass.png", $03)
             arg0\Field11[$02] = createsprite($00)
@@ -280,13 +280,13 @@ Function fillroom%(arg0.rooms)
             entityparent(arg0\Field11[$02], arg0\Field2, $01)
             freetexture(local22)
             local0 = createdoor(arg0\Field0, (arg0\Field3 - (240.0 * roomscale)), 0.0, ((640.0 * roomscale) + arg0\Field5), 90.0, arg0, $00, $00, $00, "")
-            local0\Field18 = $00
+            local0\Field19 = $00
             local0\Field5 = $00
             local0 = createdoor(arg0\Field0, (arg0\Field3 - (512.0 * roomscale)), 0.0, ((384.0 * roomscale) + arg0\Field5), 0.0, arg0, $00, $00, $00, "")
-            local0\Field18 = $00
+            local0\Field19 = $00
             local0\Field5 = $00
             local0 = createdoor(arg0\Field0, (arg0\Field3 - (816.0 * roomscale)), 0.0, (arg0\Field5 - (208.0 * roomscale)), 0.0, arg0, $00, $00, $00, "")
-            local0\Field18 = $00
+            local0\Field19 = $00
             local0\Field5 = $00
             freeentity(local0\Field3[$00])
             freeentity(local0\Field3[$01])
@@ -296,7 +296,7 @@ Function fillroom%(arg0.rooms)
             entityparent(arg0\Field11[$00], arg0\Field2, $01)
         Case "room2sroom"
             local0 = createdoor(arg0\Field0, ((1440.0 * roomscale) + arg0\Field3), (224.0 * roomscale), ((32.0 * roomscale) + arg0\Field5), 90.0, arg0, $00, $00, $04, "")
-            local0\Field18 = $00
+            local0\Field19 = $00
             local0\Field5 = $00
             local3 = createitem("Some SCP-420-J", "420", ((1776.0 * roomscale) + arg0\Field3), ((400.0 * roomscale) + arg0\Field4), ((427.0 * roomscale) + arg0\Field5))
             entityparent(local3\Field0, arg0\Field2, $01)
@@ -311,14 +311,14 @@ Function fillroom%(arg0.rooms)
             entityparent(local3\Field0, arg0\Field2, $01)
         Case "room2poffices"
             local0 = createdoor(arg0\Field0, ((240.0 * roomscale) + arg0\Field3), 0.0, ((448.0 * roomscale) + arg0\Field5), 90.0, arg0, $00, $00, $00, accesscode)
-            local0\Field18 = $00
+            local0\Field19 = $00
             local0\Field5 = $00
             local0 = createdoor(arg0\Field0, (arg0\Field3 - (496.0 * roomscale)), 0.0, arg0\Field5, 90.0, arg0, $00, $00, $00, "ABCD")
-            local0\Field18 = $00
+            local0\Field19 = $00
             local0\Field5 = $00
             local0\Field4 = $01
             local0 = createdoor(arg0\Field0, ((240.0 * roomscale) + arg0\Field3), 0.0, (arg0\Field5 - (576.0 * roomscale)), 90.0, arg0, $00, $00, $00, "7816")
-            local0\Field18 = $00
+            local0\Field19 = $00
             local0\Field5 = $00
             local3 = createitem("Mysterious Note", "paper", ((736.0 * roomscale) + arg0\Field3), ((224.0 * roomscale) + arg0\Field4), ((544.0 * roomscale) + arg0\Field5))
             entityparent(local3\Field0, arg0\Field2, $01)
@@ -326,23 +326,23 @@ Function fillroom%(arg0.rooms)
             entityparent(local3\Field0, arg0\Field2, $01)
         Case "room2nuke"
             local0 = createdoor(arg0\Field0, ((576.0 * roomscale) + arg0\Field3), 0.0, (arg0\Field5 - (152.0 * roomscale)), 90.0, arg0, $00, $00, $05, "")
-            local0\Field18 = $00
+            local0\Field19 = $00
             local0\Field5 = $00
             positionentity(local0\Field3[$00], entityx(local0\Field3[$00], $01), entityy(local0\Field3[$00], $01), (arg0\Field5 - (284.0 * roomscale)), $01)
             positionentity(local0\Field3[$01], entityx(local0\Field3[$01], $01), entityy(local0\Field3[$01], $01), (arg0\Field5 - (284.0 * roomscale)), $01)
             local0 = createdoor(arg0\Field0, (arg0\Field3 - (544.0 * roomscale)), (1504.0 * roomscale), ((738.0 * roomscale) + arg0\Field5), 90.0, arg0, $00, $00, $05, "")
-            local0\Field18 = $00
+            local0\Field19 = $00
             local0\Field5 = $00
             positionentity(local0\Field3[$00], entityx(local0\Field3[$00], $01), entityy(local0\Field3[$00], $01), ((608.0 * roomscale) + arg0\Field5), $01)
             positionentity(local0\Field3[$01], entityx(local0\Field3[$01], $01), entityy(local0\Field3[$01], $01), ((608.0 * roomscale) + arg0\Field5), $01)
             arg0\Field12[$00] = createdoor(arg0\Field0, ((1192.0 * roomscale) + arg0\Field3), 0.0, arg0\Field5, 90.0, arg0, $01, $00, $00, "")
-            arg0\Field12[$00]\Field18 = $00
+            arg0\Field12[$00]\Field19 = $00
             arg0\Field12[$00]\Field5 = $01
             arg0\Field11[$04] = createpivot($00)
             positionentity(arg0\Field11[$04], ((1496.0 * roomscale) + arg0\Field3), (240.0 * roomscale), arg0\Field5, $00)
             entityparent(arg0\Field11[$04], arg0\Field2, $01)
             arg0\Field12[$01] = createdoor(arg0\Field0, ((680.0 * roomscale) + arg0\Field3), (1504.0 * roomscale), arg0\Field5, 90.0, arg0, $00, $00, $00, "")
-            arg0\Field12[$01]\Field18 = $00
+            arg0\Field12[$01]\Field19 = $00
             arg0\Field12[$01]\Field5 = $00
             arg0\Field11[$05] = createpivot($00)
             positionentity(arg0\Field11[$05], ((984.0 * roomscale) + arg0\Field3), (1744.0 * roomscale), arg0\Field5, $00)
@@ -382,22 +382,22 @@ Function fillroom%(arg0.rooms)
             positionentity(arg0\Field11[$05], ((2072.0 * roomscale) + arg0\Field3), (-2256.0 * roomscale), ((656.0 * roomscale) + arg0\Field5), $00)
             entityparent(arg0\Field11[$05], arg0\Field2, $01)
             arg0\Field12[$00] = createdoor(arg0\Field0, ((264.0 * roomscale) + arg0\Field3), 0.0, ((656.0 * roomscale) + arg0\Field5), 90.0, arg0, $01, $00, $00, "")
-            arg0\Field12[$00]\Field18 = $00
+            arg0\Field12[$00]\Field19 = $00
             arg0\Field12[$00]\Field5 = $01
             positionentity(arg0\Field12[$00]\Field3[$01], ((224.0 * roomscale) + arg0\Field3), 0.7, ((480.0 * roomscale) + arg0\Field5), $01)
             positionentity(arg0\Field12[$00]\Field3[$00], ((304.0 * roomscale) + arg0\Field3), 0.7, ((832.0 * roomscale) + arg0\Field5), $01)
             arg0\Field12[$01] = createdoor(arg0\Field0, (arg0\Field3 - (2328.0 * roomscale)), (-2496.0 * roomscale), (arg0\Field5 - (656.0 * roomscale)), 90.0, arg0, $00, $00, $00, "")
-            arg0\Field12[$01]\Field18 = $00
+            arg0\Field12[$01]\Field19 = $00
             arg0\Field12[$01]\Field5 = $00
             positionentity(arg0\Field12[$01]\Field3[$00], (arg0\Field3 - (2288.0 * roomscale)), entityy(arg0\Field12[$01]\Field3[$00], $01), (arg0\Field5 - (480.0 * roomscale)), $01)
             positionentity(arg0\Field12[$01]\Field3[$01], (arg0\Field3 - (2368.0 * roomscale)), entityy(arg0\Field12[$01]\Field3[$01], $01), (arg0\Field5 - (800.0 * roomscale)), $01)
             arg0\Field12[$02] = createdoor(arg0\Field0, (arg0\Field3 - (264.0 * roomscale)), 0.0, (arg0\Field5 - (656.0 * roomscale)), 90.0, arg0, $01, $00, $00, "")
-            arg0\Field12[$02]\Field18 = $00
+            arg0\Field12[$02]\Field19 = $00
             arg0\Field12[$02]\Field5 = $01
             positionentity(arg0\Field12[$02]\Field3[$00], (arg0\Field3 - (224.0 * roomscale)), 0.7, (arg0\Field5 - (480.0 * roomscale)), $01)
             positionentity(arg0\Field12[$02]\Field3[$01], (arg0\Field3 - (304.0 * roomscale)), 0.7, (arg0\Field5 - (832.0 * roomscale)), $01)
             arg0\Field12[$03] = createdoor(arg0\Field0, ((2360.0 * roomscale) + arg0\Field3), (-2496.0 * roomscale), ((656.0 * roomscale) + arg0\Field5), 90.0, arg0, $00, $00, $00, "")
-            arg0\Field12[$03]\Field18 = $00
+            arg0\Field12[$03]\Field19 = $00
             arg0\Field12[$03]\Field5 = $00
             positionentity(arg0\Field12[$03]\Field3[$01], ((2320.0 * roomscale) + arg0\Field3), entityy(arg0\Field12[$03]\Field3[$00], $01), ((480.0 * roomscale) + arg0\Field5), $01)
             positionentity(arg0\Field12[$03]\Field3[$00], ((2432.0 * roomscale) + arg0\Field3), entityy(arg0\Field12[$03]\Field3[$01], $01), ((816.0 * roomscale) + arg0\Field5), $01)
@@ -525,14 +525,14 @@ Function fillroom%(arg0.rooms)
                 entityparent(local3\Field0, arg0\Field2, $01)
             EndIf
             arg0\Field12[$00] = createdoor(arg0\Field0, (arg0\Field3 - (1056.0 * roomscale)), (384.0 * roomscale), ((290.0 * roomscale) + arg0\Field5), 90.0, arg0, $01, $00, $00, "")
-            arg0\Field12[$00]\Field18 = $00
+            arg0\Field12[$00]\Field19 = $00
             arg0\Field12[$00]\Field5 = $01
             positionentity(arg0\Field12[$00]\Field3[$00], entityx(arg0\Field12[$00]\Field3[$00], $01), entityy(arg0\Field12[$00]\Field3[$00], $01), ((161.0 * roomscale) + arg0\Field5), $01)
             positionentity(arg0\Field12[$00]\Field3[$01], entityx(arg0\Field12[$00]\Field3[$01], $01), entityy(arg0\Field12[$00]\Field3[$01], $01), ((161.0 * roomscale) + arg0\Field5), $01)
         Case "start"
             arg0\Field12[$01] = createdoor(arg0\Field0, ((288.0 * roomscale) + arg0\Field3), 0.0, ((384.0 * roomscale) + arg0\Field5), 90.0, arg0, $01, $01, $00, "")
             arg0\Field12[$01]\Field4 = $00
-            arg0\Field12[$01]\Field18 = $00
+            arg0\Field12[$01]\Field19 = $00
             arg0\Field12[$01]\Field8 = $01
             arg0\Field12[$01]\Field5 = $01
             freeentity(arg0\Field12[$01]\Field3[$00])
@@ -542,7 +542,7 @@ Function fillroom%(arg0.rooms)
         Case "coffin"
             local0 = createdoor(arg0\Field0, arg0\Field3, 0.0, (arg0\Field5 - (448.0 * roomscale)), 0.0, arg0, $00, $01, $02, "")
             local0\Field8 = $01
-            local0\Field18 = $00
+            local0\Field19 = $00
             local0\Field5 = $00
             positionentity(local0\Field3[$00], (arg0\Field3 - (384.0 * roomscale)), 0.7, (arg0\Field5 - (280.0 * roomscale)), $01)
             local2 = createsecuritycam((arg0\Field3 - (320.0 * roomscale)), ((704.0 * roomscale) + arg0\Field4), ((288.0 * roomscale) + arg0\Field5), arg0, $01)
@@ -579,26 +579,26 @@ Function fillroom%(arg0.rooms)
             entityparent(arg0\Field11[$03], arg0\Field2, $01)
         Case "room2doors"
             local0 = createdoor(arg0\Field0, arg0\Field3, 0.0, ((528.0 * roomscale) + arg0\Field5), 0.0, arg0, $01, $00, $00, "")
-            local0\Field18 = $00
+            local0\Field19 = $00
             positionentity(local0\Field3[$00], (arg0\Field3 - (832.0 * roomscale)), 0.7, ((160.0 * roomscale) + arg0\Field5), $01)
             positionentity(local0\Field3[$01], (arg0\Field3 - (224.0 * roomscale)), 0.7, ((896.0 * roomscale) + arg0\Field5), $01)
             rotateentity(local0\Field3[$01], 0.0, 90.0, 0.0, $01)
             local1 = createdoor(arg0\Field0, arg0\Field3, 0.0, (arg0\Field5 - (528.0 * roomscale)), 180.0, arg0, $01, $00, $00, "")
-            local1\Field18 = $00
+            local1\Field19 = $00
             freeentity(local1\Field3[$00])
             positionentity(local1\Field3[$01], (arg0\Field3 - (224.0 * roomscale)), 0.7, (arg0\Field5 - (896.0 * roomscale)), $01)
             rotateentity(local1\Field3[$01], 0.0, 90.0, 0.0, $01)
             arg0\Field11[$00] = createpivot($00)
             positionentity(arg0\Field11[$00], (arg0\Field3 - (832.0 * roomscale)), 0.5, arg0\Field5, $00)
             entityparent(arg0\Field11[$00], arg0\Field2, $01)
-            local1\Field19 = local0
-            local0\Field19 = local1
+            local1\Field20 = local0
+            local0\Field20 = local1
             local0\Field5 = $00
             local1\Field5 = $01
         Case "914"
             local0 = createdoor(arg0\Field0, arg0\Field3, 0.0, (arg0\Field5 - (368.0 * roomscale)), 0.0, arg0, $00, $01, $02, "")
             local0\Field8 = $01
-            local0\Field18 = $00
+            local0\Field19 = $00
             local0\Field5 = $00
             positionentity(local0\Field3[$00], (arg0\Field3 - (496.0 * roomscale)), 0.7, (arg0\Field5 - (272.0 * roomscale)), $01)
             turnentity(local0\Field3[$00], 0.0, 90.0, 0.0, $00)
@@ -620,7 +620,7 @@ Function fillroom%(arg0.rooms)
             freeentity(local0\Field3[$01])
             local0\Field3[$01] = $00
             arg0\Field12[$00] = local0
-            local0\Field18 = $00
+            local0\Field19 = $00
             local0 = createdoor(arg0\Field0, ((816.0 * roomscale) + arg0\Field3), 0.0, ((528.0 * roomscale) + arg0\Field5), 180.0, arg0, $01, $00, $00, "")
             freeentity(local0\Field1)
             local0\Field1 = $00
@@ -629,7 +629,7 @@ Function fillroom%(arg0.rooms)
             freeentity(local0\Field3[$01])
             local0\Field3[$01] = $00
             arg0\Field12[$01] = local0
-            local0\Field18 = $00
+            local0\Field19 = $00
             arg0\Field11[$02] = createpivot($00)
             arg0\Field11[$03] = createpivot($00)
             positionentity(arg0\Field11[$02], (arg0\Field3 - (712.0 * roomscale)), 0.5, ((640.0 * roomscale) + arg0\Field5), $00)
@@ -656,10 +656,10 @@ Function fillroom%(arg0.rooms)
             Next
             arg0\Field12[$00] = createdoor(arg0\Field0, entityx(arg0\Field2, $00), 0.0, (entityz(arg0\Field2, $00) - 4.0), 0.0, arg0, $00, $00, $00, "")
             arg0\Field12[$00]\Field4 = $01
-            arg0\Field12[$00]\Field18 = $00
+            arg0\Field12[$00]\Field19 = $00
             arg0\Field12[$00]\Field5 = $00
             arg0\Field12[$01] = createdoor(arg0\Field0, (entityx(arg0\Field2, $00) + (288.0 * roomscale)), 0.0, (entityz(arg0\Field2, $00) + (384.0 * roomscale)), 90.0, arg0, $01, $01, $00, "")
-            arg0\Field12[$01]\Field18 = $00
+            arg0\Field12[$01]\Field19 = $00
             arg0\Field12[$01]\Field8 = $01
             arg0\Field12[$01]\Field5 = $01
             freeentity(arg0\Field12[$01]\Field3[$00])
@@ -681,7 +681,7 @@ Function fillroom%(arg0.rooms)
             addlight(arg0, (arg0\Field3 - (1056.0 * roomscale)), ((608.0 * roomscale) + arg0\Field4), ((416.0 * roomscale) + arg0\Field5), $02, 2.0, $C8, $C8, $C8)
         Case "room2ccont"
             local0 = createdoor(arg0\Field0, ((64.0 * roomscale) + arg0\Field3), 0.0, ((368.0 * roomscale) + arg0\Field5), 180.0, arg0, $00, $00, $01, "")
-            local0\Field18 = $00
+            local0\Field19 = $00
             local0\Field5 = $00
             local3 = createitem("Note from Daniel", "paper", (arg0\Field3 - (400.0 * roomscale)), (1040.0 * roomscale), ((115.0 * roomscale) + arg0\Field5))
             entityparent(local3\Field0, arg0\Field2, $01)
@@ -700,13 +700,13 @@ Function fillroom%(arg0.rooms)
             Next
         Case "room106"
             local0 = createdoor(arg0\Field0, (arg0\Field3 - (968.0 * roomscale)), (-764.0 * roomscale), ((1392.0 * roomscale) + arg0\Field5), 0.0, arg0, $00, $00, $03, "")
-            local0\Field18 = $00
+            local0\Field19 = $00
             local0\Field5 = $00
             local0 = createdoor(arg0\Field0, arg0\Field3, 0.0, (arg0\Field5 - (464.0 * roomscale)), 0.0, arg0, $00, $00, $03, "")
-            local0\Field18 = $00
+            local0\Field19 = $00
             local0\Field5 = $00
             local0 = createdoor(arg0\Field0, (arg0\Field3 - (624.0 * roomscale)), (-1280.0 * roomscale), arg0\Field5, 90.0, arg0, $00, $00, $04, "")
-            local0\Field18 = $00
+            local0\Field19 = $00
             local0\Field5 = $00
             arg0\Field11[$06] = loadmesh("GFX\map\room1062.b3d", $00)
             scaleentity(arg0\Field11[$06], roomscale, roomscale, roomscale, $00)
@@ -826,6 +826,7 @@ Function fillroom%(arg0.rooms)
                     local26 = createdecal((local4 + $07), ((((512.0 * roomscale) * cos(local32)) * 3.0) + arg0\Field3), 0.02, ((((512.0 * roomscale) * sin(local32)) * 3.0) + arg0\Field5), 90.0, (local32 - 90.0), 0.0)
                     local26\Field2 = rnd(0.5, 0.5)
                     local26\Field5 = $02
+                    local26\Field6 = $09
                     scalesprite(local26\Field0, local26\Field2, local26\Field2)
                     entityfx(local26\Field0, $09)
                     entityblend(local26\Field0, $02)

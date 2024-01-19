@@ -35,7 +35,7 @@ Function shoot%(arg0#, arg1#, arg2#, arg3#, arg4#, arg5#, arg6%)
             aligntovector(local3\Field0, (- pickednx()), (- pickedny()), (- pickednz()), $03, 1.0)
             moveentity(local3\Field0, 0.0, 0.0, -0.001)
             entityfx(local3\Field0, $01)
-            local3\Field8 = 1400.0
+            local3\Field9 = 1400.0
             entityblend(local3\Field0, $02)
             local3\Field2 = rnd(0.028, 0.034)
             scalesprite(local3\Field0, local3\Field2, local3\Field2)

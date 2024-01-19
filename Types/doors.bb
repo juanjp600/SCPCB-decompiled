@@ -12,11 +12,12 @@ Type doors
     Field Field10#
     Field Field11%
     Field Field12.rooms
-    Field Field13%
-    Field Field14$
-    Field Field15%
+    Field Field13#
+    Field Field14%
+    Field Field15$
     Field Field16%
     Field Field17%
     Field Field18%
-    Field Field19.doors
+    Field Field19%
+    Field Field20.doors
 End Type

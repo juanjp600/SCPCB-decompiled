@@ -176,8 +176,8 @@ Function createmap%()
         maproom($02, (Int floor((rnd(0.6, 0.65) * (Float local17))))) = "testroom"
         maproom($02, (Int floor((rnd(0.8, 0.86) * (Float local17))))) = "room2poffices"
         maproom($02, (Int floor((rnd(0.9, 0.95) * (Float local17))))) = "room2nuke"
-        maproom($03, $00) = "room2ccont"
-        maproom($03, $01) = "lockroom"
+        maproom($03, $00) = "lockroom"
+        maproom($03, $01) = "room2ccont"
         For local1 = $00 To mapheight Step $01
             For local0 = $00 To mapwidth Step $01
                 maptemp(local8, local0, local1) = (Int min((Float maptemp(local8, local0, local1)), 1.0))

@@ -98,7 +98,7 @@ Function savegame%(arg0$)
         writebyte(local4, local7\Field5)
         writefloat(local4, local7\Field7)
         writebyte(local4, local7\Field4)
-        writebyte(local4, local7\Field18)
+        writebyte(local4, local7\Field19)
         writefloat(local4, entityx(local7\Field0, $01))
         writefloat(local4, entityz(local7\Field0, $01))
         If (local7\Field1 <> $00) Then
@@ -141,26 +141,19 @@ Function savegame%(arg0$)
         Else
             writeint(local4, $00)
         EndIf
-        writebyte(local4, local8\Field32)
-        If (local8\Field32 = $01) Then
-            For local2 = $00 To $13 Step $01
-                If (local8\Field31[local2] <> Null) Then
-                    writefloat(local4, entityx(local8\Field31[local2]\Field0, $00))
-                    writefloat(local4, entityy(local8\Field31[local2]\Field0, $00))
-                    writefloat(local4, entityz(local8\Field31[local2]\Field0, $00))
-                Else
-                    writefloat(local4, 0.0)
-                    writefloat(local4, 0.0)
-                    writefloat(local4, 0.0)
-                EndIf
-            Next
-            writeint(local4, local8\Field34)
-        EndIf
-        writefloat(local4, local8\Field33)
         writefloat(local4, local8\Field28)
         writefloat(local4, local8\Field29)
         writefloat(local4, local8\Field30)
         writefloat(local4, animtime(local8\Field0))
+    Next
+    writefloat(local4, mtftimer)
+    For local2 = $00 To $06 Step $01
+        If (mtfrooms[$00] <> Null) Then
+            writestring(local4, mtfrooms[$00]\Field7\Field4)
+        Else
+            writestring(local4, "a")
+        EndIf
+        writeint(local4, mtfroomstate[local2])
     Next
     writeint(local4, $735)
     debuglog("1845")
@@ -170,19 +163,21 @@ Function savegame%(arg0$)
     Next
     writeint(local4, local3)
     For local9 = Each decals
-        writeint(local4, local9\Field6)
-        writefloat(local4, local9\Field9)
+        writeint(local4, local9\Field7)
         writefloat(local4, local9\Field10)
         writefloat(local4, local9\Field11)
         writefloat(local4, local9\Field12)
         writefloat(local4, local9\Field13)
         writefloat(local4, local9\Field14)
+        writefloat(local4, local9\Field15)
+        writebyte(local4, local9\Field5)
+        writeint(local4, local9\Field6)
         debuglog("eeeeeeeeee")
         writefloat(local4, local9\Field2)
         writefloat(local4, local9\Field4)
         writefloat(local4, local9\Field3)
-        writefloat(local4, local9\Field7)
         writefloat(local4, local9\Field8)
+        writefloat(local4, local9\Field9)
     Next
     local3 = $00
     For local10 = Each events

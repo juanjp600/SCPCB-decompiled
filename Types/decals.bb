@@ -6,7 +6,7 @@ Type decals
     Field Field4#
     Field Field5%
     Field Field6%
-    Field Field7#
+    Field Field7%
     Field Field8#
     Field Field9#
     Field Field10#
@@ -14,4 +14,5 @@ Type decals
     Field Field12#
     Field Field13#
     Field Field14#
+    Field Field15#
 End Type

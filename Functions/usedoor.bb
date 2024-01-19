@@ -59,11 +59,11 @@ Function usedoor%(arg0.doors, arg1%)
         EndIf
         Return $00
     EndIf
-    If (arg0\Field17 <> $42) Then
+    If (arg0\Field18 <> $42) Then
         local2 = playerlevel
-        local3 = arg0\Field17
+        local3 = arg0\Field18
         For local7 = Each doors
-            If (local7\Field17 = local2) Then
+            If (local7\Field18 = local2) Then
                 pointentity(collider, arg0\Field0, 0.0)
                 rotateentity(collider, 0.0, entityyaw(collider, $00), 0.0, $00)
                 positionentity(collider, entityx(local7\Field0, $00), entityy(local7\Field0, $00), entityz(local7\Field0, $00), $00)
@@ -83,23 +83,23 @@ Function usedoor%(arg0.doors, arg1%)
         Return $00
     Else
         arg0\Field5 = (arg0\Field5 = $00)
-        If (arg0\Field19 <> Null) Then
-            arg0\Field19\Field5 = (arg0\Field19\Field5 = $00)
+        If (arg0\Field20 <> Null) Then
+            arg0\Field20\Field5 = (arg0\Field20\Field5 = $00)
         EndIf
         If (arg0\Field5 <> 0) Then
-            If (arg0\Field19 <> Null) Then
-                arg0\Field19\Field10 = (Float arg0\Field19\Field9)
+            If (arg0\Field20 <> Null) Then
+                arg0\Field20\Field10 = (Float arg0\Field20\Field9)
             EndIf
             arg0\Field10 = (Float arg0\Field9)
             If (arg0\Field8 = $01) Then
-                arg0\Field13 = playsound2(bigdooropensfx, camera, arg0\Field0, 10.0, 1.0, $01)
+                arg0\Field14 = playsound2(bigdooropensfx, camera, arg0\Field0, 10.0, 1.0, $01)
             Else
-                arg0\Field13 = playsound2(opendoorsfx(rand($00, $02)), camera, arg0\Field0, 10.0, 1.0, $01)
+                arg0\Field14 = playsound2(opendoorsfx(rand($00, $02)), camera, arg0\Field0, 10.0, 1.0, $01)
             EndIf
         ElseIf (arg0\Field8 = $01) Then
-            arg0\Field13 = playsound2(bigdoorclosesfx, camera, arg0\Field0, 10.0, 1.0, $01)
+            arg0\Field14 = playsound2(bigdoorclosesfx, camera, arg0\Field0, 10.0, 1.0, $01)
         Else
-            arg0\Field13 = playsound2(closedoorsfx(rand($00, $02)), camera, arg0\Field0, 10.0, 1.0, $01)
+            arg0\Field14 = playsound2(closedoorsfx(rand($00, $02)), camera, arg0\Field0, 10.0, 1.0, $01)
         EndIf
     EndIf
     Return $00

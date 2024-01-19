@@ -32,7 +32,7 @@ Function EntryPoint%()
     mirrorcameraaz = 0.0
     mirrorcameraparent = $00
     optionfile = "options.ini"
-    versionnumber = "0.5.1"
+    versionnumber = "0.5.2"
     local0 = $00
     Dim arrowimg%($04)
     launcherwidth = (Int min((Float getiniint(optionfile, "launcher", "launcher width")), 1024.0))
@@ -396,11 +396,11 @@ Function EntryPoint%()
                 camerafogrange(camera, (camerafognear * lightvolume), (camerafogfar * lightvolume))
                 camerafogcolor(camera, 0.0, 0.0, 0.0)
                 camerafogmode(camera, $01)
-                camerarange(camera, 0.05, 16.0)
+                camerarange(camera, 0.05, min((camerafogfar * 1.6), 16.0))
                 updateroomtimer = (updateroomtimer - fpsfactor)
                 If (0.0 >= updateroomtimer) Then
                     updaterooms()
-                    updateroomtimer = 10.0
+                    updateroomtimer = 15.0
                 EndIf
                 playersoundvolume = curvevalue(0.0, playersoundvolume, 5.0)
                 updateemitters()
