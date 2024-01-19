@@ -700,15 +700,15 @@ Function drawgui%()
                     local29 = 4.0
                     For local30 = (Int max(1.0, ((Float local27) - local29))) To (Int min((Float (mapwidth - $02)), ((Float local27) + local29))) Step $01
                         For local31 = (Int max(1.0, ((Float local28) - local29))) To (Int min((Float (mapheight - $02)), ((Float local28) + local29))) Step $01
-                            local32 = (((local27 - local30) * $18) + local1)
-                            local33 = ((local2 - ((local28 - local31) * $18)) - $07)
-                            If (playerroom\Field7\Field4 = "coffin") Then
-                                If (((8.0 > coffindistance) And (0.5 > rnd(coffindistance, 0.0))) <> 0) Then
-                                    local32 = (Int (((15.0 - coffindistance) * rnd(-1.0, 1.0)) + (Float local32)))
-                                    local33 = (Int (((15.0 - coffindistance) * rnd(-1.0, 1.0)) + (Float local33)))
-                                EndIf
-                            EndIf
                             If ((maptemp(playerlevel, local30, local31) And (((mapfound(playerlevel, local30, local31) > $00) Or (selecteditem\Field1\Field0 = "S-NAV 310 Navigator")) Or (selecteditem\Field1\Field0 = "S-NAV Navigator Ultimate"))) <> 0) Then
+                                local32 = (((local27 - local30) * $18) + local1)
+                                local33 = ((local2 - ((local28 - local31) * $18)) - $07)
+                                If (playerroom\Field7\Field4 = "coffin") Then
+                                    If (((8.0 > coffindistance) And (0.5 > rnd(coffindistance, 0.0))) <> 0) Then
+                                        local32 = (Int (((15.0 - coffindistance) * rnd(-1.0, 1.0)) + (Float local32)))
+                                        local33 = (Int (((15.0 - coffindistance) * rnd(-1.0, 1.0)) + (Float local33)))
+                                    EndIf
+                                EndIf
                                 If (mapfound(playerlevel, local30, local31) = $01) Then
                                     color($73, $70, $66)
                                     If (selecteditem\Field1\Field0 = "S-NAV Navigator") Then

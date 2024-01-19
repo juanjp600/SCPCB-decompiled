@@ -61,6 +61,7 @@ Function updateconsole%()
                             Exit
                         EndIf
                     Next
+                    createconsolemsg(((("Room coordinates: " + (Str floor(((entityx(playerroom\Field2, $00) / 8.0) + 0.5)))) + ", ") + (Str floor(((entityz(playerroom\Field2, $00) / 8.0) + 0.5)))))
                     createconsolemsg(("Stamina: " + (Str stamina)))
                     createconsolemsg(("Death timer: " + (Str killtimer)))
                     createconsolemsg(("Blinktimer: " + (Str blinktimer)))

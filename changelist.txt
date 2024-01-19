@@ -1,4 +1,15 @@
 
+----------------------------------------------------------------------------------
+
+v0.5.1
+- the map generator no longer makes those empty, black rooms
+- fixed a bug in the aiming code of the MTF, now they won't miss 90% of the time
+- activating the screen at Gate B shouldn't cause a memory access violation anymore
+- fixed a texture bug and the keypads in the hallway above the maintenance tunnel
+- there was a bug that caused the game to reload the sounds of the MTF every 5 or so
+seconds, causing annoying twitching. Now they're loaded only the moment the MTF spawns.
+
+----------------------------------------------------------------------------------
 
 v0.5
 - GATE B and multiple endings. So now it's possible to get out and BEAT THE GAME.

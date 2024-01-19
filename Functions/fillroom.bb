@@ -403,9 +403,9 @@ Function fillroom%(arg0.rooms)
             positionentity(arg0\Field12[$03]\Field3[$00], ((2432.0 * roomscale) + arg0\Field3), entityy(arg0\Field12[$03]\Field3[$01], $01), ((816.0 * roomscale) + arg0\Field5), $01)
             local0 = createdoor($00, arg0\Field3, arg0\Field4, arg0\Field5, 0.0, arg0, $00, $01, $00, "ABCD")
             positionentity(local0\Field3[$00], ((224.0 * roomscale) + arg0\Field3), (arg0\Field4 + 0.7), (arg0\Field5 - (384.0 * roomscale)), $01)
-            turnentity(local0\Field3[$00], 0.0, 90.0, 0.0, $01)
+            rotateentity(local0\Field3[$00], 0.0, -90.0, 0.0, $01)
             positionentity(local0\Field3[$01], (arg0\Field3 - (224.0 * roomscale)), (arg0\Field4 + 0.7), ((384.0 * roomscale) + arg0\Field5), $01)
-            turnentity(local0\Field3[$00], 0.0, -90.0, 0.0, $01)
+            rotateentity(local0\Field3[$01], 0.0, 90.0, 0.0, $01)
         Case "tunnel"
             local2 = createsecuritycam(arg0\Field3, ((448.0 * roomscale) + arg0\Field4), arg0\Field5, arg0, $00)
             local2\Field19 = $01

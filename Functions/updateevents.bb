@@ -459,6 +459,8 @@ Function updateevents%()
             Case "exit1"
                 If (playerroom = local7\Field1) Then
                     If ((1040.0 * roomscale) < entityy(collider, $00)) Then
+                        curr106\Field9 = 20000.0
+                        curr106\Field19 = $01
                         If (0.0 = local7\Field2) Then
                             drawloading($00, $01)
                             For local1 = $00 To $13 Step $01
@@ -614,10 +616,13 @@ Function updateevents%()
                                         local7\Field1\Field13[$02]\Field30 = (entityz(local7\Field1\Field11[$0B], $01) + (cos(((Float millisecs()) / 23.0)) * 3.0))
                                         If (((5600.0 > (local7\Field2 - fpsfactor)) And (5600.0 <= local7\Field2)) <> 0) Then
                                             For local1 = $00 To $01 Step $01
-                                                local5 = createnpc($08, (entityx(local7\Field1\Field11[$12], $01) + ((Float local1) * 0.4)), (entityy(local7\Field1\Field11[$12], $01) + (0.25 * (Float (local1 + $01)))), (entityz(local7\Field1\Field11[$12], $01) + ((Float local1) * 0.4)))
+                                                local5 = createnpc($08, (entityx(local7\Field1\Field11[$12], $01) + ((Float local1) * 0.4)), (entityy(local7\Field1\Field11[$12], $01) + (0.29 * (Float (local1 + $01)))), (entityz(local7\Field1\Field11[$12], $01) + ((Float local1) * 0.4)))
                                                 local5\Field10 = 1000.0
                                                 local5\Field9 = 2.0
                                             Next
+                                            local5 = createnpc($08, entityx(local7\Field1\Field12[$02]\Field0, $01), (entityy(local7\Field1\Field12[$02]\Field0, $01) + 0.29), ((entityz(local7\Field1\Field12[$02]\Field0, $01) + entityz(local7\Field1\Field12[$03]\Field0, $01)) / 2.0))
+                                            local5\Field10 = 1000.0
+                                            local5\Field9 = 2.0
                                             local7\Field2 = 5950.0
                                         EndIf
                                     EndIf

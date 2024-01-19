@@ -13,33 +13,39 @@ Function updatemtf%()
     If (((0.0 = mtftimer) Or (mtfsfx($00) = $00)) <> 0) Then
         If (rand($1E, $01) = $01) Then
             For local0 = Each rooms
-                Select lower(local0\Field7\Field4)
-                    Case "exit1"
-                        local2 = local0
-                    Case "room106"
-                        mtfrooms[$00] = local0
-                    Case "roompj"
-                        mtfrooms[$01] = local0
-                    Case "room079"
-                        mtfrooms[$02] = local0
-                    Case "room2poffices"
-                        mtfrooms[$03] = local0
-                    Case "914"
-                        mtfrooms[$04] = local0
-                    Case "coffin"
-                        mtfrooms[$05] = local0
-                    Case "start"
-                        mtfrooms[$06] = local0
-                End Select
+                If (lower(local0\Field7\Field4) = "exit1") Then
+                    local2 = local0
+                    Exit
+                EndIf
             Next
-            mtfsfx($00) = loadsound("SFX\MTF\Stop0.ogg")
-            mtfsfx($01) = loadsound("SFX\MTF\Stop1.ogg")
-            mtfsfx($02) = loadsound("SFX\MTF\Stop2.ogg")
-            mtfsfx($03) = loadsound("SFX\MTF\ClassD0.ogg")
-            mtfsfx($04) = loadsound("SFX\MTF\ClassD1.ogg")
-            mtfsfx($05) = loadsound("SFX\MTF\Beep.ogg")
             If (local2 <> Null) Then
-                If (50.0 > (Abs (entityz(local2\Field2, $00) - entityz(collider, $00)))) Then
+                If (35.0 > (Abs (entityz(local2\Field2, $00) - entityz(collider, $00)))) Then
+                    For local0 = Each rooms
+                        Select lower(local0\Field7\Field4)
+                            Case "exit1"
+                                local2 = local0
+                            Case "room106"
+                                mtfrooms[$00] = local0
+                            Case "roompj"
+                                mtfrooms[$01] = local0
+                            Case "room079"
+                                mtfrooms[$02] = local0
+                            Case "room2poffices"
+                                mtfrooms[$03] = local0
+                            Case "914"
+                                mtfrooms[$04] = local0
+                            Case "coffin"
+                                mtfrooms[$05] = local0
+                            Case "start"
+                                mtfrooms[$06] = local0
+                        End Select
+                    Next
+                    mtfsfx($00) = loadsound("SFX\MTF\Stop0.ogg")
+                    mtfsfx($01) = loadsound("SFX\MTF\Stop1.ogg")
+                    mtfsfx($02) = loadsound("SFX\MTF\Stop2.ogg")
+                    mtfsfx($03) = loadsound("SFX\MTF\ClassD0.ogg")
+                    mtfsfx($04) = loadsound("SFX\MTF\ClassD1.ogg")
+                    mtfsfx($05) = loadsound("SFX\MTF\Beep.ogg")
                     mtftimer = 1.0
                     For local4 = $00 To $02 Step $01
                         local1 = createnpc($08, ((entityx(local2\Field2, $00) + (0.3 * (Float local4))) + (sin((Float local2\Field6)) * 5.0)), 0.5, ((entityz(local2\Field2, $00) + (0.3 * (Float local4))) - (cos((Float local2\Field6)) * 5.0)))

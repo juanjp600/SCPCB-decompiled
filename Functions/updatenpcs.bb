@@ -441,15 +441,17 @@ Function updatenpcs%()
                             If (0.0 = local0\Field11) Then
                                 playsound2(mtfsfx(rand($00, $02)), camera, local0\Field4, 7.0, 1.0, $01)
                                 playmtfmessage(mtfsfx(rand($00, $02)))
-                                local0\Field11 = 14000.0
+                                local0\Field11 = 10500.0
                                 local0\Field20 = 200.0
                                 For local1 = Each npcs
-                                    If (local1\Field26 = local1) Then
-                                        local1\Field11 = 14000.0
+                                    If (local1\Field26 = local0) Then
+                                        local1\Field11 = 10500.0
+                                        local1\Field20 = 200.0
                                     EndIf
                                 Next
                                 If (local0\Field26 <> Null) Then
-                                    local0\Field26\Field11 = 14000.0
+                                    local0\Field26\Field11 = 10500.0
+                                    local0\Field26\Field20 = 200.0
                                 EndIf
                             EndIf
                             local12 = createpivot($00)
@@ -465,7 +467,8 @@ Function updatenpcs%()
                                     local16 = createparticle(entityx(local0\Field0, $01), entityy(local0\Field0, $01), entityz(local0\Field0, $01), $01, 0.2, 0.0, $05)
                                     rotateentity(local16\Field1, entitypitch(local0\Field4, $00), entityyaw(local0\Field4, $00), 0.0, $00)
                                     moveentity(local16\Field1, 0.0, 0.8, 0.45)
-                                    shoot(entityx(local16\Field1, $00), entityy(local16\Field1, $00), entityz(local16\Field1, $00), (entitypitch(local16\Field1, $00) - rnd(-1.0, 1.0)), (entityyaw(local16\Field1, $00) - rnd(-3.0, 3.0)), 0.7, $01)
+                                    pointentity(local16\Field1, collider, 0.0)
+                                    shoot(entityx(local16\Field1, $00), entityy(local16\Field1, $00), entityz(local16\Field1, $00), (entitypitch(local16\Field1, $00) - rnd(-3.0, 3.0)), (entityyaw(local16\Field1, $00) - rnd(-4.0, 4.0)), (local6 + 0.5), $00)
                                     local0\Field20 = 6.0
                                     If (((local18 >= $00) And (0.0 > killtimer)) <> 0) Then
                                         If (local0\Field14 <> $00) Then
@@ -597,7 +600,7 @@ Function updatenpcs%()
                 local0\Field10 = max((local0\Field10 - fpsfactor), 0.0)
                 local0\Field11 = max((local0\Field11 - fpsfactor), 0.0)
                 If (local0\Field26 = Null) Then
-                    If ((((2800.0 > local0\Field11) And (2800.0 <= (local0\Field11 + fpsfactor))) And (0.0 <> fpsfactor)) <> 0) Then
+                    If ((((10290.0 > local0\Field11) And (10290.0 <= (local0\Field11 + fpsfactor))) And (0.0 <> fpsfactor)) <> 0) Then
                         playsound2(mtfsfx(rand($03, $04)), camera, local0\Field4, 8.0, 1.0, $01)
                     EndIf
                 EndIf
@@ -764,8 +767,7 @@ Function updatenpcs%()
                                                 local12 = createpivot($00)
                                                 positionentity(local12, entityx(local0\Field4, $00), entityy(local0\Field4, $00), entityz(local0\Field4, $00), $00)
                                                 rotateentity(local12, entitypitch(local0\Field4, $00), entityyaw(local0\Field4, $00), entityroll(local0\Field4, $00), $00)
-                                                moveentity(local12, 0.0, (meshdepth(local0\Field0) * (1.0 / 42.85714)), (meshdepth(local0\Field0) * (1.0 / 5.294117)))
-                                                debuglog((Str meshdepth(local0\Field0)))
+                                                moveentity(local12, 0.0, (1.0 / 4.831696), 1.675444)
                                                 pointentity(local12, local22, 0.0)
                                                 If (10.0 > wrapangle((entityyaw(local12, $00) - entityyaw(local0\Field4, $00)))) Then
                                                     playsound2(gunshot2sfx, camera, local0\Field4, 20.0, 1.0, $01)
