@@ -398,7 +398,7 @@ Function updatenpcs%()
                         EndIf
                         local6 = entitydistance(collider, local0\Field4)
                         If ((entityvisible(collider, local0\Field4) And (0.0 <= killtimer)) <> 0) Then
-                            local0\Field33 = 140.0
+                            local0\Field33 = 210.0
                             local0\Field32 = $00
                             If (0.6 > local6) Then
                                 local0\Field18 = curvevalue(0.0, local0\Field18, 5.0)

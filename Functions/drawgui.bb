@@ -648,6 +648,10 @@ Function drawgui%()
                 If (100.0 >= selecteditem\Field5) Then
                     selecteditem\Field5 = max(0.0, (selecteditem\Field5 - (fpsfactor * 0.01)))
                 EndIf
+                If (selecteditem\Field1\Field7 = $00) Then
+                    selecteditem\Field1\Field7 = loadimage(selecteditem\Field1\Field6)
+                    maskimage(selecteditem\Field1\Field7, $FF, $00, $FF)
+                EndIf
                 If (0.0 = radiostate($05)) Then
                     msg = "Use keys 1-5 to change the channel"
                     msgtimer = 350.0
@@ -870,6 +874,10 @@ Function drawgui%()
                 EndIf
                 selecteditem = Null
             Case "navigator","nav"
+                If (selecteditem\Field1\Field7 = $00) Then
+                    selecteditem\Field1\Field7 = loadimage(selecteditem\Field1\Field6)
+                    maskimage(selecteditem\Field1\Field7, $FF, $00, $FF)
+                EndIf
                 If (100.0 >= selecteditem\Field5) Then
                     selecteditem\Field5 = max(0.0, (selecteditem\Field5 - (fpsfactor * 0.01)))
                 EndIf

@@ -2,6 +2,11 @@
 ----------------------------------------------------------------------------------
 
 v0.6
+- fixed the bug that crashed the game when equipping a navigator or a radio
+
+----------------------------------------------------------------------------------
+
+v0.6
 - Another exit and more endings
 - Crouching and hiding mechanics
 - Improved intro sequence (still a work in progress)
