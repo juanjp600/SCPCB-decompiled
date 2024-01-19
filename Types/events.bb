@@ -7,4 +7,5 @@ Type events
     Field Field5%
     Field Field6%
     Field Field7%
+    Field Field8%
 End Type

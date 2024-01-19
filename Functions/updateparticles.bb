@@ -2,9 +2,11 @@ Function updateparticles%()
     Local local0.particles
     For local0 = Each particles
         moveentity(local0\Field1, 0.0, 0.0, (local0\Field8 * fpsfactor))
-        local0\Field9 = (local0\Field9 - (local0\Field10 * fpsfactor))
+        If (0.0 <> local0\Field10) Then
+            local0\Field9 = (local0\Field9 - (local0\Field10 * fpsfactor))
+        EndIf
         translateentity(local0\Field1, 0.0, local0\Field9, 0.0, $01)
-        positionentity(local0\Field0, entityx(local0\Field1, $00), entityy(local0\Field1, $00), entityz(local0\Field1, $00), $01)
+        positionentity(local0\Field0, entityx(local0\Field1, $01), entityy(local0\Field1, $01), entityz(local0\Field1, $01), $01)
         local0\Field16 = (local0\Field16 - fpsfactor)
         turnentity(local0\Field0, 0.0, 0.0, fpsfactor, $00)
         entityalpha(local0\Field0, local0\Field6)

@@ -18,7 +18,7 @@ Type npcs
     Field Field16#
     Field Field17#
     Field Field18#
-    Field Field19%
+    Field Field19#
     Field Field20#
     Field Field21%
     Field Field22#

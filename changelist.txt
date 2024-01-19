@@ -1,6 +1,37 @@
 
 ----------------------------------------------------------------------------------
 
+v0.6
+- Another exit and more endings
+- Crouching and hiding mechanics
+- Improved intro sequence (still a work in progress)
+- Better Class D models, although they're still just placeholders
+- Improved MTF AI. Now they head to the last location the player was spotted in, and 
+start randomly searching for him. They'll also try to recontain SCP-106 when they
+reach it's chamber.
+- An injury/bloodloss system, so now it's possible (although hard) to survive being 
+shot. Gunshot wounds make you bleed, and losing too much blood eventually kills you.
+Injuries can be healed with first aid kits, but it takes some time (so you can't just 
+start bandaging a wound while you're being shot at) and a regular first aid kit
+won't heal you completely. The degree of the injuries depends on which part of your 
+body got hit - headshots are still instakill.
+- Type "injure [0-5]" in the console if you want to check out the injury system
+- Ballistic vests which reduce the damage taken from gunshots
+- New SCP-106 model
+- Some new scripted events
+- Improved SCP-914 model
+- Some changes to SCP-173's AI - now it will move around the facility more actively
+- Some new rooms
+- A subtle "zoom effect" when you're looking at SCP-173 or SCP-106
+- A console command for spawning items (spawnitem [the name of the item])
+- An anomalous duck
+- A ton of small bugfixes
+
+- ...And a last minute addition, SCP-096. It's using a placeholder model made by
+Mirocaine until we get a better one.
+
+----------------------------------------------------------------------------------
+
 v0.5.5
 - animated MTF models
 - slightly improved MTF AI (it's still quite buggy though)

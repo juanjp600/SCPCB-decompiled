@@ -28,6 +28,8 @@ Function inititemtemplates%()
     local0\Field2 = $00
     local0 = createitemtemplate("Nuclear Device Document", "paper", "GFX\items\paper.x", "GFX\items\INVpaper.jpg", "GFX\items\docNDP.jpg", 0.003, "", "")
     local0\Field2 = $00
+    local0 = createitemtemplate("Class D Orientation Leaflet", "paper", "GFX\items\paper.x", "GFX\items\INVpaper.jpg", "GFX\items\docORI.jpg", 0.003, "", "")
+    local0\Field2 = $00
     local0 = createitemtemplate("Note from Daniel", "paper", "GFX\items\paper.x", "GFX\items\INVpaper.jpg", "GFX\items\docdan.jpg", 0.003, "", "")
     local0\Field2 = $00
     local0 = createitemtemplate("Burnt Note", "paper", "GFX\items\paper.x", "GFX\items\INVbn.jpg", "GFX\items\bn.it", 0.003, "", "")
@@ -51,6 +53,16 @@ Function inititemtemplates%()
     local0\Field2 = $00
     local0 = createitemtemplate("Incident Report SCP-106-0204", "paper", "GFX\items\paper.x", "GFX\items\INVpaper.jpg", "GFX\items\docIR106.jpg", 0.003, "", "")
     local0\Field2 = $00
+    local0 = createitemtemplate("Ballistic Vest", "vest", "GFX\items\vest.x", "GFX\items\INVvest.jpg", "", 0.02, "GFX\npcs\MTFbody.jpg", "")
+    local0\Field2 = $02
+    local0 = createitemtemplate("Heavy Ballistic Vest", "finevest", "GFX\items\vest.x", "GFX\items\INVvest.jpg", "", 0.022, "GFX\npcs\MTFbody.jpg", "")
+    local0\Field2 = $02
+    local0 = createitemtemplate("Bulky Ballistic Vest", "veryfinevest", "GFX\items\vest.x", "GFX\items\INVvest.jpg", "", 0.025, "GFX\npcs\MTFbody.jpg", "")
+    local0\Field2 = $02
+    local0 = createitemtemplate("First Aid Kit", "firstaid", "GFX\items\firstaid.x", "GFX\items\INVfirstaid.jpg", "", 0.05, "", "")
+    local0 = createitemtemplate("Small First Aid Kit", "finefirstaid", "GFX\items\firstaid.x", "GFX\items\INVfirstaid.jpg", "", 0.03, "", "")
+    local0 = createitemtemplate("Blue First Aid Kit", "firstaid2", "GFX\items\firstaid.x", "GFX\items\INVfirstaid2.jpg", "", 0.03, "GFX\items\firstaidkit2.jpg", "")
+    local0 = createitemtemplate("Strange Bottle", "veryfinefirstaid", "GFX\items\eyedrops.b3d", "GFX\items\INVbottle.jpg", "", 0.002, "GFX\items\bottle.jpg", "")
     local0 = createitemtemplate("Gas Mask", "gasmask", "GFX\items\gasmask.b3d", "GFX\items\INVgasmask.jpg", "", 0.02, "", "")
     local0\Field2 = $02
     local0 = createitemtemplate("Gas Mask", "supergasmask", "GFX\items\gasmask.b3d", "GFX\items\INVgasmask.jpg", "", 0.021, "", "")

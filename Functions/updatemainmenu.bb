@@ -80,6 +80,7 @@ Function updatemainmenu%()
             Select local6
                 Case $00
                     local7 = "NEW GAME"
+                    randomseed = ""
                     If (local4 <> 0) Then
                         If (rand($0A, $01) = $01) Then
                             Select rand($0A, $01)

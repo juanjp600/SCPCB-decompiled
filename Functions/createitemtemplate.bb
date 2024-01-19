@@ -13,10 +13,6 @@ Function createitemtemplate.itemtemplates(arg0$, arg1$, arg2$, arg3$, arg4$, arg
     local0\Field5 = loadimage(arg3)
     maskimage(local0\Field5, $FF, $00, $FF)
     local0\Field6 = arg4
-    If (((local0\Field6 <> "") And (local0\Field1 <> "paper")) <> 0) Then
-        local0\Field7 = loadimage(arg4)
-        maskimage(local0\Field7, $FF, $00, $FF)
-    EndIf
     local0\Field1 = arg1
     local0\Field0 = arg0
     local0\Field2 = $01

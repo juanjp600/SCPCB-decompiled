@@ -11,6 +11,6 @@ Type rooms
     Field Field9#[20]
     Field Field10%[20]
     Field Field11%[21]
-    Field Field12.doors[5]
-    Field Field13.npcs[5]
+    Field Field12.doors[7]
+    Field Field13.npcs[12]
 End Type

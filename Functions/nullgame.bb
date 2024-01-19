@@ -21,6 +21,8 @@ Function nullgame%()
     doortempid = $00
     roomtempid = $00
     gamesaved = $00
+    hidedistance = 15.0
+    camerazoom(camera, 1.0)
     For local3 = $00 To $00 Step $01
         For local1 = $00 To (mapwidth - $01) Step $01
             For local2 = $00 To (mapheight - $01) Step $01
@@ -35,6 +37,9 @@ Function nullgame%()
     dropspeed = 0.0
     shake = 0.0
     currspeed = 0.0
+    heartbeatvolume = 0.0
+    bloodloss = 0.0
+    injuries = 0.0
     selectedending = ""
     endingtimer = 0.0
     explosiontimer = 0.0
@@ -44,7 +49,9 @@ Function nullgame%()
     godmode = $00
     noclip = $00
     wearinggasmask = $00
+    wearingvest = $00
     contained106 = $00
+    disabled173 = $00
     mtftimer = 0.0
     For local0 = $00 To $09 Step $01
         mtfrooms[local0] = Null
@@ -64,6 +71,7 @@ Function nullgame%()
     achv079 = $00
     achv914 = $00
     achv789 = $00
+    achv096 = $00
     achvtesla = $00
     achvmaynard = $00
     achvharp = $00

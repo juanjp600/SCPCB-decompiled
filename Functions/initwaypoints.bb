@@ -30,15 +30,15 @@ Function initwaypoints%(arg0%)
         If (local0\Field2 <> $00) Then
             hideentity(local0\Field2)
         EndIf
-        If (local0\Field12 = Null) Then
+        If (local0\Field13 = Null) Then
             local4 = Null
-            local6 = 20.0
+            local6 = 400.0
             For local3 = Each rooms
                 local8 = (Abs (entityx(local3\Field2, $01) - entityx(local0\Field2, $01)))
                 If (20.0 > local8) Then
                     local9 = (Abs (entityz(local3\Field2, $01) - entityz(local0\Field2, $01)))
                     If (20.0 > local9) Then
-                        local7 = sqr(((local8 * local8) + (local9 * local9)))
+                        local7 = ((local8 * local8) + (local9 * local9))
                         If (local6 > local7) Then
                             local4 = local3
                             local6 = local7
@@ -47,9 +47,11 @@ Function initwaypoints%(arg0%)
                 EndIf
             Next
         Else
-            local4 = local0\Field12
+            local4 = local0\Field13
         EndIf
-        createwaypoint(entityx(local0\Field2, $01), (entityy(local0\Field2, $01) + 0.18), entityz(local0\Field2, $01), local0, local4)
+        If (local0\Field14 = $00) Then
+            createwaypoint(entityx(local0\Field2, $01), (entityy(local0\Field2, $01) + 0.18), entityz(local0\Field2, $01), local0, local4)
+        EndIf
     Next
     local10 = 0.0
     For local1 = Each waypoints

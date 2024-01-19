@@ -134,7 +134,7 @@ Function createmap%()
                 EndIf
             Next
         Next
-        local2 = ((- local16) + $08)
+        local2 = ((- local16) + $09)
         If (local2 > $00) Then
             For local1 = $02 To (mapheight - $02) Step $01
                 For local0 = $02 To (mapwidth - $02) Step $01
@@ -165,19 +165,24 @@ Function createmap%()
         maproom($01, (Int floor((0.25 * (Float local16))))) = "914"
         maproom($01, (Int floor((0.4 * (Float local16))))) = "coffin"
         maproom($01, (Int floor((0.6 * (Float local16))))) = "room079"
-        maproom($01, (Int floor((0.8 * (Float local16))))) = "room106"
-        maproom($01, (local16 - $01)) = "exit1"
+        maproom($01, (Int floor((0.7 * (Float local16))))) = "room106"
+        maproom($01, (local16 - $02)) = "exit1"
+        maproom($01, (local16 - $01)) = "gateaentrance"
         maproom($01, $00) = "start"
+        maproom($02, (Int floor((0.42 * (Float local17))))) = "room2offices2"
         maproom($02, (Int floor((rnd(0.1, 0.15) * (Float local17))))) = "room2offices"
         maproom($02, (Int floor((rnd(0.2, 0.25) * (Float local17))))) = "room2testroom2"
         maproom($02, (Int floor((rnd(0.3, 0.38) * (Float local17))))) = "room2sroom"
         maproom($02, (Int floor((rnd(0.45, 0.55) * (Float local17))))) = "room2tunnel"
-        maproom($02, (Int floor((rnd(0.6, 0.65) * (Float local17))))) = "testroom"
-        maproom($02, (Int floor((rnd(0.8, 0.86) * (Float local17))))) = "room2poffices"
-        maproom($02, (Int floor((rnd(0.9, 0.95) * (Float local17))))) = "room2nuke"
+        maproom($02, (Int floor((rnd(0.6, 0.65) * (Float local17))))) = "room2nuke"
+        maproom($02, (Int floor((rnd(0.8, 0.86) * (Float local17))))) = "testroom"
+        maproom($02, (Int floor((rnd(0.9, 0.95) * (Float local17))))) = "room2poffices"
         maproom($02, $00) = "room2closets"
         maproom($03, $00) = "lockroom"
         maproom($03, $01) = "room2ccont"
+        maproom($03, $02) = "lockroom2"
+        maproom($04, (Int floor((0.3 * (Float local19))))) = "room3servers"
+        maproom($04, (Int floor((0.6 * (Float local19))))) = "room3servers2"
         For local1 = $00 To mapheight Step $01
             For local0 = $00 To mapwidth Step $01
                 maptemp(local8, local0, local1) = (Int min((Float maptemp(local8, local0, local1)), 1.0))
@@ -332,6 +337,8 @@ Function createmap%()
     local0 = (mapwidth - $02)
     local1 = (mapheight - $02)
     local21 = createroom($00, $01, (Float (local0 Shl $03)), 0.0, (Float (local1 Shl $03)), "pocketdimension")
+    maproomid($01) = (maproomid($01) + $01)
+    local21 = createroom($00, $01, 0.0, 0.0, (Float ((mapheight Sar $01) Shl $03)), "gatea")
     maproomid($01) = (maproomid($01) + $01)
     Return $00
 End Function

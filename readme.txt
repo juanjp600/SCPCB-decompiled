@@ -4,7 +4,7 @@
 **************************    SCP - CONTAINMENT BREACH   **************************
 ***********************************************************************************
 
-				    VERSION v0.5.6
+				    VERSION v0.6
 								
 
 This game is licensed under Creative Commons Attribution-ShareAlike 3.0 License.
@@ -51,6 +51,8 @@ See the credits below for further details.
 
 		Prosth
 
+		Reilly Grindle (Mirocaine)
+
 		Micro
 
 		Atomicsneak
@@ -61,16 +63,12 @@ See the credits below for further details.
 
 		Tom Malinowski	
 
-		Mirocaine		
-
 		GamerEntitlement
-
-		Reilly Grindle (Mirocaine)
 
 	Sound effects, music
 
 		Kevin MacLeod (http://incompetech.com/) 
-			The Dread, Bump in the Night, Satiate, Mandeville, Medusa
+			The Dread, Bump in the Night, Satiate, Mandeville, Medusa, Blue Feather
 
 		DukeLovesYou
 		

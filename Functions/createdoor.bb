@@ -22,15 +22,15 @@ Function createdoor.doors(arg0%, arg1#, arg2#, arg3#, arg4#, arg5.rooms, arg6%, 
         local0\Field1 = copymesh(doorobj, $00)
         scaleentity(local0\Field1, ((204.0 * roomscale) / meshwidth(local0\Field0)), ((312.0 * roomscale) / meshheight(local0\Field0)), ((16.0 * roomscale) / meshdepth(local0\Field0)), $00)
     EndIf
-    local0\Field16 = doortempid
+    local0\Field18 = doortempid
     doortempid = (doortempid + $01)
     scaleentity(local0\Field2, (1.0 / 256.0), (1.0 / 256.0), (1.0 / 256.0), $00)
     entitytype(local0\Field0, $01, $00)
     entitytype(local0\Field1, $01, $00)
-    local0\Field11 = arg8
-    local0\Field15 = arg9
-    local0\Field17 = arg0
-    local0\Field18 = $42
+    local0\Field12 = arg8
+    local0\Field17 = arg9
+    local0\Field19 = arg0
+    local0\Field20 = $42
     For local2 = $00 To $01 Step $01
         If (arg9 <> "") Then
             local0\Field3[local2] = copymesh(buttoncodeobj, $00)
@@ -79,9 +79,9 @@ Function createdoor.doors(arg0%, arg1#, arg2#, arg3#, arg4#, arg5.rooms, arg6%, 
     entitypickmode(local0\Field3[$00], $02, $01)
     entitypickmode(local0\Field3[$01], $02, $01)
     If (((local0\Field5 And (arg7 = $00)) And (rand($08, $01) = $01)) <> 0) Then
-        local0\Field19 = $01
+        local0\Field21 = $01
     EndIf
-    local0\Field12 = arg5
+    local0\Field13 = arg5
     Return local0
     Return Null
 End Function

@@ -106,6 +106,9 @@ Function loadentities%()
     For local0 = $0D To $0E Step $01
         decaltextures(local0) = loadtexture((("GFX\bullethole" + (Str (local0 - $0C))) + ".jpg"), $03)
     Next
+    For local0 = $0F To $10 Step $01
+        decaltextures(local0) = loadtexture((("GFX\blooddrop" + (Str (local0 - $0E))) + ".png"), $03)
+    Next
     drawloading($19, $00)
     monitor = loadmesh("GFX\map\monitor.b3d", $00)
     hideentity(monitor)
@@ -120,6 +123,7 @@ Function loadentities%()
     particletextures($01) = loadtexture("GFX\flash.jpg", $03)
     particletextures($02) = loadtexture("GFX\dust.jpg", $03)
     particletextures($03) = loadtexture("GFX\npcs\hg.pt", $03)
+    particletextures($04) = loadtexture("GFX\map\sun.jpg", $03)
     loadmaterials("DATA\materials.ini")
     drawloading($23, $00)
     loadroommeshes()

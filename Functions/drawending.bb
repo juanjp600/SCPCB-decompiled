@@ -6,19 +6,18 @@ Function drawending%()
     Local local4%
     Local local5.itemtemplates
     Local local6.rooms
-    Local local7$
     Local local9%
     Local local10%
     Local local11%
     Local local12%
     fpsfactor = 0.0
     endingtimer = (endingtimer - fpsfactor2)
-    local7 = lower(selectedending)
-    If (local7 <> "b2") Then
-        clscolor($00, $00, $00, $FF, 1.0)
-    Else
-        clscolor((Int max(((endingtimer * 2.8) + 255.0), 0.0)), (Int max(((endingtimer * 2.8) + 255.0), 0.0)), (Int max(((endingtimer * 2.8) + 255.0), 0.0)), $FF, 1.0)
-    EndIf
+    Select lower(selectedending)
+        Case "b2","a1"
+            clscolor((Int max(((endingtimer * 2.8) + 255.0), 0.0)), (Int max(((endingtimer * 2.8) + 255.0), 0.0)), (Int max(((endingtimer * 2.8) + 255.0), 0.0)), $FF, 1.0)
+        Default
+            clscolor($00, $00, $00, $FF, 1.0)
+    End Select
     shouldplay = $00
     cls($01, $01)
     If (-200.0 > endingtimer) Then
@@ -39,6 +38,9 @@ Function drawending%()
             If (((-450.0 < (endingtimer + fpsfactor2)) And (-450.0 >= endingtimer)) <> 0) Then
                 debuglog(lower(selectedending))
                 Select lower(selectedending)
+                    Case "a1"
+                        tempsound2 = loadsound("SFX\EndingA1.ogg")
+                        playsound(tempsound2)
                     Case "b1"
                         tempsound2 = loadsound("SFX\EndingB1.ogg")
                         playsound(tempsound2)
@@ -79,7 +81,7 @@ Function drawending%()
                     EndIf
                 Next
                 local4 = (((($01 + achv420) + achv106) + achv372) + achv895)
-                local4 = (((local4 + achv079) + achv914) + achv789)
+                local4 = ((((local4 + achv079) + achv914) + achv789) + achv096)
                 text(local0, local1, ("SCPs encountered: " + (Str local4)), $00, $00)
                 text(local0, (local1 + $14), ((("Rooms found: " + (Str local10)) + "/") + (Str local9)), $00, $00)
                 text(local0, (local1 + $28), ((("Documents discovered: " + (Str local12)) + "/") + (Str local11)), $00, $00)

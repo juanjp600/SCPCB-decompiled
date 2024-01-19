@@ -9,15 +9,17 @@ Type doors
     Field Field7#
     Field Field8%
     Field Field9%
-    Field Field10#
-    Field Field11%
-    Field Field12.rooms
-    Field Field13#
+    Field Field10%
+    Field Field11#
+    Field Field12%
+    Field Field13.rooms
     Field Field14%
-    Field Field15$
+    Field Field15#
     Field Field16%
-    Field Field17%
+    Field Field17$
     Field Field18%
     Field Field19%
-    Field Field20.doors
+    Field Field20%
+    Field Field21%
+    Field Field22.doors
 End Type

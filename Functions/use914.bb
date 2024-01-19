@@ -43,6 +43,39 @@ Function use914%(arg0.items, arg1$, arg2#, arg3#, arg4#)
                     local0 = createitem("Gas Mask", "supergasmask", arg2, arg3, arg4)
                     removeitem(arg0)
             End Select
+        Case "Ballistic Best"
+            Select arg1
+                Case "rough","coarse"
+                    local4 = createdecal($07, arg2, ((8.0 * roomscale) + 0.005), arg4, 90.0, (Float rand($168, $01)), 0.0)
+                    local4\Field2 = 0.12
+                    scalesprite(local4\Field0, local4\Field2, local4\Field2)
+                Case "1:1"
+                    positionentity(arg0\Field0, arg2, arg3, arg4, $00)
+                    resetentity(arg0\Field0)
+                    removeitem(arg0)
+                Case "fine"
+                    local0 = createitem("Heavy Ballistic Vest", "finevest", arg2, arg3, arg4)
+                    removeitem(arg0)
+                Case "very fine"
+                    local0 = createitem("Bulky Ballistic Vest", "finevest", arg2, arg3, arg4)
+                    removeitem(arg0)
+            End Select
+        Case "First Aid Kit"
+            Select arg1
+                Case "rough","coarse"
+                    local4 = createdecal($07, arg2, ((8.0 * roomscale) + 0.005), arg4, 90.0, (Float rand($168, $01)), 0.0)
+                    local4\Field2 = 0.12
+                    scalesprite(local4\Field0, local4\Field2, local4\Field2)
+                Case "1:1"
+                    local0 = createitem("Blue First Aid Kit", "firstaid2", arg2, arg3, arg4)
+                    removeitem(arg0)
+                Case "fine"
+                    local0 = createitem("Small First Aid Kit", "finefirstaid", arg2, arg3, arg4)
+                    removeitem(arg0)
+                Case "very fine"
+                    local0 = createitem("Strange Bottle", "finefirstaid", arg2, arg3, arg4)
+                    removeitem(arg0)
+            End Select
         Case "Level 1 Key Card","Level 2 Key Card","Level 3 Key Card","Level 4 Key Card","Level 5 Key Card","Key Card"
             Select arg1
                 Case "rough","coarse"

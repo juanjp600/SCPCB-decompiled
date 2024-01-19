@@ -18,9 +18,10 @@ Function updateconsole%()
     Local local17%
     Local local18%
     Local local19$
-    Local local22%
-    Local local25%
-    Local local26.consolemsg
+    Local local21.itemtemplates
+    Local local23%
+    Local local26%
+    Local local27.consolemsg
     If (consoleopen <> 0) Then
         local0 = $14
         local1 = $14
@@ -58,6 +59,8 @@ Function updateconsole%()
                         If (local7\Field1 = playerroom) Then
                             createconsolemsg(("Room event: " + local7\Field0))
                             createconsolemsg(("-    state: " + (Str local7\Field2)))
+                            createconsolemsg(("-    state2: " + (Str local7\Field3)))
+                            createconsolemsg(("-    state3: " + (Str local7\Field4)))
                             Exit
                         EndIf
                     Next
@@ -65,7 +68,8 @@ Function updateconsole%()
                     createconsolemsg(("Stamina: " + (Str stamina)))
                     createconsolemsg(("Death timer: " + (Str killtimer)))
                     createconsolemsg(("Blinktimer: " + (Str blinktimer)))
-                    createconsolemsg(("Level: " + (Str playerlevel)))
+                    createconsolemsg(("Injuries: " + (Str injuries)))
+                    createconsolemsg(("Bloodloss: " + (Str bloodloss)))
                     createconsolemsg("******************************")
                 Case "camerapick"
                     local15 = camerapick(camera, (Float (graphicwidth Sar $01)), (Float (graphicheight Sar $01)))
@@ -88,6 +92,12 @@ Function updateconsole%()
                     selectedending = lower(right(consoleinput, (len(consoleinput) - instr(consoleinput, " ", $01))))
                     killtimer = -0.1
                     endingtimer = -0.1
+                Case "injure"
+                    local4 = lower(right(consoleinput, (len(consoleinput) - instr(consoleinput, " ", $01))))
+                    injuries = (Float local4)
+                Case "heal"
+                    injuries = 0.0
+                    bloodloss = 0.0
                 Case "teleport"
                     local4 = lower(right(consoleinput, (len(consoleinput) - instr(consoleinput, " ", $01))))
                     Select local4
@@ -110,14 +120,19 @@ Function updateconsole%()
                     Next
                 Case "spawnitem"
                     local4 = lower(right(consoleinput, (len(consoleinput) - instr(consoleinput, " ", $01))))
-                    For local9 = Each items
-                        If ((Int lower((Str (local9\Field1\Field0 = local4)))) <> 0) Then
-                            createitem(local9\Field1\Field0, local9\Field1\Field1, entityx(collider, $00), entityy(collider, $00), entityz(collider, $00))
+                    local5 = $00
+                    For local21 = Each itemtemplates
+                        If (lower(local21\Field0) = local4) Then
+                            local5 = $01
+                            createconsolemsg((local4 + " spawned"))
+                            local9 = createitem(local21\Field0, local21\Field1, entityx(collider, $00), entityy(camera, $01), entityz(collider, $00))
                             entitytype(local9\Field0, $03, $00)
                             Exit
                         EndIf
                     Next
-                    createconsolemsg((local4 + " spawned"))
+                    If (local5 = $00) Then
+                        createconsolemsg("Item not found")
+                    EndIf
                 Case "wireframe"
                     local4 = lower(right(consoleinput, (len(consoleinput) - instr(consoleinput, " ", $01))))
                     Select local4
@@ -131,11 +146,11 @@ Function updateconsole%()
                 Case "173speed"
                     local4 = lower(right(consoleinput, (len(consoleinput) - instr(consoleinput, " ", $01))))
                     curr173\Field17 = (Float local4)
-                    createconsolemsg(("173;s speed set to " + local4))
+                    createconsolemsg(("173's speed set to " + local4))
                 Case "106speed"
                     local4 = lower(right(consoleinput, (len(consoleinput) - instr(consoleinput, " ", $01))))
                     curr106\Field17 = (Float local4)
-                    createconsolemsg(("106;s speed set to " + local4))
+                    createconsolemsg(("106's speed set to " + local4))
                 Case "173state"
                     createconsolemsg("SCP-173")
                     createconsolemsg(((((("Position: " + (Str entityx(curr173\Field0, $00))) + ", ") + (Str entityy(curr173\Field0, $00))) + ", ") + (Str entityz(curr173\Field0, $00))))
@@ -146,19 +161,26 @@ Function updateconsole%()
                     createconsolemsg(((((("Position: " + (Str entityx(curr106\Field0, $00))) + ", ") + (Str entityy(curr106\Field0, $00))) + ", ") + (Str entityz(curr106\Field0, $00))))
                     createconsolemsg(("Idle: " + (Str curr106\Field19)))
                     createconsolemsg(("State: " + (Str curr106\Field9)))
+                Case "spawn106"
+                    curr106\Field9 = -10.0
+                    positionentity(curr106\Field4, entityx(collider, $00), entityy(curr106\Field4, $00), entityz(collider, $00), $00)
                 Case "disable173"
-                    curr173\Field19 = $01
+                    curr173\Field19 = 1.0
+                    disabled173 = $01
                 Case "enable173"
-                    curr173\Field19 = $00
+                    curr173\Field19 = 0.0
+                    disabled173 = $00
+                    showentity(curr173\Field0)
+                    showentity(curr173\Field4)
                 Case "disable106"
-                    curr106\Field19 = $01
+                    curr106\Field19 = 1.0
                     curr106\Field9 = 200000.0
                     contained106 = $01
                 Case "enable106"
-                    curr106\Field19 = $00
+                    curr106\Field19 = 0.0
                 Case "halloween"
-                    local22 = loadtexture("GFX\npcs\173h.pt", $01)
-                    entitytexture(curr173\Field0, local22, $00, $02)
+                    local23 = loadtexture("GFX\npcs\173h.pt", $01)
+                    entitytexture(curr173\Field0, local23, $00, $02)
                 Case "sanic"
                     superman = $01
                     createconsolemsg("GOTTA GO FAST")
@@ -200,13 +222,13 @@ Function updateconsole%()
             End Select
             consoleinput = ""
         EndIf
-        local25 = ((local1 + local3) - $46)
-        For local26 = Each consolemsg
-            If (local25 < (local1 + $14)) Then
-                Delete local26
+        local26 = ((local1 + local3) - $46)
+        For local27 = Each consolemsg
+            If (local26 < (local1 + $14)) Then
+                Delete local27
             Else
-                text((local0 + $1E), local25, local26\Field0, $00, $00)
-                local25 = (local25 - $0F)
+                text((local0 + $1E), local26, local27\Field0, $00, $00)
+                local26 = (local26 - $0F)
             EndIf
         Next
     EndIf

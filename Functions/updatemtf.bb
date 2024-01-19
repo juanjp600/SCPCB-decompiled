@@ -6,7 +6,8 @@ Function updatemtf%()
     Local local5%
     Local local6#
     Local local7#
-    Local local8.npcs
+    Local local8$
+    Local local9.npcs
     If (playerroom\Field7\Field4 = "exit1") Then
         Return $00
     EndIf
@@ -18,7 +19,7 @@ Function updatemtf%()
             EndIf
         Next
         If (local2 <> Null) Then
-            If (30.0 > (Abs (entityz(local2\Field2, $00) - entityz(collider, $00)))) Then
+            If (25.0 > (Abs (entityz(local2\Field2, $00) - entityz(collider, $00)))) Then
                 For local0 = Each rooms
                     Select lower(local0\Field7\Field4)
                         Case "exit1"
@@ -60,6 +61,8 @@ Function updatemtf%()
             EndIf
             If (local2 <> Null) Then
                 If (30.0 > (Abs (entityz(local2\Field2, $00) - entityz(collider, $00)))) Then
+                    tempsound = loadsound("SFX\MTF\Announc.ogg")
+                    playsound(tempsound)
                     mtftimer = 1.0
                     For local4 = $00 To $02 Step $01
                         local1 = createnpc($08, ((entityx(local2\Field2, $00) + (0.3 * (Float local4))) + (sin((Float local2\Field6)) * 5.0)), 0.5, ((entityz(local2\Field2, $00) + (0.3 * (Float local4))) - (cos((Float local2\Field6)) * 5.0)))
@@ -76,16 +79,43 @@ Function updatemtf%()
     Else
         mtftimer = (mtftimer + fpsfactor)
         If (700.0 < mtftimer) Then
+            If (mtfrooms[$00] <> Null) Then
+                If (mtfroomstate[$00] = $02) Then
+                    If (playerroom\Field7\Field4 <> "room106") Then
+                        If (contained106 <> 0) Then
+                            If (tempsound <> $00) Then
+                                freesound(tempsound)
+                                tempsound = $00
+                            EndIf
+                            tempsound = loadsound("SFX\MTF\Oldman2.ogg")
+                            playmtfmessage(tempsound)
+                            mtfroomstate[$00] = $04
+                        ElseIf (0.0 < curr106\Field9) Then
+                            If (tempsound <> $00) Then
+                                freesound(tempsound)
+                                tempsound = $00
+                            EndIf
+                            tempsound = loadsound("SFX\MTF\Oldman1.ogg")
+                            playmtfmessage(tempsound)
+                            contained106 = $01
+                            mtfroomstate[$00] = $04
+                        EndIf
+                    EndIf
+                EndIf
+            EndIf
             For local4 = $00 To $06 Step $01
                 If (mtfroomstate[local4] = $01) Then
                     mtfroomstate[local4] = $00
                 EndIf
                 If (mtfroomstate[local4] = $03) Then
                     debuglog((("ei reitti? (" + mtfrooms[local4]\Field7\Field4) + "), ohitetaan"))
+                    If (rand($08, $01) = $01) Then
+                        mtfroomstate[local4] = $00
+                    EndIf
                 EndIf
             Next
             For local1 = Each npcs
-                If ((((local1\Field5 = $08) And (local1\Field12 = $00)) And (0.0 >= local1\Field10)) <> 0) Then
+                If (((((local1\Field5 = $08) And (local1\Field12 = $00)) And (0.0 >= local1\Field10)) And (local1\Field26 = Null)) <> 0) Then
                     debuglog("asdfadsfasdfsdafasdfasdf")
                     If (local1\Field32 <> $01) Then
                         local6 = 500.0
@@ -104,11 +134,21 @@ Function updatemtf%()
                             debuglog(((mtfrooms[local5]\Field7\Field4 + ": ") + (Str local6)))
                             If (4.0 > distance(entityx(mtfrooms[local5]\Field2, $01), entityz(mtfrooms[local5]\Field2, $01), entityx(local1\Field4, $00), entityz(local1\Field4, $00))) Then
                                 mtfroomstate[local5] = $02
-                                For local8 = Each npcs
-                                    If ((((local8 <> local1) And (local8\Field12 = local1\Field12)) And (local8\Field5 = $08)) <> 0) Then
-                                        local8\Field9 = 0.0
-                                    EndIf
-                                Next
+                                local8 = mtfrooms[local5]\Field7\Field4
+                                If (local8 <> "room106") Then
+                                    For local9 = Each npcs
+                                        If ((((local9 <> local1) And (local9\Field12 = local1\Field12)) And (local9\Field5 = $08)) <> 0) Then
+                                            local9\Field9 = 0.0
+                                        EndIf
+                                    Next
+                                Else
+                                    tempsound = loadsound("SFX\MTF\Oldman0.ogg")
+                                    local1\Field15 = playsound2(tempsound, camera, local1\Field4, 8.0, 1.0, $01)
+                                    playmtfmessage(tempsound)
+                                    local1\Field32 = findpath(local1, entityx(mtfrooms[local5]\Field11[$09], $01), entityy(mtfrooms[local5]\Field11[$09], $01), entityz(mtfrooms[local5]\Field11[$09], $01))
+                                    local1\Field33 = 2100.0
+                                    local1\Field9 = 3.0
+                                EndIf
                                 debuglog("room found")
                             Else
                                 local1\Field32 = findpath(local1, entityx(mtfrooms[local5]\Field2, $00), 0.2, entityz(mtfrooms[local5]\Field2, $00))

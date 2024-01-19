@@ -8,10 +8,14 @@ Function initevents%()
         createevent("lockroom173", "lockroom", $00, 0.0)
     EndIf
     createevent("lockroom173", "lockroom", $00, 0.3)
+    createevent("lockroom096", "lockroom2", $00, 0.0)
     createevent("tunnel2smoke", "tunnel2", $00, 0.2)
     createevent("tunnel2", "tunnel2", rand($00, $02), 0.0)
     createevent("room2doors173", "room2doors", $00, 0.5)
+    createevent("room2offices2", "room2offices2", $00, 1.0)
     createevent("room2offices3", "room2offices3", $00, 1.0)
+    createevent("room3servers", "room3servers", $00, 0.0)
+    createevent("room3servers", "room3servers2", $00, 0.0)
     If (rand($05, $01) < $05) Then
         Select rand($03, $01)
             Case $01
@@ -46,6 +50,9 @@ Function initevents%()
     createevent("testroom", "testroom", $00, 0.0)
     createevent("room2tunnel", "room2tunnel", $00, 0.0)
     createevent("room2ccont", "room2ccont", $00, 0.0)
+    createevent("gateaentrance", "gateaentrance", $00, 0.0)
+    createevent("gatea", "gatea", $00, 0.0)
     createevent("exit1", "exit1", $00, 0.0)
+    createevent("forest", "forest", $00, 0.0)
     Return $00
 End Function

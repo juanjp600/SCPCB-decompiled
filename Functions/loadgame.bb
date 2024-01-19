@@ -63,9 +63,12 @@ Function loadgame%(arg0$)
     eyesuper = readfloat(local6)
     eyestuck = readfloat(local6)
     eyeirritation = readfloat(local6)
+    injuries = readfloat(local6)
+    bloodloss = readfloat(local6)
     selectedmode = readbyte(local6)
     sanity = readfloat(local6)
     wearinggasmask = readbyte(local6)
+    wearingvest = readbyte(local6)
     superman = readbyte(local6)
     supermantimer = readfloat(local6)
     lightson = readbyte(local6)
@@ -81,6 +84,7 @@ Function loadgame%(arg0$)
     achv079 = readbyte(local6)
     achv914 = readbyte(local6)
     achv789 = readbyte(local6)
+    achv096 = readbyte(local6)
     achvtesla = readbyte(local6)
     achvmaynard = readbyte(local6)
     achvharp = readbyte(local6)
@@ -173,9 +177,9 @@ Function loadgame%(arg0$)
                 local26\Field5 = local16
                 local26\Field7 = local17
                 local26\Field4 = local18
-                local26\Field19 = local19
-                local26\Field9 = local24
-                local26\Field10 = local25
+                local26\Field21 = local19
+                local26\Field10 = local24
+                local26\Field11 = local25
                 positionentity(local26\Field0, local20, entityy(local26\Field0, $00), local21, $01)
                 If (local26\Field1 <> $00) Then
                     positionentity(local26\Field1, local22, entityy(local26\Field1, $00), local23, $01)
@@ -208,7 +212,7 @@ Function loadgame%(arg0$)
         local28\Field10 = readfloat(local6)
         local28\Field11 = readfloat(local6)
         local28\Field12 = readint(local6)
-        local28\Field19 = readbyte(local6)
+        local28\Field19 = (Float readbyte(local6))
         local28\Field22 = readfloat(local6)
         local28\Field21 = readint(local6)
         local28\Field18 = (Float readint(local6))
@@ -321,7 +325,7 @@ Function loadgame%(arg0$)
         local43\Field3 = readbyte(local6)
     Next
     For local26 = Each doors
-        If (local26\Field12 <> Null) Then
+        If (local26\Field13 <> Null) Then
             local44 = 20.0
             For local14 = Each rooms
                 local46 = entitydistance(local14\Field2, local26\Field0)
@@ -330,7 +334,7 @@ Function loadgame%(arg0$)
                     local45 = local14
                 EndIf
             Next
-            local26\Field12 = local45
+            local26\Field13 = local45
         EndIf
     Next
     If (readint(local6) <> $3E2) Then

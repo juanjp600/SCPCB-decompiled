@@ -11,7 +11,7 @@ Function createparticle.particles(arg0#, arg1#, arg2#, arg3%, arg4#, arg5#, arg6
     Select arg3
         Case $00
             entityblend(local0\Field0, $02)
-        Case $01,$02,$03
+        Case $01,$02,$03,$04
             entityblend(local0\Field0, local2)
     End Select
     local0\Field1 = createpivot($00)

@@ -8,6 +8,8 @@ Function initnewgame%()
     Local local6.roomtemplates
     Local local7.tempwaypoints
     drawloading($3C, $00)
+    hidedistance = 15.0
+    heartbeatrate = 70.0
     accesscode = $00
     For local0 = $00 To $03 Step $01
         accesscode = (Int (((Float rand($01, $09)) * (10.0 ^ (Float local0))) + (Float accesscode)))
@@ -33,7 +35,7 @@ Function initnewgame%()
         If (local2\Field3[$01] > $00) Then
             entityparent(local2\Field3[$01], $00, $01)
         EndIf
-        If (((local2\Field1 <> $00) And (local2\Field8 = $00)) <> 0) Then
+        If (((local2\Field1 <> $00) And (local2\Field9 = $00)) <> 0) Then
             moveentity(local2\Field0, 0.0, 0.0, (8.0 * roomscale))
             moveentity(local2\Field1, 0.0, 0.0, (8.0 * roomscale))
         EndIf

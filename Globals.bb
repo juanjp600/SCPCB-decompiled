@@ -1,5 +1,6 @@
 Global accesscode%
 Global achv079%
+Global achv096%
 Global achv106%
 Global achv372%
 Global achv420%
@@ -25,6 +26,7 @@ Global bigdooropensfx%
 Global blinkicon%
 Global blinkmeterimg%
 Global blinktimer#
+Global bloodloss#
 Global blurtimer#
 Global blurvolume#
 Global brightness%
@@ -55,9 +57,13 @@ Global consoleinput$
 Global consoleopen%
 Global contained106%
 Global coughchn%
+Global crouch%
+Global crouchicon%
+Global crouchstate#
 Global curr106.npcs
 Global curr173.npcs
 Global currambientsfx%
+Global currcamerazoom#
 Global currmusicvolume#
 Global currsave$
 Global currspeed#
@@ -67,6 +73,7 @@ Global dark%
 Global darktexture%
 Global death914sfx%
 Global depth%
+Global disabled173%
 Global doorcoll%
 Global doorframeobj%
 Global doorobj%
@@ -118,9 +125,14 @@ Global gunshotsfx%
 Global handicon%
 Global head%
 Global headdropspeed#
+Global heartbeatrate#
+Global heartbeatsfx%
+Global heartbeattimer#
+Global heartbeatvolume#
 Global hidedistance#
 Global hisssfx%
 Global hudenabled%
+Global injuries#
 Global insmoke%
 Global introenabled%
 Global invertmouse%
@@ -212,6 +224,7 @@ Global musicvolume#
 Global noclip%
 Global nowplaying%
 Global nuclearsirensfx%
+Global opendoorfastsfx%
 Global optionfile$
 Global pausemenuimg%
 Global playerlevel%
@@ -277,3 +290,4 @@ Global versionnumber$
 Global viewport_center_x%
 Global viewport_center_y%
 Global wearinggasmask%
+Global wearingvest%
