@@ -11,7 +11,10 @@ Function initevents%()
     createevent("testroom173", "room2testroom2", $00, 0.0)
     If (rand($03, $01) < $03) Then
         createevent("coffin106", "coffin", $00, 0.0)
+    Else
+        createevent("coffin", "coffin", $00, 0.0)
     EndIf
+    createevent("pj", "roompj", $00, 0.0)
     createevent("914", "914", $00, 0.0)
     createevent("buttghost", "room2toilets", $00, 0.8)
     createevent("room2pipes106", "room2pipes", rand($00, $03), 0.0)

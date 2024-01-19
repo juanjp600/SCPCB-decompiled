@@ -6,6 +6,9 @@ Function loadmaterials%(arg0$)
     Local local4.materials
     Local local5$
     Local local6%
+    If (bumpenabled = $00) Then
+        Return $00
+    EndIf
     local4 = Null
     local5 = ""
     local6 = openfile(arg0)

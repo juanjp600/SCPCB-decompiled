@@ -1,12 +1,15 @@
 Type rooms
     Field Field0%
-    Field Field1#
+    Field Field1%
     Field Field2#
     Field Field3#
-    Field Field4%
-    Field Field5.roomtemplates
-    Field Field6%[20]
-    Field Field7%[11]
-    Field Field8.doors[5]
-    Field Field9.npcs[5]
+    Field Field4#
+    Field Field5%
+    Field Field6.roomtemplates
+    Field Field7%[20]
+    Field Field8#[20]
+    Field Field9%[20]
+    Field Field10%[11]
+    Field Field11.doors[5]
+    Field Field12.npcs[5]
 End Type

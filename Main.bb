@@ -1,5 +1,5 @@
-; SCP - Containment Breach v0.2_disasm
-; Decompiled on 1/19/2024 1:55:45 PM
+; SCP - Containment Breach v0.2.1_disasm
+; Decompiled on 1/19/2024 4:49:17 PM
 
 Include "Globals.bb"
 
@@ -8,7 +8,6 @@ Include "Functions/getiniint.bb"
 Include "Functions/min.bb"
 Include "Functions/max.bb"
 Include "Functions/updatelauncher.bb"
-Include "Functions/initext.bb"
 Include "Functions/setbuffer.bb"
 Include "Functions/drawloading.bb"
 Include "Functions/createconsolemsg.bb"
@@ -32,21 +31,19 @@ Include "Functions/updateitems.bb"
 Include "Functions/updateparticles.bb"
 Include "Functions/curvevalue.bb"
 Include "Functions/updateblur.bb"
-Include "Functions/createnpc.bb"
 Include "Functions/savegame.bb"
 Include "Functions/drawgui.bb"
 Include "Functions/drawmenu.bb"
 Include "Functions/updateconsole.bb"
 Include "Functions/getinistring.bb"
+Include "Functions/initext.bb"
 Include "Functions/mouseon.bb"
 Include "Functions/limittext.bb"
 Include "Functions/drawtick.bb"
 Include "Functions/drawbutton.bb"
 Include "Functions/putinivalue.bb"
-Include "Functions/deinitpostprocess.bb"
 Include "Functions/createroomtemplate.bb"
 Include "Functions/loadsavegames.bb"
-Include "Functions/deinitext.bb"
 Include "Functions/drawframe.bb"
 Include "Functions/inputbox.bb"
 Include "Functions/loadentities.bb"
@@ -60,6 +57,7 @@ Include "Functions/distance.bb"
 Include "Functions/createparticle.bb"
 Include "Functions/loopsound2.bb"
 Include "Functions/wrapangle.bb"
+Include "Functions/createnpc.bb"
 Include "Functions/usedoor.bb"
 Include "Functions/removenpc.bb"
 Include "Functions/createemitter.bb"
@@ -69,36 +67,39 @@ Include "Functions/getangle.bb"
 Include "Functions/use914.bb"
 Include "Functions/removeitem.bb"
 Include "Functions/removeparticle.bb"
-Include "Functions/textureblend.bb"
 Include "Functions/nullgame.bb"
 Include "Functions/createitem.bb"
+Include "Functions/deinitpostprocess.bb"
 Include "Functions/ini_filetostring.bb"
 Include "Functions/ini_createkey.bb"
 Include "Functions/ini_createsection.bb"
-Include "Functions/freetexture.bb"
 Include "Functions/rinput.bb"
 Include "Functions/createblurimage.bb"
 Include "Functions/clscolor.bb"
+Include "Functions/textureblend.bb"
+Include "Functions/inititemtemplates.bb"
 Include "Functions/loadmaterials.bb"
 Include "Functions/loadroommeshes.bb"
 Include "Functions/createmap.bb"
 Include "Functions/initevents.bb"
 Include "Functions/createroom.bb"
 Include "Functions/createdoor.bb"
-Include "Functions/makecollbox.bb"
+Include "Functions/freetexture.bb"
+Include "Functions/createitemtemplate.bb"
 Include "Functions/loadworld.bb"
 Include "Functions/createevent.bb"
 Include "Functions/fillroom.bb"
-Include "Functions/entityscalex.bb"
-Include "Functions/entityscaley.bb"
-Include "Functions/entityscalez.bb"
-Include "Functions/getmeshextents.bb"
+Include "Functions/makecollbox.bb"
 Include "Functions/keyvalue.bb"
 Include "Functions/piece.bb"
 Include "Functions/addtemplight.bb"
 Include "Functions/strippath.bb"
 Include "Functions/createsecuritycam.bb"
 Include "Functions/addlight.bb"
+Include "Functions/entityscalex.bb"
+Include "Functions/entityscaley.bb"
+Include "Functions/entityscalez.bb"
+Include "Functions/getmeshextents.bb"
 
 Include "Types/consolemsg.bb"
 Include "Types/decals.bb"
@@ -107,6 +108,7 @@ Include "Types/emitters.bb"
 Include "Types/events.bb"
 Include "Types/gfxdrivercapsex_type.bb"
 Include "Types/items.bb"
+Include "Types/itemtemplates.bb"
 Include "Types/lighttemplates.bb"
 Include "Types/materials.bb"
 Include "Types/matrix3d.bb"
@@ -134,11 +136,11 @@ Dim horrorsfx%(0)
 Dim introsfx%(0)
 Dim inventory.items(0)
 Dim lightspritetex%(0)
-Dim mapfound%(0, 0)
+Dim mapfound%(0, 0, 0)
 Dim mapname$(0, 0)
 Dim maproomid%(0)
 Dim maproom$(0, 0)
-Dim maptemp%(0, 0)
+Dim maptemp%(0, 0, 0)
 Dim menublinkduration%(0)
 Dim menublinktimer%(0)
 Dim music%(0)
@@ -147,6 +149,10 @@ Dim oldmansfx%(0)
 Dim opendoorsfx%(0)
 Dim particletextures%(0)
 Dim picksfx%(0)
+Dim radiochn%(0)
+Dim radiosfx%(0, 0)
+Dim radiostate#(0)
+Dim rustlesfx%(0)
 Dim savegamedate%(0)
 Dim savegames$(0)
 Dim savegametime%(0)

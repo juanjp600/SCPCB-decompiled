@@ -42,13 +42,14 @@ Function loadworld%(arg0$, arg1.roomtemplates)
     local5 = createpivot(local1)
     local6 = createpivot(local1)
     entitytype(local4, $01, $00)
-    entitypickmode(local4, $03, $01)
     For local7 = $01 To countchildren(local0) Step $01
         local8 = getchild(local0, local7)
         local9 = lower(keyvalue(local8, "classname", ""))
         Select local9
             Case "mesh"
                 entityparent(local8, local2, $01)
+                entitytype(local8, $01, $00)
+                entitypickmode(local8, $02, $01)
                 local7 = (local7 - $01)
             Case "brush"
                 rotatemesh(local8, entitypitch(local8, $00), entityyaw(local8, $00), entityroll(local8, $00))
@@ -58,13 +59,15 @@ Function loadworld%(arg0$, arg1.roomtemplates)
                 entitytype(local8, $01, $00)
                 entityalpha(local8, 0.0)
                 entityparent(local8, local4, $01)
+                entitypickmode(local8, $02, $01)
                 local7 = (local7 - $01)
+            Case "item"
             Case "light"
                 local11 = (entityx(local8, $00) * roomscale)
                 local12 = (entityy(local8, $00) * roomscale)
                 local13 = (entityz(local8, $00) * roomscale)
                 If ((((0.0 <> local11) Or (0.0 <> local12)) Or (0.0 <> local13)) <> 0) Then
-                    local14 = ((Float keyvalue(local8, "range", "1")) / 700.0)
+                    local14 = ((Float keyvalue(local8, "range", "1")) / 750.0)
                     local15 = keyvalue(local8, "color", "255 255 255")
                     local16 = min(((Float keyvalue(local8, "intensity", "1.0")) * 0.8), 1.0)
                     local17 = (Int ((Float (Int piece(local15, $01, " "))) * local16))
@@ -107,27 +110,40 @@ Function loadworld%(arg0$, arg1.roomtemplates)
                 EndIf
         End Select
     Next
-    For local26 = $01 To countsurfaces(local3) Step $01
-        local27 = getsurface(local3, local26)
-        local19 = getsurfacebrush(local27)
-        local28 = getbrushtexture(local19, $01)
-        local29 = strippath(texturename(local28))
-        debuglog(local29)
-        For local30 = Each materials
-            If (local29 = local30\Field0) Then
-                local31 = getbrushtexture(local19, $00)
-                debuglog(("1: " + strippath(texturename(local31))))
-                local32 = getbrushtexture(local19, $01)
-                debuglog(("2: " + strippath(texturename(local32))))
-                brushtexture(local19, local31, $00, $00)
-                brushtexture(local19, local30\Field2, $00, $01)
-                brushtexture(local19, local32, $00, $02)
-                paintsurface(local27, local19)
-                Exit
-            EndIf
+    debuglog(arg0)
+    If (bumpenabled <> 0) Then
+        For local26 = $01 To countsurfaces(local3) Step $01
+            local27 = getsurface(local3, local26)
+            local19 = getsurfacebrush(local27)
+            local28 = getbrushtexture(local19, $01)
+            local29 = strippath(texturename(local28))
+            debuglog(local29)
+            For local30 = Each materials
+                If (local29 = local30\Field0) Then
+                    local31 = getbrushtexture(local19, $00)
+                    debuglog(("1: " + strippath(texturename(local31))))
+                    local32 = getbrushtexture(local19, $01)
+                    debuglog(("2: " + strippath(texturename(local32))))
+                    brushtexture(local19, local31, $00, $00)
+                    brushtexture(local19, local30\Field2, $00, $01)
+                    brushtexture(local19, local32, $00, $02)
+                    paintsurface(local27, local19)
+                    debuglog("zzz")
+                    If (strippath(texturename(local31)) <> "") Then
+                        freetexture(local31)
+                    EndIf
+                    debuglog("fff")
+                    If (strippath(texturename(local32)) <> "") Then
+                        freetexture(local32)
+                    EndIf
+                    Exit
+                EndIf
+            Next
+            debuglog("adfkjgmnd")
+            freetexture(local28)
+            freebrush(local19)
         Next
-        freetexture(local28)
-    Next
+    EndIf
     freeentity(local0)
     Return local1
     Return $00

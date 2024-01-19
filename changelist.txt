@@ -1,5 +1,14 @@
 
 ----------------------------------------------------------------------------------
+V0.2.1
+- replaced SCP-513 and SCP-513-1 with a new SCP
+- some new rooms
+- radio phones
+- fixed a bug that disabled collisions with some objects
+- added the options to disable the HUD and/or the bump mapping
+- (hopefully) fixed the black screen bug
+
+----------------------------------------------------------------------------------
 
 v0.2
 - changed BlitzMax to Blitz3D and got an engine expansion, which made it possible

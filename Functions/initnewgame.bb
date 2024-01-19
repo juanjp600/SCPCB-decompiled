@@ -5,6 +5,7 @@ Function initnewgame%()
     Local local3.rooms
     Local local4%
     Local local5.decals
+    Local local6.roomtemplates
     drawloading($3C)
     createmap()
     drawloading($4B)
@@ -42,19 +43,19 @@ Function initnewgame%()
     drawloading($55)
     For local3 = Each rooms
         For local4 = $00 To $13 Step $01
-            If (local3\Field6[local4] <> $00) Then
-                entityparent(local3\Field6[local4], $00, $01)
+            If (local3\Field7[local4] <> $00) Then
+                entityparent(local3\Field7[local4], $00, $01)
             EndIf
         Next
-        If (local3\Field5\Field7 = $00) Then
+        If (local3\Field6\Field7 = $00) Then
             If (rand($04, $01) = $01) Then
-                local5 = createdecal(rand($02, $03), rnd((entityx(local3\Field0, $00) - 2.0), (entityx(local3\Field0, $00) + 2.0)), 0.001, rnd((entityz(local3\Field0, $00) - 2.0), (entityz(local3\Field0, $00) + 2.0)), 90.0, (Float rand($168, $01)), 0.0)
+                local5 = createdecal(rand($02, $03), rnd((entityx(local3\Field1, $00) - 2.0), (entityx(local3\Field1, $00) + 2.0)), 0.001, rnd((entityz(local3\Field1, $00) - 2.0), (entityz(local3\Field1, $00) + 2.0)), 90.0, (Float rand($168, $01)), 0.0)
                 local5\Field2 = rnd(0.1, 0.4)
                 scalesprite(local5\Field0, local5\Field2, local5\Field2)
                 entityalpha(local5\Field0, rnd(0.85, 0.95))
             EndIf
             If (rand($04, $01) = $01) Then
-                local5 = createdecal($00, rnd((entityx(local3\Field0, $00) - 2.0), (entityx(local3\Field0, $00) + 2.0)), 0.0011, rnd((entityz(local3\Field0, $00) - 2.0), (entityz(local3\Field0, $00) + 2.0)), 90.0, (Float rand($168, $01)), 0.0)
+                local5 = createdecal($00, rnd((entityx(local3\Field1, $00) - 2.0), (entityx(local3\Field1, $00) + 2.0)), 0.0011, rnd((entityz(local3\Field1, $00) - 2.0), (entityz(local3\Field1, $00) + 2.0)), 90.0, (Float rand($168, $01)), 0.0)
                 local5\Field2 = rnd(0.5, 0.7)
                 entityalpha(local5\Field0, 0.7)
                 local5\Field5 = $01
@@ -62,10 +63,13 @@ Function initnewgame%()
                 entityalpha(local5\Field0, rnd(0.7, 0.85))
             EndIf
         EndIf
-        If ((((local3\Field5\Field4 = "start") And (introenabled = $00)) Or ((local3\Field5\Field4 = "room173") And introenabled)) <> 0) Then
-            positionentity(collider, entityx(local3\Field0, $00), 1.0, entityz(local3\Field0, $00), $00)
+        If ((((local3\Field6\Field4 = "start") And (introenabled = $00)) Or ((local3\Field6\Field4 = "room173") And introenabled)) <> 0) Then
+            positionentity(collider, entityx(local3\Field1, $00), 1.0, entityz(local3\Field1, $00), $00)
             playerroom = local3
         EndIf
+    Next
+    For local6 = Each roomtemplates
+        freeentity(local6\Field0)
     Next
     turnentity(collider, 0.0, (Float rand($A0, $C8)), 0.0, $00)
     resetentity(collider)
@@ -76,7 +80,7 @@ Function initnewgame%()
     hidepointer()
     blinktimer = 560.0
     stamina = 100.0
-    For local4 = $00 To $AA Step $01
+    For local4 = $00 To $46 Step $01
         fpsfactor = 1.0
         flushkeys()
         moveplayer()

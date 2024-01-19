@@ -4,7 +4,7 @@ Function updatesecuritycams%()
     Local local2%
     movelock = $00
     For local0 = Each securitycams
-        If (7.0 > entitydistance(camera, local0\Field0)) Then
+        If (6.0 > entitydistance(camera, local0\Field0)) Then
             If (local0\Field19 <> 0) Then
                 pointentity(local0\Field3, camera, 0.0)
                 local1 = entitypitch(local0\Field3, $00)
@@ -32,7 +32,7 @@ Function updatesecuritycams%()
                         EndIf
                     EndIf
                 EndIf
-                rotateentity(local0\Field0, 0.0, (((Float local0\Field18\Field4) + local0\Field11) + max(min(local0\Field13, local0\Field12), (- local0\Field12))), 0.0, $00)
+                rotateentity(local0\Field0, 0.0, (((Float local0\Field18\Field5) + local0\Field11) + max(min(local0\Field13, local0\Field12), (- local0\Field12))), 0.0, $00)
                 positionentity(local0\Field3, entityx(local0\Field0, $01), (entityy(local0\Field0, $01) - 0.083), entityz(local0\Field0, $01), $00)
                 rotateentity(local0\Field3, entitypitch(local0\Field3, $00), entityyaw(local0\Field0, $00), 0.0, $00)
                 positionentity(local0\Field8, entityx(local0\Field3, $01), entityy(local0\Field3, $01), entityz(local0\Field3, $01), $00)
@@ -40,16 +40,16 @@ Function updatesecuritycams%()
                 moveentity(local0\Field8, 0.0, 0.0, 0.1)
             EndIf
             local0\Field14 = (local0\Field14 + fpsfactor)
-            If ((local0\Field7 And (8.0 <= local0\Field14)) <> 0) Then
+            If ((local0\Field7 And (12.0 <= local0\Field14)) <> 0) Then
                 local0\Field17 = $00
                 If (entityinview(local0\Field4, camera) <> 0) Then
-                    If (entityvisible(local0\Field4, camera) <> 0) Then
+                    If (entityvisible(camera, local0\Field4) <> 0) Then
                         If (-5.0 < blinktimer) Then
                             local0\Field17 = $01
                         EndIf
                         If (local0\Field20 <> 0) Then
                             If (-5.0 < blinktimer) Then
-                                sanity = (sanity - (fpsfactor * 9.0))
+                                sanity = (sanity - (fpsfactor * 16.0))
                             EndIf
                             If (-1000.0 > sanity) Then
                                 kill()
@@ -66,6 +66,7 @@ Function updatesecuritycams%()
                 EndIf
                 local0\Field14 = 0.0
             EndIf
+            debuglog(("sc\insight: " + (Str local0\Field17)))
             If (local0\Field20 <> 0) Then
                 If (local0\Field17 <> 0) Then
                     local2 = createpivot($00)

@@ -31,7 +31,7 @@ Function updatemainmenu%()
             menustry = (Int ((Float rand($64, $258)) * menuscale))
             Select rand($00, $15)
                 Case $00,$02,$03
-                    menustr = "DON;T BLINK"
+                    menustr = "DON'T BLINK"
                 Case $04,$05
                     menustr = "Secure. Contain. Protect."
                 Case $06,$07,$08
@@ -47,11 +47,11 @@ Function updatemainmenu%()
                 Case $0F
                     menustr = "Stone does not care"
                 Case $10
-                    menustr = "9431"
+                    menustr = "9341"
                 Case $11
                     menustr = "It controls the doors"
                 Case $12
-                    menustr = "e8m106]af173o+097m895w914"
+                    menustr = "e8m106]af173o+079m895w914"
                 Case $14
                     menustr = "It has taken over everything"
                 Case $15
@@ -94,7 +94,6 @@ Function updatemainmenu%()
                 Case $03
                     local7 = "QUIT"
                     If (local4 <> 0) Then
-                        deinitext()
                         end()
                     EndIf
             End Select
@@ -112,6 +111,8 @@ Function updatemainmenu%()
                 putinivalue(optionfile, "options", "music volume", (Str musicvolume))
                 putinivalue(optionfile, "options", "mouse sensitivity", (Str mousesens))
                 putinivalue(optionfile, "options", "invert mouse y", (Str invertmouse))
+                putinivalue(optionfile, "options", "bump mapping enabled", (Str bumpenabled))
+                putinivalue(optionfile, "options", "HUD enabled", (Str hudenabled))
             EndIf
             mainmenutab = $00
         EndIf
@@ -242,13 +243,19 @@ Function updatemainmenu%()
                 text((Int ((426.0 * menuscale) + (Float local0))), (Int ((20.0 * menuscale) + (Float local1))), "HIGH", $00, $00)
                 color($FF, $FF, $FF)
                 text((Int ((20.0 * menuscale) + (Float local0))), (Int ((60.0 * menuscale) + (Float local1))), "Invert mouse Y-axis:", $00, $00)
-                invertmouse = drawtick((Int ((200.0 * menuscale) + (Float local0))), (Int ((60.0 * menuscale) + (Float local1))), invertmouse)
+                invertmouse = drawtick((Int ((200.0 * menuscale) + (Float local0))), (Int ((58.0 * menuscale) + (Float local1))), invertmouse)
                 color($FF, $FF, $FF)
                 text((Int ((20.0 * menuscale) + (Float local0))), (Int ((100.0 * menuscale) + (Float local1))), "Music volume:", $00, $00)
                 musicvolume = (slidebar((Int ((240.0 * menuscale) + (Float local0))), (Int ((100.0 * menuscale) + (Float local1))), $96, (musicvolume * 100.0)) / 100.0)
                 color($64, $64, $64)
                 text((Int ((180.0 * menuscale) + (Float local0))), (Int ((100.0 * menuscale) + (Float local1))), "LOW", $00, $00)
                 text((Int ((426.0 * menuscale) + (Float local0))), (Int ((100.0 * menuscale) + (Float local1))), "HIGH", $00, $00)
+                color($FF, $FF, $FF)
+                text((Int ((20.0 * menuscale) + (Float local0))), (Int ((140.0 * menuscale) + (Float local1))), "Enable HUD:", $00, $00)
+                hudenabled = drawtick((Int ((200.0 * menuscale) + (Float local0))), (Int ((138.0 * menuscale) + (Float local1))), hudenabled)
+                color($FF, $FF, $FF)
+                text((Int ((20.0 * menuscale) + (Float local0))), (Int ((180.0 * menuscale) + (Float local1))), "Enable bump mapping:", $00, $00)
+                bumpenabled = drawtick((Int ((200.0 * menuscale) + (Float local0))), (Int ((178.0 * menuscale) + (Float local1))), bumpenabled)
         End Select
     EndIf
     If ((Float graphicwidth) > (1240.0 * menuscale)) Then

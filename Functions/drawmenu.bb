@@ -4,7 +4,6 @@ Function drawmenu%()
     Local local2%
     Local local3%
     If (menuopen <> 0) Then
-        showpointer()
         invopen = $00
         local2 = $190
         local3 = $1F4
@@ -30,7 +29,7 @@ Function drawmenu%()
                 If (drawbutton((((local2 Sar $01) + local0) - $96), (local1 + $9A), $12C, $3C, "Resume", $01) <> 0) Then
                     menuopen = $00
                 EndIf
-                If (playerroom\Field5\Field4 <> "room173") Then
+                If (playerroom\Field6\Field4 <> "room173") Then
                     If (drawbutton((((local2 Sar $01) + local0) - $96), ((local1 + $9A) + $50), $12C, $3C, "Save & quit", $01) <> 0) Then
                         savegame(((savepath + currsave) + "\"))
                         nullgame()
@@ -53,32 +52,34 @@ Function drawmenu%()
                     currsave = ""
                     flushkeys()
                 EndIf
-            ElseIf (gamesaved <> 0) Then
-                If (drawbutton((((local2 Sar $01) + local0) - $96), (local1 + $9A), $12C, $3C, "Load game", $01) <> 0) Then
+            Else
+                If (gamesaved <> 0) Then
+                    If (drawbutton((((local2 Sar $01) + local0) - $96), (local1 + $9A), $12C, $3C, "Load game", $01) <> 0) Then
+                        nullgame()
+                        menuopen = $00
+                        loadentities()
+                        loadgame(((savepath + currsave) + "\"))
+                        initloadgame()
+                    EndIf
+                Else
+                    drawbutton((((local2 Sar $01) + local0) - $96), (local1 + $9A), $12C, $3C, "", $01)
+                    color($32, $32, $32)
+                    text(((local2 Sar $01) + local0), ((local1 + $9A) + $1E), "Load game", $01, $01)
+                EndIf
+                If (drawbutton((((local2 Sar $01) + local0) - $96), ((local1 + $9A) + $50), $12C, $3C, "Quit", $01) <> 0) Then
                     nullgame()
                     menuopen = $00
-                    loadentities()
-                    loadgame(((savepath + currsave) + "\"))
-                    initloadgame()
+                    mainmenuopen = $01
+                    mainmenutab = $00
+                    currsave = ""
+                    flushkeys()
                 EndIf
-            Else
-                drawbutton((((local2 Sar $01) + local0) - $96), (local1 + $9A), $12C, $3C, "", $01)
-                color($32, $32, $32)
-                text(((local2 Sar $01) + local0), ((local1 + $9A) + $1E), "Load game", $01, $01)
-            EndIf
-            If (drawbutton((((local2 Sar $01) + local0) - $96), ((local1 + $9A) + $50), $12C, $3C, "Quit", $01) <> 0) Then
-                nullgame()
-                menuopen = $00
-                mainmenuopen = $01
-                mainmenutab = $00
-                currsave = ""
-                flushkeys()
             EndIf
         ElseIf (0.0 <= killtimer) Then
             If (drawbutton((((local2 Sar $01) + local0) - $96), (local1 + $9A), $12C, $3C, "Resume", $01) <> 0) Then
                 menuopen = $00
             EndIf
-            If (playerroom\Field5\Field4 <> "room173") Then
+            If (playerroom\Field6\Field4 <> "room173") Then
                 If (drawbutton((((local2 Sar $01) + local0) - $96), ((local1 + $9A) + $50), $12C, $3C, "Save & quit", $01) <> 0) Then
                     savegame(((savepath + currsave) + "\"))
                     nullgame()

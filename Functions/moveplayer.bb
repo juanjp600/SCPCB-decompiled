@@ -3,7 +3,8 @@ Function moveplayer%()
     Local local1#
     Local local2%
     Local local3#
-    Local local4%
+    Local local4#
+    Local local5%
     local0 = 1.0
     local1 = 0.02
     If (superman <> 0) Then
@@ -28,38 +29,39 @@ Function moveplayer%()
                 stamina = -10.0
             EndIf
         EndIf
-        If (playerroom\Field5\Field4 = "pocketdimension") Then
+        If (playerroom\Field6\Field4 = "pocketdimension") Then
             stamina = 0.0
             local1 = 0.01
             local0 = 1.0
         EndIf
         shake = ((((min(local0, 1.5) * fpsfactor) * 7.0) + shake) Mod 720.0)
         If (((180.0 > local3) And (180.0 <= (shake Mod 360.0))) <> 0) Then
-            If (playerroom\Field5\Field4 = "pocketdimension") Then
+            If (playerroom\Field6\Field4 = "pocketdimension") Then
                 playsound(steppdsfx(rand($00, $02)))
             ElseIf (1.0 = local0) Then
-                playsound(stepsfx(playerroom\Field5\Field8, $01, rand($00, $03)))
+                playsound(stepsfx(playerroom\Field6\Field8, $01, rand($00, $03)))
             Else
-                playsound(stepsfx(playerroom\Field5\Field8, $00, rand($00, $03)))
+                playsound(stepsfx(playerroom\Field6\Field8, $00, rand($00, $03)))
             EndIf
         EndIf
     EndIf
+    local4 = ((local1 * local0) * fpsfactor)
     If ((keydown($D0) Or keydown($1F)) <> 0) Then
-        moveentity(collider, 0.0, 0.0, (((- local1) * local0) * fpsfactor))
+        moveentity(collider, 0.0, 0.0, (- local4))
     EndIf
     If ((keydown($C8) Or keydown($11)) <> 0) Then
-        moveentity(collider, 0.0, 0.0, ((local1 * local0) * fpsfactor))
+        moveentity(collider, 0.0, 0.0, local4)
     EndIf
     If ((keydown($CB) Or keydown($1E)) <> 0) Then
-        moveentity(collider, (((- local1) * local0) * fpsfactor), 0.0, 0.0)
+        moveentity(collider, (- local4), 0.0, 0.0)
     EndIf
     If ((keydown($CD) Or keydown($20)) <> 0) Then
-        moveentity(collider, ((local1 * local0) * fpsfactor), 0.0, 0.0)
+        moveentity(collider, local4, 0.0, 0.0)
     EndIf
-    local4 = $00
+    local5 = $00
     For local2 = $01 To countcollisions(collider) Step $01
         If ((entityy(collider, $00) - 0.25) > collisiony(collider, local2)) Then
-            local4 = $01
+            local5 = $01
         EndIf
     Next
     If (keyhit($39) <> 0) Then
@@ -68,14 +70,14 @@ Function moveplayer%()
     If ((keydown($39) And (-10.0 > blinktimer)) <> 0) Then
         blinktimer = -10.0
     EndIf
-    moveentity(collider, 0.0, dropspeed, 0.0)
-    If (local4 = $01) Then
+    If (local5 = $01) Then
         dropspeed = 0.0
     Else
-        dropspeed = max((dropspeed - (0.006 * fpsfactor)), -2.0)
+        dropspeed = min(max((dropspeed - (0.006 * fpsfactor)), -2.0), 0.0)
     EndIf
+    moveentity(collider, 0.0, dropspeed, 0.0)
     If (playerroom <> Null) Then
-        Select playerroom\Field5\Field4
+        Select playerroom\Field6\Field4
             Case "room173","start","pocketdimension"
                 positionentity(collider, entityx(collider, $00), max(entityy(collider, $00), 0.31), entityz(collider, $00), $00)
             Case "room2tunnel"

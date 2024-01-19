@@ -5,7 +5,7 @@ Function updateitems%()
     Local local3$
     closestitem = Null
     For local0 = Each items
-        If (local0\Field12 = $00) Then
+        If (local0\Field7 = $00) Then
             local1 = entitydistance(collider, local0\Field0)
             If (1.2 > local1) Then
                 If (entityinview(local0\Field0, camera) <> 0) Then
@@ -18,13 +18,13 @@ Function updateitems%()
             EndIf
             If (local1 < (hidedistance * 0.5)) Then
                 If (entitycollided(local0\Field0, $01) <> 0) Then
-                    local0\Field6 = 0.0
+                    local0\Field2 = 0.0
                 Else
-                    local0\Field6 = (local0\Field6 - ((0.004 * fpsfactor) * 0.1))
-                    translateentity(local0\Field0, 0.0, (local0\Field6 * fpsfactor), 0.0, $00)
+                    local0\Field2 = (local0\Field2 - ((0.004 * fpsfactor) * 0.1))
+                    translateentity(local0\Field0, 0.0, (local0\Field2 * fpsfactor), 0.0, $00)
                 EndIf
                 If (-20.0 > entityy(local0\Field0, $00)) Then
-                    debuglog(("poistetaan: " + local0\Field11))
+                    debuglog(("poistetaan: " + local0\Field1\Field0))
                     removeitem(local0)
                 EndIf
             EndIf
@@ -35,17 +35,17 @@ Function updateitems%()
             If (itemamount < $05) Then
                 For local2 = $00 To $04 Step $01
                     If (inventory(local2) = Null) Then
-                        local3 = closestitem\Field10
+                        local3 = closestitem\Field1\Field1
                         If (local3 = "killbat") Then
                             showentity(light)
                             lightflash = 1.0
                             playsound(introsfx($0B))
                             kill()
                         EndIf
-                        If (closestitem\Field9 <> $42) Then
-                            playsound(picksfx(closestitem\Field9))
+                        If (closestitem\Field1\Field2 <> $42) Then
+                            playsound(picksfx(closestitem\Field1\Field2))
                         EndIf
-                        closestitem\Field12 = $01
+                        closestitem\Field7 = $01
                         inventory(local2) = closestitem
                         hideentity(closestitem\Field0)
                         Exit

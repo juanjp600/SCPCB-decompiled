@@ -19,6 +19,10 @@ Function updatedoors%()
                         pointentity(local3, local0\Field3[local1], 0.0)
                         If (entitypick(local3, 0.45) = local0\Field3[local1]) Then
                             If (closestbutton = $00) Then
+                                If (local0\Field15 <> $42) Then
+                                    msg = "ENTER ROOM"
+                                    msgtimer = 255.0
+                                EndIf
                                 closestbutton = local0\Field3[local1]
                                 closestdoor = local0
                             ElseIf (local2 < entitydistance(collider, closestbutton)) Then
@@ -61,12 +65,12 @@ Function updatedoors%()
                         playsound2(closedoorsfx(rand($00, $02)), camera, local0\Field0, 10.0, 1.0)
                     EndIf
                 EndIf
-                If (local0\Field13 <> 0) Then
+                If ((local0\Field16 And (remotedooron = $01)) <> 0) Then
                     If (1.8 > entitydistance(camera, local0\Field0)) Then
                         playsound(horrorsfx($07))
                         local0\Field5 = $00
                         playsound2(closedoorsfx(rand($00, $02)), camera, local0\Field0, 10.0, 1.0)
-                        local0\Field13 = $00
+                        local0\Field16 = $00
                     EndIf
                 EndIf
             EndIf
@@ -110,6 +114,9 @@ Function updatedoors%()
                 moveentity(local0\Field0, 0.0, 0.0, (8.0 * roomscale))
                 moveentity(local0\Field1, 0.0, 0.0, (8.0 * roomscale))
             EndIf
+        EndIf
+        If (local0\Field15 <> $42) Then
+            local0\Field5 = $00
         EndIf
     Next
     Return $00

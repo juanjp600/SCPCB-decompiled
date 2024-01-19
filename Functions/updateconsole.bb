@@ -37,11 +37,14 @@ Function updateconsole%()
             EndIf
             Select lower(local4)
                 Case "status"
+                    createconsolemsg("******************************")
                     createconsolemsg("Status: ")
                     createconsolemsg(((((("Coordinates: " + (Str entityx(collider, $00))) + ", ") + (Str entityy(collider, $00))) + ", ") + (Str entityz(collider, $00))))
-                    createconsolemsg(("Room: " + playerroom\Field5\Field4))
+                    createconsolemsg(("Room: " + playerroom\Field6\Field4))
                     createconsolemsg(("Stamina: " + (Str stamina)))
                     createconsolemsg(("Blinktimer: " + (Str blinktimer)))
+                    createconsolemsg(("Level: " + (Str playerlevel)))
+                    createconsolemsg("******************************")
                 Case "teleport"
                     local4 = lower(right(consoleinput, (len(consoleinput) - instr(consoleinput, " ", $01))))
                     Select local4
@@ -53,8 +56,8 @@ Function updateconsole%()
                             local4 = "room2offices"
                     End Select
                     For local13 = Each rooms
-                        If (local13\Field5\Field4 = local4) Then
-                            positionentity(collider, entityx(local13\Field0, $00), 0.7, entityz(local13\Field0, $00), $00)
+                        If (local13\Field6\Field4 = local4) Then
+                            positionentity(collider, entityx(local13\Field1, $00), 0.7, entityz(local13\Field1, $00), $00)
                             resetentity(collider)
                             playerroom = local13
                             Exit
@@ -63,8 +66,8 @@ Function updateconsole%()
                 Case "spawnitem"
                     local4 = lower(right(consoleinput, (len(consoleinput) - instr(consoleinput, " ", $01))))
                     For local14 = Each items
-                        If ((Int lower((Str (local14\Field11 = local4)))) <> 0) Then
-                            createitem(local14\Field11, local14\Field10, entityx(collider, $00), entityy(collider, $00), entityz(collider, $00), local14\Field3, local14\Field4, local14\Field5, local14\Field7, "")
+                        If ((Int lower((Str (local14\Field1\Field0 = local4)))) <> 0) Then
+                            createitem(local14\Field1\Field0, local14\Field1\Field1, entityx(collider, $00), entityy(collider, $00), entityz(collider, $00))
                             entitytype(local14\Field0, $03, $00)
                             Exit
                         EndIf

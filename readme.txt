@@ -6,7 +6,7 @@
 
 
 
-ALPHA VERSION v0.2
+ALPHA VERSION v0.1.3
 
 This game is still in an early state of development, so you will probably face
 some bugs when playing it. The SCP Facility is also quite empty at the moment,
