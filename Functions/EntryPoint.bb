@@ -37,7 +37,7 @@ Function EntryPoint%()
     mirrorcameraaz = 0.0
     mirrorcameraparent = $00
     optionfile = "options.ini"
-    versionnumber = "0.2.1"
+    versionnumber = "0.3"
     local0 = $00
     Dim arrowimg%($04)
     launcherwidth = (Int min((Float getiniint(optionfile, "launcher", "launcher width")), 1024.0))
@@ -85,10 +85,12 @@ Function EntryPoint%()
     Dim drawarrowicon%($04)
     lightson = $01
     Dim radiostate#($0A)
-    Dim radiochn%($05)
+    Dim radiochn%($08)
+    Dim oldaipics%($0A)
     createconsolemsg("Console commands: ")
     createconsolemsg("  - teleport [room name] ")
-    createconsolemsg("  - godmode")
+    createconsolemsg("  - godmode on/off")
+    createconsolemsg("  - noclip on/off")
     createconsolemsg("  - 173speed [x] (default = 35)")
     createconsolemsg("  - disable173/enable173")
     createconsolemsg("  - disable106/enable106")
@@ -107,6 +109,7 @@ Function EntryPoint%()
     music($01) = loadsound("SFX\Music\Bump in the Night.ogg")
     music($02) = loadsound("SFX\Music\MenuAmbience.ogg")
     music($03) = loadsound("SFX\Ambient\PocketDimension.ogg")
+    music($04) = loadsound("SFX\Music\AI.ogg")
     musicvolume = getinifloat(optionfile, "options", "music volume")
     musicchn = playsound(music($02))
     channelvolume(musicchn, musicvolume)
@@ -126,10 +129,16 @@ Function EntryPoint%()
     bullethitsfx = loadsound("SFX\bullethit.ogg")
     msg079 = loadsound("SFX\msg.ogg")
     error079 = loadsound("SFX\error.ogg")
+    teslaidlesfx = loadsound("SFX\teslaidle.ogg")
+    teslaactivatesfx = loadsound("SFX\teslaactivate.ogg")
+    teslapowerupsfx = loadsound("SFX\teslapowerup.ogg")
+    magnetupsfx = loadsound("SFX\MagnetUp.ogg")
+    magnetdownsfx = loadsound("SFX\MagnetDown.ogg")
     Dim decaysfx%($05)
     For local6 = $00 To $03 Step $01
         decaysfx(local6) = loadsound((("SFX\decay" + (Str local6)) + ".ogg"))
     Next
+    burstsfx = loadsound("SFX\burst.ogg")
     drawloading($14)
     Dim rustlesfx%($03)
     For local6 = $00 To $02 Step $01
@@ -142,12 +151,16 @@ Function EntryPoint%()
     gasmaskbreath = loadsound("SFX\GasmaskBreath.ogg")
     buttghostsfx = loadsound("SFX\BuGh.ogg")
     Dim radiosfx%($05, $0A)
+    radiosfx($01, $00) = loadsound("SFX\Radio\RadioAlarm.ogg")
+    radiosfx($01, $01) = loadsound("SFX\Radio\RadioAlarm2.ogg")
     For local6 = $00 To $08 Step $01
         radiosfx($02, local6) = loadsound((("SFX\Radio\scpradio" + (Str local6)) + ".ogg"))
     Next
     radiosquelch = loadsound("SFX\Radio\squelch.ogg")
     radiostatic = loadsound("SFX\Radio\static.ogg")
     radiobuzz = loadsound("SFX\Radio\buzz.ogg")
+    elevatorbeepsfx = loadsound("SFX\ElevatorBeep.ogg")
+    elevatormovesfx = loadsound("SFX\ElevatorMove.ogg")
     Dim picksfx%($0A)
     For local6 = $00 To $02 Step $01
         picksfx(local6) = loadsound((("SFX\PickItem" + (Str local6)) + ".ogg"))
@@ -167,17 +180,11 @@ Function EntryPoint%()
         scp173sfx(local6) = loadsound((("SFX\173sound" + (Str (local6 + $01))) + ".ogg"))
     Next
     Dim horrorsfx%($14)
-    For local6 = $00 To $07 Step $01
+    For local6 = $00 To $0A Step $01
         horrorsfx(local6) = loadsound((("SFX\horror" + (Str (local6 + $01))) + ".ogg"))
     Next
     drawloading($19)
     Dim introsfx%($10)
-    For local6 = $00 To $03 Step $01
-        introsfx(local6) = loadsound((("SFX\intro\intro" + (Str (local6 + $01))) + ".ogg"))
-    Next
-    For local6 = $04 To $06 Step $01
-        introsfx(local6) = loadsound((("SFX\intro\refuse" + (Str (local6 - $03))) + ".ogg"))
-    Next
     For local6 = $07 To $09 Step $01
         introsfx(local6) = loadsound((("SFX\intro\bang" + (Str (local6 - $06))) + ".ogg"))
     Next
@@ -193,6 +200,7 @@ Function EntryPoint%()
     Dim damagesfx%($05)
     damagesfx($00) = loadsound("SFX\NeckSnap1.ogg")
     damagesfx($01) = loadsound("SFX\NeckSnap2.ogg")
+    damagesfx($02) = loadsound("SFX\NeckSnap3.ogg")
     Dim deathsfx%($05)
     deathsfx($00) = loadsound("SFX\death1.ogg")
     deathsfx($01) = loadsound("SFX\death2.ogg")
@@ -224,7 +232,7 @@ Function EntryPoint%()
     buttonup = loadimage("GFX\buttonup.png")
     buttondown = loadimage("GFX\buttondown.png")
     drawloading($23)
-    Dim inventory.items($06)
+    Dim inventory.items($0B)
     Dim particletextures%($0A)
     hisssfx = loadsound("SFX\hiss.ogg")
     Dim bigdoorobj%($02)
@@ -238,6 +246,7 @@ Function EntryPoint%()
     hidedistance = 15.0
     secondarylighton = 1.0
     remotedooron = $01
+    contained106 = $00
     Dim mapname$(mapwidth, mapheight)
     Dim maproomid%($06)
     Dim maproom$($06, local7)
@@ -249,13 +258,14 @@ Function EntryPoint%()
     Dim lightspritetex%($05)
     Dim bigdoorobj%($02)
     Dim gorepics%($0A)
-    Dim oldaipics%($0A)
-    Dim decaltextures%($0A)
+    Dim decaltextures%($14)
     bumppower(0.05)
     menuback = loadimage("GFX\menu\back.jpg")
     menutext = loadimage("GFX\menu\scptext.jpg")
     menu173 = loadimage("GFX\menu\173back.jpg")
     menuwhite = loadimage("GFX\menu\menuwhite.jpg")
+    menublack = loadimage("GFX\menu\menublack.jpg")
+    maskimage(menublack, $FF, $FF, $00)
     menuscale = ((Float graphicheight) / 1024.0)
     resizeimage(menuback, ((Float imagewidth(menuback)) * menuscale), ((Float imageheight(menuback)) * menuscale))
     resizeimage(menutext, ((Float imagewidth(menutext)) * menuscale), ((Float imageheight(menutext)) * menuscale))
@@ -344,6 +354,9 @@ Function EntryPoint%()
             mouseup1 = $00
         EndIf
         mousehit2 = mousehit($02)
+        If (((mousedown1 = $00) And (mousehit1 = $00)) <> 0) Then
+            grabbedentity = $00
+        EndIf
         updatemusic()
         If (mainmenuopen <> 0) Then
             shouldplay = $02
@@ -366,7 +379,9 @@ Function EntryPoint%()
             If ((keyhit(local15) And $00) <> 0) Then
                 kill()
             EndIf
+            lightvolume = curvevalue(templightvolume, lightvolume, 50.0)
             If (((((menuopen = $00) And (invopen = $00)) And (selecteddoor = Null)) And (consoleopen = $00)) <> 0) Then
+                camerafogrange(camera, (camerafognear * lightvolume), (camerafogfar * lightvolume))
                 updateroomtimer = (updateroomtimer - fpsfactor)
                 If (0.0 >= updateroomtimer) Then
                     updaterooms()
@@ -441,7 +456,7 @@ Function EntryPoint%()
                 If (0.0 < lightblink) Then
                     local16 = min(max(local16, (((1.0 - lightblink) * rnd(0.3, 0.8)) + lightblink)), 1.0)
                 EndIf
-                local16 = max(((1.0 - secondarylighton) * 0.93), local16)
+                local16 = max(((1.0 - secondarylighton) * 0.91), local16)
                 If (0.0 > killtimer) Then
                     invopen = $00
                     selecteditem = Null

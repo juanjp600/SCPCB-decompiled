@@ -32,8 +32,8 @@ Function updateitems%()
     Next
     If (closestitem <> Null) Then
         If (mousehit1 <> 0) Then
-            If (itemamount < $05) Then
-                For local2 = $00 To $04 Step $01
+            If (itemamount < $0A) Then
+                For local2 = $00 To $09 Step $01
                     If (inventory(local2) = Null) Then
                         local3 = closestitem\Field1\Field1
                         If (local3 = "killbat") Then

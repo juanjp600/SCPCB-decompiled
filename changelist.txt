@@ -1,6 +1,23 @@
 
+v0.3
+- new rooms and events
+- more radio broadcasts
+- some additions to 106's pocket dimension
+- 106's containment room
+- SCP-079
+- new voice acting for the intercom person in the intro
+- larger inventory
+- the maintenance tunnel is now back, scarier than ever
+- some improvements to the map generation algorithm
+- added noclip-command to the console
+- the distance of the camera fog now changes depending on the amount of light
+- fixed the bug that stopped the player from blinking when holding a paper
+- the player can no longer move faster by holding two movement keys at the same time
+- fixed the bug in the intro sequence that prevented the guard from shooting the player
+
 ----------------------------------------------------------------------------------
-V0.2.1
+
+v0.2.1
 - replaced SCP-513 and SCP-513-1 with a new SCP
 - some new rooms
 - radio phones
@@ -25,6 +42,7 @@ to implement these:
 the navigator equipped
 
 ----------------------------------------------------------------------------------
+
 v0.1.2
 - added two new rooms
 - modified some of the textures
@@ -34,6 +52,7 @@ v0.1.2
 - fixed some bugs in the saving system
 
 ----------------------------------------------------------------------------------
+
 v0.1.1 
 - added the option to select the graphics- and audio device in the launcher
 - fixed the bug that occasionally stops the door from opening in the first room

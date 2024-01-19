@@ -26,8 +26,12 @@ Function nullgame%()
             Next
         Next
     Next
+    dropspeed = 0.0
     godmode = $00
+    noclip = $00
     wearinggasmask = $00
+    consoleinput = ""
+    consoleopen = $00
     playerlevel = $00
     eyeirritation = 0.0
     eyestuck = 0.0
@@ -40,7 +44,7 @@ Function nullgame%()
     msg = ""
     msgtimer = 0.0
     selecteditem = Null
-    For local0 = $00 To $04 Step $01
+    For local0 = $00 To $09 Step $01
         inventory(local0) = Null
     Next
     selecteditem = Null

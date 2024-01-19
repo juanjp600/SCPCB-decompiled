@@ -8,7 +8,7 @@ Function initnewgame%()
     Local local6.roomtemplates
     drawloading($3C)
     createmap()
-    drawloading($4B)
+    drawloading($46)
     curr173 = createnpc($01, 0.0, -30.0, 0.0)
     curr106 = createnpc($02, 0.0, -30.0, 0.0)
     curr106\Field6 = 63000.0
@@ -40,7 +40,6 @@ Function initnewgame%()
         local2\Field11 = (entityyaw(local2\Field0, $00) + local2\Field11)
         entityparent(local2\Field0, $00, $01)
     Next
-    drawloading($55)
     For local3 = Each rooms
         For local4 = $00 To $13 Step $01
             If (local3\Field7[local4] <> $00) Then
@@ -49,13 +48,13 @@ Function initnewgame%()
         Next
         If (local3\Field6\Field7 = $00) Then
             If (rand($04, $01) = $01) Then
-                local5 = createdecal(rand($02, $03), rnd((entityx(local3\Field1, $00) - 2.0), (entityx(local3\Field1, $00) + 2.0)), 0.001, rnd((entityz(local3\Field1, $00) - 2.0), (entityz(local3\Field1, $00) + 2.0)), 90.0, (Float rand($168, $01)), 0.0)
+                local5 = createdecal(rand($02, $03), (entityx(local3\Field1, $00) + rnd(-2.0, 2.0)), 0.003, (entityz(local3\Field1, $00) + rnd(-2.0, 2.0)), 90.0, (Float rand($168, $01)), 0.0)
                 local5\Field2 = rnd(0.1, 0.4)
                 scalesprite(local5\Field0, local5\Field2, local5\Field2)
                 entityalpha(local5\Field0, rnd(0.85, 0.95))
             EndIf
             If (rand($04, $01) = $01) Then
-                local5 = createdecal($00, rnd((entityx(local3\Field1, $00) - 2.0), (entityx(local3\Field1, $00) + 2.0)), 0.0011, rnd((entityz(local3\Field1, $00) - 2.0), (entityz(local3\Field1, $00) + 2.0)), 90.0, (Float rand($168, $01)), 0.0)
+                local5 = createdecal($00, (entityx(local3\Field1, $00) + rnd(-2.0, 2.0)), 0.003, (entityz(local3\Field1, $00) + rnd(-2.0, 2.0)), 90.0, (Float rand($168, $01)), 0.0)
                 local5\Field2 = rnd(0.5, 0.7)
                 entityalpha(local5\Field0, 0.7)
                 local5\Field5 = $01
@@ -74,7 +73,6 @@ Function initnewgame%()
     turnentity(collider, 0.0, (Float rand($A0, $C8)), 0.0, $00)
     resetentity(collider)
     initevents()
-    drawloading($5A)
     movemouse($140, $F0)
     setfont(font1)
     hidepointer()
@@ -87,7 +85,10 @@ Function initnewgame%()
         updatedoors()
         updatenpcs()
         updateworld(1.0)
+        cls($01, $01)
+        drawloading(((local4 / $28) + $50))
     Next
+    dropspeed = 0.0
     prevtime = millisecs()
     Return $00
 End Function

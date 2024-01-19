@@ -3,11 +3,11 @@ Function addlight%(arg0.rooms, arg1#, arg2#, arg3#, arg4%, arg5#, arg6%, arg7%, 
     For local0 = $00 To $13 Step $01
         If (arg0\Field7[local0] = $00) Then
             arg0\Field7[local0] = createlight(arg4, $00)
-            arg0\Field8[local0] = arg5
             lightrange(arg0\Field7[local0], arg5)
             lightcolor(arg0\Field7[local0], (Float arg6), (Float arg7), (Float arg8))
             positionentity(arg0\Field7[local0], arg1, arg2, arg3, $01)
             entityparent(arg0\Field7[local0], arg0\Field1, $01)
+            arg0\Field8[local0] = (((Float ((arg6 + arg7) + arg8)) / 255.0) / 3.0)
             arg0\Field9[local0] = createsprite($00)
             positionentity(arg0\Field9[local0], arg1, arg2, arg3, $00)
             scalesprite(arg0\Field9[local0], 0.13, 0.13)

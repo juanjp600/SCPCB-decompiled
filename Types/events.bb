@@ -3,5 +3,7 @@ Type events
     Field Field1.rooms
     Field Field2#
     Field Field3#
-    Field Field4%
+    Field Field4#
+    Field Field5%
+    Field Field6%
 End Type

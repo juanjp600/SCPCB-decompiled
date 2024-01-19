@@ -67,7 +67,7 @@ Function loadworld%(arg0$, arg1.roomtemplates)
                 local12 = (entityy(local8, $00) * roomscale)
                 local13 = (entityz(local8, $00) * roomscale)
                 If ((((0.0 <> local11) Or (0.0 <> local12)) Or (0.0 <> local13)) <> 0) Then
-                    local14 = ((Float keyvalue(local8, "range", "1")) / 750.0)
+                    local14 = ((Float keyvalue(local8, "range", "1")) / 1000.0)
                     local15 = keyvalue(local8, "color", "255 255 255")
                     local16 = min(((Float keyvalue(local8, "intensity", "1.0")) * 0.8), 1.0)
                     local17 = (Int ((Float (Int piece(local15, $01, " "))) * local16))
@@ -128,18 +128,15 @@ Function loadworld%(arg0$, arg1.roomtemplates)
                     brushtexture(local19, local30\Field2, $00, $01)
                     brushtexture(local19, local32, $00, $02)
                     paintsurface(local27, local19)
-                    debuglog("zzz")
                     If (strippath(texturename(local31)) <> "") Then
                         freetexture(local31)
                     EndIf
-                    debuglog("fff")
                     If (strippath(texturename(local32)) <> "") Then
                         freetexture(local32)
                     EndIf
                     Exit
                 EndIf
             Next
-            debuglog("adfkjgmnd")
             freetexture(local28)
             freebrush(local19)
         Next

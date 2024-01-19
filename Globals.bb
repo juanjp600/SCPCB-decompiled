@@ -15,6 +15,7 @@ Global brightness%
 Global bullethitsfx%
 Global bumpenabled%
 Global burntnote%
+Global burstsfx%
 Global buttghostsfx%
 Global buttoncodeobj%
 Global buttondown%
@@ -36,6 +37,7 @@ Global coffindistance#
 Global collider%
 Global consoleinput$
 Global consoleopen%
+Global contained106%
 Global coughchn%
 Global curr106.npcs
 Global curr173.npcs
@@ -56,6 +58,8 @@ Global doubleclick%
 Global drawcwm%
 Global drawhandicon%
 Global dropspeed#
+Global elevatorbeepsfx%
+Global elevatormovesfx%
 Global error079%
 Global eyeirritation#
 Global eyestuck#
@@ -68,6 +72,7 @@ Global fe_postprocesstexture2%
 Global fe_postprocesstexture3%
 Global fe_postprocesstexture4%
 Global fe_postprocesstexture5%
+Global femurbreakersfx%
 Global fog%
 Global fogtexture%
 Global font1%
@@ -117,15 +122,19 @@ Global lightflash#
 Global lightsfx%
 Global lightson%
 Global lighttexture%
+Global lightvolume#
 Global listener%
 Global loopdelay%
 Global machinesfx%
+Global magnetdownsfx%
+Global magnetupsfx%
 Global mainmenuopen%
 Global mainmenutab%
 Global mapheight%
 Global mapwidth%
 Global menu173%
 Global menuback%
+Global menublack%
 Global menuopen%
 Global menuscale#
 Global menustr$
@@ -171,6 +180,7 @@ Global msg079%
 Global msgtimer#
 Global musicchn%
 Global musicvolume#
+Global noclip%
 Global nowplaying%
 Global optionfile$
 Global playerlevel%
@@ -182,6 +192,7 @@ Global radiosquelch%
 Global radiostatic%
 Global randomseed$
 Global remotedooron%
+Global roar682sfx%
 Global roomscale#
 Global roomtempid%
 Global sanity#
@@ -210,6 +221,12 @@ Global stonedragsfx%
 Global stonestopsfx%
 Global superman%
 Global supermantimer#
+Global templightvolume#
+Global tempsound%
+Global teslaactivatesfx%
+Global teslaidlesfx%
+Global teslapowerupsfx%
+Global teslatexture%
 Global totalgfxmodes%
 Global up%
 Global updateroomtimer#

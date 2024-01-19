@@ -11,6 +11,8 @@ Function updatelauncher%()
     setbuffer(backbuffer())
     font1 = loadfont("GFX\TI-83.ttf", $12, $00, $00, $00)
     menuwhite = loadimage("GFX\menu\menuwhite.jpg")
+    menublack = loadimage("GFX\menu\menublack.jpg")
+    maskimage(menublack, $FF, $FF, $00)
     launcherimg = loadimage("GFX\menu\launcher.jpg")
     buttonsfx = loadsound("SFX\button.ogg")
     For local0 = $00 To $03 Step $01

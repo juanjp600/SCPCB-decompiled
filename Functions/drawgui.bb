@@ -16,13 +16,13 @@ Function drawgui%()
     Local local16%
     Local local17%
     Local local24$
-    Local local26%
     Local local27%
-    Local local28#
-    Local local29%
+    Local local28%
+    Local local29#
     Local local30%
     Local local31%
     Local local32%
+    Local local33%
     If (((menuopen Or (selecteddoor <> Null)) Or invopen) <> 0) Then
         showpointer()
     Else
@@ -50,11 +50,13 @@ Function drawgui%()
         drawimage(handicon, (Int ((((Float (graphicwidth / $03)) * sin(local4)) + (Float (graphicwidth Sar $01))) - 32.0)), (Int (((Float (graphicheight Sar $01)) - ((Float (graphicheight / $03)) * sin(local5))) - 32.0)), $00)
         If (mouseup1 <> 0) Then
             mouseup1 = $00
-            If (closestdoor\Field12 <> "") Then
-                selecteddoor = closestdoor
-            Else
-                playsound2(buttonsfx, camera, closestbutton, 10.0, 1.0)
-                usedoor(closestdoor)
+            If (closestdoor <> Null) Then
+                If (closestdoor\Field12 <> "") Then
+                    selecteddoor = closestdoor
+                Else
+                    playsound2(buttonsfx, camera, closestbutton, 10.0, 1.0)
+                    usedoor(closestdoor)
+                EndIf
             EndIf
         EndIf
     EndIf
@@ -235,10 +237,10 @@ Function drawgui%()
         local7 = $46
         local8 = $46
         local15 = $23
-        local1 = ((graphicwidth Sar $01) - (((local7 * $05) + (local15 Shl $02)) Sar $01))
-        local2 = ((graphicheight Sar $01) - (local8 Sar $01))
+        local1 = ((graphicwidth Sar $01) - ((((local7 * $0A) Sar $01) + (local15 Shl $02)) Sar $01))
+        local2 = ((graphicheight Sar $01) - local8)
         itemamount = $00
-        For local11 = $00 To $04 Step $01
+        For local11 = $00 To $09 Step $01
             local16 = $00
             If (((mousex() > local1) And (mousex() < (local1 + local7))) <> 0) Then
                 If (((mousey() > local2) And (mousey() < (local2 + local8))) <> 0) Then
@@ -264,7 +266,7 @@ Function drawgui%()
             If (((inventory(local11) <> Null) And (selecteditem <> inventory(local11))) <> 0) Then
                 If (local16 <> 0) Then
                     color($FF, $FF, $FF)
-                    text(((local7 Sar $01) + local1), ((local2 + local8) + local15), inventory(local11)\Field1\Field0, $01, $00)
+                    text(((local7 Sar $01) + local1), (((local2 + local8) + local15) - $0F), inventory(local11)\Field1\Field0, $01, $00)
                     If (selecteditem = Null) Then
                         If (mousehit1 <> 0) Then
                             selecteditem = inventory(local11)
@@ -281,7 +283,7 @@ Function drawgui%()
                 EndIf
                 itemamount = (itemamount + $01)
             ElseIf ((local16 And mousehit1) <> 0) Then
-                For local17 = $00 To $04 Step $01
+                For local17 = $00 To $09 Step $01
                     If (inventory(local17) = selecteditem) Then
                         inventory(local17) = Null
                     EndIf
@@ -289,6 +291,10 @@ Function drawgui%()
                 inventory(local11) = selecteditem
             EndIf
             local1 = ((local1 + local7) + local15)
+            If (local11 = $04) Then
+                local2 = (local2 + (local8 Shl $01))
+                local1 = ((graphicwidth Sar $01) - ((((local7 * $0A) Sar $01) + (local15 Shl $02)) Sar $01))
+            EndIf
         Next
         If (selecteditem <> Null) Then
             If (mousedown1 <> 0) Then
@@ -309,12 +315,12 @@ Function drawgui%()
                     rotateentity(selecteditem\Field0, 0.0, (Float rand($168, $01)), 0.0, $00)
                     resetentity(selecteditem\Field0)
                     selecteditem\Field7 = $00
-                    For local17 = $00 To $04 Step $01
+                    For local17 = $00 To $09 Step $01
                         If (inventory(local17) = selecteditem) Then
                             inventory(local17) = Null
                         EndIf
                     Next
-                    If (selecteditem\Field1\Field1 = "gasmask") Then
+                    If (((selecteditem\Field1\Field1 = "gasmask") Or (selecteditem\Field1\Field1 = "supergasmask")) <> 0) Then
                         wearinggasmask = $00
                     EndIf
                     selecteditem = Null
@@ -323,7 +329,7 @@ Function drawgui%()
                 Else
                     debuglog(("mouseslot " + (Str local10)))
                     If (inventory(local10) = Null) Then
-                        For local17 = $00 To $04 Step $01
+                        For local17 = $00 To $09 Step $01
                             If (inventory(local17) = selecteditem) Then
                                 inventory(local17) = Null
                             EndIf
@@ -427,7 +433,6 @@ Function drawgui%()
                 blurtimer = 1000.0
                 removeitem(selecteditem)
             Case "paper"
-                entityalpha(dark, 0.5)
                 drawimage(selecteditem\Field1\Field5, ((graphicwidth Sar $01) - (imagewidth(selecteditem\Field1\Field5) Sar $01)), ((graphicheight Sar $01) - (imageheight(selecteditem\Field1\Field5) Sar $01)), $00)
             Case "radio","18vradio","fineradio","veryfineradio"
                 If (100.0 >= selecteditem\Field5) Then
@@ -442,7 +447,6 @@ Function drawgui%()
                 local1 = ((graphicwidth - imagewidth(selecteditem\Field1\Field5)) + $78)
                 local2 = ((graphicheight - imageheight(selecteditem\Field1\Field5)) - $1E)
                 drawimage(selecteditem\Field1\Field5, local1, local2, $00)
-                debuglog((Str selecteditem\Field5))
                 If (0.0 < selecteditem\Field5) Then
                     If (((playerroom\Field6\Field4 = "pocketdimension") Or (4.0 > coffindistance)) <> 0) Then
                         resumechannel(radiochn($00))
@@ -452,7 +456,23 @@ Function drawgui%()
                     Else
                         Select (Int selecteditem\Field6)
                             Case $00
+                                resumechannel(radiochn($00))
+                                If (channelplaying(radiochn($00)) = $00) Then
+                                    radiochn($00) = playsound(radiostatic)
+                                EndIf
                             Case $01
+                                debuglog((Str radiostate($01)))
+                                resumechannel(radiochn($01))
+                                local24 = "        WARNING - CONTAINMENT BREACH          "
+                                If (channelplaying(radiochn($01)) = $00) Then
+                                    If (5.0 <= radiostate($01)) Then
+                                        radiochn($01) = playsound(radiosfx($01, $01))
+                                        radiostate($01) = 0.0
+                                    Else
+                                        radiostate($01) = (radiostate($01) + 1.0)
+                                        radiochn($01) = playsound(radiosfx($01, $00))
+                                    EndIf
+                                EndIf
                             Case $02
                                 resumechannel(radiochn($02))
                                 local24 = "        SCP Foundation On-Site Radio          "
@@ -467,6 +487,53 @@ Function drawgui%()
                                     Else
                                         radiochn($02) = playsound(radiosfx($02, $00))
                                     EndIf
+                                EndIf
+                            Case $03
+                                resumechannel(radiochn($03))
+                                If (channelplaying(radiochn($03)) = $00) Then
+                                    radiochn($03) = playsound(radiostatic)
+                                EndIf
+                            Case $04
+                                resumechannel(radiochn($06))
+                                If (channelplaying(radiochn($06)) = $00) Then
+                                    radiochn($06) = playsound(radiostatic)
+                                EndIf
+                                resumechannel(radiochn($04))
+                                If (channelplaying(radiochn($04)) = $00) Then
+                                    If (tempsound <> $00) Then
+                                        freesound(tempsound)
+                                        tempsound = $00
+                                    EndIf
+                                    If (((remotedooron = $00) And (0.0 = radiostate($08))) <> 0) Then
+                                        tempsound = loadsound("SFX\radio\Chatter3.ogg")
+                                        radiochn($04) = playsound(tempsound)
+                                        radiostate($08) = 1.0
+                                    Else
+                                        radiostate($04) = (max((Float rand($FFFFFFF6, $01)), 0.0) + radiostate($04))
+                                        Select radiostate($04)
+                                            Case 10.0
+                                                tempsound = loadsound("SFX\radio\OhGod.ogg")
+                                                radiochn($04) = playsound(tempsound)
+                                                radiostate($04) = (radiostate($04) + 1.0)
+                                            Case 100.0
+                                                tempsound = loadsound("SFX\radio\Chatter2.ogg")
+                                                radiochn($04) = playsound(tempsound)
+                                                radiostate($04) = (radiostate($04) + 1.0)
+                                            Case 158.0
+                                                tempsound = $00
+                                                radiochn($04) = playsound(tempsound)
+                                                radiostate($04) = (radiostate($04) + 1.0)
+                                            Case 200.0
+                                                tempsound = loadsound("SFX\radio\Chatter1.ogg")
+                                                radiochn($04) = playsound(tempsound)
+                                                radiostate($04) = (radiostate($04) + 1.0)
+                                        End Select
+                                    EndIf
+                                EndIf
+                            Case $05
+                                resumechannel(radiochn($05))
+                                If (channelplaying(radiochn($05)) = $00) Then
+                                    radiochn($05) = playsound(radiostatic)
                                 EndIf
                         End Select
                         If (keyhit($19) <> 0) Then
@@ -548,6 +615,13 @@ Function drawgui%()
             Case "gasmask"
                 wearinggasmask = (wearinggasmask = $00)
                 selecteditem = Null
+            Case "supergasmask"
+                If (wearinggasmask <> 0) Then
+                    wearinggasmask = $00
+                Else
+                    wearinggasmask = $02
+                EndIf
+                selecteditem = Null
             Case "navigator","nav"
                 If (100.0 >= selecteditem\Field5) Then
                     selecteditem\Field5 = max(0.0, (selecteditem\Field5 - (fpsfactor * 0.01)))
@@ -574,44 +648,44 @@ Function drawgui%()
                         EndIf
                         rect((local1 - $04), ((local2 - $04) - $07), $08, $08, $00)
                     EndIf
-                    local26 = (Int floor(((entityx(playerroom\Field1, $00) / 8.0) + 0.5)))
-                    local27 = (Int floor(((entityz(playerroom\Field1, $00) / 8.0) + 0.5)))
+                    local27 = (Int floor(((entityx(playerroom\Field1, $00) / 8.0) + 0.5)))
+                    local28 = (Int floor(((entityz(playerroom\Field1, $00) / 8.0) + 0.5)))
                     If (((selecteditem\Field1\Field0 = "S-NAV Navigator Ultimate") And ((millisecs() Mod $258) < $190)) <> 0) Then
-                        local28 = entitydistance(camera, curr173\Field0)
-                        local28 = (ceil((local28 / 8.0)) * 8.0)
-                        If (32.0 > local28) Then
+                        local29 = entitydistance(camera, curr173\Field0)
+                        local29 = (ceil((local29 / 8.0)) * 8.0)
+                        If (32.0 > local29) Then
                             color($FF, $00, $00)
-                            oval((Int ((Float local1) - (local28 * 3.0))), (Int ((Float (local2 - $07)) - (local28 * 3.0))), (Int ((local28 * 3.0) * 2.0)), (Int ((local28 * 3.0) * 2.0)), $00)
+                            oval((Int ((Float local1) - (local29 * 3.0))), (Int ((Float (local2 - $07)) - (local29 * 3.0))), (Int ((local29 * 3.0) * 2.0)), (Int ((local29 * 3.0) * 2.0)), $00)
                             text(((local1 - (local7 Sar $01)) + $14), ((local2 - (local8 Sar $01)) + $14), "SCP-173", $00, $00)
                         EndIf
-                        local28 = entitydistance(camera, curr106\Field0)
-                        If (32.0 > local28) Then
+                        local29 = entitydistance(camera, curr106\Field0)
+                        If (32.0 > local29) Then
                             color($FF, $00, $00)
-                            oval((Int ((Float local1) - (local28 * 1.5))), (Int ((Float (local2 - $07)) - (local28 * 1.5))), (Int (local28 * 3.0)), (Int (local28 * 3.0)), $00)
+                            oval((Int ((Float local1) - (local29 * 1.5))), (Int ((Float (local2 - $07)) - (local29 * 1.5))), (Int (local29 * 3.0)), (Int (local29 * 3.0)), $00)
                             text(((local1 - (local7 Sar $01)) + $14), ((local2 - (local8 Sar $01)) + $28), "SCP-106", $00, $00)
                         EndIf
                         If (playerroom\Field6\Field4 = "coffin") Then
                             If (8.0 > coffindistance) Then
-                                local28 = rnd(4.0, 8.0)
+                                local29 = rnd(4.0, 8.0)
                                 color($FF, $00, $00)
-                                oval((Int ((Float local1) - (local28 * 1.5))), (Int ((Float (local2 - $07)) - (local28 * 1.5))), (Int (local28 * 3.0)), (Int (local28 * 3.0)), $00)
+                                oval((Int ((Float local1) - (local29 * 1.5))), (Int ((Float (local2 - $07)) - (local29 * 1.5))), (Int (local29 * 3.0)), (Int (local29 * 3.0)), $00)
                                 text(((local1 - (local7 Sar $01)) + $14), ((local2 - (local8 Sar $01)) + $28), "SCP-895", $00, $00)
                             EndIf
                         EndIf
                     EndIf
-                    local28 = 4.0
-                    For local29 = (Int max(1.0, ((Float local26) - local28))) To (Int min((Float (mapwidth - $02)), ((Float local26) + local28))) Step $01
-                        For local30 = (Int max(1.0, ((Float local27) - local28))) To (Int min((Float (mapheight - $02)), ((Float local27) + local28))) Step $01
-                            local31 = (((local26 - local29) * $18) + local1)
-                            local32 = ((local2 - ((local27 - local30) * $18)) - $07)
+                    local29 = 4.0
+                    For local30 = (Int max(1.0, ((Float local27) - local29))) To (Int min((Float (mapwidth - $02)), ((Float local27) + local29))) Step $01
+                        For local31 = (Int max(1.0, ((Float local28) - local29))) To (Int min((Float (mapheight - $02)), ((Float local28) + local29))) Step $01
+                            local32 = (((local27 - local30) * $18) + local1)
+                            local33 = ((local2 - ((local28 - local31) * $18)) - $07)
                             If (playerroom\Field6\Field4 = "coffin") Then
                                 If (((8.0 > coffindistance) And (0.5 > rnd(coffindistance, 0.0))) <> 0) Then
-                                    local31 = (Int (((15.0 - coffindistance) * rnd(-1.0, 1.0)) + (Float local31)))
                                     local32 = (Int (((15.0 - coffindistance) * rnd(-1.0, 1.0)) + (Float local32)))
+                                    local33 = (Int (((15.0 - coffindistance) * rnd(-1.0, 1.0)) + (Float local33)))
                                 EndIf
                             EndIf
-                            If ((maptemp(playerlevel, local29, local30) And (((mapfound(playerlevel, local29, local30) > $00) Or (selecteditem\Field1\Field0 = "S-NAV 310 Navigator")) Or (selecteditem\Field1\Field0 = "S-NAV Navigator Ultimate"))) <> 0) Then
-                                If (mapfound(playerlevel, local29, local30) = $01) Then
+                            If ((maptemp(playerlevel, local30, local31) And (((mapfound(playerlevel, local30, local31) > $00) Or (selecteditem\Field1\Field0 = "S-NAV 310 Navigator")) Or (selecteditem\Field1\Field0 = "S-NAV Navigator Ultimate"))) <> 0) Then
+                                If (mapfound(playerlevel, local30, local31) = $01) Then
                                     color($73, $70, $66)
                                     If (selecteditem\Field1\Field0 = "S-NAV Navigator") Then
                                         color($80, $00, $00)
@@ -622,17 +696,17 @@ Function drawgui%()
                                         color($FF, $00, $00)
                                     EndIf
                                 EndIf
-                                If (maptemp(playerlevel, (local29 + $01), local30) = $00) Then
-                                    line((local31 - $0C), (local32 - $0C), (local31 - $0C), (local32 + $0C))
+                                If (maptemp(playerlevel, (local30 + $01), local31) = $00) Then
+                                    line((local32 - $0C), (local33 - $0C), (local32 - $0C), (local33 + $0C))
                                 EndIf
-                                If (maptemp(playerlevel, (local29 - $01), local30) = $00) Then
-                                    line((local31 + $0C), (local32 - $0C), (local31 + $0C), (local32 + $0C))
+                                If (maptemp(playerlevel, (local30 - $01), local31) = $00) Then
+                                    line((local32 + $0C), (local33 - $0C), (local32 + $0C), (local33 + $0C))
                                 EndIf
-                                If (maptemp(playerlevel, local29, (local30 - $01)) = $00) Then
-                                    line((local31 - $0C), (local32 - $0C), (local31 + $0C), (local32 - $0C))
+                                If (maptemp(playerlevel, local30, (local31 - $01)) = $00) Then
+                                    line((local32 - $0C), (local33 - $0C), (local32 + $0C), (local33 - $0C))
                                 EndIf
-                                If (maptemp(playerlevel, local29, (local30 + $01)) = $00) Then
-                                    line((local31 - $0C), (local32 + $0C), (local31 + $0C), (local32 + $0C))
+                                If (maptemp(playerlevel, local30, (local31 + $01)) = $00) Then
+                                    line((local32 - $0C), (local33 + $0C), (local32 + $0C), (local33 + $0C))
                                 EndIf
                             EndIf
                         Next
@@ -665,7 +739,7 @@ Function drawgui%()
         EndIf
     EndIf
     If (selecteditem = Null) Then
-        For local3 = $00 To $05 Step $01
+        For local3 = $00 To $06 Step $01
             If (radiochn(local3) <> $00) Then
                 If (channelplaying(radiochn(local3)) <> 0) Then
                     pausechannel(radiochn(local3))

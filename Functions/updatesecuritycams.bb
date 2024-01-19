@@ -1,21 +1,41 @@
 Function updatesecuritycams%()
     Local local0.securitycams
-    Local local1#
-    Local local2%
+    Local local1%
+    Local local2#
+    Local local3%
     movelock = $00
     For local0 = Each securitycams
-        If (6.0 > entitydistance(camera, local0\Field0)) Then
+        local1 = $00
+        If (4.0 > (Abs (entityx(collider, $00) - entityx(local0\Field0, $01)))) Then
+            If (4.0 > (Abs (entityz(collider, $00) - entityz(local0\Field0, $01)))) Then
+                If (4.0 > entitydistance(camera, local0\Field0)) Then
+                    local1 = $01
+                EndIf
+            EndIf
+        EndIf
+        If (local1 = $00) Then
+            If (local0\Field4 <> $00) Then
+                If (3.0 > (Abs (entityx(collider, $00) - entityx(local0\Field4, $01)))) Then
+                    If (3.0 > (Abs (entityz(collider, $00) - entityz(local0\Field4, $01)))) Then
+                        If (3.0 > entitydistance(camera, local0\Field4)) Then
+                            local1 = $01
+                        EndIf
+                    EndIf
+                EndIf
+            EndIf
+        EndIf
+        If (local1 = $01) Then
             If (local0\Field19 <> 0) Then
                 pointentity(local0\Field3, camera, 0.0)
-                local1 = entitypitch(local0\Field3, $00)
+                local2 = entitypitch(local0\Field3, $00)
                 rotateentity(local0\Field0, 0.0, curveangle(entityyaw(local0\Field3, $00), entityyaw(local0\Field0, $00), 75.0), 0.0, $00)
-                If (40.0 > local1) Then
-                    local1 = 40.0
+                If (40.0 > local2) Then
+                    local2 = 40.0
                 EndIf
-                If (70.0 < local1) Then
-                    local1 = 70.0
+                If (70.0 < local2) Then
+                    local2 = 70.0
                 EndIf
-                rotateentity(local0\Field3, curveangle(local1, entitypitch(local0\Field3, $00), 75.0), entityyaw(local0\Field0, $00), 0.0, $00)
+                rotateentity(local0\Field3, curveangle(local2, entitypitch(local0\Field3, $00), 75.0), entityyaw(local0\Field0, $00), 0.0, $00)
                 positionentity(local0\Field3, entityx(local0\Field0, $01), (entityy(local0\Field0, $01) - 0.083), entityz(local0\Field0, $01), $00)
                 rotateentity(local0\Field3, entitypitch(local0\Field3, $00), entityyaw(local0\Field0, $00), 0.0, $00)
             Else
@@ -46,37 +66,36 @@ Function updatesecuritycams%()
                     If (entityvisible(camera, local0\Field4) <> 0) Then
                         If (-5.0 < blinktimer) Then
                             local0\Field17 = $01
-                        EndIf
-                        If (local0\Field20 <> 0) Then
-                            If (-5.0 < blinktimer) Then
-                                sanity = (sanity - (fpsfactor * 16.0))
+                            If (local0\Field20 <> 0) Then
+                                If (-5.0 < blinktimer) Then
+                                    sanity = (sanity - (fpsfactor * 16.0))
+                                EndIf
+                                If (-1000.0 > sanity) Then
+                                    kill()
+                                EndIf
                             EndIf
-                            If (-1000.0 > sanity) Then
-                                kill()
-                            EndIf
+                            hideentity(camera)
+                            showentity(local0\Field8)
+                            cls($01, $01)
+                            renderworld(1.0)
+                            copyrect($00, $00, $200, $200, $00, $00, $00, texturebuffer(local0\Field9, $00))
+                            hideentity(local0\Field8)
+                            showentity(camera)
                         EndIf
-                        hideentity(camera)
-                        showentity(local0\Field8)
-                        cls($01, $01)
-                        renderworld(1.0)
-                        copyrect($00, $00, $200, $200, $00, $00, $00, texturebuffer(local0\Field9, $00))
-                        hideentity(local0\Field8)
-                        showentity(camera)
                     EndIf
                 EndIf
                 local0\Field14 = 0.0
             EndIf
-            debuglog(("sc\insight: " + (Str local0\Field17)))
             If (local0\Field20 <> 0) Then
                 If (local0\Field17 <> 0) Then
-                    local2 = createpivot($00)
-                    positionentity(local2, entityx(camera, $00), entityy(camera, $00), entityz(camera, $00), $00)
-                    pointentity(local2, local0\Field4, 0.0)
-                    turnentity(local2, 90.0, 0.0, 0.0, $00)
-                    user_camera_pitch = curveangle(entitypitch(local2, $00), (user_camera_pitch + 90.0), min(max((15000.0 / (- sanity)), 15.0), 200.0))
+                    local3 = createpivot($00)
+                    positionentity(local3, entityx(camera, $00), entityy(camera, $00), entityz(camera, $00), $00)
+                    pointentity(local3, local0\Field4, 0.0)
+                    turnentity(local3, 90.0, 0.0, 0.0, $00)
+                    user_camera_pitch = curveangle(entitypitch(local3, $00), (user_camera_pitch + 90.0), min(max((15000.0 / (- sanity)), 15.0), 200.0))
                     user_camera_pitch = (user_camera_pitch - 90.0)
-                    rotateentity(collider, entitypitch(collider, $00), curveangle(entityyaw(local2, $00), entityyaw(collider, $00), min(max((15000.0 / (- sanity)), 15.0), 200.0)), 0.0, $00)
-                    freeentity(local2)
+                    rotateentity(collider, entitypitch(collider, $00), curveangle(entityyaw(local3, $00), entityyaw(collider, $00), min(max((15000.0 / (- sanity)), 15.0), 200.0)), 0.0, $00)
+                    freeentity(local3)
                     If (-800.0 > sanity) Then
                         If (rand($03, $01) = $01) Then
                             entitytexture(local0\Field10, monitortexture, $00, $00)

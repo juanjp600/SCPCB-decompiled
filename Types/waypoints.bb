@@ -1,0 +1,9 @@
+Type waypoints
+    Field Field0%
+    Field Field1.doors
+    Field Field2%
+    Field Field3#
+    Field Field4%
+    Field Field5.waypoints[5]
+    Field Field6#[5]
+End Type

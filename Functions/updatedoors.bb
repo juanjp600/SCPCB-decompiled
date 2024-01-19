@@ -9,28 +9,32 @@ Function updatedoors%()
     closestbutton = $00
     closestdoor = Null
     For local0 = Each doors
-        If (((180.0 <= local0\Field7) Or (0.0 >= local0\Field7)) <> 0) Then
+        If ((((180.0 <= local0\Field7) Or (0.0 >= local0\Field7)) And (grabbedentity = $00)) <> 0) Then
             For local1 = $00 To $01 Step $01
                 If (local0\Field3[local1] <> $00) Then
-                    local2 = distance(entityx(collider, $01), entityz(collider, $01), entityx(local0\Field3[local1], $01), entityz(local0\Field3[local1], $01))
-                    If (0.7 > local2) Then
-                        local3 = createpivot($00)
-                        positionentity(local3, entityx(camera, $00), entityy(camera, $00), entityz(camera, $00), $00)
-                        pointentity(local3, local0\Field3[local1], 0.0)
-                        If (entitypick(local3, 0.45) = local0\Field3[local1]) Then
-                            If (closestbutton = $00) Then
-                                If (local0\Field15 <> $42) Then
-                                    msg = "ENTER ROOM"
-                                    msgtimer = 255.0
+                    If (1.0 > (Abs (entityx(collider, $00) - entityx(local0\Field3[local1], $01)))) Then
+                        If (1.0 > (Abs (entityz(collider, $00) - entityz(local0\Field3[local1], $01)))) Then
+                            local2 = distance(entityx(collider, $01), entityz(collider, $01), entityx(local0\Field3[local1], $01), entityz(local0\Field3[local1], $01))
+                            If (0.7 > local2) Then
+                                local3 = createpivot($00)
+                                positionentity(local3, entityx(camera, $00), entityy(camera, $00), entityz(camera, $00), $00)
+                                pointentity(local3, local0\Field3[local1], 0.0)
+                                If (entitypick(local3, 0.45) = local0\Field3[local1]) Then
+                                    If (closestbutton = $00) Then
+                                        If (local0\Field15 <> $42) Then
+                                            msg = "ENTER ROOM"
+                                            msgtimer = 255.0
+                                        EndIf
+                                        closestbutton = local0\Field3[local1]
+                                        closestdoor = local0
+                                    ElseIf (local2 < entitydistance(collider, closestbutton)) Then
+                                        closestbutton = local0\Field3[local1]
+                                        closestdoor = local0
+                                    EndIf
                                 EndIf
-                                closestbutton = local0\Field3[local1]
-                                closestdoor = local0
-                            ElseIf (local2 < entitydistance(collider, closestbutton)) Then
-                                closestbutton = local0\Field3[local1]
-                                closestdoor = local0
+                                freeentity(local3)
                             EndIf
                         EndIf
-                        freeentity(local3)
                     EndIf
                 EndIf
             Next

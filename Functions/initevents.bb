@@ -1,4 +1,5 @@
 Function initevents%()
+    Local local0.events
     createevent("room173", "room173", $00, 0.0)
     createevent("alarm", "start", $00, 0.0)
     createevent("pocketdimension", "pocketdimension", $00, 0.0)
@@ -7,12 +8,30 @@ Function initevents%()
         createevent("lockroom173", "lockroom", $00, 0.0)
     EndIf
     createevent("lockroom173", "lockroom", $00, 0.3)
+    createevent("tunnel2smoke", "tunnel2", $00, 0.1)
+    createevent("tunnel2", "tunnel2", rand($00, $02), 0.0)
     createevent("room2doors173", "room2doors", $00, 0.3)
-    createevent("testroom173", "room2testroom2", $00, 0.0)
-    If (rand($03, $01) < $03) Then
+    If (rand($05, $01) < $05) Then
+        Select rand($03, $01)
+            Case $01
+                createevent("682roar", "tunnel", rand($00, $02), 0.0)
+            Case $02
+                createevent("682roar", "room3pit", rand($00, $02), 0.0)
+            Case $03
+                createevent("682roar", "room2offices", $00, 0.0)
+        End Select
+    EndIf
+    createevent("testroom173", "room2testroom2", $00, 1.0)
+    createevent("room2tesla", "room2tesla", $00, 0.9)
+    If (rand($05, $01) < $05) Then
         createevent("coffin106", "coffin", $00, 0.0)
     Else
         createevent("coffin", "coffin", $00, 0.0)
+    EndIf
+    createevent("room079", "room079", $00, 0.0)
+    local0 = createevent("room106", "room106", $00, 0.0)
+    If (local0 <> Null) Then
+        local0\Field3 = 1.0
     EndIf
     createevent("pj", "roompj", $00, 0.0)
     createevent("914", "914", $00, 0.0)
@@ -20,8 +39,7 @@ Function initevents%()
     createevent("room2pipes106", "room2pipes", rand($00, $03), 0.0)
     createevent("room2pit", "room2pit", $00, 0.3)
     createevent("testroom", "testroom", $00, 0.0)
-    If (rand($04, $01) < $04) Then
-    EndIf
+    createevent("room2tunnel", "room2tunnel", $00, 0.0)
     createevent("room2ccont", "room2ccont", $00, 0.0)
     Return $00
 End Function

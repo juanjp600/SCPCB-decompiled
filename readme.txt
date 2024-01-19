@@ -6,11 +6,7 @@
 
 
 
-ALPHA VERSION v0.1.3
-
-This game is still in an early state of development, so you will probably face
-some bugs when playing it. The SCP Facility is also quite empty at the moment,
-and it isn't possible to get out and "win the game" yet.
+ALPHA VERSION v0.3
 
 The game is based on the SCP Foundation stories (http://www.scp-wiki.net/).
 
@@ -48,29 +44,44 @@ Programming, graphics, sounds, 3D modeling
 
 3D modeling
 
+	Prosth
+
+	Micro
+
+	Atomicsneak
+
 	Brandon Smith
+
+	Hakkla
 
 	Tom Malinowski			
 
-	Atomicsneak	
-
 	GamerEntitlement
-
-	Prosth
-
 
 Sound effects, music
 
-	TheOddGoat
-	
-	SolidBaker (intercom voice)
-
 	Kevin MacLeod (The Dread, Bump in the Night)
+
+	DukeLovesYou (intercom voice)
+	
+	SolidBaker
+
+	Peanut Head the Statue
+
+	gmodfan11
+
+	TheOddGoat
+
+	Joshofsouls
+
+	phlip45
 
 
 Other
 
-	Dr. Gears (writing)
+	Dr. Gears (writing, ideas)
+
+	KyoteeWilliams (some of the HUD graphics)
 	
 	/v/ (ideas & support)
 

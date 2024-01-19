@@ -91,6 +91,9 @@ Function mouselook%()
         movemouse(viewport_center_x, viewport_center_y)
     EndIf
     If (wearinggasmask <> 0) Then
+        If (wearinggasmask = $02) Then
+            stamina = min(100.0, ((((100.0 - stamina) * 0.01) * fpsfactor) + stamina))
+        EndIf
         showentity(gasmaskoverlay)
         If (gasmaskbreathchn = $00) Then
             gasmaskbreathchn = playsound(gasmaskbreath)

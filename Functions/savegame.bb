@@ -37,6 +37,7 @@ Function savegame%(arg0$)
     writebyte(local3, lightson)
     writefloat(local3, secondarylighton)
     writebyte(local3, remotedooron)
+    writebyte(local3, contained106)
     writeint(local3, mapwidth)
     writeint(local3, mapheight)
     For local4 = $00 To $00 Step $01
@@ -144,6 +145,8 @@ Function savegame%(arg0$)
     For local10 = Each events
         writestring(local3, local10\Field0)
         writefloat(local3, local10\Field2)
+        writefloat(local3, local10\Field3)
+        writefloat(local3, local10\Field4)
         writefloat(local3, entityx(local10\Field1\Field1, $00))
         writefloat(local3, entityz(local10\Field1\Field1, $00))
     Next
@@ -168,7 +171,7 @@ Function savegame%(arg0$)
             writebyte(local3, $00)
         EndIf
         local12 = $00
-        For local2 = $00 To $04 Step $01
+        For local2 = $00 To $09 Step $01
             If (inventory(local2) = local11) Then
                 local12 = $01
                 Exit

@@ -8,10 +8,10 @@ Function drawbutton%(arg0%, arg1%, arg2%, arg3%, arg4$, arg5%)
             local0 = $01
             playsound(buttonsfx)
         EndIf
+        rect((arg0 + $04), (arg1 + $04), (arg2 - $08), (arg3 - $08), $01)
     Else
         color($00, $00, $00)
     EndIf
-    rect((arg0 + $04), (arg1 + $04), (arg2 - $08), (arg3 - $08), $01)
     color($FF, $FF, $FF)
     If (arg5 <> 0) Then
         setfont(font2)

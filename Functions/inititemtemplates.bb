@@ -26,6 +26,10 @@ Function inititemtemplates%()
     local0\Field2 = $00
     local0 = createitemtemplate("Document SCP-372", "paper", "GFX\items\paper.x", "GFX\items\INVpaper.jpg", "GFX\items\doc372.jpg", 0.003, "", "")
     local0\Field2 = $00
+    local0 = createitemtemplate("Email print", "paper", "GFX\items\paper.x", "GFX\items\INVpaper.jpg", "GFX\items\docrose.jpg", 0.003, "", "")
+    local0\Field2 = $00
+    local0 = createitemtemplate("Nuclear Device Document", "paper", "GFX\items\paper.x", "GFX\items\INVpaper.jpg", "GFX\items\docNDP.jpg", 0.003, "", "")
+    local0\Field2 = $00
     local0 = createitemtemplate("Burnt Note", "paper", "GFX\items\paper.x", "GFX\items\INVbn.jpg", "GFX\items\doc372.jpg", 0.003, "", "")
     local0\Field5 = burntnote
     local0\Field2 = $00
@@ -43,7 +47,11 @@ Function inititemtemplates%()
     local0\Field2 = $00
     local0 = createitemtemplate("Notification", "paper", "GFX\items\paper.x", "GFX\items\INVpaper.jpg", "GFX\items\docRAND1.jpg", 0.003, "", "")
     local0\Field2 = $00
+    local0 = createitemtemplate("Incident Report SCP-106-0204", "paper", "GFX\items\paper.x", "GFX\items\INVpaper.jpg", "GFX\items\docIR106.jpg", 0.003, "", "")
+    local0\Field2 = $00
     local0 = createitemtemplate("Gas Mask", "gasmask", "GFX\items\gasmask.b3d", "GFX\items\INVgasmask.jpg", "", 0.02, "", "")
+    local0\Field2 = $02
+    local0 = createitemtemplate("Gas Mask", "supergasmask", "GFX\items\gasmask.b3d", "GFX\items\INVgasmask.jpg", "", 0.021, "", "")
     local0\Field2 = $02
     createitemtemplate("9V Battery", "bat", "GFX\items\battery.x", "GFX\items\INVbattery.jpg", "", 0.0002, "", "")
     local0 = createitemtemplate("Origami", "misc", "GFX\items\origami.b3d", "GFX\items\INVorigami.jpg", "", 0.003, "", "")
@@ -65,9 +73,9 @@ Function inititemtemplates%()
     local0\Field2 = $02
     createitemtemplate("18V Battery", "18vbat", "GFX\items\battery.x", "GFX\items\INVbattery.jpg", "", 0.0003, "", "")
     createitemtemplate("Strange Battery", "killbat", "GFX\items\battery.x", "GFX\items\INVbattery.jpg", "", 0.0003, "", "")
-    createitemtemplate("Eyedrops", "fineeyedrops", "GFX\items\eyedrops.b3d", "GFX\items\INVeyedrops.jpg", "", 0.0012, "GFX\items\eyedropsbump.jpg", "")
-    createitemtemplate("Eyedrops", "supereyedrops", "GFX\items\eyedrops.b3d", "GFX\items\INVeyedrops.jpg", "", 0.0012, "GFX\items\eyedropsbump.jpg", "")
-    local0 = createitemtemplate("ReVision Eyedrops", "eyedrops", "GFX\items\eyedrops.b3d", "GFX\items\INVeyedrops.jpg", "", 0.0012, "GFX\items\eyedropsbump.jpg", "")
-    createitemtemplate("RedVision Eyedrops", "eyedrops", "GFX\items\eyedrops.b3d", "GFX\items\INVeyedropsred.jpg", "", 0.0012, "GFX\items\eyedropsbump.jpg", "GFX\items\eyedropsred.jpg")
+    createitemtemplate("Eyedrops", "fineeyedrops", "GFX\items\eyedrops.b3d", "GFX\items\INVeyedrops.jpg", "", 0.0012, "", "")
+    createitemtemplate("Eyedrops", "supereyedrops", "GFX\items\eyedrops.b3d", "GFX\items\INVeyedrops.jpg", "", 0.0012, "", "")
+    local0 = createitemtemplate("ReVision Eyedrops", "eyedrops", "GFX\items\eyedrops.b3d", "GFX\items\INVeyedrops.jpg", "", 0.0012, "", "")
+    createitemtemplate("RedVision Eyedrops", "eyedrops", "GFX\items\eyedrops.b3d", "GFX\items\INVeyedropsred.jpg", "", 0.0012, "GFX\items\eyedropsred.jpg", "")
     Return $00
 End Function

@@ -9,7 +9,7 @@ Type rooms
     Field Field7%[20]
     Field Field8#[20]
     Field Field9%[20]
-    Field Field10%[11]
+    Field Field10%[21]
     Field Field11.doors[5]
     Field Field12.npcs[5]
 End Type
