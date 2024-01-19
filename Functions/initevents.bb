@@ -13,9 +13,12 @@ Function initevents%()
     createevent("tunnel2", "tunnel2", rand($00, $02), 0.0)
     createevent("room2doors173", "room2doors", $00, 0.5)
     createevent("room2offices2", "room2offices2", $00, 1.0)
+    createevent("room2closets", "room2closets", rand($02, $03), 0.0)
+    createevent("room3pit", "room3pit", $00, 0.0)
     createevent("room2offices3", "room2offices3", $00, 1.0)
     createevent("room3servers", "room3servers", $00, 0.0)
     createevent("room3servers", "room3servers2", $00, 0.0)
+    createevent("room3tunnel", "room3tunnel", $00, 0.08)
     If (rand($05, $01) < $05) Then
         Select rand($03, $01)
             Case $01

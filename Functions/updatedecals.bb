@@ -13,7 +13,7 @@ Function updatedecals%()
                 If (0.0 >= local0\Field8) Then
                     local2 = (Float rand($168, $01))
                     local3 = rnd(local0\Field2, 0.0)
-                    local4 = createdecal($01, (entityx(local0\Field0, $00) + (cos(local2) * local3)), (entityy(local0\Field0, $00) - 0.0005), (entityz(local0\Field0, $00) + (sin(local2) * local3)), entitypitch(local0\Field0, $00), (Float rand($168, $01)), entityroll(local0\Field0, $00))
+                    local4 = createdecal($01, (entityx(local0\Field0, $00) + (cos(local2) * local3)), (entityy(local0\Field0, $00) - 0.0005), (entityz(local0\Field0, $00) + (sin(local2) * local3)), entitypitch(local0\Field0, $00), rnd(360.0, 0.0), entityroll(local0\Field0, $00))
                     local4\Field2 = rnd(0.1, 0.5)
                     local0\Field8 = (Float rand($1E, $64))
                     scalesprite(local4\Field0, local4\Field2, local4\Field2)

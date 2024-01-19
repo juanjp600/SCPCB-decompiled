@@ -63,11 +63,17 @@ Function drawmenu%()
             Else
                 If (gamesaved <> 0) Then
                     If (drawbutton((((local2 Sar $01) + local0) - $96), (local1 + $9A), $12C, $3C, "Load game", $01) <> 0) Then
-                        nullgame()
+                        drawloading($00, $00)
                         menuopen = $00
-                        loadentities()
-                        loadgame(((savepath + currsave) + "\"))
-                        initloadgame()
+                        loadgamequick(((savepath + currsave) + "\"))
+                        movemouse($140, $F0)
+                        setfont(font1)
+                        hidepointer()
+                        flushkeys()
+                        flushmouse()
+                        drawloading($64, $00)
+                        prevtime = millisecs()
+                        fpsfactor = 0.0
                     EndIf
                 Else
                     drawbutton((((local2 Sar $01) + local0) - $96), (local1 + $9A), $12C, $3C, "", $01)

@@ -21,9 +21,9 @@ Function fillroom%(arg0.rooms)
     Local local21%
     Local local22%
     Local local23%
-    Local local24.waypoints
+    Local local24%
     Local local25.waypoints
-    Local local26%
+    Local local26.waypoints
     Local local27%
     Local local28%
     Local local29%
@@ -356,6 +356,12 @@ Function fillroom%(arg0.rooms)
             moveentity(arg0\Field11[$01], 0.0, 0.0, -0.022)
             entitytexture(arg0\Field11[$01], oldaipics($00), $00, $00)
             hideentity(arg0\Field11[$01])
+            arg0\Field11[$02] = createpivot(arg0\Field2)
+            positionentity(arg0\Field11[$02], ((1184.0 * roomscale) + arg0\Field3), (-448.0 * roomscale), ((1792.0 * roomscale) + arg0\Field5), $01)
+            local3 = createdecal($03, ((1184.0 * roomscale) + arg0\Field3), ((-448.0 * roomscale) + 0.01), ((1792.0 * roomscale) + arg0\Field5), 90.0, rnd(360.0, 0.0), 0.0)
+            local3\Field2 = 0.5
+            scalesprite(local3\Field0, local3\Field2, local3\Field2)
+            entityparent(local3\Field0, arg0\Field2, $01)
         Case "room2pit"
             local5 = $00
             For local6 = $FFFFFFFF To $01 Step $02
@@ -409,6 +415,9 @@ Function fillroom%(arg0.rooms)
             local0\Field3[$01] = $00
             local4 = createitem("Mobile Task Force Epsilon-11", "paper", (arg0\Field3 - (316.0 * roomscale)), ((272.0 * roomscale) + arg0\Field4), ((176.0 * roomscale) + arg0\Field5))
             entityparent(local4\Field0, arg0\Field2, $01)
+        Case "room3tunnel"
+            arg0\Field11[$00] = createpivot(arg0\Field2)
+            positionentity(arg0\Field11[$00], (arg0\Field3 - (160.0 * roomscale)), (4.0 * roomscale), ((160.0 * roomscale) + arg0\Field5), $01)
         Case "room2toilets"
             arg0\Field11[$00] = createpivot($00)
             positionentity(arg0\Field11[$00], ((1040.0 * roomscale) + arg0\Field3), (192.0 * roomscale), arg0\Field5, $00)
@@ -571,6 +580,8 @@ Function fillroom%(arg0.rooms)
             turnentity(local13\Field0, -90.0, 0.0, 0.0, $00)
             entityparent(local13\Field0, arg0\Field2, $01)
             local13\Field10 = 35.0
+            arg0\Field11[$00] = createpivot(arg0\Field2)
+            positionentity(arg0\Field11[$00], ((704.0 * roomscale) + arg0\Field3), (112.0 * roomscale), (arg0\Field5 - (416.0 * roomscale)), $01)
         Case "room3servers"
             local4 = createitem("9V Battery", "bat", (arg0\Field3 - (132.0 * roomscale)), (arg0\Field4 - (368.0 * roomscale)), (arg0\Field5 - (648.0 * roomscale)))
             entityparent(local4\Field0, arg0\Field2, $01)
@@ -630,12 +641,18 @@ Function fillroom%(arg0.rooms)
                 local4 = createitem("9V Battery", "bat", ((708.0 * roomscale) + arg0\Field3), ((184.0 * roomscale) + arg0\Field4), (arg0\Field5 - (565.0 * roomscale)))
                 entityparent(local4\Field0, arg0\Field2, $01)
             EndIf
-            local24 = createwaypoint(arg0\Field3, ((66.0 * roomscale) + arg0\Field4), ((292.0 * roomscale) + arg0\Field5), Null, arg0)
-            local25 = createwaypoint(arg0\Field3, ((66.0 * roomscale) + arg0\Field4), (arg0\Field5 - (284.0 * roomscale)), Null, arg0)
-            local24\Field4[$00] = local25
-            local24\Field5[$00] = entitydistance(local24\Field0, local25\Field0)
-            local25\Field4[$00] = local24
-            local25\Field5[$00] = local24\Field5[$00]
+            arg0\Field11[$00] = loadmesh("GFX\npcs\duck_low_res.b3d", $00)
+            scaleentity(arg0\Field11[$00], 0.07, 0.07, 0.07, $00)
+            local24 = loadtexture("GFX\npcs\duck2.png", $01)
+            entitytexture(arg0\Field11[$00], local24, $00, $00)
+            positionentity(arg0\Field11[$00], ((199.0 * roomscale) + arg0\Field3), 0.0, ((208.0 * roomscale) + arg0\Field5), $00)
+            entityparent(arg0\Field11[$00], arg0\Field2, $01)
+            local25 = createwaypoint(arg0\Field3, ((66.0 * roomscale) + arg0\Field4), ((292.0 * roomscale) + arg0\Field5), Null, arg0)
+            local26 = createwaypoint(arg0\Field3, ((66.0 * roomscale) + arg0\Field4), (arg0\Field5 - (284.0 * roomscale)), Null, arg0)
+            local25\Field4[$00] = local26
+            local25\Field5[$00] = entitydistance(local25\Field0, local26\Field0)
+            local26\Field4[$00] = local25
+            local26\Field5[$00] = local25\Field5[$00]
         Case "room2offices"
             local4 = createitem("Document SCP-106", "paper", ((404.0 * roomscale) + arg0\Field3), ((145.0 * roomscale) + arg0\Field4), ((559.0 * roomscale) + arg0\Field5))
             entityparent(local4\Field0, arg0\Field2, $01)
@@ -646,16 +663,16 @@ Function fillroom%(arg0.rooms)
             entityparent(local4\Field0, arg0\Field2, $01)
             local4 = createitem("Notification", "paper", (arg0\Field3 - (137.0 * roomscale)), ((153.0 * roomscale) + arg0\Field4), ((464.0 * roomscale) + arg0\Field5))
             entityparent(local4\Field0, arg0\Field2, $01)
-            local24 = createwaypoint((arg0\Field3 - (32.0 * roomscale)), ((66.0 * roomscale) + arg0\Field4), ((288.0 * roomscale) + arg0\Field5), Null, arg0)
-            local25 = createwaypoint(arg0\Field3, ((66.0 * roomscale) + arg0\Field4), (arg0\Field5 - (448.0 * roomscale)), Null, arg0)
-            local24\Field4[$00] = local25
-            local24\Field5[$00] = entitydistance(local24\Field0, local25\Field0)
-            local25\Field4[$00] = local24
-            local25\Field5[$00] = local24\Field5[$00]
+            local25 = createwaypoint((arg0\Field3 - (32.0 * roomscale)), ((66.0 * roomscale) + arg0\Field4), ((288.0 * roomscale) + arg0\Field5), Null, arg0)
+            local26 = createwaypoint(arg0\Field3, ((66.0 * roomscale) + arg0\Field4), (arg0\Field5 - (448.0 * roomscale)), Null, arg0)
+            local25\Field4[$00] = local26
+            local25\Field5[$00] = entitydistance(local25\Field0, local26\Field0)
+            local26\Field4[$00] = local25
+            local26\Field5[$00] = local25\Field5[$00]
         Case "room2offices2"
             local4 = createitem("Level 1 Key Card", "key1", (arg0\Field3 - (368.0 * roomscale)), (arg0\Field4 - (48.0 * roomscale)), ((80.0 * roomscale) + arg0\Field5))
-            local26 = loadtexture("GFX\items\keycard1.jpg", $01)
-            entitytexture(local4\Field0, local26, $00, $00)
+            local27 = loadtexture("GFX\items\keycard1.jpg", $01)
+            entitytexture(local4\Field0, local27, $00, $00)
             entityparent(local4\Field0, arg0\Field2, $01)
             local4 = createitem("Document SCP-895", "paper", (arg0\Field3 - (800.0 * roomscale)), (arg0\Field4 - (48.0 * roomscale)), ((368.0 * roomscale) + arg0\Field5))
             entityparent(local4\Field0, arg0\Field2, $01)
@@ -679,8 +696,8 @@ Function fillroom%(arg0.rooms)
             positionentity(arg0\Field11[$03], (arg0\Field3 - (488.0 * roomscale)), (160.0 * roomscale), (arg0\Field5 - (668.0 * roomscale)), $01)
             arg0\Field11[$04] = createpivot(arg0\Field2)
             positionentity(arg0\Field11[$04], (arg0\Field3 - (572.0 * roomscale)), (350.0 * roomscale), (arg0\Field5 - (4.0 * roomscale)), $01)
-            local27 = rand($01, $04)
-            positionentity(arg0\Field11[$00], entityx(arg0\Field11[local27], $01), entityy(arg0\Field11[local27], $01), entityz(arg0\Field11[local27], $01), $01)
+            local28 = rand($01, $04)
+            positionentity(arg0\Field11[$00], entityx(arg0\Field11[local28], $01), entityy(arg0\Field11[local28], $01), entityz(arg0\Field11[local28], $01), $01)
         Case "room2offices3"
             If (rand($02, $01) = $01) Then
                 local4 = createitem("Mobile Task Forces", "paper", ((744.0 * roomscale) + arg0\Field3), ((240.0 * roomscale) + arg0\Field4), ((944.0 * roomscale) + arg0\Field5))
@@ -765,11 +782,17 @@ Function fillroom%(arg0.rooms)
             arg0\Field11[$03] = createsprite($00)
             entitytexture(arg0\Field11[$03], teslatexture, $00, $00)
             spriteviewmode(arg0\Field11[$03], $02)
-            entityblend(arg0\Field11[$03], local28)
+            entityblend(arg0\Field11[$03], local29)
             entityfx(arg0\Field11[$03], $19)
             positionentity(arg0\Field11[$03], arg0\Field3, 0.8, arg0\Field5, $00)
             hideentity(arg0\Field11[$03])
             entityparent(arg0\Field11[$03], arg0\Field2, $01)
+            local25 = createwaypoint(arg0\Field3, ((66.0 * roomscale) + arg0\Field4), ((292.0 * roomscale) + arg0\Field5), Null, arg0)
+            local26 = createwaypoint(arg0\Field3, ((66.0 * roomscale) + arg0\Field4), (arg0\Field5 - (284.0 * roomscale)), Null, arg0)
+            local25\Field4[$00] = local26
+            local25\Field5[$00] = entitydistance(local25\Field0, local26\Field0)
+            local26\Field4[$00] = local25
+            local26\Field5[$00] = local25\Field5[$00]
         Case "room2doors"
             local0 = createdoor(arg0\Field0, arg0\Field3, 0.0, ((528.0 * roomscale) + arg0\Field5), 0.0, arg0, $01, $00, $00, "")
             local0\Field21 = $00
@@ -899,11 +922,11 @@ Function fillroom%(arg0.rooms)
             local0 = createdoor(arg0\Field0, (arg0\Field3 - (5760.0 * roomscale)), 0.0, ((1216.0 * roomscale) + arg0\Field5), 0.0, arg0, $00, $00, $00, "")
             local0\Field4 = $01
             local0\Field14 = $01
-            local29 = loadtexture("GFX\map\Door02.jpg", $01)
+            local24 = loadtexture("GFX\map\Door02.jpg", $01)
             For local8 = $00 To $01 Step $01
                 For local6 = $00 To $02 Step $01
                     local0 = createdoor(arg0\Field0, (arg0\Field3 - ((7424.0 - (512.0 * (Float local6))) * roomscale)), 0.0, (((1008.0 - (480.0 * (Float local8))) * roomscale) + arg0\Field5), (Float ((local8 = $00) * $B4)), arg0, $00, $00, $00, "")
-                    entitytexture(local0\Field0, local29, $00, $00)
+                    entitytexture(local0\Field0, local24, $00, $00)
                     local0\Field4 = $01
                     freeentity(local0\Field1)
                     local0\Field1 = $00
@@ -915,7 +938,7 @@ Function fillroom%(arg0.rooms)
                 Next
                 For local6 = $00 To $06 Step $01
                     local0 = createdoor(arg0\Field0, (arg0\Field3 - ((5120.0 - (512.0 * (Float local6))) * roomscale)), 0.0, (((1008.0 - (480.0 * (Float local8))) * roomscale) + arg0\Field5), (Float ((local8 = $00) * $B4)), arg0, $00, $00, $00, "")
-                    entitytexture(local0\Field0, local29, $00, $00)
+                    entitytexture(local0\Field0, local24, $00, $00)
                     local0\Field4 = $01
                     freeentity(local0\Field1)
                     local0\Field1 = $00

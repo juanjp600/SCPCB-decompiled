@@ -27,7 +27,7 @@ Function createnpc.npcs(arg0%, arg1#, arg2#, arg3#)
             entityradius(local0\Field4, 0.32, 0.0)
             entitytype(local0\Field4, $02, $00)
             local0\Field8 = $01
-            local0\Field0 = loadmesh("GFX\npcs\173.3ds", $00)
+            local0\Field0 = loadanimmesh("GFX\npcs\173_2.b3d", $00)
             local2 = (getinifloat("DATA\NPCs.ini", "SCP-173", "scale") / meshdepth(local0\Field0))
             scaleentity(local0\Field0, local2, local2, local2, $00)
             If (bumpenabled <> 0) Then
@@ -40,6 +40,7 @@ Function createnpc.npcs(arg0%, arg1#, arg2#, arg3#)
                 entitytexture(local0\Field0, local5, $00, $01)
                 entitytexture(local0\Field0, local4, $00, $02)
             EndIf
+            setanimtime(local0\Field0, 68.0, $00)
             local0\Field17 = (getinifloat("DATA\NPCs.ini", "SCP-173", "speed") / 100.0)
         Case $02
             local0\Field4 = createpivot($00)

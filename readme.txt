@@ -4,7 +4,7 @@
 **************************    SCP - CONTAINMENT BREACH   **************************
 ***********************************************************************************
 
-				    VERSION 0.6.2
+				    VERSION 0.6.3
 								
 
 This game is licensed under Creative Commons Attribution-ShareAlike 3.0 License.
@@ -12,8 +12,7 @@ This game is licensed under Creative Commons Attribution-ShareAlike 3.0 License.
 http://creativecommons.org/licenses/by-sa/3.0/
 
 The game is based on the works of the SCP Foundation community (http://www.scp-wiki.net/).
-See the credits below for further details.
-							
+See the credits below for further details.							
 								
 
 **** HOW TO RUN IT **************************************
@@ -21,12 +20,20 @@ See the credits below for further details.
 	Run SCP - Containment Breach.exe in the game folder. 
 	Select which resolution you want to use and click the LAUNCH-button.
 
+	If you're getting a "Memory Access Violation" -error when launching the game,
+	try the following:
 
-**** CONTROLS *******************************************
+	- Run the game as administrator
+	- Make sure your graphics card drivers are up-to-date
+	- Try different resolutions and running the game in full screen
 
-	WASD or arrow keys 		-	moving
+
+**** DEFAULT CONTROLS ***********************************
+
+	WASD				-	moving
 	Space				-	manual blinking
-	Shift				-	sprint
+	Left Shift			-	sprint
+	Left Control			-	crouch
 	Tab				-	inventory
 	F5				-	save
 	F3				-	console
@@ -71,6 +78,8 @@ See the credits below for further details.
 			The Dread, Bump in the Night, Satiate, Mandeville, Medusa, Blue Feather
 
 		DukeLovesYou
+
+		ItsDuke
 		
 		SolidBaker
 
@@ -93,13 +102,14 @@ See the credits below for further details.
 		SCP-106 is based on "SCP-106 - The Old Man" by "Dr Gears" (http://scp-wiki.wikidot.com/scp-106)
 		SCP-173 is based on "SCP-173 - The Sculpture - The Original", author unknown (http://scp-wiki.wikidot.com/scp-173)
 		SCP-372 is based on "SCP-372 - Peripheral Jumper" by "Sylocat" (http://scp-wiki.wikidot.com/scp-372)
-		SCP-420-J is based on "SCP-420-J - The Best____ in the World" by "Quikngruvn" (http://scp-wiki.wikidot.com/scp-420-j)
+		SCP-420-J is based on "SCP-420-J - The Best ____ in the World" by "Quikngruvn" (http://scp-wiki.wikidot.com/scp-420-j)
 		SCP-513-1 is based on "SCP-513 - A Cowbell" by "beefwit" (http://scp-wiki.wikidot.com/scp-513)
 		SCP-682 is based on "SCP-682 - Hard-to-Destroy Reptile" by "Dr Gears" (http://scp-wiki.wikidot.com/scp-682)
 		SCP-789-J is based on "SCP-789-J - the butt ghost!!" by "Salman Corbette" (http://scp-wiki.wikidot.com/scp-789-j)
 		SCP-860 is based on "SCP-860 - Blue Key" by "Enma AI" (http://scp-wiki.wikidot.com/scp-860)
 		SCP-895 is based on "SCP-895 - Camera Disruption" by "Raven Mackenzie" (http://scp-wiki.wikidot.com/scp-895)
 		SCP-914 is based on "SCP-914 - The Clockworks" by "Dr Gears" (http://scp-wiki.wikidot.com/scp-914)
+		The Anomalous Ducks are based on "Log of Anomalous Ducks" by "Skara Brae" (http://scp-wiki.wikidot.com/log-of-anomalous-ducks)
 
 	Other
 
@@ -107,7 +117,7 @@ See the credits below for further details.
 			writing, ideas, + SCP-914 and SCP-106
 
 		Steelpoint 
-			some of the documents
+			some of the documents, character ideas
 
 		KyoteeWilliams 
 			some of the HUD graphics

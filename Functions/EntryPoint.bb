@@ -34,7 +34,7 @@ Function EntryPoint%()
     mirrorcameraaz = 0.0
     mirrorcameraparent = $00
     optionfile = "options.ini"
-    versionnumber = "0.6.2"
+    versionnumber = "0.6.3"
     local0 = $00
     Dim arrowimg%($04)
     launcherwidth = (Int min((Float getiniint(optionfile, "launcher", "launcher width")), 1024.0))
@@ -201,7 +201,7 @@ Function EntryPoint%()
     For local1 = $00 To $02 Step $01
         picksfx(local1) = loadsound((("SFX\PickItem" + (Str local1)) + ".ogg"))
     Next
-    ambientsfxamount = $12
+    ambientsfxamount = $13
     Dim ambientsfx%(ambientsfxamount)
     Dim oldmansfx%($06)
     For local1 = $00 To $04 Step $01
@@ -506,11 +506,11 @@ Function EntryPoint%()
             EndIf
             If (0.0 < fpsfactor) Then
                 lightvolume = curvevalue(templightvolume, lightvolume, 50.0)
+                camerafogrange(camera, (camerafognear * lightvolume), (camerafogfar * lightvolume))
+                camerafogcolor(camera, 0.0, 0.0, 0.0)
+                camerafogmode(camera, $01)
+                camerarange(camera, 0.05, min(((camerafogfar * lightvolume) * 1.5), 28.0))
             EndIf
-            camerafogrange(camera, (camerafognear * lightvolume), (camerafogfar * lightvolume))
-            camerafogcolor(camera, 0.0, 0.0, 0.0)
-            camerafogmode(camera, $01)
-            camerarange(camera, 0.05, min(((camerafogfar * lightvolume) * 1.5), 28.0))
             updateroomtimer = (updateroomtimer - fpsfactor2)
             If (0.0 >= updateroomtimer) Then
                 updaterooms()

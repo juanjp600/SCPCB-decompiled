@@ -18,7 +18,9 @@ Function initloadgame%()
             entityparent(local0\Field3[$01], $00, $01)
         EndIf
         If (local0\Field1 <> $00) Then
+            positionentity(local0\Field0, entityx(local0\Field2, $01), entityy(local0\Field2, $01), entityz(local0\Field2, $01), $00)
             moveentity(local0\Field0, 0.0, 0.0, (8.0 * roomscale))
+            positionentity(local0\Field1, entityx(local0\Field2, $01), entityy(local0\Field2, $01), entityz(local0\Field2, $01), $00)
             moveentity(local0\Field1, 0.0, 0.0, (8.0 * roomscale))
         EndIf
     Next
@@ -35,7 +37,10 @@ Function initloadgame%()
     blinktimer = 560.0
     stamina = 100.0
     For local2 = Each roomtemplates
-        freeentity(local2\Field0)
+        If (local2\Field0 <> $00) Then
+            freeentity(local2\Field0)
+            local2\Field0 = $00
+        EndIf
     Next
     dropspeed = 0.01
     drawloading($64, $00)

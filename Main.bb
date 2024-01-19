@@ -1,5 +1,5 @@
-; SCP - Containment Breach v0.6.2_disasm
-; Decompiled on 1/19/2024 5:29:37 PM
+; SCP - Containment Breach v0.6.3_disasm
+; Decompiled on 1/19/2024 5:31:03 PM
 
 Include "Globals.bb"
 
@@ -84,6 +84,7 @@ Include "Functions/shoot.bb"
 Include "Functions/removeitem.bb"
 Include "Functions/removeparticle.bb"
 Include "Functions/nullgame.bb"
+Include "Functions/loadgamequick.bb"
 Include "Functions/clscolor.bb"
 Include "Functions/createitem.bb"
 Include "Functions/wireframe.bb"

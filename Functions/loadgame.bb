@@ -29,21 +29,22 @@ Function loadgame%(arg0$)
     Local local27%
     Local local28.npcs
     Local local30#
-    Local local32.npcs
-    Local local33%
-    Local local34#
+    Local local32%
+    Local local33.npcs
+    Local local34%
     Local local35#
     Local local36#
-    Local local37.decals
-    Local local38.events
-    Local local39.items
-    Local local40$
+    Local local37#
+    Local local38.decals
+    Local local39.events
+    Local local40.items
     Local local41$
-    Local local42%
-    Local local43.itemtemplates
-    Local local44#
-    Local local45.rooms
-    Local local46#
+    Local local42$
+    Local local43%
+    Local local44.itemtemplates
+    Local local45#
+    Local local46.rooms
+    Local local47#
     gamesaved = $01
     local6 = readfile((arg0 + "save.txt"))
     playtime = readint(local6)
@@ -225,16 +226,16 @@ Function loadgame%(arg0$)
         local28\Field30 = readfloat(local6)
         local30 = readfloat(local6)
         Select local27
-            Case $02,$04
+            Case $02,$04,$03,local32,$08
                 setanimtime(local28\Field0, local30, $00)
         End Select
     Next
     For local28 = Each npcs
         If (local28\Field27 <> $00) Then
-            For local32 = Each npcs
-                If (local32 <> local28) Then
-                    If (local32\Field6 = local28\Field27) Then
-                        local28\Field26 = local32
+            For local33 = Each npcs
+                If (local33 <> local28) Then
+                    If (local33\Field6 = local28\Field27) Then
+                        local28\Field26 = local33
                     EndIf
                 EndIf
             Next
@@ -257,84 +258,84 @@ Function loadgame%(arg0$)
     EndIf
     local4 = readint(local6)
     For local3 = $01 To local4 Step $01
-        local33 = readint(local6)
+        local34 = readint(local6)
         local0 = readfloat(local6)
         local1 = readfloat(local6)
         local2 = readfloat(local6)
-        local34 = readfloat(local6)
         local35 = readfloat(local6)
         local36 = readfloat(local6)
-        local37 = createdecal(local33, local0, local1, local2, local34, local35, local36)
-        local37\Field5 = readbyte(local6)
-        local37\Field6 = readint(local6)
-        local37\Field2 = readfloat(local6)
-        local37\Field4 = readfloat(local6)
-        local37\Field3 = readfloat(local6)
-        local37\Field8 = readfloat(local6)
-        local37\Field9 = readfloat(local6)
-        scalesprite(local37\Field0, local37\Field2, local37\Field2)
-        entityblend(local37\Field0, local37\Field5)
-        entityfx(local37\Field0, local37\Field6)
+        local37 = readfloat(local6)
+        local38 = createdecal(local34, local0, local1, local2, local35, local36, local37)
+        local38\Field5 = readbyte(local6)
+        local38\Field6 = readint(local6)
+        local38\Field2 = readfloat(local6)
+        local38\Field4 = readfloat(local6)
+        local38\Field3 = readfloat(local6)
+        local38\Field8 = readfloat(local6)
+        local38\Field9 = readfloat(local6)
+        scalesprite(local38\Field0, local38\Field2, local38\Field2)
+        entityblend(local38\Field0, local38\Field5)
+        entityfx(local38\Field0, local38\Field6)
     Next
     local4 = readint(local6)
     For local3 = $01 To local4 Step $01
-        local38 = (New events)
-        local38\Field0 = readstring(local6)
-        local38\Field2 = readfloat(local6)
-        local38\Field3 = readfloat(local6)
-        local38\Field4 = readfloat(local6)
+        local39 = (New events)
+        local39\Field0 = readstring(local6)
+        local39\Field2 = readfloat(local6)
+        local39\Field3 = readfloat(local6)
+        local39\Field4 = readfloat(local6)
         local0 = readfloat(local6)
         local2 = readfloat(local6)
         For local14 = Each rooms
             If (((local0 = entityx(local14\Field2, $00)) And (local2 = entityz(local14\Field2, $00))) <> 0) Then
-                local38\Field1 = local14
+                local39\Field1 = local14
                 Exit
             EndIf
         Next
     Next
-    For local39 = Each items
-        removeitem(local39)
+    For local40 = Each items
+        removeitem(local40)
     Next
     local4 = readint(local6)
     For local3 = $01 To local4 Step $01
-        local40 = readstring(local6)
         local41 = readstring(local6)
+        local42 = readstring(local6)
         local0 = readfloat(local6)
         local1 = readfloat(local6)
         local2 = readfloat(local6)
-        local39 = createitem(local40, local41, local0, local1, local2)
-        entitytype(local39\Field0, $03, $00)
+        local40 = createitem(local41, local42, local0, local1, local2)
+        entitytype(local40\Field0, $03, $00)
         local0 = readfloat(local6)
         local1 = readfloat(local6)
-        rotateentity(local39\Field0, local0, local1, 0.0, $00)
-        local39\Field7 = readfloat(local6)
-        local39\Field9 = readbyte(local6)
-        If (local39\Field9 <> 0) Then
-            hideentity(local39\Field0)
+        rotateentity(local40\Field0, local0, local1, 0.0, $00)
+        local40\Field7 = readfloat(local6)
+        local40\Field9 = readbyte(local6)
+        If (local40\Field9 <> 0) Then
+            hideentity(local40\Field0)
         EndIf
-        local42 = readbyte(local6)
-        If (local42 = $01) Then
-            selecteditem = local39
+        local43 = readbyte(local6)
+        If (local43 = $01) Then
+            selecteditem = local40
         EndIf
-        local42 = readbyte(local6)
-        If (local42 < $42) Then
-            inventory(local42) = local39
+        local43 = readbyte(local6)
+        If (local43 < $42) Then
+            inventory(local43) = local40
         EndIf
     Next
-    For local43 = Each itemtemplates
-        local43\Field3 = readbyte(local6)
+    For local44 = Each itemtemplates
+        local44\Field3 = readbyte(local6)
     Next
     For local26 = Each doors
         If (local26\Field13 <> Null) Then
-            local44 = 20.0
+            local45 = 20.0
             For local14 = Each rooms
-                local46 = entitydistance(local14\Field2, local26\Field0)
-                If (local44 > local46) Then
-                    local44 = local46
-                    local45 = local14
+                local47 = entitydistance(local14\Field2, local26\Field0)
+                If (local45 > local47) Then
+                    local45 = local47
+                    local46 = local14
                 EndIf
             Next
-            local26\Field13 = local45
+            local26\Field13 = local46
         EndIf
     Next
     If (readint(local6) <> $3E2) Then

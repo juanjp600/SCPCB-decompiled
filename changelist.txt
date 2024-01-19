@@ -1,6 +1,25 @@
 
 ----------------------------------------------------------------------------------
 
+V0.6.3
+- significantly reduced loading times when loading a game after dying
+- SCP-173 has different poses
+- some changes to 096's sound clips
+- a 096 loading screen
+- S-NAV Ultimate now shows 096's location
+- some minor bugfixes at Gate A (can't really tell more without spoiling)
+- the guard in the intro no longer freezes if you go to the end of the hallway
+- optimized the blur effect a bit
+- fixed the bug that caused SCP-106 to get stuck inside its containment cell
+if you turned off the magnets after recontaining it. So now it's possible to
+release it after it has been contained.
+- fixed the "Femur breaker" -sign in 106's containment room
+- fixed the decals that appear when SCP-106 spawns (so, the "cracks" are back)
+- two new anomalous ducks
+- added some dead bodies here and there
+
+----------------------------------------------------------------------------------
+
 V0.6.2
 - SCP-096 is now faster and easier to provoke
 - fixed a bug that caused severe framerate drops when SCP-096 was unable to

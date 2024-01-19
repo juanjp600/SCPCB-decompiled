@@ -21,10 +21,11 @@ Function drawgui%()
     Local local31%
     Local local32%
     Local local33#
-    Local local34%
+    Local local34.npcs
     Local local35%
     Local local36%
     Local local37%
+    Local local38%
     If ((((menuopen Or (selecteddoor <> Null)) Or invopen) Or (0.0 > endingtimer)) <> 0) Then
         showpointer()
     Else
@@ -924,20 +925,31 @@ Function drawgui%()
                                 text(((local1 - (local12 Sar $01)) + $14), ((local2 - (local13 Sar $01)) + $28), "SCP-895", $00, $00)
                             EndIf
                         EndIf
+                        For local34 = Each npcs
+                            If (local34\Field5 = $09) Then
+                                local33 = entitydistance(camera, local34\Field0)
+                                If (32.0 > local33) Then
+                                    color($FF, $00, $00)
+                                    oval((Int ((Float local1) - (local33 * 1.5))), (Int ((Float (local2 - $07)) - (local33 * 1.5))), (Int (local33 * 3.0)), (Int (local33 * 3.0)), $00)
+                                    text(((local1 - (local12 Sar $01)) + $14), ((local2 - (local13 Sar $01)) + $28), "SCP-096", $00, $00)
+                                EndIf
+                                Exit
+                            EndIf
+                        Next
                     EndIf
                     local33 = 4.0
-                    For local34 = (Int max(1.0, ((Float local31) - local33))) To (Int min((Float (mapwidth - $02)), ((Float local31) + local33))) Step $01
-                        For local35 = (Int max(1.0, ((Float local32) - local33))) To (Int min((Float (mapheight - $02)), ((Float local32) + local33))) Step $01
-                            If ((maptemp(playerlevel, local34, local35) And (((mapfound(playerlevel, local34, local35) > $00) Or (selecteditem\Field1\Field0 = "S-NAV 310 Navigator")) Or (selecteditem\Field1\Field0 = "S-NAV Navigator Ultimate"))) <> 0) Then
-                                local36 = (((local31 - local34) * $18) + local1)
-                                local37 = ((local2 - ((local32 - local35) * $18)) - $07)
+                    For local35 = (Int max(1.0, ((Float local31) - local33))) To (Int min((Float (mapwidth - $02)), ((Float local31) + local33))) Step $01
+                        For local36 = (Int max(1.0, ((Float local32) - local33))) To (Int min((Float (mapheight - $02)), ((Float local32) + local33))) Step $01
+                            If ((maptemp(playerlevel, local35, local36) And (((mapfound(playerlevel, local35, local36) > $00) Or (selecteditem\Field1\Field0 = "S-NAV 310 Navigator")) Or (selecteditem\Field1\Field0 = "S-NAV Navigator Ultimate"))) <> 0) Then
+                                local37 = (((local31 - local35) * $18) + local1)
+                                local38 = ((local2 - ((local32 - local36) * $18)) - $07)
                                 If (playerroom\Field7\Field4 = "coffin") Then
                                     If (((8.0 > coffindistance) And (0.5 > rnd(coffindistance, 0.0))) <> 0) Then
-                                        local36 = (Int (((15.0 - coffindistance) * rnd(-1.0, 1.0)) + (Float local36)))
                                         local37 = (Int (((15.0 - coffindistance) * rnd(-1.0, 1.0)) + (Float local37)))
+                                        local38 = (Int (((15.0 - coffindistance) * rnd(-1.0, 1.0)) + (Float local38)))
                                     EndIf
                                 EndIf
-                                If (mapfound(playerlevel, local34, local35) = $01) Then
+                                If (mapfound(playerlevel, local35, local36) = $01) Then
                                     color($73, $70, $66)
                                     If (selecteditem\Field1\Field0 = "S-NAV Navigator") Then
                                         color($80, $00, $00)
@@ -948,17 +960,17 @@ Function drawgui%()
                                         color($FF, $00, $00)
                                     EndIf
                                 EndIf
-                                If (maptemp(playerlevel, (local34 + $01), local35) = $00) Then
-                                    line((local36 - $0C), (local37 - $0C), (local36 - $0C), (local37 + $0C))
+                                If (maptemp(playerlevel, (local35 + $01), local36) = $00) Then
+                                    line((local37 - $0C), (local38 - $0C), (local37 - $0C), (local38 + $0C))
                                 EndIf
-                                If (maptemp(playerlevel, (local34 - $01), local35) = $00) Then
-                                    line((local36 + $0C), (local37 - $0C), (local36 + $0C), (local37 + $0C))
+                                If (maptemp(playerlevel, (local35 - $01), local36) = $00) Then
+                                    line((local37 + $0C), (local38 - $0C), (local37 + $0C), (local38 + $0C))
                                 EndIf
-                                If (maptemp(playerlevel, local34, (local35 - $01)) = $00) Then
-                                    line((local36 - $0C), (local37 - $0C), (local36 + $0C), (local37 - $0C))
+                                If (maptemp(playerlevel, local35, (local36 - $01)) = $00) Then
+                                    line((local37 - $0C), (local38 - $0C), (local37 + $0C), (local38 - $0C))
                                 EndIf
-                                If (maptemp(playerlevel, local34, (local35 + $01)) = $00) Then
-                                    line((local36 - $0C), (local37 + $0C), (local36 + $0C), (local37 + $0C))
+                                If (maptemp(playerlevel, local35, (local36 + $01)) = $00) Then
+                                    line((local37 - $0C), (local38 + $0C), (local37 + $0C), (local38 + $0C))
                                 EndIf
                             EndIf
                         Next

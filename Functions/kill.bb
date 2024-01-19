@@ -10,6 +10,7 @@ Function kill%()
             loadsavegames()
         EndIf
         killtimer = min(-1.0, killtimer)
+        showentity(head)
         positionentity(head, entityx(camera, $01), entityy(camera, $01), entityz(camera, $01), $01)
         resetentity(head)
         rotateentity(head, 0.0, entityyaw(camera, $00), 0.0, $00)

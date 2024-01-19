@@ -83,7 +83,7 @@ Function updatemainmenu%()
                     local7 = "NEW GAME"
                     randomseed = ""
                     If (local4 <> 0) Then
-                        If (rand($0A, $01) = $01) Then
+                        If (rand($0F, $01) = $01) Then
                             Select rand($0A, $01)
                                 Case $01
                                     randomseed = "NIL"
@@ -203,14 +203,12 @@ Function updatemainmenu%()
                     If (currsave <> "") Then
                         If (randomseed = "") Then
                             randomseed = (Str (Abs millisecs()))
-                        Else
-                            local13 = ""
-                            For local6 = $01 To len(randomseed) Step $01
-                                local13 = (local13 + (Str asc(mid(local13, local6, $01))))
-                            Next
-                            randomseed = (Str (Abs (Int local13)))
                         EndIf
-                        seedrnd((Int randomseed))
+                        local13 = ""
+                        For local6 = $01 To len(randomseed) Step $01
+                            local13 = (local13 + (Str asc(mid(local13, local6, $01))))
+                        Next
+                        seedrnd((Abs (Int local13)))
                         local14 = $00
                         For local6 = $01 To savegameamount Step $01
                             If (savegames((local6 - $01)) = currsave) Then
@@ -312,22 +310,22 @@ Function updatemainmenu%()
                 text((Int ((20.0 * menuscale) + (Float local0))), (Int ((180.0 * menuscale) + (Float local1))), "Enable bump mapping:", $00, $00)
                 bumpenabled = drawtick((Int ((200.0 * menuscale) + (Float local0))), (Int ((178.0 * menuscale) + (Float local1))), bumpenabled, $00)
                 text((Int ((20.0 * menuscale) + (Float local0))), (Int ((220.0 * menuscale) + (Float local1))), "Control configuration:", $00, $00)
-                text((Int ((20.0 * menuscale) + (Float local0))), (Int ((240.0 * menuscale) + (Float local1))), "Right", $00, $00)
-                inputbox((Int ((170.0 * menuscale) + (Float local0))), (Int ((240.0 * menuscale) + (Float local1))), $64, $14, keyname((Int min((Float key_right), 210.0))), $04)
+                text((Int ((20.0 * menuscale) + (Float local0))), (Int ((240.0 * menuscale) + (Float local1))), "Up", $00, $00)
+                inputbox((Int ((170.0 * menuscale) + (Float local0))), (Int ((240.0 * menuscale) + (Float local1))), (Int (100.0 * menuscale)), (Int (20.0 * menuscale)), keyname((Int min((Float key_up), 210.0))), $05)
                 text((Int ((20.0 * menuscale) + (Float local0))), (Int ((260.0 * menuscale) + (Float local1))), "Left", $00, $00)
-                inputbox((Int ((170.0 * menuscale) + (Float local0))), (Int ((260.0 * menuscale) + (Float local1))), $64, $14, keyname((Int min((Float key_left), 210.0))), $03)
-                text((Int ((20.0 * menuscale) + (Float local0))), (Int ((280.0 * menuscale) + (Float local1))), "Up", $00, $00)
-                inputbox((Int ((170.0 * menuscale) + (Float local0))), (Int ((280.0 * menuscale) + (Float local1))), $64, $14, keyname((Int min((Float key_up), 210.0))), $05)
-                text((Int ((20.0 * menuscale) + (Float local0))), (Int ((300.0 * menuscale) + (Float local1))), "Down", $00, $00)
-                inputbox((Int ((170.0 * menuscale) + (Float local0))), (Int ((300.0 * menuscale) + (Float local1))), $64, $14, keyname((Int min((Float key_down), 210.0))), $06)
+                inputbox((Int ((170.0 * menuscale) + (Float local0))), (Int ((260.0 * menuscale) + (Float local1))), (Int (100.0 * menuscale)), (Int (20.0 * menuscale)), keyname((Int min((Float key_left), 210.0))), $03)
+                text((Int ((20.0 * menuscale) + (Float local0))), (Int ((280.0 * menuscale) + (Float local1))), "Down", $00, $00)
+                inputbox((Int ((170.0 * menuscale) + (Float local0))), (Int ((280.0 * menuscale) + (Float local1))), (Int (100.0 * menuscale)), (Int (20.0 * menuscale)), keyname((Int min((Float key_down), 210.0))), $06)
+                text((Int ((20.0 * menuscale) + (Float local0))), (Int ((300.0 * menuscale) + (Float local1))), "Right", $00, $00)
+                inputbox((Int ((170.0 * menuscale) + (Float local0))), (Int ((300.0 * menuscale) + (Float local1))), (Int (100.0 * menuscale)), (Int (20.0 * menuscale)), keyname((Int min((Float key_right), 210.0))), $04)
                 text((Int ((300.0 * menuscale) + (Float local0))), (Int ((240.0 * menuscale) + (Float local1))), "Blink", $00, $00)
-                inputbox((Int ((450.0 * menuscale) + (Float local0))), (Int ((240.0 * menuscale) + (Float local1))), $64, $14, keyname((Int min((Float key_blink), 210.0))), $07)
+                inputbox((Int ((450.0 * menuscale) + (Float local0))), (Int ((240.0 * menuscale) + (Float local1))), (Int (100.0 * menuscale)), (Int (20.0 * menuscale)), keyname((Int min((Float key_blink), 210.0))), $07)
                 text((Int ((300.0 * menuscale) + (Float local0))), (Int ((260.0 * menuscale) + (Float local1))), "Sprint", $00, $00)
-                inputbox((Int ((450.0 * menuscale) + (Float local0))), (Int ((260.0 * menuscale) + (Float local1))), $64, $14, keyname((Int min((Float key_sprint), 210.0))), $08)
+                inputbox((Int ((450.0 * menuscale) + (Float local0))), (Int ((260.0 * menuscale) + (Float local1))), (Int (100.0 * menuscale)), (Int (20.0 * menuscale)), keyname((Int min((Float key_sprint), 210.0))), $08)
                 text((Int ((300.0 * menuscale) + (Float local0))), (Int ((280.0 * menuscale) + (Float local1))), "Inventory", $00, $00)
-                inputbox((Int ((450.0 * menuscale) + (Float local0))), (Int ((280.0 * menuscale) + (Float local1))), $64, $14, keyname((Int min((Float key_inv), 210.0))), $09)
+                inputbox((Int ((450.0 * menuscale) + (Float local0))), (Int ((280.0 * menuscale) + (Float local1))), (Int (100.0 * menuscale)), (Int (20.0 * menuscale)), keyname((Int min((Float key_inv), 210.0))), $09)
                 text((Int ((300.0 * menuscale) + (Float local0))), (Int ((300.0 * menuscale) + (Float local1))), "Crouch", $00, $00)
-                inputbox((Int ((450.0 * menuscale) + (Float local0))), (Int ((300.0 * menuscale) + (Float local1))), $64, $14, keyname((Int min((Float key_crouch), 210.0))), $0A)
+                inputbox((Int ((450.0 * menuscale) + (Float local0))), (Int ((300.0 * menuscale) + (Float local1))), (Int (100.0 * menuscale)), (Int (20.0 * menuscale)), keyname((Int min((Float key_crouch), 210.0))), $0A)
                 For local6 = $00 To $E3 Step $01
                     If (keyhit(local6) <> 0) Then
                         local15 = local6

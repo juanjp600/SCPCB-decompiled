@@ -224,6 +224,13 @@ Function updateevents%()
                                     EndIf
                                 EndIf
                             EndIf
+                            If (local7\Field1\Field13[$03]\Field14 <> $00) Then
+                                If (channelplaying(local7\Field1\Field13[$03]\Field15) = $00) Then
+                                    local7\Field1\Field13[$03]\Field14 = $00
+                                Else
+                                    local7\Field1\Field13[$03]\Field15 = loopsound2(local7\Field1\Field13[$03]\Field14, local7\Field1\Field13[$03]\Field15, camera, local7\Field1\Field13[$03]\Field4, 10.0, 1.0)
+                                EndIf
+                            EndIf
                             debuglog((Str local7\Field1\Field13[$03]\Field11))
                             If (1.0 <> local7\Field1\Field13[$03]\Field9) Then
                                 local7\Field1\Field13[$04]\Field9 = 5.0
@@ -262,7 +269,7 @@ Function updateevents%()
                                     EndIf
                                 EndIf
                             EndIf
-                            If (8.0 > distance(entityx(collider, $00), entityz(collider, $00), entityx(local7\Field1\Field2, $00), entityz(local7\Field1\Field2, $00))) Then
+                            If (2.0 > distance(entityx(collider, $00), entityz(collider, $00), (playerroom\Field3 - (1584.0 * roomscale)), (playerroom\Field5 - (1040.0 * roomscale)))) Then
                                 local7\Field7 = loadsound("SFX\intro\guard10.ogg")
                                 playsound2(local7\Field7, camera, local7\Field1\Field13[$03]\Field4, 10.0, 1.0, $01)
                                 local7\Field4 = 910.0
@@ -598,8 +605,9 @@ Function updateevents%()
                             pointentity(local7\Field1\Field13[local1]\Field4, local7\Field1\Field11[$03], 0.0)
                         Next
                         If (contained106 <> 0) Then
+                            local7\Field1\Field12[$02]\Field4 = $01
                             For local1 = $05 To $06 Step $01
-                                positionentity(local7\Field1\Field13[local1]\Field4, (entityx(local7\Field1\Field11[$0F], $01) + ((Float (local1 - $06)) * 0.3)), entityy(local7\Field1\Field11[$0F], $01), (entityz(local7\Field1\Field11[$0F], $01) + ((Float (local1 - $06)) * 0.3)), $01)
+                                positionentity(local7\Field1\Field13[local1]\Field4, (entityx(local7\Field1\Field11[$0F], $01) + ((Float (local1 - $06)) * 0.2)), entityy(local7\Field1\Field11[$0F], $01), (entityz(local7\Field1\Field11[$0F], $01) + ((Float (local1 - $06)) * 0.2)), $01)
                                 resetentity(local7\Field1\Field13[local1]\Field4)
                             Next
                             For local1 = $05 To $08 Step $01
@@ -1022,45 +1030,55 @@ Function updateevents%()
                 EndIf
             Case "room079"
                 If (playerroom = local7\Field1) Then
+                    If (0.0 = local7\Field2) Then
+                        music($04) = loadsound("SFX\Music\AI.ogg")
+                        local7\Field1\Field13[$00] = createnpc($03, entityx(local7\Field1\Field11[$02], $01), (entityy(local7\Field1\Field11[$02], $01) + 0.5), entityz(local7\Field1\Field11[$02], $01))
+                        pointentity(local7\Field1\Field13[$00]\Field4, local7\Field1\Field2, 0.0)
+                        rotateentity(local7\Field1\Field13[$00]\Field4, 0.0, entityyaw(local7\Field1\Field13[$00]\Field4, $00), 0.0, $01)
+                        setanimtime(local7\Field1\Field13[$00]\Field0, 28.0, $00)
+                        local7\Field1\Field13[$00]\Field9 = 8.0
+                        local7\Field2 = 1.0
+                    EndIf
                     shouldplay = $04
                     If (remotedooron <> 0) Then
-                        If (((70.0 < local7\Field1\Field12[$00]\Field7) And local7\Field1\Field12[$00]\Field5) <> 0) Then
+                        If (((50.0 < local7\Field1\Field12[$00]\Field7) And local7\Field1\Field12[$00]\Field5) <> 0) Then
                             local7\Field1\Field12[$00]\Field5 = $00
                         EndIf
                     ElseIf (10000.0 > local7\Field2) Then
-                        If (0.0 = local7\Field2) Then
-                            music($04) = loadsound("SFX\Music\AI.ogg")
-                            local7\Field2 = 1.0
-                        ElseIf (1.0 = local7\Field2) Then
+                        If (1.0 = local7\Field2) Then
+                            local7\Field2 = 2.0
+                        ElseIf (2.0 = local7\Field2) Then
                             If (2.5 > entitydistance(local7\Field1\Field11[$00], collider)) Then
                                 achv079 = $01
-                                local7\Field2 = 2.0
+                                local7\Field2 = 3.0
                                 local7\Field3 = 1.0
                                 local7\Field7 = loadsound("SFX\079_1.ogg")
                                 local7\Field5 = playsound(local7\Field7)
                             EndIf
-                        ElseIf (3500.0 > local7\Field2) Then
-                            If (channelplaying(local7\Field5) <> 0) Then
-                                If (rand($03, $01) = $01) Then
-                                    entitytexture(local7\Field1\Field11[$01], oldaipics($00), $00, $00)
+                        ElseIf (3.0 = local7\Field2) Then
+                            If (3500.0 > local7\Field2) Then
+                                If (channelplaying(local7\Field5) <> 0) Then
+                                    If (rand($03, $01) = $01) Then
+                                        entitytexture(local7\Field1\Field11[$01], oldaipics($00), $00, $00)
+                                        showentity(local7\Field1\Field11[$01])
+                                    ElseIf (rand($0A, $01) = $01) Then
+                                        hideentity(local7\Field1\Field11[$01])
+                                    EndIf
+                                Else
+                                    If (local7\Field7 <> $00) Then
+                                        freesound(local7\Field7)
+                                        local7\Field7 = $00
+                                    EndIf
+                                    entitytexture(local7\Field1\Field11[$01], oldaipics($01), $00, $00)
                                     showentity(local7\Field1\Field11[$01])
-                                ElseIf (rand($0A, $01) = $01) Then
-                                    hideentity(local7\Field1\Field11[$01])
                                 EndIf
-                            Else
-                                If (local7\Field7 <> $00) Then
-                                    freesound(local7\Field7)
-                                    local7\Field7 = $00
-                                EndIf
+                            ElseIf (2.5 > entitydistance(local7\Field1\Field11[$00], collider)) Then
+                                local7\Field2 = 10001.0
+                                local7\Field7 = loadsound("SFX\079_2.ogg")
+                                local7\Field5 = playsound(local7\Field7)
                                 entitytexture(local7\Field1\Field11[$01], oldaipics($01), $00, $00)
                                 showentity(local7\Field1\Field11[$01])
                             EndIf
-                        ElseIf (2.5 > entitydistance(local7\Field1\Field11[$00], collider)) Then
-                            local7\Field2 = 10001.0
-                            local7\Field7 = loadsound("SFX\079_2.ogg")
-                            local7\Field5 = playsound(local7\Field7)
-                            entitytexture(local7\Field1\Field11[$01], oldaipics($01), $00, $00)
-                            showentity(local7\Field1\Field11[$01])
                         EndIf
                     EndIf
                 EndIf
@@ -1368,10 +1386,10 @@ Function updateevents%()
                 EndIf
             Case "room3servers"
                 If (playerroom = local7\Field1) Then
-                    If (((rand($0A, $01) = $01) Or (-5.0 > blinktimer)) <> 0) Then
+                    If (((-8.0 > blinktimer) And (-12.0 < blinktimer)) <> 0) Then
                         If (2.0 < entitydistance(curr173\Field4, collider)) Then
                             local0 = 0.0
-                            If (((entityinview(curr173\Field4, camera) = $00) Or (-5.0 > blinktimer)) <> 0) Then
+                            If (entityinview(curr173\Field4, camera) = $00) Then
                                 Repeat
                                     local2 = rand($00, $02)
                                     positionentity(curr173\Field4, entityx(local7\Field1\Field11[local2], $01), entityy(local7\Field1\Field11[local2], $01), entityz(local7\Field1\Field11[local2], $01), $00)
@@ -1520,9 +1538,20 @@ Function updateevents%()
                         EndIf
                     ElseIf (1.0 = local7\Field2) Then
                         If (0.9 > entitydistance(collider, local7\Field1\Field11[$00])) Then
+                            local24 = createdecal($00, entityx(collider, $01), (-2493.0 * roomscale), entityz(collider, $01), 90.0, (Float rand($168, $01)), 0.0)
+                            local24\Field2 = 0.05
+                            local24\Field1 = 0.001
+                            entityalpha(local24\Field0, 0.8)
+                            updatedecals()
                             curr106\Field9 = -0.1
                             local7\Field2 = 2.0
                         ElseIf (0.9 > entitydistance(collider, local7\Field1\Field11[$01])) Then
+                            local24 = createdecal($00, entityx(collider, $01), (-2493.0 * roomscale), entityz(collider, $01), 90.0, (Float rand($168, $01)), 0.0)
+                            local24\Field2 = 0.05
+                            local24\Field1 = 0.001
+                            entityalpha(local24\Field0, 0.8)
+                            updatedecals()
+                            positionentity(curr106\Field4, entityx(local7\Field1\Field11[$01], $01), entityy(curr106\Field4, $00), entityz(local7\Field1\Field11[$01], $01), $00)
                             curr106\Field9 = -0.1
                             local7\Field2 = 3.0
                         EndIf
@@ -1651,6 +1680,16 @@ Function updateevents%()
                         Delete local7
                     EndIf
                 EndIf
+            Case "room3tunnel"
+                If (0.0 = local7\Field2) Then
+                    local7\Field1\Field13[$00] = createnpc($03, entityx(local7\Field1\Field11[$00], $01), (entityy(local7\Field1\Field11[$00], $01) + 0.5), entityz(local7\Field1\Field11[$00], $01))
+                    pointentity(local7\Field1\Field13[$00]\Field4, local7\Field1\Field2, 0.0)
+                    rotateentity(local7\Field1\Field13[$00]\Field4, 0.0, (entityyaw(local7\Field1\Field13[$00]\Field4, $00) + rnd(-20.0, 20.0)), 0.0, $01)
+                    setanimtime(local7\Field1\Field13[$00]\Field0, 28.0, $00)
+                    local7\Field1\Field13[$00]\Field9 = 8.0
+                    local7\Field2 = 1.0
+                    Delete local7
+                EndIf
             Case "tunnel2smoke"
                 If (0.0 = local7\Field2) Then
                     If (3.5 > distance(entityx(collider, $00), entityz(collider, $00), entityx(local7\Field1\Field2, $00), entityz(local7\Field1\Field2, $00))) Then
@@ -1728,6 +1767,11 @@ Function updateevents%()
                     If (1.5 > coffindistance) Then
                         achv895 = $01
                         If (contained106 = $00) Then
+                            local24 = createdecal($00, entityx(collider, $01), (-2493.0 * roomscale), entityz(collider, $01), 90.0, (Float rand($168, $01)), 0.0)
+                            local24\Field2 = 0.05
+                            local24\Field1 = 0.001
+                            entityalpha(local24\Field0, 0.8)
+                            updatedecals()
                             curr106\Field9 = -0.1
                             local7\Field2 = 1.0
                         EndIf
@@ -1789,10 +1833,19 @@ Function updateevents%()
                 EndIf
             Case "lockroom096"
                 If (((playerroom = local7\Field1) And (0.0 = local7\Field2)) <> 0) Then
-                    local5 = createnpc($09, entityx(local7\Field1\Field2, $01), 0.3, entityz(local7\Field1\Field2, $01))
-                    rotateentity(local5\Field4, 0.0, (Float (local7\Field1\Field6 + $2D)), 0.0, $01)
-                    local7\Field2 = 1.0
-                    Delete local7
+                    For local5 = Each npcs
+                        If (local5\Field5 = $09) Then
+                            local7\Field2 = 1.0
+                            Delete local7
+                            Exit
+                        EndIf
+                    Next
+                    If (local7 <> Null) Then
+                        local5 = createnpc($09, entityx(local7\Field1\Field2, $01), 0.3, entityz(local7\Field1\Field2, $01))
+                        rotateentity(local5\Field4, 0.0, (Float (local7\Field1\Field6 + $2D)), 0.0, $01)
+                        local7\Field2 = 1.0
+                        Delete local7
+                    EndIf
                 EndIf
             Case "pocketdimension"
                 If (playerroom = local7\Field1) Then
@@ -2087,7 +2140,7 @@ Function updateevents%()
                                 local7\Field6 = playsound(femurbreakersfx)
                             EndIf
                         EndIf
-                    Else
+                    ElseIf (1.0 = local7\Field2) Then
                         If ((soundtransmission And (2000.0 > local7\Field4)) <> 0) Then
                             If (local7\Field6 = $00) Then
                                 tempsound = loadsound("SFX\LureSubject1.ogg")
@@ -2144,7 +2197,9 @@ Function updateevents%()
                                     contained106 = $00
                                     showentity(curr106\Field0)
                                     curr106\Field19 = 0.0
-                                    curr106\Field9 = -0.1
+                                    curr106\Field9 = -11.0
+                                    local7\Field2 = 2.0
+                                    Exit
                                 EndIf
                             EndIf
                         EndIf
@@ -2159,11 +2214,56 @@ Function updateevents%()
                 EndIf
             Case "room2offices2"
                 If (playerroom = local7\Field1) Then
-                    If (-10.0 > blinktimer) Then
+                    If (((-8.0 > blinktimer) And (-12.0 < blinktimer)) <> 0) Then
                         local2 = rand($01, $04)
                         positionentity(local7\Field1\Field11[$00], entityx(local7\Field1\Field11[local2], $01), entityy(local7\Field1\Field11[local2], $01), entityz(local7\Field1\Field11[local2], $01), $01)
                         rotateentity(local7\Field1\Field11[$00], 0.0, rnd(360.0, 0.0), 0.0, $00)
                     EndIf
+                EndIf
+            Case "room3pit"
+                If (playerroom = local7\Field1) Then
+                    If (local7\Field1\Field11[$02] = $00) Then
+                        local7\Field1\Field11[$02] = loadmesh("GFX\npcs\duck_low_res.b3d", $00)
+                        scaleentity(local7\Field1\Field11[$02], 0.07, 0.07, 0.07, $00)
+                        local13 = loadtexture("GFX\npcs\duck1.png", $01)
+                        entitytexture(local7\Field1\Field11[$02], local13, $00, $00)
+                        positionentity(local7\Field1\Field11[$02], entityx(local7\Field1\Field11[$00], $01), entityy(local7\Field1\Field11[$00], $01), entityz(local7\Field1\Field11[$00], $01), $00)
+                        pointentity(local7\Field1\Field11[$02], local7\Field1\Field2, 0.0)
+                        rotateentity(local7\Field1\Field11[$02], 0.0, entityyaw(local7\Field1\Field11[$02], $01), 0.0, $01)
+                        local7\Field7 = loadsound("SFX\sax.ogg")
+                    ElseIf (entityinview(local7\Field1\Field11[$02], camera) = $00) Then
+                        local7\Field2 = (local7\Field2 + fpsfactor)
+                        If (((rand($C8, $01) = $01) And (300.0 < local7\Field2)) <> 0) Then
+                            local7\Field2 = 0.0
+                            local7\Field5 = playsound2(local7\Field7, camera, local7\Field1\Field11[$02], 6.0, 1.0, $01)
+                        EndIf
+                    ElseIf (local7\Field5 <> $00) Then
+                        If (channelplaying(local7\Field5) <> 0) Then
+                            stopchannel(local7\Field5)
+                        EndIf
+                    EndIf
+                EndIf
+            Case "room2closets"
+                If (playerroom = local7\Field1) Then
+                    If (((-8.0 > blinktimer) And (-12.0 < blinktimer)) <> 0) Then
+                        pointentity(local7\Field1\Field11[$00], camera, 0.0)
+                        rotateentity(local7\Field1\Field11[$00], 0.0, entityyaw(local7\Field1\Field11[$00], $01), 0.0, $01)
+                    EndIf
+                    If (0.0 = local7\Field3) Then
+                        local7\Field2 = curvevalue(0.0, local7\Field2, 15.0)
+                        If (rand($320, $01) = $01) Then
+                            local7\Field3 = 1.0
+                        EndIf
+                    Else
+                        local7\Field2 = ((fpsfactor * 0.5) + local7\Field2)
+                        If (360.0 < local7\Field2) Then
+                            local7\Field2 = 0.0
+                        EndIf
+                        If (rand($4B0, $01) = $01) Then
+                            local7\Field3 = 0.0
+                        EndIf
+                    EndIf
+                    positionentity(local7\Field1\Field11[$00], entityx(local7\Field1\Field11[$00], $01), (((160.0 * roomscale) + 0.05) + (sin((local7\Field2 + 270.0)) * 0.05)), entityz(local7\Field1\Field11[$00], $01), $01)
                 EndIf
             Case "room2offices3"
                 If (playerroom = local7\Field1) Then
