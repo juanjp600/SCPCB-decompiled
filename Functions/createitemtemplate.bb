@@ -8,13 +8,14 @@ Function createitemtemplate.itemtemplates(arg0$, arg1$, arg2$, arg3$, arg4$, arg
         local2 = loadtexture(arg6, $01)
         entitytexture(local0\Field4, local2, $00, $00)
     EndIf
-    local0\Field7 = arg5
+    local0\Field8 = arg5
     scaleentity(local0\Field4, arg5, arg5, arg5, $00)
     local0\Field5 = loadimage(arg3)
     maskimage(local0\Field5, $FF, $00, $FF)
-    If (arg4 <> "") Then
-        local0\Field6 = loadimage(arg4)
-        maskimage(local0\Field6, $FF, $00, $FF)
+    local0\Field6 = arg4
+    If (((local0\Field6 <> "") And (local0\Field1 <> "paper")) <> 0) Then
+        local0\Field7 = loadimage(arg4)
+        maskimage(local0\Field7, $FF, $00, $FF)
     EndIf
     local0\Field1 = arg1
     local0\Field0 = arg0

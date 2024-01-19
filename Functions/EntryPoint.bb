@@ -32,7 +32,7 @@ Function EntryPoint%()
     mirrorcameraaz = 0.0
     mirrorcameraparent = $00
     optionfile = "options.ini"
-    versionnumber = "0.5.2"
+    versionnumber = "0.5.3"
     local0 = $00
     Dim arrowimg%($04)
     launcherwidth = (Int min((Float getiniint(optionfile, "launcher", "launcher width")), 1024.0))
@@ -191,7 +191,7 @@ Function EntryPoint%()
     alarmsfx($02) = loadsound("SFX\alarm3.ogg")
     Dim damagesfx%($05)
     For local6 = $00 To $02 Step $01
-        damagesfx($00) = loadsound((("SFX\NeckSnap" + (Str (local6 + $01))) + ".ogg"))
+        damagesfx(local6) = loadsound((("SFX\NeckSnap" + (Str (local6 + $01))) + ".ogg"))
     Next
     Dim deathsfx%($05)
     deathsfx($00) = loadsound("SFX\death1.ogg")
@@ -396,7 +396,7 @@ Function EntryPoint%()
                 camerafogrange(camera, (camerafognear * lightvolume), (camerafogfar * lightvolume))
                 camerafogcolor(camera, 0.0, 0.0, 0.0)
                 camerafogmode(camera, $01)
-                camerarange(camera, 0.05, min((camerafogfar * 1.6), 16.0))
+                camerarange(camera, 0.05, min(((camerafogfar * lightvolume) * 1.5), 16.0))
                 updateroomtimer = (updateroomtimer - fpsfactor)
                 If (0.0 >= updateroomtimer) Then
                     updaterooms()

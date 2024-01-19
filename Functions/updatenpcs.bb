@@ -90,14 +90,14 @@ Function updatenpcs%()
                                     If (godmode = $00) Then
                                         local0\Field19 = $01
                                     EndIf
-                                    If (rand($02, $01) = $01) Then
-                                        turnentity(camera, 0.0, 120.0, 0.0, $00)
-                                    Else
-                                        turnentity(camera, 0.0, -120.0, 0.0, $00)
-                                    EndIf
                                     playsound(damagesfx(rand($00, $02)))
+                                    If (rand($02, $01) = $01) Then
+                                        turnentity(camera, 0.0, (Float rand($50, $64)), 0.0, $00)
+                                    Else
+                                        turnentity(camera, 0.0, (Float rand($FFFFFF9C, $FFFFFFB0)), 0.0, $00)
+                                    EndIf
+                                    kill()
                                 EndIf
-                                kill()
                             Else
                                 pointentity(local0\Field4, collider, 0.0)
                                 rotateentity(local0\Field4, 0.0, entityyaw(local0\Field4, $00), entityroll(local0\Field4, $00), $00)

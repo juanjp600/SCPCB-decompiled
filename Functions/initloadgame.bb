@@ -44,7 +44,9 @@ Function initloadgame%()
     For local2 = Each roomtemplates
         freeentity(local2\Field0)
     Next
-    prevtime = millisecs()
+    dropspeed = 0.01
     drawloading($64, $00)
+    prevtime = millisecs()
+    fpsfactor = 0.0
     Return $00
 End Function

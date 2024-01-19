@@ -123,9 +123,6 @@ Function moveplayer%()
             If (-0.07 > dropspeed) Then
                 If (playerroom\Field7\Field4 = "pocketdimension") Then
                     playsound(steppdsfx(rand($00, $02)))
-                    If (-0.2 > dropspeed) Then
-                        kill()
-                    EndIf
                 Else
                     playsound(stepsfx(playerroom\Field7\Field8, $00, rand($00, $03)))
                 EndIf
@@ -135,7 +132,7 @@ Function moveplayer%()
         Else
             dropspeed = min(max((dropspeed - (0.006 * fpsfactor)), -2.0), 0.0)
         EndIf
-        moveentity(collider, 0.0, dropspeed, 0.0)
+        translateentity(collider, 0.0, dropspeed, 0.0, $00)
     EndIf
     If (keyhit($39) <> 0) Then
         blinktimer = 0.0

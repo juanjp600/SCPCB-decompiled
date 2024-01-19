@@ -4,7 +4,7 @@
 **************************    SCP - CONTAINMENT BREACH   **************************
 ***********************************************************************************
 
-				    VERSION v0.5.2
+				    VERSION v0.5.3
 								
 
 This game is licensed under Creative Commons Attribution-ShareAlike 3.0 License.
@@ -111,6 +111,9 @@ See the credits below for further details.
 
 		KyoteeWilliams 
 			some of the HUD graphics
+
+		Caleb Yu
+			some of the documents
 
 		Orgil D. Pount (Destructoid)
 			guard/MTF textures

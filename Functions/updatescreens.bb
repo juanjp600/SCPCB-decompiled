@@ -10,7 +10,7 @@ Function updatescreens%()
         If (local0\Field3 = playerroom) Then
             If (1.2 > entitydistance(collider, local0\Field0)) Then
                 entitypick(camera, 1.2)
-                If (pickedentity() = local0\Field0) Then
+                If (((pickedentity() = local0\Field0) And (local0\Field1 <> "")) <> 0) Then
                     drawhandicon = $01
                     If (mouseup1 <> 0) Then
                         selectedscreen = local0

@@ -65,7 +65,7 @@ Function mouselook%()
             headdropspeed = 0.0
             debuglog("collfloor")
         Else
-            If (((killanim = $00) And $00) <> 0) Then
+            If (killanim = $00) Then
                 moveentity(head, 0.0, 0.0, headdropspeed)
                 rotateentity(head, curveangle(-90.0, entitypitch(head, $00), 20.0), entityyaw(head, $00), entityroll(head, $00), $00)
                 rotateentity(camera, curveangle((entitypitch(head, $00) - 40.0), entitypitch(camera, $00), 40.0), entityyaw(camera, $00), entityroll(camera, $00), $00)

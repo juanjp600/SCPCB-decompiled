@@ -168,7 +168,6 @@ Function createmap%()
         maproom($01, (Int floor((0.8 * (Float local16))))) = "room106"
         maproom($01, (local16 - $01)) = "exit1"
         maproom($01, $00) = "start"
-        maproom($02, $00) = "room2closets"
         maproom($02, (Int floor((rnd(0.1, 0.15) * (Float local17))))) = "room2offices"
         maproom($02, (Int floor((rnd(0.2, 0.25) * (Float local17))))) = "room2testroom2"
         maproom($02, (Int floor((rnd(0.3, 0.38) * (Float local17))))) = "room2sroom"
@@ -176,6 +175,7 @@ Function createmap%()
         maproom($02, (Int floor((rnd(0.6, 0.65) * (Float local17))))) = "testroom"
         maproom($02, (Int floor((rnd(0.8, 0.86) * (Float local17))))) = "room2poffices"
         maproom($02, (Int floor((rnd(0.9, 0.95) * (Float local17))))) = "room2nuke"
+        maproom($02, $00) = "room2closets"
         maproom($03, $00) = "lockroom"
         maproom($03, $01) = "room2ccont"
         For local1 = $00 To mapheight Step $01

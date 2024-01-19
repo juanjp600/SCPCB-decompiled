@@ -9,10 +9,10 @@ Function kill%()
             deletedir(((savepath + currsave) + "\"))
             loadsavegames()
         EndIf
+        killtimer = min(-1.0, killtimer)
+        positionentity(head, entityx(camera, $01), entityy(camera, $01), entityz(camera, $01), $01)
+        resetentity(head)
+        rotateentity(head, 0.0, entityyaw(camera, $00), 0.0, $00)
     EndIf
-    killtimer = min(-1.0, killtimer)
-    positionentity(head, entityx(camera, $01), entityy(camera, $01), entityz(camera, $01), $01)
-    resetentity(head)
-    rotateentity(head, 0.0, (entityyaw(camera, $00) + (Float rand($FFFFFFD3, $2D))), 0.0, $00)
     Return $00
 End Function

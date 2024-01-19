@@ -1,3 +1,12 @@
+
+----------------------------------------------------------------------------------
+
+v0.5.3
+- fixed the bug that caused the player to fall through the map when loading a new game
+- fixed some waypoint bugs
+- fixed the bug that caused the player to fall through the map in the pocket dimension
+- added a keycard in 106's containment room
+
 ----------------------------------------------------------------------------------
 
 v0.5.2

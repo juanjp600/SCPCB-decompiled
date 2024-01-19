@@ -1164,7 +1164,7 @@ Function updateevents%()
                         local0 = entitydistance(collider, local7\Field1\Field2)
                         If (local0 > (1700.0 * roomscale)) Then
                             blinktimer = -10.0
-                            Select rand($1A, $01)
+                            Select rand($17, $01)
                                 Case $01,$02,$03,$05,$06,$07
                                     playsound(oldmansfx($03))
                                     local2 = createpivot($00)
@@ -1224,7 +1224,7 @@ Function updateevents%()
                                             Exit
                                         EndIf
                                     Next
-                                Case $14,$15,$16,$17,$18,$19,$1A
+                                Case $14,$15,$16,$17
                                     blinktimer = -10.0
                                     positionentity(collider, entityx(local7\Field1\Field11[$0C], $01), 0.6, entityz(local7\Field1\Field11[$0C], $01), $00)
                                     resetentity(collider)

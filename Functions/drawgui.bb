@@ -452,7 +452,10 @@ Function drawgui%()
                 blurtimer = 1000.0
                 removeitem(selecteditem)
             Case "paper"
-                drawimage(selecteditem\Field1\Field6, ((graphicwidth Sar $01) - (imagewidth(selecteditem\Field1\Field6) Sar $01)), ((graphicheight Sar $01) - (imageheight(selecteditem\Field1\Field6) Sar $01)), $00)
+                If (selecteditem\Field1\Field7 = $00) Then
+                    selecteditem\Field1\Field7 = loadimage(selecteditem\Field1\Field6)
+                EndIf
+                drawimage(selecteditem\Field1\Field7, ((graphicwidth Sar $01) - (imagewidth(selecteditem\Field1\Field7) Sar $01)), ((graphicheight Sar $01) - (imageheight(selecteditem\Field1\Field7) Sar $01)), $00)
             Case "radio","18vradio","fineradio","veryfineradio"
                 If (100.0 >= selecteditem\Field5) Then
                     selecteditem\Field5 = max(0.0, (selecteditem\Field5 - (fpsfactor * 0.01)))
@@ -463,9 +466,9 @@ Function drawgui%()
                     radiostate($05) = 1.0
                 EndIf
                 local24 = ""
-                local1 = ((graphicwidth - imagewidth(selecteditem\Field1\Field6)) + $78)
-                local2 = ((graphicheight - imageheight(selecteditem\Field1\Field6)) - $1E)
-                drawimage(selecteditem\Field1\Field6, local1, local2, $00)
+                local1 = ((graphicwidth - imagewidth(selecteditem\Field1\Field7)) + $78)
+                local2 = ((graphicheight - imageheight(selecteditem\Field1\Field7)) - $1E)
+                drawimage(selecteditem\Field1\Field7, local1, local2, $00)
                 If (0.0 < selecteditem\Field5) Then
                     If (((playerroom\Field7\Field4 = "pocketdimension") Or (4.0 > coffindistance)) <> 0) Then
                         resumechannel(radiochn($00))
@@ -654,7 +657,7 @@ Function drawgui%()
                 local2 = ((graphicheight Sar $01) - $1C)
                 local11 = $11F
                 local12 = $100
-                drawimage(selecteditem\Field1\Field6, ((graphicwidth Sar $01) - (imagewidth(selecteditem\Field1\Field6) Sar $01)), ((graphicheight Sar $01) - (imageheight(selecteditem\Field1\Field6) Sar $01)), $00)
+                drawimage(selecteditem\Field1\Field7, ((graphicwidth Sar $01) - (imagewidth(selecteditem\Field1\Field7) Sar $01)), ((graphicheight Sar $01) - (imageheight(selecteditem\Field1\Field7) Sar $01)), $00)
                 If (playerroom\Field7\Field4 = "pocketdimension") Then
                     If ((millisecs() Mod $3E8) > $12C) Then
                         text(local1, (((local12 Sar $01) + local2) - $50), "ERROR 06", $01, $00)
@@ -756,6 +759,12 @@ Function drawgui%()
         End Select
         If (mousehit2 <> 0) Then
             entityalpha(dark, 0.0)
+            If (selecteditem\Field1\Field1 = "paper") Then
+                If (selecteditem\Field1\Field7 <> $00) Then
+                    freeimage(selecteditem\Field1\Field7)
+                EndIf
+                selecteditem\Field1\Field7 = $00
+            EndIf
             If (selecteditem\Field1\Field2 <> $42) Then
                 playsound(picksfx(selecteditem\Field1\Field2))
             EndIf

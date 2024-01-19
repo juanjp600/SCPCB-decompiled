@@ -33,6 +33,8 @@ Function nullgame%()
         local4\Field3 = $00
     Next
     dropspeed = 0.0
+    shake = 0.0
+    currspeed = 0.0
     selectedending = ""
     endingtimer = 0.0
     explosiontimer = 0.0
@@ -77,6 +79,7 @@ Function nullgame%()
     eyestuck = 0.0
     eyesuper = 0.0
     killtimer = 0.0
+    falltimer = 0.0
     stamina = 100.0
     blurtimer = 0.0
     superman = $00
