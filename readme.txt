@@ -4,7 +4,7 @@
 **************************    SCP - CONTAINMENT BREACH   **************************
 ***********************************************************************************
 
-				    VERSION v0.5.4
+				    VERSION v0.5.5
 								
 
 This game is licensed under Creative Commons Attribution-ShareAlike 3.0 License.

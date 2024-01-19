@@ -18,7 +18,7 @@ Function mouselook%()
             msg = ("EntityX(Collider) = NaN, RESETTING COORDINATES    -    New coordinates: " + (Str entityx(collider, $00)))
             msgtimer = 300.0
         EndIf
-        positionentity(camera, entityx(collider, $00), (entityy(collider, $00) + 0.5), entityz(collider, $00), $00)
+        positionentity(camera, entityx(collider, $00), (entityy(collider, $00) + 0.6), entityz(collider, $00), $00)
         local3 = (sin(shake) / 20.0)
         moveentity(camera, side, local3, 0.0)
         mouse_x_speed_1 = curvevalue(((mousesens + 0.6) * (Float mousexspeed())), mouse_x_speed_1, (6.0 / (mousesens + 1.0)))

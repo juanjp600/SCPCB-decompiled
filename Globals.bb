@@ -1,4 +1,4 @@
-Global accesscode$
+Global accesscode%
 Global achv079%
 Global achv106%
 Global achv372%
@@ -250,6 +250,8 @@ Global showfps%
 Global side#
 Global signimg%
 Global signobj%
+Global sky1%
+Global sky2%
 Global soundemitter%
 Global soundtransmission%
 Global sprinticon%

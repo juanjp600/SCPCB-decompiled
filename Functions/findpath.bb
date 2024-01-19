@@ -8,8 +8,9 @@ Function findpath%(arg0.npcs, arg1#, arg2#, arg3#)
     Local local6%
     Local local7%
     Local local8.waypoints
-    Local local9.waypoints
-    Local local10%
+    Local local9#
+    Local local10.waypoints
+    Local local11%
     For local3 = Each waypoints
         local3\Field3 = $00
         local3\Field6 = 0.0
@@ -85,14 +86,26 @@ Function findpath%(arg0.npcs, arg1#, arg2#, arg3#)
                 If (local3\Field4[local6] <> Null) Then
                     If (local3\Field4[local6]\Field3 < $02) Then
                         If (local3\Field4[local6]\Field3 = $01) Then
-                            If (local3\Field4[local6]\Field7 > (local3\Field5[local6] + local3\Field7)) Then
-                                local3\Field4[local6]\Field7 = (local3\Field5[local6] + local3\Field7)
+                            local9 = (local3\Field5[local6] + local3\Field7)
+                            If (arg0\Field5 = $08) Then
+                                If (local3\Field4[local6]\Field1 = Null) Then
+                                    local9 = (local9 + 0.5)
+                                EndIf
+                            EndIf
+                            If (local9 < local3\Field4[local6]\Field7) Then
+                                local3\Field4[local6]\Field7 = local9
                                 local3\Field4[local6]\Field6 = (local3\Field4[local6]\Field7 + local3\Field4[local6]\Field8)
                                 local3\Field4[local6]\Field9 = local3
                             EndIf
                         Else
                             local3\Field4[local6]\Field8 = ((Abs (entityx(local3\Field4[local6]\Field0, $01) - entityx(local5\Field0, $01))) + (Abs (entityz(local3\Field4[local6]\Field0, $01) - entityz(local5\Field0, $01))))
-                            local3\Field4[local6]\Field7 = (local3\Field5[local6] + local3\Field7)
+                            local9 = (local3\Field5[local6] + local3\Field7)
+                            If (arg0\Field5 = $08) Then
+                                If (local3\Field4[local6]\Field1 = Null) Then
+                                    local9 = (local9 + 0.5)
+                                EndIf
+                            EndIf
+                            local3\Field4[local6]\Field7 = local9
                             local3\Field4[local6]\Field6 = (local3\Field7 + local3\Field8)
                             local3\Field4[local6]\Field9 = local3
                             local3\Field4[local6]\Field3 = $01
@@ -112,26 +125,26 @@ Function findpath%(arg0.npcs, arg1#, arg2#, arg3#)
         EndIf
     Until (local0 = $00)
     If (local5\Field3 > $00) Then
-        local9 = local5
-        local10 = $00
+        local10 = local5
+        local11 = $00
         Repeat
-            local10 = (local10 + $01)
-            local9 = local9\Field9
-        Until (local9 = Null)
-        debuglog(("length: " + (Str local10)))
-        local9 = local5
-        For local6 = $00 To (local10 - $01) Step $01
+            local11 = (local11 + $01)
+            local10 = local10\Field9
+        Until (local10 = Null)
+        debuglog(("length: " + (Str local11)))
+        local10 = local5
+        For local6 = $00 To (local11 - $01) Step $01
             local0 = $00
-            If (local10 < $14) Then
-                arg0\Field31[((local10 - $01) - local6)] = local9
+            If (local11 < $14) Then
+                arg0\Field31[((local11 - $01) - local6)] = local10
             ElseIf (local6 < $14) Then
                 arg0\Field31[($13 - local6)] = local3
             EndIf
-            If (local9 = local4) Then
+            If (local10 = local4) Then
                 Return $01
             EndIf
-            If (local9\Field9 <> Null) Then
-                local9 = local9\Field9
+            If (local10\Field9 <> Null) Then
+                local10 = local10\Field9
             Else
                 Exit
             EndIf

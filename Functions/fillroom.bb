@@ -13,26 +13,25 @@ Function fillroom%(arg0.rooms)
     Local local12.emitters
     Local local13%
     Local local14%
-    Local local15%
+    Local local15.rooms
+    Local local16%
     Local local17%
     Local local18%
-    Local local19%
     Local local20%
     Local local21%
     Local local22%
     Local local23%
     Local local24%
-    Local local25%
-    Local local26.decals
-    Local local27$
-    Local local28.materials
-    Local local29%
-    Local local31%
-    Local local32#
-    Local local34.lighttemplates
-    Local local35%
-    Local local36.tempscreens
-    Local local37.tempwaypoints
+    Local local25.decals
+    Local local26$
+    Local local27.materials
+    Local local28%
+    Local local30%
+    Local local31#
+    Local local33.lighttemplates
+    Local local34%
+    Local local35.tempscreens
+    Local local36.tempwaypoints
     Select arg0\Field7\Field4
         Case "lockroom"
             local0 = createdoor(arg0\Field0, (arg0\Field3 - (736.0 * roomscale)), 0.0, (arg0\Field5 - (104.0 * roomscale)), 0.0, arg0, $01, $00, $00, "")
@@ -83,32 +82,49 @@ Function fillroom%(arg0.rooms)
             local12\Field10 = 3.0
             local12\Field9 = 0.035
             local12\Field11 = (1.0 / 400.0)
+        Case "gatea"
+            local1 = createdoor(arg0\Field0, (arg0\Field3 - (4064.0 * roomscale)), (10720.0 * roomscale), ((3952.0 * roomscale) + arg0\Field5), 0.0, arg0, $00, $00, $00, "")
+            local1\Field19 = $00
+            local1\Field5 = $01
+            local13 = createsprite(arg0\Field2)
+            scalesprite(local13, 20.0, 20.0)
+            positionentity(local13, ((36.0 * roomscale) + arg0\Field3), (3212.0 * roomscale), ((1024.0 * roomscale) + arg0\Field5), $01)
+            local14 = loadtexture("GFX\map\sun.jpg", $01)
+            entitytexture(local13, local14, $00, $00)
+            entityfx(local13, $09)
+            entityblend(local13, $03)
+            For local15 = Each rooms
+                If (local15\Field7\Field4 = "exit1") Then
+                    arg0\Field11[$01] = local15\Field11[$01]
+                    arg0\Field11[$02] = local15\Field11[$02]
+                EndIf
+            Next
         Case "exit1"
             arg0\Field11[$00] = loadmesh("GFX\map\exit1terrain.b3d", arg0\Field2)
             positionentity(arg0\Field11[$00], ((4356.0 * roomscale) + arg0\Field3), (9767.0 * roomscale), ((2588.0 * roomscale) + arg0\Field5), $01)
             scaleentity(arg0\Field11[$00], roomscale, roomscale, roomscale, $01)
             If ((bumpenabled And $00) <> 0) Then
-                local13 = loadtexture("GFX\map\gravelbump.jpg", $01)
-                textureblend(local13, $1603)
+                local16 = loadtexture("GFX\map\gravelbump.jpg", $01)
+                textureblend(local16, $1603)
                 For local4 = $01 To countsurfaces(arg0\Field11[$00]) Step $01
-                    local14 = getsurface(arg0\Field11[$00], local4)
-                    local15 = getsurfacebrush(local14)
-                    local8 = getbrushtexture(local15, $00)
-                    local9 = getbrushtexture(local15, $01)
+                    local17 = getsurface(arg0\Field11[$00], local4)
+                    local18 = getsurfacebrush(local17)
+                    local8 = getbrushtexture(local18, $00)
+                    local9 = getbrushtexture(local18, $01)
                     Select strippath(texturename(local9))
                         Case "gravel.jpg","grass2.jpg"
-                            brushtexture(local15, local8, $00, $00)
-                            brushtexture(local15, local13, $00, $01)
-                            brushtexture(local15, local9, $00, $02)
-                            paintsurface(local14, local15)
+                            brushtexture(local18, local8, $00, $00)
+                            brushtexture(local18, local16, $00, $01)
+                            brushtexture(local18, local9, $00, $02)
+                            paintsurface(local17, local18)
                             If (strippath(texturename(local8)) <> "") Then
                                 freetexture(local8)
                             EndIf
                             If (strippath(texturename(local9)) <> "") Then
                                 freetexture(local9)
                             EndIf
-                            freetexture(local17)
-                            freebrush(local15)
+                            freetexture(local20)
+                            freebrush(local18)
                     End Select
                 Next
             EndIf
@@ -120,32 +136,30 @@ Function fillroom%(arg0.rooms)
             positionentity(arg0\Field12[$04]\Field3[$00], arg0\Field3, 8.0, arg0\Field5, $01)
             arg0\Field13[$00] = createnpc($07, arg0\Field3, 100.0, arg0\Field5)
             arg0\Field13[$00]\Field9 = 1.0
-            local18 = createsprite(arg0\Field2)
-            scalesprite(local18, 20.0, 20.0)
-            positionentity(local18, ((11040.0 * roomscale) + arg0\Field3), (15495.0 * roomscale), (arg0\Field5 - (6144.0 * roomscale)), $01)
-            local19 = loadtexture("GFX\map\sun.jpg", $01)
-            entitytexture(local18, local19, $00, $00)
-            entityfx(local18, $09)
-            entityblend(local18, $03)
+            local13 = createsprite(arg0\Field2)
+            scalesprite(local13, 20.0, 20.0)
+            positionentity(local13, ((11040.0 * roomscale) + arg0\Field3), (15495.0 * roomscale), (arg0\Field5 - (6144.0 * roomscale)), $01)
+            local14 = loadtexture("GFX\map\sun.jpg", $01)
+            entitytexture(local13, local14, $00, $00)
+            entityfx(local13, $09)
+            entityblend(local13, $03)
             arg0\Field11[$01] = loadtexture("GFX\map\sky.jpg", $01)
             scaletexture(arg0\Field11[$01], 25.0, 25.0)
-            local20 = createplane($01, $00)
-            entitytexture(local20, arg0\Field11[$01], $00, $00)
-            positionentity(local20, 0.0, ((14800.0 * roomscale) + arg0\Field4), 0.0, $00)
-            turnentity(local20, 180.0, 0.0, 0.0, $00)
-            entityfx(local20, $01)
-            entityparent(local20, arg0\Field2, $01)
-            entityorder(local20, $3E8)
-            entityalpha(local20, 0.5)
+            sky1 = createplane($01, $00)
+            entitytexture(sky1, arg0\Field11[$01], $00, $00)
+            positionentity(sky1, 0.0, ((14800.0 * roomscale) + arg0\Field4), 0.0, $00)
+            turnentity(sky1, 180.0, 0.0, 0.0, $00)
+            entityfx(sky1, $01)
+            entityorder(sky1, $3E8)
+            entityalpha(sky1, 0.5)
             arg0\Field11[$02] = loadtexture("GFX\map\sky2.jpg", $01)
             scaletexture(arg0\Field11[$02], 35.0, 35.0)
-            local21 = createplane($01, $00)
-            entitytexture(local21, arg0\Field11[$02], $00, $00)
-            positionentity(local21, 0.0, ((14900.0 * roomscale) + arg0\Field4), 0.0, $00)
-            entityorder(local21, $7D0)
-            turnentity(local21, 180.0, 0.0, 0.0, $00)
-            entityfx(local21, $01)
-            entityparent(local21, arg0\Field2, $01)
+            sky2 = createplane($01, $00)
+            entitytexture(sky2, arg0\Field11[$02], $00, $00)
+            positionentity(sky2, 0.0, ((14900.0 * roomscale) + arg0\Field4), 0.0, $00)
+            entityorder(sky2, $7D0)
+            turnentity(sky2, 180.0, 0.0, 0.0, $00)
+            entityfx(sky2, $01)
             arg0\Field11[$03] = createpivot($00)
             positionentity(arg0\Field11[$03], (arg0\Field3 - (7680.0 * roomscale)), (10992.0 * roomscale), (arg0\Field5 - (27048.0 * roomscale)), $01)
             entityparent(arg0\Field11[$03], arg0\Field2, $01)
@@ -273,15 +287,15 @@ Function fillroom%(arg0.rooms)
             arg0\Field11[$01] = createpivot($00)
             positionentity(arg0\Field11[$01], (arg0\Field3 - (632.0 * roomscale)), 0.5, (arg0\Field5 - (16.0 * roomscale)), $00)
             entityparent(arg0\Field11[$01], arg0\Field2, $01)
-            local22 = loadtexture("GFX\map\glass.png", $03)
+            local21 = loadtexture("GFX\map\glass.png", $03)
             arg0\Field11[$02] = createsprite($00)
-            entitytexture(arg0\Field11[$02], local22, $00, $00)
+            entitytexture(arg0\Field11[$02], local21, $00, $00)
             spriteviewmode(arg0\Field11[$02], $02)
             scalesprite(arg0\Field11[$02], ((182.0 * roomscale) * 0.5), ((192.0 * roomscale) * 0.5))
             positionentity(arg0\Field11[$02], (arg0\Field3 - (595.0 * roomscale)), (224.0 * roomscale), (arg0\Field5 - (208.0 * roomscale)), $00)
             turnentity(arg0\Field11[$02], 0.0, 180.0, 0.0, $00)
             entityparent(arg0\Field11[$02], arg0\Field2, $01)
-            freetexture(local22)
+            freetexture(local21)
             local0 = createdoor(arg0\Field0, (arg0\Field3 - (240.0 * roomscale)), 0.0, ((640.0 * roomscale) + arg0\Field5), 90.0, arg0, $00, $00, $00, "")
             local0\Field19 = $00
             local0\Field5 = $00
@@ -292,7 +306,9 @@ Function fillroom%(arg0.rooms)
             local0\Field19 = $00
             local0\Field5 = $00
             freeentity(local0\Field3[$00])
+            local0\Field3[$00] = $00
             freeentity(local0\Field3[$01])
+            local0\Field3[$01] = $00
             local3 = createitem("Mobile Task Force Epsilon-11", "paper", (arg0\Field3 - (316.0 * roomscale)), ((272.0 * roomscale) + arg0\Field4), ((176.0 * roomscale) + arg0\Field5))
             entityparent(local3\Field0, arg0\Field2, $01)
         Case "room2toilets"
@@ -315,14 +331,20 @@ Function fillroom%(arg0.rooms)
             local3 = createitem("Radio Transceiver", "radio", ((2240.0 * roomscale) + arg0\Field3), ((320.0 * roomscale) + arg0\Field4), ((128.0 * roomscale) + arg0\Field5))
             entityparent(local3\Field0, arg0\Field2, $01)
         Case "room2poffices"
-            local0 = createdoor(arg0\Field0, ((240.0 * roomscale) + arg0\Field3), 0.0, ((448.0 * roomscale) + arg0\Field5), 90.0, arg0, $00, $00, $00, accesscode)
+            local0 = createdoor(arg0\Field0, ((240.0 * roomscale) + arg0\Field3), 0.0, ((448.0 * roomscale) + arg0\Field5), 90.0, arg0, $00, $00, $00, (Str accesscode))
+            positionentity(local0\Field3[$00], ((248.0 * roomscale) + arg0\Field3), entityy(local0\Field3[$00], $01), entityz(local0\Field3[$00], $01), $01)
+            positionentity(local0\Field3[$01], ((232.0 * roomscale) + arg0\Field3), entityy(local0\Field3[$01], $01), entityz(local0\Field3[$01], $01), $01)
             local0\Field19 = $00
             local0\Field5 = $00
             local0 = createdoor(arg0\Field0, (arg0\Field3 - (496.0 * roomscale)), 0.0, arg0\Field5, 90.0, arg0, $00, $00, $00, "ABCD")
+            positionentity(local0\Field3[$00], (arg0\Field3 - (488.0 * roomscale)), entityy(local0\Field3[$00], $01), entityz(local0\Field3[$00], $01), $01)
+            positionentity(local0\Field3[$01], (arg0\Field3 - (504.0 * roomscale)), entityy(local0\Field3[$01], $01), entityz(local0\Field3[$01], $01), $01)
             local0\Field19 = $00
             local0\Field5 = $00
             local0\Field4 = $01
             local0 = createdoor(arg0\Field0, ((240.0 * roomscale) + arg0\Field3), 0.0, (arg0\Field5 - (576.0 * roomscale)), 90.0, arg0, $00, $00, $00, "7816")
+            positionentity(local0\Field3[$00], ((248.0 * roomscale) + arg0\Field3), entityy(local0\Field3[$00], $01), entityz(local0\Field3[$00], $01), $01)
+            positionentity(local0\Field3[$01], ((232.0 * roomscale) + arg0\Field3), entityy(local0\Field3[$01], $01), entityz(local0\Field3[$01], $01), $01)
             local0\Field19 = $00
             local0\Field5 = $00
             local3 = createitem("Mysterious Note", "paper", ((736.0 * roomscale) + arg0\Field3), ((224.0 * roomscale) + arg0\Field4), ((544.0 * roomscale) + arg0\Field5))
@@ -352,18 +374,18 @@ Function fillroom%(arg0.rooms)
             arg0\Field11[$05] = createpivot($00)
             positionentity(arg0\Field11[$05], ((984.0 * roomscale) + arg0\Field3), (1744.0 * roomscale), arg0\Field5, $00)
             entityparent(arg0\Field11[$05], arg0\Field2, $01)
-            For local23 = $00 To $01 Step $01
-                arg0\Field11[(local23 Shl $01)] = loadmesh("GFX\map\leverbase.x", $00)
-                arg0\Field11[((local23 Shl $01) + $01)] = loadmesh("GFX\map\leverhandle.x", $00)
+            For local22 = $00 To $01 Step $01
+                arg0\Field11[(local22 Shl $01)] = loadmesh("GFX\map\leverbase.x", $00)
+                arg0\Field11[((local22 Shl $01) + $01)] = loadmesh("GFX\map\leverhandle.x", $00)
                 For local4 = $00 To $01 Step $01
-                    scaleentity(arg0\Field11[((local23 Shl $01) + local4)], 0.04, 0.04, 0.04, $00)
-                    positionentity(arg0\Field11[((local23 Shl $01) + local4)], (arg0\Field3 - (975.0 * roomscale)), ((1712.0 * roomscale) + arg0\Field4), (arg0\Field5 - ((502.0 - (132.0 * (Float local23))) * roomscale)), $01)
-                    entityparent(arg0\Field11[((local23 Shl $01) + local4)], arg0\Field2, $01)
+                    scaleentity(arg0\Field11[((local22 Shl $01) + local4)], 0.04, 0.04, 0.04, $00)
+                    positionentity(arg0\Field11[((local22 Shl $01) + local4)], (arg0\Field3 - (975.0 * roomscale)), ((1712.0 * roomscale) + arg0\Field4), (arg0\Field5 - ((502.0 - (132.0 * (Float local22))) * roomscale)), $01)
+                    entityparent(arg0\Field11[((local22 Shl $01) + local4)], arg0\Field2, $01)
                 Next
-                rotateentity(arg0\Field11[(local23 Shl $01)], 0.0, -270.0, 0.0, $00)
-                rotateentity(arg0\Field11[((local23 Shl $01) + $01)], 10.0, -450.0, 0.0, $00)
-                entitypickmode(arg0\Field11[((local23 Shl $01) + $01)], $01, $00)
-                entityradius(arg0\Field11[((local23 Shl $01) + $01)], 0.1, 0.0)
+                rotateentity(arg0\Field11[(local22 Shl $01)], 0.0, -270.0, 0.0, $00)
+                rotateentity(arg0\Field11[((local22 Shl $01) + $01)], 10.0, -450.0, 0.0, $00)
+                entitypickmode(arg0\Field11[((local22 Shl $01) + $01)], $01, $00)
+                entityradius(arg0\Field11[((local22 Shl $01) + $01)], 0.1, 0.0)
             Next
             local3 = createitem("Nuclear Device Document", "paper", (arg0\Field3 - (768.0 * roomscale)), ((1684.0 * roomscale) + arg0\Field4), (arg0\Field5 - (768.0 * roomscale)))
             entityparent(local3\Field0, arg0\Field2, $01)
@@ -487,8 +509,8 @@ Function fillroom%(arg0.rooms)
             entityparent(local3\Field0, arg0\Field2, $01)
         Case "room2offices2"
             local3 = createitem("Level 1 Key Card", "key1", (arg0\Field3 - (368.0 * roomscale)), (arg0\Field4 - (48.0 * roomscale)), ((80.0 * roomscale) + arg0\Field5))
-            local24 = loadtexture("GFX\items\keycard1.jpg", $01)
-            entitytexture(local3\Field0, local24, $00, $00)
+            local23 = loadtexture("GFX\items\keycard1.jpg", $01)
+            entitytexture(local3\Field0, local23, $00, $00)
             entityparent(local3\Field0, arg0\Field2, $01)
             local3 = createitem("Document SCP-895", "paper", (arg0\Field3 - (800.0 * roomscale)), (arg0\Field4 - (48.0 * roomscale)), ((368.0 * roomscale) + arg0\Field5))
             entityparent(local3\Field0, arg0\Field2, $01)
@@ -577,7 +599,7 @@ Function fillroom%(arg0.rooms)
             arg0\Field11[$03] = createsprite($00)
             entitytexture(arg0\Field11[$03], teslatexture, $00, $00)
             spriteviewmode(arg0\Field11[$03], $02)
-            entityblend(arg0\Field11[$03], local25)
+            entityblend(arg0\Field11[$03], local24)
             entityfx(arg0\Field11[$03], $19)
             positionentity(arg0\Field11[$03], arg0\Field3, 0.8, arg0\Field5, $00)
             hideentity(arg0\Field11[$03])
@@ -591,6 +613,7 @@ Function fillroom%(arg0.rooms)
             local1 = createdoor(arg0\Field0, arg0\Field3, 0.0, (arg0\Field5 - (528.0 * roomscale)), 180.0, arg0, $01, $00, $00, "")
             local1\Field19 = $00
             freeentity(local1\Field3[$00])
+            local1\Field3[$00] = $00
             positionentity(local1\Field3[$01], (arg0\Field3 - (224.0 * roomscale)), 0.7, (arg0\Field5 - (896.0 * roomscale)), $01)
             rotateentity(local1\Field3[$01], 0.0, 90.0, 0.0, $01)
             arg0\Field11[$00] = createpivot($00)
@@ -671,15 +694,15 @@ Function fillroom%(arg0.rooms)
             arg0\Field12[$01]\Field3[$00] = $00
             freeentity(arg0\Field12[$01]\Field3[$01])
             arg0\Field12[$01]\Field3[$01] = $00
-            local26 = createdecal(rand($04, $05), entityx(arg0\Field11[$05], $01), 0.002, entityz(arg0\Field11[$05], $01), 90.0, rnd(360.0, 0.0), 0.0)
-            local26\Field2 = 1.2
-            scalesprite(local26\Field0, local26\Field2, local26\Field2)
+            local25 = createdecal(rand($04, $05), entityx(arg0\Field11[$05], $01), 0.002, entityz(arg0\Field11[$05], $01), 90.0, rnd(360.0, 0.0), 0.0)
+            local25\Field2 = 1.2
+            scalesprite(local25\Field0, local25\Field2, local25\Field2)
             For local5 = $00 To $01 Step $01
                 For local7 = $00 To $01 Step $01
-                    local26 = createdecal(rand($04, $06), ((((700.0 * roomscale) + arg0\Field3) + (((Float local5) * 700.0) * roomscale)) + rnd(-0.5, 0.5)), rnd(0.001, 0.0018), ((((Float ($258 * local7)) * roomscale) + arg0\Field5) + rnd(-0.5, 0.5)), 90.0, rnd(360.0, 0.0), 0.0)
-                    local26\Field2 = rnd(0.5, 0.8)
-                    local26\Field4 = rnd(0.8, 1.0)
-                    scalesprite(local26\Field0, local26\Field2, local26\Field2)
+                    local25 = createdecal(rand($04, $06), ((((700.0 * roomscale) + arg0\Field3) + (((Float local5) * 700.0) * roomscale)) + rnd(-0.5, 0.5)), rnd(0.001, 0.0018), ((((Float ($258 * local7)) * roomscale) + arg0\Field5) + rnd(-0.5, 0.5)), 90.0, rnd(360.0, 0.0), 0.0)
+                    local25\Field2 = rnd(0.5, 0.8)
+                    local25\Field4 = rnd(0.8, 1.0)
+                    scalesprite(local25\Field0, local25\Field2, local25\Field2)
                 Next
             Next
             addlight(arg0, (arg0\Field3 - (224.0 * roomscale)), ((640.0 * roomscale) + arg0\Field4), ((128.0 * roomscale) + arg0\Field5), $02, 2.0, $C8, $C8, $C8)
@@ -690,18 +713,18 @@ Function fillroom%(arg0.rooms)
             local0\Field5 = $00
             local3 = createitem("Note from Daniel", "paper", (arg0\Field3 - (400.0 * roomscale)), (1040.0 * roomscale), ((115.0 * roomscale) + arg0\Field5))
             entityparent(local3\Field0, arg0\Field2, $01)
-            For local23 = $00 To $02 Step $01
-                arg0\Field11[(local23 Shl $01)] = loadmesh("GFX\map\leverbase.x", $00)
-                arg0\Field11[((local23 Shl $01) + $01)] = loadmesh("GFX\map\leverhandle.x", $00)
+            For local22 = $00 To $02 Step $01
+                arg0\Field11[(local22 Shl $01)] = loadmesh("GFX\map\leverbase.x", $00)
+                arg0\Field11[((local22 Shl $01) + $01)] = loadmesh("GFX\map\leverhandle.x", $00)
                 For local4 = $00 To $01 Step $01
-                    scaleentity(arg0\Field11[((local23 Shl $01) + local4)], 0.04, 0.04, 0.04, $00)
-                    positionentity(arg0\Field11[((local23 Shl $01) + local4)], (arg0\Field3 - (240.0 * roomscale)), ((1104.0 * roomscale) + arg0\Field4), (((632.0 - (64.0 * (Float local23))) * roomscale) + arg0\Field5), $01)
-                    entityparent(arg0\Field11[((local23 Shl $01) + local4)], arg0\Field2, $01)
+                    scaleentity(arg0\Field11[((local22 Shl $01) + local4)], 0.04, 0.04, 0.04, $00)
+                    positionentity(arg0\Field11[((local22 Shl $01) + local4)], (arg0\Field3 - (240.0 * roomscale)), ((1104.0 * roomscale) + arg0\Field4), (((632.0 - (64.0 * (Float local22))) * roomscale) + arg0\Field5), $01)
+                    entityparent(arg0\Field11[((local22 Shl $01) + local4)], arg0\Field2, $01)
                 Next
-                rotateentity(arg0\Field11[(local23 Shl $01)], 0.0, -90.0, 0.0, $00)
-                rotateentity(arg0\Field11[((local23 Shl $01) + $01)], 10.0, -270.0, 0.0, $00)
-                entitypickmode(arg0\Field11[((local23 Shl $01) + $01)], $01, $00)
-                entityradius(arg0\Field11[((local23 Shl $01) + $01)], 0.1, 0.0)
+                rotateentity(arg0\Field11[(local22 Shl $01)], 0.0, -90.0, 0.0, $00)
+                rotateentity(arg0\Field11[((local22 Shl $01) + $01)], 10.0, -270.0, 0.0, $00)
+                entitypickmode(arg0\Field11[((local22 Shl $01) + $01)], $01, $00)
+                entityradius(arg0\Field11[((local22 Shl $01) + $01)], 0.1, 0.0)
             Next
         Case "room106"
             local3 = createitem("Level 4 Key Card", "key4", (arg0\Field3 - (752.0 * roomscale)), (arg0\Field4 - (592.0 * roomscale)), ((3026.0 * roomscale) + arg0\Field5))
@@ -722,36 +745,36 @@ Function fillroom%(arg0.rooms)
             positionentity(arg0\Field11[$06], ((784.0 * roomscale) + arg0\Field3), (-980.0 * roomscale), ((720.0 * roomscale) + arg0\Field5), $01)
             If (bumpenabled <> 0) Then
                 For local4 = $01 To countsurfaces(arg0\Field11[$06]) Step $01
-                    local14 = getsurface(arg0\Field11[$06], local4)
-                    local15 = getsurfacebrush(local14)
-                    local17 = getbrushtexture(local15, $01)
-                    local27 = strippath(texturename(local17))
-                    For local28 = Each materials
-                        If (local27 = local28\Field0) Then
-                            local8 = getbrushtexture(local15, $00)
-                            local9 = getbrushtexture(local15, $01)
-                            brushtexture(local15, local8, $00, $00)
-                            brushtexture(local15, local28\Field2, $00, $01)
-                            brushtexture(local15, local9, $00, $02)
-                            paintsurface(local14, local15)
+                    local17 = getsurface(arg0\Field11[$06], local4)
+                    local18 = getsurfacebrush(local17)
+                    local20 = getbrushtexture(local18, $01)
+                    local26 = strippath(texturename(local20))
+                    For local27 = Each materials
+                        If (local26 = local27\Field0) Then
+                            local8 = getbrushtexture(local18, $00)
+                            local9 = getbrushtexture(local18, $01)
+                            brushtexture(local18, local8, $00, $00)
+                            brushtexture(local18, local27\Field2, $00, $01)
+                            brushtexture(local18, local9, $00, $02)
+                            paintsurface(local17, local18)
                             Exit
                         EndIf
                     Next
                 Next
             EndIf
             entityparent(arg0\Field11[$06], arg0\Field2, $01)
-            For local23 = $00 To $02 Step $02
-                arg0\Field11[local23] = loadmesh("GFX\map\leverbase.x", $00)
-                arg0\Field11[(local23 + $01)] = loadmesh("GFX\map\leverhandle.x", $00)
+            For local22 = $00 To $02 Step $02
+                arg0\Field11[local22] = loadmesh("GFX\map\leverbase.x", $00)
+                arg0\Field11[(local22 + $01)] = loadmesh("GFX\map\leverhandle.x", $00)
                 For local4 = $00 To $01 Step $01
-                    scaleentity(arg0\Field11[(local23 + local4)], 0.04, 0.04, 0.04, $00)
-                    positionentity(arg0\Field11[(local23 + local4)], (arg0\Field3 - ((555.0 - (81.0 * (Float (local23 Sar $01)))) * roomscale)), (arg0\Field4 - (576.0 * roomscale)), ((3040.0 * roomscale) + arg0\Field5), $01)
-                    entityparent(arg0\Field11[(local23 + local4)], arg0\Field2, $01)
+                    scaleentity(arg0\Field11[(local22 + local4)], 0.04, 0.04, 0.04, $00)
+                    positionentity(arg0\Field11[(local22 + local4)], (arg0\Field3 - ((555.0 - (81.0 * (Float (local22 Sar $01)))) * roomscale)), (arg0\Field4 - (576.0 * roomscale)), ((3040.0 * roomscale) + arg0\Field5), $01)
+                    entityparent(arg0\Field11[(local22 + local4)], arg0\Field2, $01)
                 Next
-                rotateentity(arg0\Field11[local23], 0.0, 0.0, 0.0, $00)
-                rotateentity(arg0\Field11[(local23 + $01)], 10.0, -180.0, 0.0, $00)
-                entitypickmode(arg0\Field11[(local23 + $01)], $01, $00)
-                entityradius(arg0\Field11[(local23 + $01)], 0.1, 0.0)
+                rotateentity(arg0\Field11[local22], 0.0, 0.0, 0.0, $00)
+                rotateentity(arg0\Field11[(local22 + $01)], 10.0, -180.0, 0.0, $00)
+                entitypickmode(arg0\Field11[(local22 + $01)], $01, $00)
+                entityradius(arg0\Field11[(local22 + $01)], 0.1, 0.0)
             Next
             rotateentity(arg0\Field11[$01], 81.0, -180.0, 0.0, $00)
             rotateentity(arg0\Field11[$03], -81.0, -180.0, 0.0, $00)
@@ -773,39 +796,39 @@ Function fillroom%(arg0.rooms)
             positionentity(arg0\Field11[$05], ((1088.0 * roomscale) + arg0\Field3), (1096.0 * roomscale), ((1728.0 * roomscale) + arg0\Field5), $00)
             entityparent(arg0\Field11[$05], arg0\Field2, $01)
         Case "pocketdimension"
-            local29 = loadmesh("GFX\map\pocketdimension2.b3d", $00)
+            local28 = loadmesh("GFX\map\pocketdimension2.b3d", $00)
             arg0\Field11[$08] = loadmesh("GFX\map\pocketdimension3.b3d", $00)
             arg0\Field11[$09] = loadmesh("GFX\map\pocketdimension4.b3d", $00)
             arg0\Field11[$0A] = copymesh(arg0\Field11[$09], $00)
             arg0\Field11[$0B] = loadmesh("GFX\map\pocketdimension5.b3d", $00)
             createitem("Burnt Note", "paper", entityx(arg0\Field2, $00), 0.5, (entityz(arg0\Field2, $00) + 3.5))
-            For local23 = $00 To $04 Step $01
-                Select local23
+            For local22 = $00 To $04 Step $01
+                Select local22
                     Case $00
-                        local31 = local29
+                        local30 = local28
                     Case $01
-                        local31 = arg0\Field11[$08]
+                        local30 = arg0\Field11[$08]
                     Case $02
-                        local31 = arg0\Field11[$09]
+                        local30 = arg0\Field11[$09]
                     Case $03
-                        local31 = arg0\Field11[$0A]
+                        local30 = arg0\Field11[$0A]
                     Case $04
-                        local31 = arg0\Field11[$0B]
+                        local30 = arg0\Field11[$0B]
                 End Select
                 If (bumpenabled <> 0) Then
-                    For local4 = $01 To countsurfaces(local31) Step $01
-                        local14 = getsurface(local31, local4)
-                        local15 = getsurfacebrush(local14)
-                        local17 = getbrushtexture(local15, $01)
-                        local27 = strippath(texturename(local17))
-                        For local28 = Each materials
-                            If (local27 = local28\Field0) Then
-                                local8 = getbrushtexture(local15, $00)
-                                local9 = getbrushtexture(local15, $01)
-                                brushtexture(local15, local8, $00, $00)
-                                brushtexture(local15, local28\Field2, $00, $01)
-                                brushtexture(local15, local9, $00, $02)
-                                paintsurface(local14, local15)
+                    For local4 = $01 To countsurfaces(local30) Step $01
+                        local17 = getsurface(local30, local4)
+                        local18 = getsurfacebrush(local17)
+                        local20 = getbrushtexture(local18, $01)
+                        local26 = strippath(texturename(local20))
+                        For local27 = Each materials
+                            If (local26 = local27\Field0) Then
+                                local8 = getbrushtexture(local18, $00)
+                                local9 = getbrushtexture(local18, $01)
+                                brushtexture(local18, local8, $00, $00)
+                                brushtexture(local18, local27\Field2, $00, $01)
+                                brushtexture(local18, local9, $00, $02)
+                                paintsurface(local17, local18)
                                 Exit
                             EndIf
                         Next
@@ -821,22 +844,22 @@ Function fillroom%(arg0.rooms)
             scaleentity(arg0\Field11[$0A], (roomscale * 1.5), (roomscale * 2.0), (roomscale * 1.5), $01)
             positionentity(arg0\Field11[$0B], arg0\Field3, arg0\Field4, (arg0\Field5 + 64.0), $01)
             For local4 = $01 To $08 Step $01
-                arg0\Field11[(local4 - $01)] = copymesh(local29, $00)
+                arg0\Field11[(local4 - $01)] = copymesh(local28, $00)
                 scaleentity(arg0\Field11[(local4 - $01)], roomscale, roomscale, roomscale, $00)
-                local32 = ((Float (local4 - $01)) * 45.0)
+                local31 = ((Float (local4 - $01)) * 45.0)
                 entitytype(arg0\Field11[(local4 - $01)], $01, $00)
                 entitypickmode(arg0\Field11[(local4 - $01)], $03, $01)
-                rotateentity(arg0\Field11[(local4 - $01)], 0.0, (local32 - 90.0), 0.0, $00)
-                positionentity(arg0\Field11[(local4 - $01)], (((512.0 * roomscale) * cos(local32)) + arg0\Field3), 0.0, (((512.0 * roomscale) * sin(local32)) + arg0\Field5), $00)
+                rotateentity(arg0\Field11[(local4 - $01)], 0.0, (local31 - 90.0), 0.0, $00)
+                positionentity(arg0\Field11[(local4 - $01)], (((512.0 * roomscale) * cos(local31)) + arg0\Field3), 0.0, (((512.0 * roomscale) * sin(local31)) + arg0\Field5), $00)
                 entityparent(arg0\Field11[(local4 - $01)], arg0\Field2, $01)
                 If (local4 < $06) Then
-                    local26 = createdecal((local4 + $07), ((((512.0 * roomscale) * cos(local32)) * 3.0) + arg0\Field3), 0.02, ((((512.0 * roomscale) * sin(local32)) * 3.0) + arg0\Field5), 90.0, (local32 - 90.0), 0.0)
-                    local26\Field2 = rnd(0.5, 0.5)
-                    local26\Field5 = $02
-                    local26\Field6 = $09
-                    scalesprite(local26\Field0, local26\Field2, local26\Field2)
-                    entityfx(local26\Field0, $09)
-                    entityblend(local26\Field0, $02)
+                    local25 = createdecal((local4 + $07), ((((512.0 * roomscale) * cos(local31)) * 3.0) + arg0\Field3), 0.02, ((((512.0 * roomscale) * sin(local31)) * 3.0) + arg0\Field5), 90.0, (local31 - 90.0), 0.0)
+                    local25\Field2 = rnd(0.5, 0.5)
+                    local25\Field5 = $02
+                    local25\Field6 = $09
+                    scalesprite(local25\Field0, local25\Field2, local25\Field2)
+                    entityfx(local25\Field0, $09)
+                    entityblend(local25\Field0, $02)
                 EndIf
             Next
             For local4 = $0C To $10 Step $01
@@ -854,31 +877,31 @@ Function fillroom%(arg0.rooms)
                         positionentity(arg0\Field11[local4], (arg0\Field3 - (1238.0 * roomscale)), (arg0\Field4 - (1664.0 * roomscale)), ((arg0\Field5 + 64.0) + (381.0 * roomscale)), $01)
                 End Select
             Next
-            freetexture(local17)
-            freeentity(local29)
+            freetexture(local20)
+            freeentity(local28)
     End Select
-    For local34 = Each lighttemplates
-        If (local34\Field0 = arg0\Field7) Then
-            local35 = addlight(arg0, (arg0\Field3 + local34\Field2), (arg0\Field4 + local34\Field3), (arg0\Field5 + local34\Field4), local34\Field1, local34\Field5, local34\Field6, local34\Field7, local34\Field8)
-            If (local35 <> $00) Then
-                debuglog(((((((((((arg0\Field7\Field4 + " - ") + (Str local34\Field2)) + ", ") + (Str local34\Field3)) + ", ") + (Str local34\Field4)) + " - ") + (Str local34\Field5)) + ", ") + (Str local34\Field6)))
-                If (local34\Field1 = $03) Then
-                    lightconeangles(local35, (Float local34\Field11), local34\Field12)
-                    rotateentity(local35, local34\Field9, local34\Field10, 0.0, $00)
+    For local33 = Each lighttemplates
+        If (local33\Field0 = arg0\Field7) Then
+            local34 = addlight(arg0, (arg0\Field3 + local33\Field2), (arg0\Field4 + local33\Field3), (arg0\Field5 + local33\Field4), local33\Field1, local33\Field5, local33\Field6, local33\Field7, local33\Field8)
+            If (local34 <> $00) Then
+                debuglog(((((((((((arg0\Field7\Field4 + " - ") + (Str local33\Field2)) + ", ") + (Str local33\Field3)) + ", ") + (Str local33\Field4)) + " - ") + (Str local33\Field5)) + ", ") + (Str local33\Field6)))
+                If (local33\Field1 = $03) Then
+                    lightconeangles(local34, (Float local33\Field11), local33\Field12)
+                    rotateentity(local34, local33\Field9, local33\Field10, 0.0, $00)
                 EndIf
             Else
                 debuglog((arg0\Field7\Field4 + " - light error"))
             EndIf
         EndIf
     Next
-    For local36 = Each tempscreens
-        If (local36\Field4 = arg0\Field7) Then
-            createscreen((arg0\Field3 + local36\Field1), (arg0\Field4 + local36\Field2), (arg0\Field5 + local36\Field3), local36\Field0, arg0)
+    For local35 = Each tempscreens
+        If (local35\Field4 = arg0\Field7) Then
+            createscreen((arg0\Field3 + local35\Field1), (arg0\Field4 + local35\Field2), (arg0\Field5 + local35\Field3), local35\Field0, arg0)
         EndIf
     Next
-    For local37 = Each tempwaypoints
-        If (local37\Field3 = arg0\Field7) Then
-            createwaypoint((arg0\Field3 + local37\Field0), (arg0\Field4 + local37\Field1), (arg0\Field5 + local37\Field2), Null, arg0)
+    For local36 = Each tempwaypoints
+        If (local36\Field3 = arg0\Field7) Then
+            createwaypoint((arg0\Field3 + local36\Field0), (arg0\Field4 + local36\Field1), (arg0\Field5 + local36\Field2), Null, arg0)
         EndIf
     Next
     Return $00

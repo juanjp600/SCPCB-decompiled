@@ -41,6 +41,9 @@ Function loadgame%(arg0$)
     Local local41$
     Local local42%
     Local local43.itemtemplates
+    Local local44#
+    Local local45.rooms
+    Local local46#
     gamesaved = $01
     local6 = readfile((arg0 + "save.txt"))
     playtime = readint(local6)
@@ -50,7 +53,7 @@ Function loadgame%(arg0$)
     positionentity(collider, local0, (local1 + 0.05), local2, $00)
     resetentity(collider)
     playerlevel = readbyte(local6)
-    accesscode = readstring(local6)
+    accesscode = (Int readstring(local6))
     local0 = readfloat(local6)
     local1 = readfloat(local6)
     rotateentity(collider, local0, local1, 0.0, $00)
@@ -316,6 +319,19 @@ Function loadgame%(arg0$)
     Next
     For local43 = Each itemtemplates
         local43\Field3 = readbyte(local6)
+    Next
+    For local26 = Each doors
+        If (local26\Field12 <> Null) Then
+            local44 = 20.0
+            For local14 = Each rooms
+                local46 = entitydistance(local14\Field2, local26\Field0)
+                If (local44 > local46) Then
+                    local44 = local46
+                    local45 = local14
+                EndIf
+            Next
+            local26\Field12 = local45
+        EndIf
     Next
     If (readint(local6) <> $3E2) Then
         runtimeerror("Couldn't load the game, save file corrupted (error 4)")

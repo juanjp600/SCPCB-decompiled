@@ -30,7 +30,7 @@ Function inititemtemplates%()
     local0\Field2 = $00
     local0 = createitemtemplate("Note from Daniel", "paper", "GFX\items\paper.x", "GFX\items\INVpaper.jpg", "GFX\items\docdan.jpg", 0.003, "", "")
     local0\Field2 = $00
-    local0 = createitemtemplate("Burnt Note", "paper", "GFX\items\paper.x", "GFX\items\INVbn.jpg", "GFX\items\doc372.jpg", 0.003, "", "")
+    local0 = createitemtemplate("Burnt Note", "paper", "GFX\items\paper.x", "GFX\items\INVbn.jpg", "GFX\items\bn.it", 0.003, "", "")
     local0\Field7 = burntnote
     local0\Field2 = $00
     local0 = createitemtemplate("Mysterious Note", "paper", "GFX\items\paper.x", "GFX\items\INVpaper.jpg", "GFX\items\sn.it", 0.003, "", "")

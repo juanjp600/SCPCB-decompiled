@@ -195,7 +195,7 @@ Function drawgui%()
                                 debuglog(selecteddoor\Field15)
                                 debuglog(keypadinput)
                                 If (keypadinput = selecteddoor\Field15) Then
-                                    If (selecteddoor\Field15 = accesscode) Then
+                                    If (selecteddoor\Field15 = (Str accesscode)) Then
                                         achvmaynard = $01
                                     ElseIf (selecteddoor\Field15 = "7816") Then
                                         achvharp = $01
@@ -453,7 +453,17 @@ Function drawgui%()
                 removeitem(selecteditem)
             Case "paper"
                 If (selecteditem\Field1\Field7 = $00) Then
-                    selecteditem\Field1\Field7 = loadimage(selecteditem\Field1\Field6)
+                    If (selecteditem\Field1\Field0 = "Burnt Note") Then
+                        selecteditem\Field1\Field7 = loadimage("GFX\items\bn.it")
+                        debuglog(("accesscode: " + (Str accesscode)))
+                        setbuffer(imagebuffer(selecteditem\Field1\Field7, $00))
+                        color($00, $00, $00)
+                        text($115, $1D5, (Str accesscode), $01, $01)
+                        color($FF, $FF, $FF)
+                        setbuffer(backbuffer())
+                    Else
+                        selecteditem\Field1\Field7 = loadimage(selecteditem\Field1\Field6)
+                    EndIf
                 EndIf
                 drawimage(selecteditem\Field1\Field7, ((graphicwidth Sar $01) - (imagewidth(selecteditem\Field1\Field7) Sar $01)), ((graphicheight Sar $01) - (imageheight(selecteditem\Field1\Field7) Sar $01)), $00)
             Case "radio","18vradio","fineradio","veryfineradio"
@@ -570,7 +580,7 @@ Function drawgui%()
                                 radiochn($00) = playsound(radiostatic)
                             EndIf
                             radiostate($06) = (radiostate($06) + fpsfactor)
-                            local0 = (Int mid(accesscode, (Int (radiostate($08) + 1.0)), $01))
+                            local0 = (Int mid((Str accesscode), (Int (radiostate($08) + 1.0)), $01))
                             If ((((radiostate($07) * 50.0) >= (radiostate($06) - fpsfactor)) And (radiostate($06) > (radiostate($07) * 50.0))) <> 0) Then
                                 playsound(radiobuzz)
                                 radiostate($07) = (radiostate($07) + 1.0)

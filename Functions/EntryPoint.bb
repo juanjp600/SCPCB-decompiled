@@ -32,7 +32,7 @@ Function EntryPoint%()
     mirrorcameraaz = 0.0
     mirrorcameraparent = $00
     optionfile = "options.ini"
-    versionnumber = "0.5.4"
+    versionnumber = "0.5.5"
     local0 = $00
     Dim arrowimg%($04)
     launcherwidth = (Int min((Float getiniint(optionfile, "launcher", "launcher width")), 1024.0))
@@ -77,7 +77,6 @@ Function EntryPoint%()
     mouse_top_limit = $FA
     mouse_bottom_limit = (graphicsheight() - $FA)
     invertmouse = getiniint(optionfile, "options", "invert mouse y")
-    accesscode = "4192"
     Dim drawarrowicon%($04)
     lightson = $01
     Dim radiostate#($0A)

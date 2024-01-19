@@ -22,13 +22,6 @@ Function initloadgame%()
             moveentity(local0\Field1, 0.0, 0.0, (8.0 * roomscale))
         EndIf
     Next
-    burntnote = loadimage("GFX\items\bn.it")
-    setbuffer(imagebuffer(burntnote, $00))
-    cls($01, $01)
-    color($00, $00, $00)
-    text($115, $1D5, accesscode, $01, $01)
-    color($FF, $FF, $FF)
-    setbuffer(backbuffer())
     For local1 = Each securitycams
         local1\Field11 = (entityyaw(local1\Field0, $00) + local1\Field11)
         entityparent(local1\Field0, $00, $01)

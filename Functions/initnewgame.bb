@@ -8,6 +8,10 @@ Function initnewgame%()
     Local local6.roomtemplates
     Local local7.tempwaypoints
     drawloading($3C, $00)
+    accesscode = $00
+    For local0 = $00 To $03 Step $01
+        accesscode = (Int (((Float rand($01, $09)) * (10.0 ^ (Float local0))) + (Float accesscode)))
+    Next
     createmap()
     initwaypoints($3C)
     drawloading($4F, $00)

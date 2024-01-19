@@ -10,6 +10,7 @@ Function updatesecuritycams%()
             If (4.0 > (Abs (entityz(collider, $00) - entityz(local0\Field0, $01)))) Then
                 If (4.0 > entitydistance(camera, local0\Field0)) Then
                     local1 = $01
+                    debuglog(local0\Field18\Field7\Field4)
                 EndIf
             EndIf
         EndIf

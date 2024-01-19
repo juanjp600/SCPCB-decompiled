@@ -14,7 +14,6 @@ Function loadroomtemplates%(arg0$)
         If (left(local0, $01) = "[") Then
             local0 = mid(local0, $02, (len(local0) - $02))
             local5 = getinistring(arg0, local0, "mesh path")
-            debuglog(local5)
             local4 = createroomtemplate(local5)
             local4\Field4 = local0
             local5 = getinistring(arg0, local0, "shape")

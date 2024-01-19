@@ -89,16 +89,6 @@ Function loadentities%()
             entitytexture(bigdoorobj(local0), local2, $00, $01)
         EndIf
     Next
-    accesscode = ""
-    For local0 = $00 To $03 Step $01
-        accesscode = (accesscode + (Str rand($01, $09)))
-    Next
-    burntnote = loadimage("GFX\items\bn.it")
-    setbuffer(imagebuffer(burntnote, $00))
-    color($00, $00, $00)
-    text($115, $1D5, accesscode, $01, $01)
-    color($FF, $FF, $FF)
-    setbuffer(backbuffer())
     drawloading($0F, $00)
     For local0 = $00 To $05 Step $01
         gorepics(local0) = loadtexture((("GFX\895pics\pic" + (Str (local0 + $01))) + ".jpg"), $01)

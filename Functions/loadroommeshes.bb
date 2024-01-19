@@ -9,7 +9,11 @@ Function loadroommeshes%()
     Next
     local2 = $00
     For local1 = Each roomtemplates
-        local1\Field0 = loadworld(local1\Field2, local1)
+        If (local1\Field2 <> "") Then
+            local1\Field0 = loadworld(local1\Field2, local1)
+        Else
+            local1\Field0 = createpivot($00)
+        EndIf
         If (local1\Field0 = $00) Then
             runtimeerror((((("Failed to load map file " + chr($22)) + (Str local3)) + chr($22)) + "."))
         EndIf

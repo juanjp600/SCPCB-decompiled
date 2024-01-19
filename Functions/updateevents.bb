@@ -81,15 +81,7 @@ Function updateevents%()
                     EndIf
                 EndIf
             Case "room173"
-                If (playerroom = local7\Field1) Then
-                    shouldplay = $42
-                    camerafogmode(camera, $00)
-                    ambientlight(250.0, 250.0, 250.0)
-                    hideentity(fog)
-                EndIf
-                lightvolume = 1.5
-                templightvolume = 1.5
-                If (0.0 <= killtimer) Then
+                If (((0.0 <= killtimer) And (0.0 = local7\Field3)) <> 0) Then
                     If (0.0 = local7\Field2) Then
                         If (playerroom = local7\Field1) Then
                             For local1 = $00 To $03 Step $01
@@ -138,7 +130,7 @@ Function updateevents%()
                                         local7\Field5 = playsound(introsfx($06))
                                     ElseIf (1000.0 < local7\Field2) Then
                                         local7\Field1\Field13[$00]\Field9 = 1.0
-                                        Delete local7
+                                        local7\Field3 = 1.0
                                         Exit
                                     EndIf
                                     If (850.0 < local7\Field2) Then
@@ -274,7 +266,7 @@ Function updateevents%()
                                     ambientlight((Float brightness), (Float brightness), (Float brightness))
                                     camerafogrange(camera, camerafognear, camerafogfar)
                                     camerafogmode(camera, $01)
-                                    Delete local7
+                                    local7\Field3 = 1.0
                                     Exit
                                 EndIf
                             Next
@@ -284,7 +276,48 @@ Function updateevents%()
                     For local1 = $00 To $06 Step $01
                         freesound(introsfx(local1))
                     Next
+                    local7\Field3 = 1.0
+                EndIf
+                If (playerroom = local7\Field1) Then
+                    shouldplay = $42
+                    camerafogmode(camera, $00)
+                    ambientlight(250.0, 250.0, 250.0)
+                    hideentity(fog)
+                    lightvolume = 1.5
+                    templightvolume = 1.5
+                Else
                     Delete local7
+                EndIf
+            Case "gatea"
+                If (playerroom = local7\Field1) Then
+                    If (0.0 = local7\Field2) Then
+                        drawloading($00, $00)
+                        local7\Field1\Field11[$00] = loadmesh("GFX\MAP\gateatunnel.b3d", $00)
+                        scaleentity(local7\Field1\Field11[$00], roomscale, roomscale, roomscale, $00)
+                        entitytype(local7\Field1\Field11[$00], $01, $00)
+                        entitypickmode(local7\Field1\Field11[$00], $03, $01)
+                        entityparent(local7\Field1\Field11[$00], local7\Field1\Field2, $01)
+                        For local1 = $00 To $13 Step $01
+                            If (local7\Field1\Field10[local1] <> $00) Then
+                                entityfx(local7\Field1\Field10[local1], $09)
+                            EndIf
+                        Next
+                        createconsolemsg("WARNING! Teleporting away from this area may cause bugs or crashing.")
+                        positionentity(sky1, entityx(local7\Field1\Field2, $01), entityy(sky1, $01), entityz(local7\Field1\Field2, $01), $01)
+                        positionentity(sky2, entityx(local7\Field1\Field2, $01), entityy(sky2, $01), entityz(local7\Field1\Field2, $01), $01)
+                        translateentity(local7\Field1\Field2, 0.0, (12000.0 * roomscale), 0.0, $00)
+                        local7\Field2 = 1.0
+                        drawloading($64, $00)
+                    Else
+                        local7\Field2 = (local7\Field2 + fpsfactor)
+                        hideentity(fog)
+                        camerafogrange(camera, 5.0, 30.0)
+                        camerafogcolor(camera, 200.0, 200.0, 200.0)
+                        cameraclscolor(camera, 200.0, 200.0, 200.0)
+                        camerarange(camera, 0.05, 30.0)
+                        positiontexture(local7\Field1\Field11[$01], (local7\Field2 / 1500.0), 0.0)
+                        positiontexture(local7\Field1\Field11[$02], (local7\Field2 / 2500.0), 0.0)
+                    EndIf
                 EndIf
             Case "room2doors173"
                 If (0.0 = local7\Field2) Then
@@ -465,6 +498,10 @@ Function updateevents%()
                         curr106\Field19 = $01
                         If (0.0 = local7\Field2) Then
                             drawloading($00, $01)
+                            positionentity(sky1, entityx(local7\Field1\Field2, $01), entityy(sky1, $01), entityz(local7\Field1\Field2, $01), $01)
+                            rotateentity(sky1, 0.0, entityyaw(local7\Field1\Field2, $01), 0.0, $01)
+                            positionentity(sky2, entityx(local7\Field1\Field2, $01), entityy(sky2, $01), entityz(local7\Field1\Field2, $01), $01)
+                            rotateentity(sky2, 0.0, entityyaw(local7\Field1\Field2, $01), 0.0, $01)
                             For local1 = $00 To $13 Step $01
                                 If (local7\Field1\Field10[local1] <> $00) Then
                                     entityfx(local7\Field1\Field10[local1], $09)

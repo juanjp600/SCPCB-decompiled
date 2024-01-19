@@ -1,5 +1,5 @@
-; SCP - Containment Breach v0.5.4_disasm
-; Decompiled on 1/19/2024 5:17:58 PM
+; SCP - Containment Breach v0.5.5_disasm
+; Decompiled on 1/19/2024 5:22:21 PM
 
 Include "Globals.bb"
 
