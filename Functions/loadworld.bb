@@ -119,6 +119,7 @@ Function loadworld%(arg0$, arg1.roomtemplates)
                 EndIf
             Case "field_hit"
                 entityparent(local8, local4, $01)
+                entitytype(local8, $01, $00)
                 entityalpha(local8, 0.0)
                 local7 = (local7 - $01)
             Case "playerstart"

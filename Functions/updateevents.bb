@@ -375,7 +375,7 @@ Function updateevents%()
                             local7\Field2 = max(local7\Field2, 840.0)
                         ElseIf (1.4 < local0) Then
                             If (840.0 < local7\Field2) Then
-                                If ((entityinview(curr173\Field0, camera) Or (-10.0 >= blinktimer)) = $00) Then
+                                If (-10.0 >= blinktimer) Then
                                     playsound2(glassbreaksfx, camera, curr173\Field0, 10.0, 1.0, $01)
                                     freeentity(local7\Field1\Field11[$02])
                                     positionentity(curr173\Field4, entityx(local7\Field1\Field11[$01], $01), 0.5, entityz(local7\Field1\Field11[$01], $01), $00)
@@ -911,9 +911,9 @@ Function updateevents%()
                             positionentity(curr106\Field4, entityx(local7\Field1\Field11[$00], $01), (entityy(collider, $00) - 0.15), entityz(local7\Field1\Field11[$00], $01), $00)
                             pointentity(curr106\Field4, local7\Field1\Field11[$01], 0.0)
                             moveentity(curr106\Field4, 0.0, 0.0, ((entitydistance(local7\Field1\Field11[$00], local7\Field1\Field11[$01]) * 0.5) * (local7\Field2 / 50.0)))
-                            animate2(curr106\Field0, animtime(curr106\Field0), $00, $0E, 0.2)
+                            animate2(curr106\Field0, animtime(curr106\Field0), $00, $0E, 0.2, $01)
                         ElseIf (200.0 > local7\Field2) Then
-                            animate2(curr106\Field0, animtime(curr106\Field0), $CE, $FA, 0.1)
+                            animate2(curr106\Field0, animtime(curr106\Field0), $CE, $FA, 0.1, $01)
                             positionentity(curr106\Field4, entityx(local7\Field1\Field11[$00], $01), (entityy(collider, $00) - 0.15), entityz(local7\Field1\Field11[$00], $01), $00)
                             moveentity(curr106\Field4, 0.0, 0.0, (entitydistance(local7\Field1\Field11[$00], local7\Field1\Field11[$01]) * 0.5))
                             rotateentity(curr106\Field4, 0.0, curvevalue(local7\Field2, entityyaw(curr106\Field4, $00), 30.0), 0.0, $01)
@@ -932,7 +932,7 @@ Function updateevents%()
                             positionentity(curr106\Field4, entityx(local7\Field1\Field11[$00], $01), (entityy(collider, $00) - 0.15), entityz(local7\Field1\Field11[$00], $01), $00)
                             pointentity(curr106\Field4, local7\Field1\Field11[$01], 0.0)
                             moveentity(curr106\Field4, 0.0, 0.0, (entitydistance(local7\Field1\Field11[$00], local7\Field1\Field11[$01]) * ((local7\Field2 - 150.0) / 100.0)))
-                            animate2(curr106\Field0, animtime(curr106\Field0), $00, $0E, 0.2)
+                            animate2(curr106\Field0, animtime(curr106\Field0), $00, $0E, 0.2, $01)
                         EndIf
                         resetentity(curr106\Field4)
                         If (((0.3 < (local7\Field2 / 250.0)) And (0.3 >= ((local7\Field2 - fpsfactor) / 250.0))) <> 0) Then
@@ -1089,7 +1089,7 @@ Function updateevents%()
                         positionentity(curr106\Field4, (entityx(local7\Field1\Field2, $01) - (sin(((Float millisecs()) / 150.0)) / 4.0)), ((entityy(collider, $00) - 0.4) - ((sin(((Float millisecs()) / 100.0)) + 1.0) / 4.0)), (entityz(local7\Field1\Field2, $01) - (sin(((Float millisecs()) / 190.0)) / 4.0)), $00)
                         pointentity(curr106\Field4, camera, 0.0)
                         curr106\Field9 = -11.0
-                        animate2(curr106\Field0, animtime(curr106\Field0), $CE, $FA, 0.1)
+                        animate2(curr106\Field0, animtime(curr106\Field0), $CE, $FA, 0.1, $01)
                         curr106\Field19 = $01
                         local0 = entitydistance(collider, curr106\Field4)
                         If (((3.5 > local0) Or (rand($1B58, $01) = $01)) <> 0) Then
@@ -1149,7 +1149,7 @@ Function updateevents%()
                             positionentity(curr106\Field4, entityx(local7\Field1\Field2, $00), 0.35, entityx(local7\Field1\Field2, $00), $00)
                             rotateentity(curr106\Field4, 0.0, local10, 0.0, $00)
                             moveentity(curr106\Field4, 0.0, 0.0, (6.0 - sin((local7\Field2 / 10.0))))
-                            animate2(curr106\Field0, animtime(curr106\Field0), $00, $0E, 0.17)
+                            animate2(curr106\Field0, animtime(curr106\Field0), $00, $0E, 0.17, $01)
                             rotateentity(curr106\Field4, 0.0, (local10 + 90.0), 0.0, $00)
                         EndIf
                     EndIf
@@ -1344,13 +1344,13 @@ Function updateevents%()
                     showentity(local7\Field1\Field13[$00]\Field0)
                     shouldplay = $42
                     If (local7\Field1\Field13[$00]\Field19 = $00) Then
-                        animate2(local7\Field1\Field13[$00]\Field0, animtime(local7\Field1\Field13[$00]\Field0), $AB, $AD, 0.01)
+                        animate2(local7\Field1\Field13[$00]\Field0, animtime(local7\Field1\Field13[$00]\Field0), $AB, $AD, 0.01, $01)
                         If (171.0 = animtime(local7\Field1\Field13[$00]\Field0)) Then
                             setanimtime(local7\Field1\Field13[$00]\Field0, 172.99, $00)
                             local7\Field1\Field13[$00]\Field19 = $01
                         EndIf
                     Else
-                        animate2(local7\Field1\Field13[$00]\Field0, animtime(local7\Field1\Field13[$00]\Field0), $AD, $AB, -0.01)
+                        animate2(local7\Field1\Field13[$00]\Field0, animtime(local7\Field1\Field13[$00]\Field0), $AD, $AB, -0.01, $01)
                         If (173.0 = animtime(local7\Field1\Field13[$00]\Field0)) Then
                             setanimtime(local7\Field1\Field13[$00]\Field0, 171.01, $00)
                             local7\Field1\Field13[$00]\Field19 = $00
@@ -1415,7 +1415,7 @@ Function updateevents%()
                             hideentity(curr106\Field1)
                             rotateentity(curr106\Field4, 0.0, (entityyaw(local7\Field1\Field11[$05], $01) + 180.0), 0.0, $01)
                             curr106\Field9 = -11.0
-                            animate2(curr106\Field0, animtime(curr106\Field0), $CE, $FA, 0.1)
+                            animate2(curr106\Field0, animtime(curr106\Field0), $CE, $FA, 0.1, $01)
                             curr106\Field19 = $01
                             If (2500.0 > (local7\Field4 - fpsfactor)) Then
                                 local16 = createdecal($00, entityx(local7\Field1\Field11[$05], $01), (936.0 * roomscale), entityz(local7\Field1\Field11[$05], $01), 90.0, 0.0, rnd(360.0, 0.0))

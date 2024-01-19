@@ -2,6 +2,14 @@
 ----------------------------------------------------------------------------------
 
 v0.5.5
+- animated MTF models
+- slightly improved MTF AI (it's still quite buggy though)
+- Gate B works again
+- it's no longer possible to clip through the "ceiling" in the cylindrical tunnels
+
+----------------------------------------------------------------------------------
+
+v0.5.5
 - fixed the save bug that caused buttons and keypads to disappear
 - fixed some lighting bugs ("light sprites" showing where they shouldn't)
 - adjusted the height of the player and the NPCs

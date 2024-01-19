@@ -46,5 +46,6 @@ Function initevents%()
     createevent("testroom", "testroom", $00, 0.0)
     createevent("room2tunnel", "room2tunnel", $00, 0.0)
     createevent("room2ccont", "room2ccont", $00, 0.0)
+    createevent("exit1", "exit1", $00, 0.0)
     Return $00
 End Function

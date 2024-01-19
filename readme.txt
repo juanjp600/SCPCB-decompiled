@@ -4,7 +4,7 @@
 **************************    SCP - CONTAINMENT BREACH   **************************
 ***********************************************************************************
 
-				    VERSION v0.5.5
+				    VERSION v0.5.6
 								
 
 This game is licensed under Creative Commons Attribution-ShareAlike 3.0 License.
@@ -59,7 +59,9 @@ See the credits below for further details.
 
 		Hakkla
 
-		Tom Malinowski			
+		Tom Malinowski	
+
+		Mirocaine		
 
 		GamerEntitlement
 

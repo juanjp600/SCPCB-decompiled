@@ -57,16 +57,20 @@ Function updatemtf%()
                         Exit
                     EndIf
                 Next
-            ElseIf (30.0 > (Abs (entityz(local2\Field2, $00) - entityz(collider, $00)))) Then
-                mtftimer = 1.0
-                For local4 = $00 To $02 Step $01
-                    local1 = createnpc($08, ((entityx(local2\Field2, $00) + (0.3 * (Float local4))) + (sin((Float local2\Field6)) * 5.0)), 0.5, ((entityz(local2\Field2, $00) + (0.3 * (Float local4))) - (cos((Float local2\Field6)) * 5.0)))
-                    local1\Field12 = $00
-                    If (local4 > $00) Then
-                        local1\Field26 = (Before local1)
-                        local1\Field9 = 4.0
-                    EndIf
-                Next
+            EndIf
+            If (local2 <> Null) Then
+                If (30.0 > (Abs (entityz(local2\Field2, $00) - entityz(collider, $00)))) Then
+                    mtftimer = 1.0
+                    For local4 = $00 To $02 Step $01
+                        local1 = createnpc($08, ((entityx(local2\Field2, $00) + (0.3 * (Float local4))) + (sin((Float local2\Field6)) * 5.0)), 0.5, ((entityz(local2\Field2, $00) + (0.3 * (Float local4))) - (cos((Float local2\Field6)) * 5.0)))
+                        local1\Field12 = $00
+                        local1\Field23 = (Float local4)
+                        If (local4 > $00) Then
+                            local1\Field26 = (Before local1)
+                            local1\Field9 = 4.0
+                        EndIf
+                    Next
+                EndIf
             EndIf
         EndIf
     Else
@@ -112,12 +116,6 @@ Function updatemtf%()
                                     mtfroomstate[local5] = $03
                                     debuglog(("reitti? ei l?ytynyt, roomstate " + (Str mtfroomstate[local5])))
                                 ElseIf (local1\Field32 = $01) Then
-                                    For local8 = Each npcs
-                                        If ((((local8 <> local1) And (local8\Field12 = local1\Field12)) And (local8\Field5 = $08)) <> 0) Then
-                                            local8\Field9 = 4.0
-                                            local8\Field26 = local1
-                                        EndIf
-                                    Next
                                     mtfroomstate[local5] = $01
                                     local1\Field9 = 3.0
                                 EndIf
