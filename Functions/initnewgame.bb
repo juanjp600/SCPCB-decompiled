@@ -6,12 +6,14 @@ Function initnewgame%()
     Local local4%
     Local local5.decals
     Local local6.roomtemplates
+    Local local7.tempwaypoints
     drawloading($3C)
     createmap()
+    initwaypoints()
     drawloading($46)
     curr173 = createnpc($01, 0.0, -30.0, 0.0)
     curr106 = createnpc($02, 0.0, -30.0, 0.0)
-    curr106\Field6 = 63000.0
+    curr106\Field6 = (Float (rand($0C, $11) * $1068))
     For local0 = Each doors
         entityparent(local0\Field0, $00, $01)
         If (local0\Field1 > $00) Then
@@ -69,6 +71,9 @@ Function initnewgame%()
     Next
     For local6 = Each roomtemplates
         freeentity(local6\Field0)
+    Next
+    For local7 = Each tempwaypoints
+        Delete local7
     Next
     turnentity(collider, 0.0, (Float rand($A0, $C8)), 0.0, $00)
     resetentity(collider)

@@ -222,6 +222,8 @@ Function EntryPoint%()
         steppdsfx(local6) = loadsound((("SFX\stepPD" + (Str (local6 + $01))) + ".ogg"))
     Next
     drawloading($1E)
+    pausemenuimg = loadimage("GFX\menu\pausemenu.jpg")
+    maskimage(pausemenuimg, $FF, $FF, $00)
     sprinticon = loadimage("GFX\sprinticon.jpg")
     blinkicon = loadimage("GFX\blinkicon.jpg")
     handicon = loadimage("GFX\handsymbol.png")

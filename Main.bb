@@ -1,5 +1,5 @@
-; SCP - Containment Breach v0.3.1_disasm
-; Decompiled on 1/19/2024 4:51:37 PM
+; SCP - Containment Breach v0.3.2_disasm
+; Decompiled on 1/19/2024 4:53:41 PM
 
 Include "Globals.bb"
 
@@ -85,12 +85,14 @@ Include "Functions/inititemtemplates.bb"
 Include "Functions/loadmaterials.bb"
 Include "Functions/loadroommeshes.bb"
 Include "Functions/createmap.bb"
+Include "Functions/initwaypoints.bb"
 Include "Functions/initevents.bb"
 Include "Functions/createroom.bb"
 Include "Functions/createdoor.bb"
 Include "Functions/freetexture.bb"
 Include "Functions/createitemtemplate.bb"
 Include "Functions/loadworld.bb"
+Include "Functions/createwaypoint.bb"
 Include "Functions/createevent.bb"
 Include "Functions/fillroom.bb"
 Include "Functions/makecollbox.bb"
@@ -121,6 +123,7 @@ Include "Types/particles.bb"
 Include "Types/rooms.bb"
 Include "Types/roomtemplates.bb"
 Include "Types/securitycams.bb"
+Include "Types/tempwaypoints.bb"
 Include "Types/waypoints.bb"
 
 Dim alarmsfx%(0)

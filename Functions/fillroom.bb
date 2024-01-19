@@ -26,6 +26,7 @@ Function fillroom%(arg0.rooms)
     Local local26#
     Local local28.lighttemplates
     Local local29%
+    Local local30.tempwaypoints
     Select arg0\Field6\Field4
         Case "lockroom"
             local0 = createdoor(arg0\Field0, (arg0\Field2 - (736.0 * roomscale)), 0.0, (arg0\Field4 - (104.0 * roomscale)), 0.0, $01, arg0\Field1, $00, $00, "")
@@ -581,6 +582,7 @@ Function fillroom%(arg0.rooms)
             turnentity(local2\Field3, 45.0, 0.0, 0.0, $00)
             entityparent(local2\Field0, arg0\Field1, $01)
             arg0\Field10[$07] = local2\Field3
+            arg0\Field10[$08] = local2\Field0
             positionentity(local2\Field4, (arg0\Field2 - (272.0 * roomscale)), (-544.0 * roomscale), ((3020.0 * roomscale) + arg0\Field4), $00)
             turnentity(local2\Field4, 0.0, -10.0, 0.0, $00)
             entityparent(local2\Field4, arg0\Field1, $01)
@@ -684,6 +686,11 @@ Function fillroom%(arg0.rooms)
             Else
                 debuglog((arg0\Field6\Field4 + " - light error"))
             EndIf
+        EndIf
+    Next
+    For local30 = Each tempwaypoints
+        If (local30\Field3 = arg0\Field6) Then
+            createwaypoint((arg0\Field2 + local30\Field0), (arg0\Field3 + local30\Field1), (arg0\Field4 + local30\Field2), Null, arg0)
         EndIf
     Next
     Return $00

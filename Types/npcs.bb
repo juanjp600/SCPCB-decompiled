@@ -23,5 +23,6 @@ Type npcs
     Field Field21#
     Field Field22.waypoints[20]
     Field Field23%
-    Field Field24%
+    Field Field24#
+    Field Field25%
 End Type

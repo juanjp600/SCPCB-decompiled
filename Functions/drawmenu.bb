@@ -5,16 +5,22 @@ Function drawmenu%()
     Local local3%
     If (menuopen <> 0) Then
         invopen = $00
-        local2 = $190
-        local3 = $1F4
+        local2 = imagewidth(pausemenuimg)
+        local3 = imageheight(pausemenuimg)
         local0 = ((graphicwidth Sar $01) - (local2 Sar $01))
         local1 = ((graphicheight Sar $01) - (local3 Sar $01))
+        drawimage(pausemenuimg, local0, local1, $00)
         color($FF, $FF, $FF)
-        rect(local0, local1, local2, local3, $01)
-        color($00, $00, $00)
-        rect((local0 + $04), (local1 + $04), (local2 - $08), (local3 - $08), $01)
-        color($FF, $FF, $FF)
-        rect(local0, (local1 + $64), local2, $04, $01)
+        local0 = (local0 + $84)
+        local1 = (local1 + $7A)
+        text(local0, local1, "Designation: D-9341", $00, $00)
+        text(local0, (local1 + $14), "Name: [REDACTED]", $00, $00)
+        text(local0, (local1 + $32), ("Save: " + currsave), $00, $00)
+        text(local0, (local1 + $46), ("Map seed: " + randomseed), $00, $00)
+        local0 = (local0 - $84)
+        local1 = (local1 - $7A)
+        local0 = (local0 + $31)
+        local1 = (local1 - $05)
         If (0.0 <= killtimer) Then
             setfont(font2)
             text(((local2 Sar $01) + local0), (local1 + $14), "PAUSED", $01, $00)
@@ -24,6 +30,8 @@ Function drawmenu%()
             text(((local2 Sar $01) + local0), (local1 + $14), "YOU DIED", $01, $00)
             setfont(font1)
         EndIf
+        local0 = (local0 - $4D)
+        local1 = (local1 + $82)
         If (selectedmode = $00) Then
             If (0.0 <= killtimer) Then
                 If (drawbutton((((local2 Sar $01) + local0) - $96), (local1 + $9A), $12C, $3C, "Resume", $01) <> 0) Then

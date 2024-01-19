@@ -6,15 +6,17 @@ Function nullgame%()
     Local local4.doors
     Local local5.lighttemplates
     Local local6.materials
-    Local local7.rooms
-    Local local8.itemtemplates
-    Local local9.items
-    Local local10.decals
-    Local local11.npcs
-    Local local12.events
-    Local local13.securitycams
-    Local local14.emitters
-    Local local15.particles
+    Local local7.waypoints
+    Local local8.tempwaypoints
+    Local local9.rooms
+    Local local10.itemtemplates
+    Local local11.items
+    Local local12.decals
+    Local local13.npcs
+    Local local14.events
+    Local local15.securitycams
+    Local local16.emitters
+    Local local17.particles
     doortempid = $00
     roomtempid = $00
     gamesaved = $00
@@ -58,34 +60,40 @@ Function nullgame%()
     For local6 = Each materials
         Delete local6
     Next
-    For local7 = Each rooms
+    For local7 = Each waypoints
         Delete local7
     Next
-    For local8 = Each itemtemplates
+    For local8 = Each tempwaypoints
         Delete local8
     Next
-    For local9 = Each items
+    For local9 = Each rooms
         Delete local9
     Next
-    For local10 = Each decals
+    For local10 = Each itemtemplates
         Delete local10
     Next
-    For local11 = Each npcs
+    For local11 = Each items
         Delete local11
+    Next
+    For local12 = Each decals
+        Delete local12
+    Next
+    For local13 = Each npcs
+        Delete local13
     Next
     curr173 = Null
     curr106 = Null
-    For local12 = Each events
-        Delete local12
-    Next
-    For local13 = Each securitycams
-        Delete local13
-    Next
-    For local14 = Each emitters
+    For local14 = Each events
         Delete local14
     Next
-    For local15 = Each particles
+    For local15 = Each securitycams
         Delete local15
+    Next
+    For local16 = Each emitters
+        Delete local16
+    Next
+    For local17 = Each particles
+        Delete local17
     Next
     debuglog("d")
     For local0 = $00 To $05 Step $01

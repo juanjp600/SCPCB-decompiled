@@ -33,7 +33,7 @@ Function createnpc.npcs(arg0%, arg1#, arg2#, arg3#)
             entityradius(local0\Field2, 0.2, 0.0)
             entitytype(local0\Field2, $02, $00)
             local0\Field0 = loadanimmesh("GFX\npcs\106.b3d", $00)
-            local0\Field6 = 20000.0
+            local0\Field6 = 20.0
             local1 = (0.25 / meshwidth(local0\Field0))
             scaleentity(local0\Field0, local1, local1, local1, $00)
             local6 = loadtexture("GFX\npcs\oldmaneyes.jpg", $01)

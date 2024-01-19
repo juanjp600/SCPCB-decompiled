@@ -16,10 +16,9 @@ Function updateevents%()
     Local local17%
     Local local18%
     Local local19%
-    Local local20%
-    Local local21#
-    Local local22.items
-    Local local23$
+    Local local20#
+    Local local21.items
+    Local local22$
     For local6 = Each rooms
         If (((12.0 > (Abs (entityx(collider, $00) - entityx(local6\Field1, $00)))) And (12.0 > (Abs (entityz(collider, $00) - entityz(local6\Field1, $00))))) <> 0) Then
             mapfound(playerlevel, (Int floor((entityx(local6\Field1, $00) / 8.0))), (Int floor((entityz(local6\Field1, $00) / 8.0)))) = (Int max((Float mapfound(playerlevel, (Int floor((entityx(local6\Field1, $00) / 8.0))), (Int floor((entityz(local6\Field1, $00) / 8.0))))), 1.0))
@@ -1004,8 +1003,7 @@ Function updateevents%()
             Case "room106"
                 local17 = $00
                 local18 = $00
-                local19 = $00
-                If (local19 <> 0) Then
+                If (soundtransmission <> 0) Then
                     local7\Field4 = min((local7\Field4 + fpsfactor), 2500.0)
                     If (channelplaying(local7\Field5) = $00) Then
                         local7\Field5 = playsound(radiostatic)
@@ -1030,10 +1028,10 @@ Function updateevents%()
                     rotateentity(local7\Field1\Field12[$00]\Field2, entitypitch(local7\Field1\Field10[$05], $01), entityyaw(local7\Field1\Field10[$05], $01), 0.0, $01)
                     resetentity(local7\Field1\Field12[$00]\Field2)
                     local3 = (Int local7\Field3)
-                    debuglog((((Str entityy(local7\Field1\Field10[$06], $00)) + " - ") + (Str (((-988.5 * roomscale) > entityy(local7\Field1\Field10[$06], $01)) And ((-1275.0 * roomscale) < entityy(local7\Field1\Field10[$06], $01))))))
-                    local20 = updatelever(local7\Field1\Field10[$01], (((-988.5 * roomscale) > entityy(local7\Field1\Field10[$06], $01)) And ((-1275.0 * roomscale) < entityy(local7\Field1\Field10[$06], $01))))
+                    debuglog((((Str entityy(local7\Field1\Field10[$06], $00)) + " - ") + (Str (((-990.0 * roomscale) > entityy(local7\Field1\Field10[$06], $01)) And ((-1275.0 * roomscale) < entityy(local7\Field1\Field10[$06], $01))))))
+                    local19 = updatelever(local7\Field1\Field10[$01], (((-990.0 * roomscale) > entityy(local7\Field1\Field10[$06], $01)) And ((-1275.0 * roomscale) < entityy(local7\Field1\Field10[$06], $01))))
                     If (((grabbedentity = local7\Field1\Field10[$01]) And (drawhandicon = $01)) <> 0) Then
-                        local7\Field3 = (Float local20)
+                        local7\Field3 = (Float local19)
                     EndIf
                     If ((Float local3) <> local7\Field3) Then
                         If (0.0 = local7\Field3) Then
@@ -1042,18 +1040,19 @@ Function updateevents%()
                             playsound(magnetupsfx)
                         EndIf
                     EndIf
-                    local19 = updatelever(local7\Field1\Field10[$03], $00)
+                    soundtransmission = updatelever(local7\Field1\Field10[$03], $00)
                     If (0.0 = local7\Field2) Then
                         updatebutton(local7\Field1\Field10[$04])
                         If (((closestbutton = local7\Field1\Field10[$04]) And mousehit1) <> 0) Then
                             local7\Field2 = 1.0
-                            If (local19 = $01) Then
+                            If (soundtransmission = $01) Then
                                 femurbreakersfx = loadsound("SFX\FemurBreaker.ogg")
                                 playsound(femurbreakersfx)
                             EndIf
                         EndIf
                     Else
                         local7\Field2 = (local7\Field2 + fpsfactor)
+                        debuglog(("e\eventstate3: " + (Str local7\Field4)))
                         If (600.0 <= local7\Field4) Then
                             shouldplay = $01
                             positionentity(curr106\Field2, entityx(local7\Field1\Field10[$05], $01), ((((min((local7\Field4 - 600.0), 800.0) / 320.0) * 108.0) + 700.0) * roomscale), entityz(local7\Field1\Field10[$05], $01), $00)
@@ -1074,8 +1073,8 @@ Function updateevents%()
                                 If (femurbreakersfx <> $00) Then
                                     freesound(femurbreakersfx)
                                 EndIf
-                                local14 = createdecal($00, entityx(local7\Field1\Field10[$07], $01), entityy(local7\Field1\Field10[$07], $01), entityz(local7\Field1\Field10[$05], $01), 0.0, 0.0, 0.0)
-                                rotateentity(local14\Field0, (entitypitch(local7\Field1\Field10[$07], $01) + 30.0), (entityyaw(local7\Field1\Field10[$07], $01) + 20.0), entityroll(local14\Field0, $00), $00)
+                                local14 = createdecal($00, entityx(local7\Field1\Field10[$07], $01), entityy(local7\Field1\Field10[$07], $01), entityz(local7\Field1\Field10[$07], $01), 0.0, 0.0, 0.0)
+                                rotateentity(local14\Field0, (entitypitch(local7\Field1\Field10[$07], $01) + (Float rand($0A, $14))), (entityyaw(local7\Field1\Field10[$07], $01) + 30.0), entityroll(local14\Field0, $00), $00)
                                 moveentity(local14\Field0, 0.0, 0.0, 0.15)
                                 rotateentity(local14\Field0, entitypitch(local7\Field1\Field10[$07], $01), entityyaw(local7\Field1\Field10[$07], $01), entityroll(local14\Field0, $00), $00)
                                 entityparent(local14\Field0, local7\Field1\Field10[$07], $01)
@@ -1086,6 +1085,7 @@ Function updateevents%()
                                 local14\Field1 = 0.002
                             EndIf
                             If (1800.0 < local7\Field4) Then
+                                positionentity(local7\Field1\Field10[$08], 0.0, 1000.0, 0.0, $01)
                                 positionentity(local7\Field1\Field10[$07], 0.0, 1000.0, 0.0, $01)
                                 If (1.0 = local7\Field3) Then
                                     contained106 = $01
@@ -1122,7 +1122,7 @@ Function updateevents%()
                                 EndIf
                             EndIf
                         EndIf
-                        local21 = entitypitch(local7\Field1\Field10[local2], $00)
+                        local20 = entitypitch(local7\Field1\Field10[local2], $00)
                         If ((mousedown1 Or mousehit1) <> 0) Then
                             If (grabbedentity <> $00) Then
                                 If (grabbedentity = local7\Field1\Field10[local2]) Then
@@ -1142,23 +1142,23 @@ Function updateevents%()
                             grabbedentity = $00
                         EndIf
                         If (83.0 < entitypitch(local7\Field1\Field10[local2], $00)) Then
-                            If (83.0 >= local21) Then
+                            If (83.0 >= local20) Then
                                 playsound2(leversfx, camera, local7\Field1\Field10[local2], 10.0, 1.0)
                             EndIf
                             If (local2 = $03) Then
                                 secondarylighton = curvevalue(1.0, secondarylighton, 10.0)
-                                If (83.0 >= local21) Then
+                                If (83.0 >= local20) Then
                                     playsound2(lightsfx, camera, local7\Field1\Field10[local2], 10.0, 1.0)
                                 EndIf
                             Else
                                 remotedooron = $01
                             EndIf
                         ElseIf (-83.0 > entitypitch(local7\Field1\Field10[local2], $00)) Then
-                            If (-83.0 <= local21) Then
+                            If (-83.0 <= local20) Then
                                 playsound2(leversfx, camera, local7\Field1\Field10[local2], 10.0, 1.0)
                             EndIf
                             If (local2 = $03) Then
-                                If (-83.0 <= local21) Then
+                                If (-83.0 <= local20) Then
                                     playsound2(lightsfx, camera, local7\Field1\Field10[local2], 10.0, 1.0)
                                     For local6 = Each rooms
                                         For local10 = 0.0 To 19.0 Step 1.0
@@ -1210,10 +1210,10 @@ Function updateevents%()
                                         rotateentity(grabbedentity, 0.0, 0.0, 180.0, $00)
                                     EndIf
                                     If (((181.0 > local5) And (90.0 < local5)) <> 0) Then
-                                        For local22 = Each items
-                                            If (((local22\Field0 <> $00) And (local22\Field7 = $00)) <> 0) Then
-                                                If (200.0 > (Abs (entityx(local22\Field0, $00) - (local7\Field1\Field2 - (712.0 * roomscale))))) Then
-                                                    If (104.0 > (Abs (entityy(local22\Field0, $00) - ((648.0 * roomscale) + local7\Field1\Field3)))) Then
+                                        For local21 = Each items
+                                            If (((local21\Field0 <> $00) And (local21\Field7 = $00)) <> 0) Then
+                                                If (200.0 > (Abs (entityx(local21\Field0, $00) - (local7\Field1\Field2 - (712.0 * roomscale))))) Then
+                                                    If (104.0 > (Abs (entityy(local21\Field0, $00) - ((648.0 * roomscale) + local7\Field1\Field3)))) Then
                                                         local7\Field2 = 1.0
                                                         local7\Field5 = playsound2(machinesfx, camera, local7\Field1\Field10[$01], 10.0, 1.0)
                                                         Exit
@@ -1243,27 +1243,27 @@ Function updateevents%()
                     Else
                         grabbedentity = $00
                     EndIf
-                    local23 = ""
+                    local22 = ""
                     If (grabbedentity <> local7\Field1\Field10[$01]) Then
                         local5 = wrapangle(entityroll(local7\Field1\Field10[$01], $00))
                         If (22.5 > local5) Then
                             local5 = 0.0
-                            local23 = "1:1"
+                            local22 = "1:1"
                         ElseIf (67.5 > local5) Then
                             local5 = 45.0
-                            local23 = "coarse"
+                            local22 = "coarse"
                         ElseIf (180.0 > local5) Then
                             local5 = 90.0
-                            local23 = "rough"
+                            local22 = "rough"
                         ElseIf (337.5 < local5) Then
                             local5 = -1.0
-                            local23 = "1:1"
+                            local22 = "1:1"
                         ElseIf (292.5 < local5) Then
                             local5 = -45.0
-                            local23 = "fine"
+                            local22 = "fine"
                         Else
                             local5 = -90.0
-                            local23 = "very fine"
+                            local22 = "very fine"
                         EndIf
                         rotateentity(local7\Field1\Field10[$01], 0.0, 0.0, curvevalue(local5, entityroll(local7\Field1\Field10[$01], $00), 10.0), $00)
                     EndIf
@@ -1284,13 +1284,13 @@ Function updateevents%()
                             local7\Field1\Field11[$00]\Field5 = $00
                         EndIf
                         If ((170.0 * roomscale) > distance(entityx(collider, $00), entityz(collider, $00), entityx(local7\Field1\Field10[$02], $01), entityz(local7\Field1\Field10[$02], $01))) Then
-                            If (((local23 = "rough") Or (local23 = "coarse")) <> 0) Then
+                            If (((local22 = "rough") Or (local22 = "coarse")) <> 0) Then
                                 If (((182.0 < local7\Field2) And (182.0 > (local7\Field2 - fpsfactor2))) <> 0) Then
                                     playsound(death914sfx)
                                 EndIf
                             EndIf
                             If (210.0 < local7\Field2) Then
-                                Select local23
+                                Select local22
                                     Case "rough","coarse"
                                         killtimer = min(-1.0, killtimer)
                                         blinktimer = -10.0
@@ -1311,15 +1311,15 @@ Function updateevents%()
                             EndIf
                         EndIf
                         If (840.0 < local7\Field2) Then
-                            For local22 = Each items
-                                If (((local22\Field0 <> $00) And (local22\Field7 = $00)) <> 0) Then
-                                    If ((180.0 * roomscale) > distance(entityx(local22\Field0, $00), entityz(local22\Field0, $00), entityx(local7\Field1\Field10[$02], $01), entityz(local7\Field1\Field10[$02], $01))) Then
-                                        use914(local22, local23, entityx(local7\Field1\Field10[$03], $01), entityy(local7\Field1\Field10[$03], $01), entityz(local7\Field1\Field10[$03], $01))
+                            For local21 = Each items
+                                If (((local21\Field0 <> $00) And (local21\Field7 = $00)) <> 0) Then
+                                    If ((180.0 * roomscale) > distance(entityx(local21\Field0, $00), entityz(local21\Field0, $00), entityx(local7\Field1\Field10[$02], $01), entityz(local7\Field1\Field10[$02], $01))) Then
+                                        use914(local21, local22, entityx(local7\Field1\Field10[$03], $01), entityy(local7\Field1\Field10[$03], $01), entityz(local7\Field1\Field10[$03], $01))
                                     EndIf
                                 EndIf
                             Next
                             If ((160.0 * roomscale) > distance(entityx(collider, $00), entityz(collider, $00), entityx(local7\Field1\Field10[$02], $01), entityz(local7\Field1\Field10[$02], $01))) Then
-                                Select local23
+                                Select local22
                                     Case "1:1"
                                         invertmouse = (invertmouse = $00)
                                     Case "fine","very fine"

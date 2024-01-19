@@ -1,8 +1,14 @@
 
+v0.3.2
+- SCP-106's recall procedure finally works (even though the voice acting is still missing)
+- Improved pause menu
+
+
+----------------------------------------------------------------------------------
+
 v0.3.1
 - fixed the levers and buttons in 106's containment room
 - fixed the bug that blocked the doors of the elevators to the maintenance tunnel
-- slightly modified the "room3pit"-room
 
 ----------------------------------------------------------------------------------
 

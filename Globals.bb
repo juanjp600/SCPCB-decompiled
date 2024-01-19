@@ -183,6 +183,7 @@ Global musicvolume#
 Global noclip%
 Global nowplaying%
 Global optionfile$
+Global pausemenuimg%
 Global playerlevel%
 Global playerroom.rooms
 Global playtime%
@@ -213,7 +214,9 @@ Global shouldplay%
 Global showfps%
 Global side%
 Global signimg%
+Global signobj%
 Global soundemitter%
+Global soundtransmission%
 Global sprinticon%
 Global stamina#
 Global staminameterimg%
