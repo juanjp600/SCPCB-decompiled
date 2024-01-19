@@ -3,9 +3,9 @@ Function updatelever%(arg0%, arg1%)
     Local local1#
     local0 = entitydistance(camera, arg0)
     If (8.0 > local0) Then
-        If (((0.45 > local0) And (arg1 = $00)) <> 0) Then
+        If (((0.8 > local0) And (arg1 = $00)) <> 0) Then
             If (entityinview(arg0, camera) <> 0) Then
-                entitypick(camera, 0.45)
+                entitypick(camera, 0.65)
                 If (pickedentity() = arg0) Then
                     drawhandicon = $01
                     If (mousehit1 <> 0) Then

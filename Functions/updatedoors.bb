@@ -19,12 +19,8 @@ Function updatedoors%()
                                 local3 = createpivot($00)
                                 positionentity(local3, entityx(camera, $00), entityy(camera, $00), entityz(camera, $00), $00)
                                 pointentity(local3, local0\Field3[local1], 0.0)
-                                If (entitypick(local3, 0.45) = local0\Field3[local1]) Then
+                                If (entitypick(local3, 0.6) = local0\Field3[local1]) Then
                                     If (closestbutton = $00) Then
-                                        If (local0\Field15 <> $42) Then
-                                            msg = "ENTER ROOM"
-                                            msgtimer = 255.0
-                                        EndIf
                                         closestbutton = local0\Field3[local1]
                                         closestdoor = local0
                                     ElseIf (local2 < entitydistance(collider, closestbutton)) Then

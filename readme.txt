@@ -1,89 +1,107 @@
 
 
-		*************************************************************
-		**************    SCP - CONTAINMENT BREACH   ****************
-		*************************************************************
+***********************************************************************************
+**************************    SCP - CONTAINMENT BREACH   **************************
+***********************************************************************************
+								ALPHA VERSION v0.3.1
+								
+								
+								
+								
 
+**** HOW TO RUN IT **************************************
 
+	Run SCP - Containment Breach.exe in the game folder. 
+	Select which resolution you want to use and click the LAUNCH-button.
 
-ALPHA VERSION v0.3
 
-The game is based on the SCP Foundation stories (http://www.scp-wiki.net/).
+**** CONTROLS *******************************************
 
+	WASD or arrow keys 	-	moving
+	Space				-	manual blinking
+	Shift				-	sprint
+	Tab					-	inventory
+	F1					-	save
+	F3					-	console
 
-**** HOW TO RUN IT *******************
+	Pick up items and use levers and buttons by clicking on them.
 
-Run SCP - Containment Breach.exe in the game folder. 
-Select which resolution you want to use and click the LAUNCH-button.
+	Use items by double clicking on them in the inventory.
 
+	You can drop items by dragging them out of the inventory.
 
-**** CONTROLS ************************
+	You can combine certain items by dragging them into the same slot.
 
-WASD or arrow keys 	-	moving
-Space			-	manual blinking
-Shift			-	sprint
-Tab			-	inventory
-F1			-	save
-F3			-	console
 
-Pick up items and use levers and buttons by clicking on them.
+**** CREDITS ********************************************
 
-Use items by double clicking on them in the inventory.
+	The game is based on the stories of the SCP Foundation (http://www.scp-wiki.net/).
 
-You can drop items by dragging them out of the inventory.
+		The SCP-CB logo and SCP logo are based on the logo created by "far2" (http://scp-wiki.wikidot.com/forum/t-89371#post-289530)
+		SCP-079 is based on "SCP-079 - Old AI", author unknown (http://scp-wiki.wikidot.com/scp-079)
+		SCP-096 is based on "SCP-096 - The 'Shy Guy'" by "Dr Dan" (http://scp-wiki.wikidot.com/scp-096)
+		SCP-106 is based on "SCP-106 - The Old Man" by "Dr Gears" (http://scp-wiki.wikidot.com/scp-106)
+		SCP-173 is based on "SCP-173 - The Sculpture - The Original", author unknown (http://scp-wiki.wikidot.com/scp-173)
+		SCP-372 is based on "SCP-372 - Peripheral Jumper" by "Sylocat" (http://scp-wiki.wikidot.com/scp-372)
+		SCP-420-J is based on "SCP-420-J - The Best____ in the World" by "Quikngruvn" (http://scp-wiki.wikidot.com/scp-420-j)
+		SCP-513-1 is based on "SCP-513 - A Cowbell" by "beefwit" (http://scp-wiki.wikidot.com/scp-513)
+		SCP-682 is based on "SCP-682 - Hard-to-Destroy Reptile" by "Dr Gears" (http://scp-wiki.wikidot.com/scp-682)
+		SCP-789-J is based on "SCP-789-J - the butt ghost!!" by "Salman Corbette" (http://scp-wiki.wikidot.com/scp-789-j)
+		SCP-860 is based on "SCP-860 - Blue Key" by "Enma AI" (http://scp-wiki.wikidot.com/scp-860)
+		SCP-895 is based on "SCP-895 - Camera Disruption" by "Raven Mackenzie" (http://scp-wiki.wikidot.com/scp-895)
+		SCP-914 is based on "SCP-914 - The Clockworks" by "Dr Gears" (http://scp-wiki.wikidot.com/scp-914)
 
-You can combine certain items by dragging them into the same slot.
+	Programming, graphics, sounds, 3D modeling
 
+		Joonas Rikkonen (Regalis)
 
-**** CREDITS *************************
 
-Programming, graphics, sounds, 3D modeling
+	3D modeling
 
-	Joonas Rikkonen (Regalis)
+		Prosth
 
+		Micro
 
-3D modeling
+		Atomicsneak
 
-	Prosth
+		Brandon Smith
 
-	Micro
+		Hakkla
 
-	Atomicsneak
+		Tom Malinowski			
 
-	Brandon Smith
+		GamerEntitlement
 
-	Hakkla
+	Sound effects, music
 
-	Tom Malinowski			
+		Kevin MacLeod (The Dread, Bump in the Night)
 
-	GamerEntitlement
+		DukeLovesYou (intercom voice)
+		
+		SolidBaker
 
-Sound effects, music
+		Peanut Head the Statue
 
-	Kevin MacLeod (The Dread, Bump in the Night)
+		gmodfan11
 
-	DukeLovesYou (intercom voice)
-	
-	SolidBaker
+		TheOddGoat
 
-	Peanut Head the Statue
+		Joshofsouls
 
-	gmodfan11
+		phlip45
 
-	TheOddGoat
 
-	Joshofsouls
+	Other
 
-	phlip45
+		Dr. Gears (writing, ideas)
 
+		Steelpoint (some of the documents)
 
-Other
+		KyoteeWilliams (some of the HUD graphics)
+		
+		/v/ (ideas & support)
 
-	Dr. Gears (writing, ideas)
 
-	KyoteeWilliams (some of the HUD graphics)
-	
-	/v/ (ideas & support)
 
 
 
@@ -98,38 +116,3 @@ Other
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-WHEN YOU MEET 106, YOU GOTTA GO FAST

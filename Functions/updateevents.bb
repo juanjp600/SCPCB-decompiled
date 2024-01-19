@@ -1030,7 +1030,8 @@ Function updateevents%()
                     rotateentity(local7\Field1\Field12[$00]\Field2, entitypitch(local7\Field1\Field10[$05], $01), entityyaw(local7\Field1\Field10[$05], $01), 0.0, $01)
                     resetentity(local7\Field1\Field12[$00]\Field2)
                     local3 = (Int local7\Field3)
-                    local20 = updatelever(local7\Field1\Field10[$01], (((-975.0 * roomscale) > entityy(local7\Field1\Field10[$06], $01)) And ((-1275.0 * roomscale) < entityy(local7\Field1\Field10[$06], $01))))
+                    debuglog((((Str entityy(local7\Field1\Field10[$06], $00)) + " - ") + (Str (((-988.5 * roomscale) > entityy(local7\Field1\Field10[$06], $01)) And ((-1275.0 * roomscale) < entityy(local7\Field1\Field10[$06], $01))))))
+                    local20 = updatelever(local7\Field1\Field10[$01], (((-988.5 * roomscale) > entityy(local7\Field1\Field10[$06], $01)) And ((-1275.0 * roomscale) < entityy(local7\Field1\Field10[$06], $01))))
                     If (((grabbedentity = local7\Field1\Field10[$01]) And (drawhandicon = $01)) <> 0) Then
                         local7\Field3 = (Float local20)
                     EndIf
@@ -1070,6 +1071,9 @@ Function updateevents%()
                                 local14\Field1 = 0.003
                             EndIf
                             If (((1000.0 > (local7\Field4 - fpsfactor)) And (1000.0 <= local7\Field4)) <> 0) Then
+                                If (femurbreakersfx <> $00) Then
+                                    freesound(femurbreakersfx)
+                                EndIf
                                 local14 = createdecal($00, entityx(local7\Field1\Field10[$07], $01), entityy(local7\Field1\Field10[$07], $01), entityz(local7\Field1\Field10[$05], $01), 0.0, 0.0, 0.0)
                                 rotateentity(local14\Field0, (entitypitch(local7\Field1\Field10[$07], $01) + 30.0), (entityyaw(local7\Field1\Field10[$07], $01) + 20.0), entityroll(local14\Field0, $00), $00)
                                 moveentity(local14\Field0, 0.0, 0.0, 0.15)

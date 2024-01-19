@@ -66,7 +66,7 @@ Function createmap%()
             EndIf
             local11 = rand($03, $01)
             For local3 = $01 To local11 Step $01
-                local4 = (Int min((Float rand(local0, (local0 + local6))), (Float (mapwidth - $02))))
+                local4 = (Int max(min((Float rand(local0, (local0 + local6))), (Float (mapwidth - $02))), 2.0))
                 debuglog((((Str local4) + ", ") + (Str local1)))
                 If (((maptemp(local8, (local4 - $01), (local1 - $01)) = $00) And (maptemp(local8, (local4 + $01), (local1 - $01)) = $00)) <> 0) Then
                     If (local3 < local11) Then

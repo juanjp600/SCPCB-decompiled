@@ -1,10 +1,17 @@
 
+v0.3.1
+- fixed the levers and buttons in 106's containment room
+- fixed the bug that blocked the doors of the elevators to the maintenance tunnel
+- slightly modified the "room3pit"-room
+
+----------------------------------------------------------------------------------
+
 v0.3
 - new rooms and events
 - more radio broadcasts
-- some additions to 106's pocket dimension
-- 106's containment room
-- SCP-079
+- some additions to SCP-106's pocket dimension
+- SCP-106's containment room
+- SCP-079's containment room
 - new voice acting for the intercom person in the intro
 - larger inventory
 - the maintenance tunnel is now back, scarier than ever
