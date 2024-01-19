@@ -6,10 +6,10 @@ Function updatemainmenu%()
     Local local4%
     Local local6%
     Local local7$
-    Local local9%
     Local local10%
-    Local local12$
-    Local local13%
+    Local local11%
+    Local local13$
+    Local local14%
     cls($01, $01)
     showpointer()
     drawimage(menuback, $00, $00, $00)
@@ -81,14 +81,39 @@ Function updatemainmenu%()
                 Case $00
                     local7 = "NEW GAME"
                     If (local4 <> 0) Then
-                        local9 = rand($04, $08)
-                        For local6 = $01 To local9 Step $01
-                            If (rand($03, $01) = $01) Then
-                                randomseed = (randomseed + (Str rand($00, $09)))
-                            Else
-                                randomseed = (randomseed + chr(rand($61, $7A)))
-                            EndIf
-                        Next
+                        If (rand($0A, $01) = $01) Then
+                            Select rand($0A, $01)
+                                Case $01
+                                    randomseed = "NIL"
+                                Case $02
+                                    randomseed = "NO"
+                                Case $03
+                                    randomseed = "d9341"
+                                Case $04
+                                    randomseed = "5CP_I73"
+                                Case $05
+                                    randomseed = "DONTBLINK"
+                                Case $06
+                                    randomseed = "CRUNCH"
+                                Case $07
+                                    randomseed = "die"
+                                Case $08
+                                    randomseed = "HTAED"
+                                Case $09
+                                    randomseed = "rustledjim"
+                                Case $0A
+                                    randomseed = "larry"
+                            End Select
+                        Else
+                            local10 = rand($04, $08)
+                            For local6 = $01 To local10 Step $01
+                                If (rand($03, $01) = $01) Then
+                                    randomseed = (randomseed + (Str rand($00, $09)))
+                                Else
+                                    randomseed = (randomseed + chr(rand($61, $7A)))
+                                EndIf
+                            Next
+                        EndIf
                         mainmenutab = $01
                     EndIf
                 Case $01
@@ -117,8 +142,8 @@ Function updatemainmenu%()
         local3 = (Int (70.0 * menuscale))
         drawframe(local0, local1, local2, local3)
         If (drawbutton((Int ((20.0 * menuscale) + (Float (local0 + local2)))), local1, (Int (((580.0 * menuscale) - (Float local2)) - (20.0 * menuscale))), local3, "BACK", $00) <> 0) Then
-            local10 = mainmenutab
-            If (local10 = $03) Then
+            local11 = mainmenutab
+            If (local11 = $03) Then
                 putinivalue(optionfile, "options", "music volume", (Str musicvolume))
                 putinivalue(optionfile, "options", "mouse sensitivity", (Str mousesens))
                 putinivalue(optionfile, "options", "invert mouse y", (Str invertmouse))
@@ -167,22 +192,23 @@ Function updatemainmenu%()
                 If (drawbutton((Int ((420.0 * menuscale) + (Float local0))), (Int ((20.0 * menuscale) + (Float (local1 + local3)))), (Int (160.0 * menuscale)), (Int (70.0 * menuscale)), "START", $00) <> 0) Then
                     If (currsave <> "") Then
                         If (randomseed = "") Then
-                            randomseed = (Str millisecs())
+                            randomseed = (Str (Abs millisecs()))
                         Else
-                            local12 = ""
+                            local13 = ""
                             For local6 = $01 To len(randomseed) Step $01
-                                local12 = (local12 + (Str asc(mid(local12, local6, $01))))
+                                local13 = (local13 + (Str asc(mid(local13, local6, $01))))
                             Next
+                            randomseed = (Str (Abs (Int local13)))
                         EndIf
                         seedrnd((Int randomseed))
-                        local13 = $00
+                        local14 = $00
                         For local6 = $01 To savegameamount Step $01
                             If (savegames((local6 - $01)) = currsave) Then
-                                local13 = (local13 + $01)
+                                local14 = (local14 + $01)
                             EndIf
                         Next
-                        If (local13 > $00) Then
-                            currsave = (((currsave + " (") + (Str (local13 + $01))) + ")")
+                        If (local14 > $00) Then
+                            currsave = (((currsave + " (") + (Str (local14 + $01))) + ")")
                         EndIf
                         loadentities()
                         initnewgame()

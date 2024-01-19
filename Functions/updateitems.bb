@@ -44,7 +44,7 @@ Function updateitems%()
                                 achvomni = $01
                             Case "navigator","nav"
                                 If (closestitem\Field1\Field0 = "S-NAV Navigator Ultimate") Then
-                                    achvomni = $01
+                                    achvsnav = $01
                                 EndIf
                         End Select
                         If (closestitem\Field1\Field2 <> $42) Then

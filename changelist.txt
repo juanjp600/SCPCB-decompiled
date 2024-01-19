@@ -1,6 +1,15 @@
 
 ----------------------------------------------------------------------------------
 
+v0.5.4
+- fixed a bug in SCP-079's containment chamber that made SCP-079 disappear and
+ caused random black walls and floors to appear in the chamber and other rooms.
+- fixed the "black wall of fog" in the intro
+- finding S-NAV Ultimate now affects the [REDACTED] in [REDACTED]
+- some waypoint bugfixes again
+
+----------------------------------------------------------------------------------
+
 v0.5.3
 - fixed the bug that caused the player to fall through the map when loading a new game
 - fixed some waypoint bugs

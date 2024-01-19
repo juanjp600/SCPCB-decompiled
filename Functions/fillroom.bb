@@ -223,16 +223,19 @@ Function fillroom%(arg0.rooms)
             local0\Field5 = $00
             positionentity(local0\Field3[$01], ((224.0 * roomscale) + arg0\Field3), (-250.0 * roomscale), ((918.0 * roomscale) + arg0\Field5), $01)
             positionentity(local0\Field3[$00], (arg0\Field3 - (240.0 * roomscale)), (-250.0 * roomscale), ((1366.0 * roomscale) + arg0\Field5), $01)
-            arg0\Field12[$00] = createdoor(arg0\Field0, ((384.0 * roomscale) + arg0\Field3), (-448.0 * roomscale), ((3088.0 * roomscale) + arg0\Field5), 0.0, arg0, $00, $01, $03, "")
+            arg0\Field12[$00] = createdoor(arg0\Field0, ((1456.0 * roomscale) + arg0\Field3), (-448.0 * roomscale), ((976.0 * roomscale) + arg0\Field5), 0.0, arg0, $00, $01, $03, "")
             arg0\Field12[$00]\Field8 = $01
             arg0\Field12[$00]\Field19 = $00
             arg0\Field12[$00]\Field5 = $00
-            positionentity(arg0\Field12[$00]\Field3[$01], ((736.0 * roomscale) + arg0\Field3), (-250.0 * roomscale), ((2870.0 * roomscale) + arg0\Field5), $01)
-            positionentity(arg0\Field12[$00]\Field3[$00], ((128.0 * roomscale) + arg0\Field3), (-250.0 * roomscale), ((3286.0 * roomscale) + arg0\Field5), $01)
+            positionentity(arg0\Field12[$00]\Field3[$01], ((1760.0 * roomscale) + arg0\Field3), (-250.0 * roomscale), ((1236.0 * roomscale) + arg0\Field5), $01)
+            turnentity(arg0\Field12[$00]\Field3[$00], 0.0, -180.0, 0.0, $01)
+            positionentity(arg0\Field12[$00]\Field3[$00], ((1760.0 * roomscale) + arg0\Field3), (-240.0 * roomscale), ((740.0 * roomscale) + arg0\Field5), $01)
+            turnentity(arg0\Field12[$00]\Field3[$01], 0.0, 0.0, 0.0, $01)
             arg0\Field11[$00] = loadanimmesh("GFX\map\079.b3d", $00)
             scaleentity(arg0\Field11[$00], 1.3, 1.3, 1.3, $01)
-            positionentity(arg0\Field11[$00], (arg0\Field3 - (560.0 * roomscale)), (-560.0 * roomscale), ((4736.0 * roomscale) + arg0\Field5), $01)
+            positionentity(arg0\Field11[$00], ((1856.0 * roomscale) + arg0\Field3), (-560.0 * roomscale), (arg0\Field5 - (672.0 * roomscale)), $01)
             entityparent(arg0\Field11[$00], arg0\Field2, $01)
+            turnentity(arg0\Field11[$00], 0.0, 180.0, 0.0, $01)
             arg0\Field11[$01] = createsprite(arg0\Field11[$00])
             spriteviewmode(arg0\Field11[$01], $02)
             positionentity(arg0\Field11[$01], 0.082, 0.119, 0.01, $00)
@@ -290,6 +293,8 @@ Function fillroom%(arg0.rooms)
             local0\Field5 = $00
             freeentity(local0\Field3[$00])
             freeentity(local0\Field3[$01])
+            local3 = createitem("Mobile Task Force Epsilon-11", "paper", (arg0\Field3 - (316.0 * roomscale)), ((272.0 * roomscale) + arg0\Field4), ((176.0 * roomscale) + arg0\Field5))
+            entityparent(local3\Field0, arg0\Field2, $01)
         Case "room2toilets"
             arg0\Field11[$00] = createpivot($00)
             positionentity(arg0\Field11[$00], ((1040.0 * roomscale) + arg0\Field3), (192.0 * roomscale), arg0\Field5, $00)
@@ -699,6 +704,8 @@ Function fillroom%(arg0.rooms)
                 entityradius(arg0\Field11[((local23 Shl $01) + $01)], 0.1, 0.0)
             Next
         Case "room106"
+            local3 = createitem("Level 4 Key Card", "key4", (arg0\Field3 - (752.0 * roomscale)), (arg0\Field4 - (592.0 * roomscale)), ((3026.0 * roomscale) + arg0\Field5))
+            entityparent(local3\Field0, arg0\Field2, $01)
             local0 = createdoor(arg0\Field0, (arg0\Field3 - (968.0 * roomscale)), (-764.0 * roomscale), ((1392.0 * roomscale) + arg0\Field5), 0.0, arg0, $00, $00, $03, "")
             local0\Field19 = $00
             local0\Field5 = $00

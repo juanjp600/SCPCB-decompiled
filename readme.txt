@@ -4,7 +4,7 @@
 **************************    SCP - CONTAINMENT BREACH   **************************
 ***********************************************************************************
 
-				    VERSION v0.5.3
+				    VERSION v0.5.4
 								
 
 This game is licensed under Creative Commons Attribution-ShareAlike 3.0 License.
@@ -115,7 +115,7 @@ See the credits below for further details.
 		Caleb Yu
 			some of the documents
 
-		Orgil D. Pount (Destructoid)
+		Orgil Pount (Destructoid)
 			guard/MTF textures
 
 		Irontaco 

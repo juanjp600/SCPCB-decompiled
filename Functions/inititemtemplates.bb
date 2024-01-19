@@ -37,6 +37,8 @@ Function inititemtemplates%()
     local0\Field2 = $00
     local0 = createitemtemplate("Mobile Task Forces", "paper", "GFX\items\paper.x", "GFX\items\INVpaper.jpg", "GFX\items\docMTF.jpg", 0.003, "", "")
     local0\Field2 = $00
+    local0 = createitemtemplate("Mobile Task Force Epsilon-11", "paper", "GFX\items\paper.x", "GFX\items\INVpaper.jpg", "GFX\items\docNTF.jpg", 0.003, "", "")
+    local0\Field2 = $00
     local0 = createitemtemplate("Security Clearance Levels", "paper", "GFX\items\paper.x", "GFX\items\INVpaper.jpg", "GFX\items\docSC.jpg", 0.003, "", "")
     local0\Field2 = $00
     local0 = createitemtemplate("Object Classes", "paper", "GFX\items\paper.x", "GFX\items\INVpaper.jpg", "GFX\items\docOBJC.jpg", 0.003, "", "")

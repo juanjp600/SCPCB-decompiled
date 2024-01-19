@@ -87,6 +87,8 @@ Function updateevents%()
                     ambientlight(250.0, 250.0, 250.0)
                     hideentity(fog)
                 EndIf
+                lightvolume = 1.5
+                templightvolume = 1.5
                 If (0.0 <= killtimer) Then
                     If (0.0 = local7\Field2) Then
                         If (playerroom = local7\Field1) Then
