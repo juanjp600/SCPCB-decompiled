@@ -307,9 +307,9 @@ Function loadgame%(arg0$)
         local0 = readfloat(local6)
         local1 = readfloat(local6)
         rotateentity(local39\Field0, local0, local1, 0.0, $00)
-        local39\Field5 = readfloat(local6)
-        local39\Field7 = readbyte(local6)
-        If (local39\Field7 <> 0) Then
+        local39\Field7 = readfloat(local6)
+        local39\Field9 = readbyte(local6)
+        If (local39\Field9 <> 0) Then
             hideentity(local39\Field0)
         EndIf
         local42 = readbyte(local6)

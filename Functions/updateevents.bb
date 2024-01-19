@@ -791,7 +791,6 @@ Function updateevents%()
                                         EndIf
                                     EndIf
                                 EndIf
-                                debuglog(("distance: " + (Str distance(entityx(collider, $00), entityz(collider, $00), entityx(local7\Field1\Field11[$0B], $01), entityz(local7\Field1\Field11[$0B], $01)))))
                                 If (0.0 = local7\Field4) Then
                                     If (1.0 > (Abs (entityy(collider, $00) - entityy(local7\Field1\Field11[$0B], $01)))) Then
                                         If (12.0 > distance(entityx(collider, $00), entityz(collider, $00), entityx(local7\Field1\Field11[$0B], $01), entityz(local7\Field1\Field11[$0B], $01))) Then
@@ -919,8 +918,10 @@ Function updateevents%()
                         EndIf
                     Next
                     local7\Field2 = updateelevators(local7\Field2, local7\Field1\Field12[$00], local26\Field12[$01], local7\Field1\Field11[$00], local7\Field1\Field11[$01], local7)
-                    If (((-1.5 > local7\Field2) And (-1.5 <= (local7\Field2 + fpsfactor))) <> 0) Then
-                        playsound(oldmansfx($03))
+                    If (contained106 = $00) Then
+                        If (((-1.5 > local7\Field2) And (-1.5 <= (local7\Field2 + fpsfactor))) <> 0) Then
+                            playsound(oldmansfx($03))
+                        EndIf
                     EndIf
                     If (4.0 > entitydistance(collider, local7\Field1\Field11[$01])) Then
                         local26\Field12[$01]\Field4 = $01
@@ -1787,9 +1788,10 @@ Function updateevents%()
                     EndIf
                 EndIf
             Case "lockroom096"
-                If (playerroom = local7\Field1) Then
+                If (((playerroom = local7\Field1) And (0.0 = local7\Field2)) <> 0) Then
                     local5 = createnpc($09, entityx(local7\Field1\Field2, $01), 0.3, entityz(local7\Field1\Field2, $01))
                     rotateentity(local5\Field4, 0.0, (Float (local7\Field1\Field6 + $2D)), 0.0, $01)
+                    local7\Field2 = 1.0
                     Delete local7
                 EndIf
             Case "pocketdimension"
@@ -2303,7 +2305,7 @@ Function updateevents%()
                                     EndIf
                                     If (((181.0 > local11) And (90.0 < local11)) <> 0) Then
                                         For local9 = Each items
-                                            If (((local9\Field0 <> $00) And (local9\Field7 = $00)) <> 0) Then
+                                            If (((local9\Field0 <> $00) And (local9\Field9 = $00)) <> 0) Then
                                                 If (200.0 > (Abs (entityx(local9\Field0, $00) - (local7\Field1\Field3 - (712.0 * roomscale))))) Then
                                                     If (104.0 > (Abs (entityy(local9\Field0, $00) - ((648.0 * roomscale) + local7\Field1\Field4)))) Then
                                                         local7\Field2 = 1.0
@@ -2413,7 +2415,7 @@ Function updateevents%()
                         EndIf
                         If (840.0 < local7\Field2) Then
                             For local9 = Each items
-                                If (((local9\Field0 <> $00) And (local9\Field7 = $00)) <> 0) Then
+                                If (((local9\Field0 <> $00) And (local9\Field9 = $00)) <> 0) Then
                                     If ((180.0 * roomscale) > distance(entityx(local9\Field0, $00), entityz(local9\Field0, $00), entityx(local7\Field1\Field11[$02], $01), entityz(local7\Field1\Field11[$02], $01))) Then
                                         use914(local9, local37, entityx(local7\Field1\Field11[$03], $01), entityy(local7\Field1\Field11[$03], $01), entityz(local7\Field1\Field11[$03], $01))
                                     EndIf

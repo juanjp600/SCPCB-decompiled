@@ -1,6 +1,6 @@
 Function playmtfmessage%(arg0%)
     If (selecteditem <> Null) Then
-        If (((3.0 = selecteditem\Field6) And (0.0 < selecteditem\Field5)) <> 0) Then
+        If (((3.0 = selecteditem\Field8) And (0.0 < selecteditem\Field7)) <> 0) Then
             Select selecteditem\Field1\Field1
                 Case "radio","fineradio","18vradio"
                     If (radiochn($03) <> $00) Then

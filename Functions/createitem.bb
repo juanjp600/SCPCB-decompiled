@@ -17,6 +17,7 @@ Function createitem.items(arg0$, arg1$, arg2#, arg3#, arg4#)
     resetentity(local0\Field0)
     positionentity(local0\Field0, arg2, arg3, arg4, $00)
     rotateentity(local0\Field0, 0.0, (Float rand($168, $01)), 0.0, $00)
+    local0\Field5 = entitydistance(collider, local0\Field0)
     Return local0
     Return Null
 End Function

@@ -209,8 +209,8 @@ Function savegame%(arg0$)
         writefloat(local4, entityz(local11\Field0, $01))
         writefloat(local4, entitypitch(local11\Field0, $00))
         writefloat(local4, entityyaw(local11\Field0, $00))
-        writefloat(local4, local11\Field5)
-        writebyte(local4, local11\Field7)
+        writefloat(local4, local11\Field7)
+        writebyte(local4, local11\Field9)
         If (selecteditem = local11) Then
             writebyte(local4, $01)
         Else

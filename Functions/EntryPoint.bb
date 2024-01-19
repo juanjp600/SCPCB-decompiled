@@ -34,7 +34,7 @@ Function EntryPoint%()
     mirrorcameraaz = 0.0
     mirrorcameraparent = $00
     optionfile = "options.ini"
-    versionnumber = "0.6.1"
+    versionnumber = "0.6.2"
     local0 = $00
     Dim arrowimg%($04)
     launcherwidth = (Int min((Float getiniint(optionfile, "launcher", "launcher width")), 1024.0))
@@ -104,6 +104,14 @@ Function EntryPoint%()
     mouse_right_limit = (graphicswidth() - $FA)
     mouse_top_limit = $FA
     mouse_bottom_limit = (graphicsheight() - $FA)
+    key_right = getiniint(optionfile, "options", "Right key")
+    key_left = getiniint(optionfile, "options", "Left key")
+    key_up = getiniint(optionfile, "options", "Up key")
+    key_down = getiniint(optionfile, "options", "Down key")
+    key_blink = getiniint(optionfile, "options", "Blink key")
+    key_sprint = getiniint(optionfile, "options", "Sprint key")
+    key_inv = getiniint(optionfile, "options", "Inventory key")
+    key_crouch = getiniint(optionfile, "options", "Crouch key")
     invertmouse = getiniint(optionfile, "options", "invert mouse y")
     Dim drawarrowicon%($04)
     lightson = $01
@@ -350,6 +358,72 @@ Function EntryPoint%()
         savegametime((local1 - $01)) = readint(local13)
         closefile(local13)
     Next
+    Dim keyname$($D3)
+    keyname($01) = "Esc"
+    For local1 = $02 To $0A Step $01
+        keyname(local1) = (Str (local1 - $01))
+    Next
+    keyname($0B) = "0"
+    keyname($0C) = "-"
+    keyname($0D) = "="
+    keyname($0E) = "Backspace"
+    keyname($0F) = "Tab"
+    keyname($10) = "Q"
+    keyname($11) = "W"
+    keyname($12) = "E"
+    keyname($13) = "R"
+    keyname($14) = "T"
+    keyname($15) = "Y"
+    keyname($16) = "U"
+    keyname($17) = "I"
+    keyname($18) = "O"
+    keyname($19) = "P"
+    keyname($1A) = "["
+    keyname($1B) = "]"
+    keyname($1C) = "Enter"
+    keyname($1D) = "Left Ctrl"
+    keyname($1E) = "A"
+    keyname($1F) = "S"
+    keyname($20) = "D"
+    keyname($21) = "F"
+    keyname($22) = "G"
+    keyname($23) = "H"
+    keyname($24) = "J"
+    keyname($25) = "K"
+    keyname($26) = "L"
+    keyname($27) = ";"
+    keyname($28) = "'"
+    keyname($2A) = "Left Shift"
+    keyname($2B) = "\"
+    keyname($2C) = "Z"
+    keyname($2D) = "X"
+    keyname($2E) = "C"
+    keyname($2F) = "V"
+    keyname($30) = "B"
+    keyname($31) = "N"
+    keyname($32) = "M"
+    keyname($33) = ","
+    keyname($34) = "."
+    keyname($36) = "Right Shift"
+    keyname($38) = "Left Alt"
+    keyname($39) = "Space"
+    keyname($3A) = "Caps Lock"
+    keyname($3B) = "F1"
+    keyname($3C) = "F2"
+    keyname($3D) = "F3"
+    keyname($3E) = "F4"
+    keyname($3F) = "F5"
+    keyname($40) = "F6"
+    keyname($41) = "F7"
+    keyname($42) = "F8"
+    keyname($43) = "F9"
+    keyname($44) = "F10"
+    keyname($9D) = "Right Control"
+    keyname($B8) = "Right Alt"
+    keyname($C8) = "Up"
+    keyname($CB) = "Left"
+    keyname($CD) = "Right"
+    keyname($D0) = "Down"
     mainmenuopen = $01
     flushkeys()
     flushmouse()
@@ -405,7 +479,7 @@ Function EntryPoint%()
             If (0.0 < fpsfactor) Then
                 updatesecuritycams()
             EndIf
-            If (keyhit($0F) <> 0) Then
+            If (keyhit(key_inv) <> 0) Then
                 If (invopen <> 0) Then
                     resumesounds()
                 Else
@@ -592,10 +666,5 @@ Function EntryPoint%()
             EndIf
         EndIf
         flip($01)
-        If ((keyhit($58) And $00) <> 0) Then
-            savebuffer(frontbuffer(), (("Screenshots\screenshot" + currenttime()) + ".bmp"))
-            msg = "Screenshot saved"
-            msgtimer = 350.0
-        EndIf
     Forever
 End Function

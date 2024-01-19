@@ -73,7 +73,7 @@ Function use914%(arg0.items, arg1$, arg2#, arg3#, arg4#)
                     local0 = createitem("Small First Aid Kit", "finefirstaid", arg2, arg3, arg4)
                     removeitem(arg0)
                 Case "very fine"
-                    local0 = createitem("Strange Bottle", "finefirstaid", arg2, arg3, arg4)
+                    local0 = createitem("Strange Bottle", "veryfinefirstaid", arg2, arg3, arg4)
                     removeitem(arg0)
             End Select
         Case "Level 1 Key Card","Level 2 Key Card","Level 3 Key Card","Level 4 Key Card","Level 5 Key Card","Key Card"
@@ -141,13 +141,13 @@ Function use914%(arg0.items, arg1$, arg2#, arg3#, arg4#)
                     local0 = createitem("Electronical components", "misc", arg2, arg3, arg4)
                 Case "1:1"
                     local0 = createitem("S-NAV Navigator", "nav", arg2, arg3, arg4)
-                    local0\Field5 = 100.0
+                    local0\Field7 = 100.0
                 Case "fine"
                     local0 = createitem("S-NAV 310 Navigator", "nav", arg2, arg3, arg4)
-                    local0\Field5 = 100.0
+                    local0\Field7 = 100.0
                 Case "very fine"
                     local0 = createitem("S-NAV Navigator Ultimate", "nav", arg2, arg3, arg4)
-                    local0\Field5 = 101.0
+                    local0\Field7 = 101.0
             End Select
             removeitem(arg0)
         Case "Radio Transceiver"
@@ -156,13 +156,13 @@ Function use914%(arg0.items, arg1$, arg2#, arg3#, arg4#)
                     local0 = createitem("Electronical components", "misc", arg2, arg3, arg4)
                 Case "1:1"
                     local0 = createitem("Radio Transceiver", "18vradio", arg2, arg3, arg4)
-                    local0\Field5 = 100.0
+                    local0\Field7 = 100.0
                 Case "fine"
                     local0 = createitem("Radio Transceiver", "fineradio", arg2, arg3, arg4)
-                    local0\Field5 = 101.0
+                    local0\Field7 = 101.0
                 Case "very fine"
                     local0 = createitem("Radio Transceiver", "veryfineradio", arg2, arg3, arg4)
-                    local0\Field5 = 101.0
+                    local0\Field7 = 101.0
             End Select
             removeitem(arg0)
         Case "Some SCP-420-J","Cigarette"

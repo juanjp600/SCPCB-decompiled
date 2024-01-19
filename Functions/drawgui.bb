@@ -384,7 +384,7 @@ Function drawgui%()
                     moveentity(selecteditem\Field0, 0.0, -0.1, 0.1)
                     rotateentity(selecteditem\Field0, 0.0, (Float rand($168, $01)), 0.0, $00)
                     resetentity(selecteditem\Field0)
-                    selecteditem\Field7 = $00
+                    selecteditem\Field9 = $00
                     For local3 = $00 To $09 Step $01
                         If (inventory(local3) = selecteditem) Then
                             inventory(local3) = Null
@@ -423,7 +423,7 @@ Function drawgui%()
                                         EndIf
                                         removeitem(selecteditem)
                                         selecteditem = Null
-                                        inventory(local15)\Field5 = 100.0
+                                        inventory(local15)\Field7 = 100.0
                                         msg = "You replaced the battery of the navigator"
                                         msgtimer = 350.0
                                     Case "S-NAV Navigator Ultimate"
@@ -443,7 +443,7 @@ Function drawgui%()
                                                 EndIf
                                                 removeitem(selecteditem)
                                                 selecteditem = Null
-                                                inventory(local15)\Field5 = 100.0
+                                                inventory(local15)\Field7 = 100.0
                                                 msg = "You replaced the battery of the radio"
                                                 msgtimer = 350.0
                                         End Select
@@ -471,7 +471,7 @@ Function drawgui%()
                                                 EndIf
                                                 removeitem(selecteditem)
                                                 selecteditem = Null
-                                                inventory(local15)\Field5 = 100.0
+                                                inventory(local15)\Field7 = 100.0
                                                 msg = "You replaced the battery of the radio"
                                                 msgtimer = 350.0
                                         End Select
@@ -552,11 +552,11 @@ Function drawgui%()
                     local1 = ((graphicwidth Sar $01) - (local12 Sar $01))
                     local2 = ((graphicheight Sar $01) + $50)
                     rect(local1, local2, (local12 + $04), local13, $00)
-                    For local4 = $01 To (Int (((selecteditem\Field5 / 100.0) * (Float (local12 - $02))) / 10.0)) Step $01
+                    For local4 = $01 To (Int (((selecteditem\Field7 / 100.0) * (Float (local12 - $02))) / 10.0)) Step $01
                         drawimage(blinkmeterimg, ((local1 + $03) + ((local4 - $01) * $0A)), (local2 + $03), $00)
                     Next
-                    selecteditem\Field5 = min(((fpsfactor / 5.0) + selecteditem\Field5), 100.0)
-                    If (100.0 = selecteditem\Field5) Then
+                    selecteditem\Field7 = min(((fpsfactor / 5.0) + selecteditem\Field7), 100.0)
+                    If (100.0 = selecteditem\Field7) Then
                         If (selecteditem\Field1\Field1 = "finefirstaid") Then
                             bloodloss = 0.0
                             injuries = max(0.0, (injuries - 2.0))
@@ -645,8 +645,8 @@ Function drawgui%()
                 EndIf
                 drawimage(selecteditem\Field1\Field7, ((graphicwidth Sar $01) - (imagewidth(selecteditem\Field1\Field7) Sar $01)), ((graphicheight Sar $01) - (imageheight(selecteditem\Field1\Field7) Sar $01)), $00)
             Case "radio","18vradio","fineradio","veryfineradio"
-                If (100.0 >= selecteditem\Field5) Then
-                    selecteditem\Field5 = max(0.0, (selecteditem\Field5 - (fpsfactor * 0.01)))
+                If (100.0 >= selecteditem\Field7) Then
+                    selecteditem\Field7 = max(0.0, (selecteditem\Field7 - (fpsfactor * 0.01)))
                 EndIf
                 If (selecteditem\Field1\Field7 = $00) Then
                     selecteditem\Field1\Field7 = loadimage(selecteditem\Field1\Field6)
@@ -661,14 +661,14 @@ Function drawgui%()
                 local1 = ((graphicwidth - imagewidth(selecteditem\Field1\Field7)) + $78)
                 local2 = ((graphicheight - imageheight(selecteditem\Field1\Field7)) - $1E)
                 drawimage(selecteditem\Field1\Field7, local1, local2, $00)
-                If (0.0 < selecteditem\Field5) Then
+                If (0.0 < selecteditem\Field7) Then
                     If (((playerroom\Field7\Field4 = "pocketdimension") Or (4.0 > coffindistance)) <> 0) Then
                         resumechannel(radiochn($00))
                         If (channelplaying(radiochn($00)) = $00) Then
                             radiochn($00) = playsound(radiostatic)
                         EndIf
                     Else
-                        Select (Int selecteditem\Field6)
+                        Select (Int selecteditem\Field8)
                             Case $00
                                 resumechannel(radiochn($00))
                                 If (channelplaying(radiochn($00)) = $00) Then
@@ -751,9 +751,6 @@ Function drawgui%()
                                     radiochn($05) = playsound(radiostatic)
                                 EndIf
                         End Select
-                        If (keyhit($19) <> 0) Then
-                            stopchannel(radiochn($02))
-                        EndIf
                         color($E6, $DF, $CC)
                         text((local1 + $C3), (local2 + $10D), "CHN", $00, $00)
                         If (selecteditem\Field1\Field1 = "veryfineradio") Then
@@ -781,20 +778,20 @@ Function drawgui%()
                         Else
                             For local4 = $02 To $06 Step $01
                                 If (keyhit(local4) <> 0) Then
-                                    If ((Float (local4 - $02)) <> selecteditem\Field6) Then
+                                    If ((Float (local4 - $02)) <> selecteditem\Field8) Then
                                         playsound(radiosquelch)
-                                        If (radiochn((Int selecteditem\Field6)) <> $00) Then
-                                            pausechannel(radiochn((Int selecteditem\Field6)))
+                                        If (radiochn((Int selecteditem\Field8)) <> $00) Then
+                                            pausechannel(radiochn((Int selecteditem\Field8)))
                                         EndIf
                                     EndIf
-                                    selecteditem\Field6 = (Float (local4 - $02))
-                                    If (radiochn((Int selecteditem\Field6)) <> $00) Then
-                                        resumechannel(radiochn((Int selecteditem\Field6)))
+                                    selecteditem\Field8 = (Float (local4 - $02))
+                                    If (radiochn((Int selecteditem\Field8)) <> $00) Then
+                                        resumechannel(radiochn((Int selecteditem\Field8)))
                                     EndIf
                                 EndIf
                             Next
                             setfont(font2)
-                            text((local1 + $D6), (local2 + $136), (Str (Int (selecteditem\Field6 + 1.0))), $01, $01)
+                            text((local1 + $D6), (local2 + $136), (Str (Int (selecteditem\Field8 + 1.0))), $01, $01)
                         EndIf
                         setfont(font1)
                         If (local28 <> "") Then
@@ -802,9 +799,9 @@ Function drawgui%()
                         EndIf
                         local1 = (local1 + $141)
                         local2 = (local2 + $108)
-                        If (100.0 >= selecteditem\Field5) Then
+                        If (100.0 >= selecteditem\Field7) Then
                             For local4 = $01 To $05 Step $01
-                                If ((Float ($05 - local4)) < ceil((selecteditem\Field5 / 20.0))) Then
+                                If ((Float ($05 - local4)) < ceil((selecteditem\Field7 / 20.0))) Then
                                     rect((local1 - ($28 - (local4 * $06))), local2, ($28 - (local4 * $06)), $05, $01)
                                 Else
                                     rect((local1 - ($28 - (local4 * $06))), local2, ($28 - (local4 * $06)), $05, $00)
@@ -878,8 +875,8 @@ Function drawgui%()
                     selecteditem\Field1\Field7 = loadimage(selecteditem\Field1\Field6)
                     maskimage(selecteditem\Field1\Field7, $FF, $00, $FF)
                 EndIf
-                If (100.0 >= selecteditem\Field5) Then
-                    selecteditem\Field5 = max(0.0, (selecteditem\Field5 - (fpsfactor * 0.01)))
+                If (100.0 >= selecteditem\Field7) Then
+                    selecteditem\Field7 = max(0.0, (selecteditem\Field7 - (fpsfactor * 0.01)))
                 EndIf
                 local1 = ((graphicwidth Sar $01) + $07)
                 local2 = ((graphicheight Sar $01) - $1C)
@@ -891,7 +888,7 @@ Function drawgui%()
                         text(local1, (((local13 Sar $01) + local2) - $50), "ERROR 06", $01, $00)
                         text(local1, (((local13 Sar $01) + local2) - $3C), "LOCATION UNKNOWN", $01, $00)
                     EndIf
-                ElseIf (((0.0 < selecteditem\Field5) And ((1.0 < rnd((coffindistance + 15.0), 0.0)) Or (playerroom\Field7\Field4 <> "coffin"))) <> 0) Then
+                ElseIf (((0.0 < selecteditem\Field7) And ((1.0 < rnd((coffindistance + 15.0), 0.0)) Or (playerroom\Field7\Field4 <> "coffin"))) <> 0) Then
                     color($E6, $DF, $CC)
                     If (selecteditem\Field1\Field0 = "S-NAV Navigator") Then
                         color($FF, $00, $00)
@@ -972,10 +969,10 @@ Function drawgui%()
                     If (selecteditem\Field1\Field0 = "S-NAV Navigator") Then
                         color($FF, $00, $00)
                     EndIf
-                    If (100.0 >= selecteditem\Field5) Then
+                    If (100.0 >= selecteditem\Field7) Then
                         text((local1 - $3C), (local2 - $14), "BATTERY", $00, $00)
                         For local4 = $01 To $05 Step $01
-                            If ((Float ($05 - local4)) < ceil((selecteditem\Field5 / 20.0))) Then
+                            If ((Float ($05 - local4)) < ceil((selecteditem\Field7 / 20.0))) Then
                                 rect((local1 - ($28 - (local4 * $06))), local2, ($28 - (local4 * $06)), $05, $01)
                             Else
                                 rect((local1 - ($28 - (local4 * $06))), local2, ($28 - (local4 * $06)), $05, $00)

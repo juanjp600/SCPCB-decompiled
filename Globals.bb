@@ -139,6 +139,14 @@ Global invertmouse%
 Global invopen%
 Global invselect%
 Global itemamount%
+Global key_blink%
+Global key_crouch%
+Global key_down%
+Global key_inv%
+Global key_left%
+Global key_right%
+Global key_sprint%
+Global key_up%
 Global keypadhud%
 Global keypadinput$
 Global keypadmsg$

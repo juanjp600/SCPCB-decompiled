@@ -37,8 +37,8 @@ Function moveplayer%()
         crouchstate = curvevalue((Float crouch), crouchstate, 10.0)
     EndIf
     If (noclip = $00) Then
-        If (((((keydown($D0) Or keydown($1F)) Xor keydown($C8)) Or keydown($11)) Or ((keydown($CB) Or keydown($1E)) Xor (keydown($CD) Or keydown($20)))) <> 0) Then
-            If ((((crouch = $00) And (keydown($2A) Or keydown($36))) And (0.0 < stamina)) <> 0) Then
+        If (((keydown(key_down) Xor keydown(key_up)) Or (keydown(key_right) Xor keydown(key_left))) <> 0) Then
+            If ((((crouch = $00) And keydown(key_sprint)) And (0.0 < stamina)) <> 0) Then
                 local0 = 2.5
                 stamina = (stamina - (fpsfactor * 0.6))
                 If (0.0 >= stamina) Then
@@ -74,12 +74,12 @@ Function moveplayer%()
                 EndIf
             EndIf
         EndIf
-    ElseIf ((keydown($2A) Or keydown($36)) <> 0) Then
+    ElseIf (keydown(key_sprint) <> 0) Then
         local0 = 2.5
-    ElseIf (keydown($1D) <> 0) Then
+    ElseIf (keydown(key_crouch) <> 0) Then
         local0 = 0.5
     EndIf
-    If (keyhit($1D) <> 0) Then
+    If (keyhit(key_crouch) <> 0) Then
         crouch = (crouch = $00)
     EndIf
     local6 = (((local1 * local0) * fpsfactor) / (1.0 + crouchstate))
@@ -90,16 +90,16 @@ Function moveplayer%()
         crouch = $00
         rotateentity(collider, wrapangle(entitypitch(camera, $00)), wrapangle(entityyaw(camera, $00)), 0.0, $00)
         local6 = (local6 * 2.0)
-        If ((keydown($D0) Or keydown($1F)) <> 0) Then
+        If (keydown(key_down) <> 0) Then
             moveentity(collider, 0.0, 0.0, (- local6))
         EndIf
-        If ((keydown($C8) Or keydown($11)) <> 0) Then
+        If (keydown(key_up) <> 0) Then
             moveentity(collider, 0.0, 0.0, local6)
         EndIf
-        If ((keydown($CB) Or keydown($1E)) <> 0) Then
+        If (keydown(key_left) <> 0) Then
             moveentity(collider, (- local6), 0.0, 0.0)
         EndIf
-        If ((keydown($CD) Or keydown($20)) <> 0) Then
+        If (keydown(key_right) <> 0) Then
             moveentity(collider, local6, 0.0, 0.0)
         EndIf
         resetentity(collider)
@@ -109,30 +109,30 @@ Function moveplayer%()
             local6 = (min((sin((shake / 2.0)) + 1.2), 1.0) * local6)
         EndIf
         local4 = 0.0
-        If ((keydown($D0) Or keydown($1F)) <> 0) Then
+        If (keydown(key_down) <> 0) Then
             local4 = 1.0
             local3 = 180.0
-            If ((keydown($CB) Or keydown($1E)) <> 0) Then
+            If (keydown(key_left) <> 0) Then
                 local3 = 135.0
             EndIf
-            If ((keydown($CD) Or keydown($20)) <> 0) Then
+            If (keydown(key_right) <> 0) Then
                 local3 = -135.0
             EndIf
-        ElseIf ((keydown($C8) Or keydown($11)) <> 0) Then
+        ElseIf (keydown(key_up) <> 0) Then
             local4 = 1.0
             local3 = 0.0
-            If ((keydown($CB) Or keydown($1E)) <> 0) Then
+            If (keydown(key_left) <> 0) Then
                 local3 = 45.0
             EndIf
-            If ((keydown($CD) Or keydown($20)) <> 0) Then
+            If (keydown(key_right) <> 0) Then
                 local3 = -45.0
             EndIf
         Else
-            If ((keydown($CB) Or keydown($1E)) <> 0) Then
+            If (keydown(key_left) <> 0) Then
                 local3 = 90.0
                 local4 = 1.0
             EndIf
-            If ((keydown($CD) Or keydown($20)) <> 0) Then
+            If (keydown(key_right) <> 0) Then
                 local3 = -90.0
                 local4 = 1.0
             EndIf
@@ -180,7 +180,6 @@ Function moveplayer%()
             positionentity(local8, (entityx(collider, $00) + rnd(-0.05, 0.05)), (entityy(collider, $00) - 0.05), (entityz(collider, $00) + rnd(-0.05, 0.05)), $00)
             turnentity(local8, 90.0, 0.0, 0.0, $00)
             entitypick(local8, 0.3)
-            debuglog("verta tippuu")
             local9 = createdecal(rand($0F, $10), pickedx(), (pickedy() + 0.005), pickedz(), 90.0, (Float rand($168, $01)), 0.0)
             local9\Field2 = (rnd(0.03, 0.08) * min(injuries, 3.0))
             entityalpha(local9\Field0, 1.0)
@@ -205,17 +204,11 @@ Function moveplayer%()
             heartbeatvolume = max(heartbeatvolume, ((bloodloss - 35.0) / 60.0))
         EndIf
     EndIf
-    If (keyhit($39) <> 0) Then
+    If (keyhit(key_blink) <> 0) Then
         blinktimer = 0.0
     EndIf
-    If ((keydown($39) And (-10.0 > blinktimer)) <> 0) Then
+    If ((keydown(key_blink) And (-10.0 > blinktimer)) <> 0) Then
         blinktimer = -10.0
-    EndIf
-    If (((playerroom <> Null) And $00) <> 0) Then
-        Select playerroom\Field7\Field4
-            Case "room173","start"
-            Case "room2tunnel"
-        End Select
     EndIf
     If (0.0 < heartbeatvolume) Then
         If (0.0 >= heartbeattimer) Then

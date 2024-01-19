@@ -10,6 +10,7 @@ Function updatemainmenu%()
     Local local11%
     Local local13$
     Local local14%
+    Local local15%
     cls($01, $01)
     showpointer()
     drawimage(menuback, $00, $00, $00)
@@ -150,15 +151,23 @@ Function updatemainmenu%()
                 putinivalue(optionfile, "options", "invert mouse y", (Str invertmouse))
                 putinivalue(optionfile, "options", "bump mapping enabled", (Str bumpenabled))
                 putinivalue(optionfile, "options", "HUD enabled", (Str hudenabled))
+                putinivalue(optionfile, "options", "Right key", (Str key_right))
+                putinivalue(optionfile, "options", "Left key", (Str key_left))
+                putinivalue(optionfile, "options", "Up key", (Str key_up))
+                putinivalue(optionfile, "options", "Down key", (Str key_down))
+                putinivalue(optionfile, "options", "Blink key", (Str key_blink))
+                putinivalue(optionfile, "options", "Sprint key", (Str key_sprint))
+                putinivalue(optionfile, "options", "Inventory key", (Str key_inv))
+                putinivalue(optionfile, "options", "Crouch key", (Str key_crouch))
             EndIf
             mainmenutab = $00
         EndIf
-        local1 = (Int ((20.0 * menuscale) + (Float (local1 + local3))))
-        local2 = (Int (580.0 * menuscale))
-        local3 = (Int (300.0 * menuscale))
-        drawframe(local0, local1, local2, local3)
         Select mainmenutab
             Case $01
+                local1 = (Int ((20.0 * menuscale) + (Float (local1 + local3))))
+                local2 = (Int (580.0 * menuscale))
+                local3 = (Int (300.0 * menuscale))
+                drawframe(local0, local1, local2, local3)
                 local0 = (Int (159.0 * menuscale))
                 local1 = (Int (286.0 * menuscale))
                 local2 = (Int (400.0 * menuscale))
@@ -219,6 +228,10 @@ Function updatemainmenu%()
                     EndIf
                 EndIf
             Case $02
+                local1 = (Int ((20.0 * menuscale) + (Float (local1 + local3))))
+                local2 = (Int (580.0 * menuscale))
+                local3 = (Int (300.0 * menuscale))
+                drawframe(local0, local1, local2, local3)
                 local0 = (Int (159.0 * menuscale))
                 local1 = (Int (286.0 * menuscale))
                 local2 = (Int (400.0 * menuscale))
@@ -261,6 +274,10 @@ Function updatemainmenu%()
                     Next
                 EndIf
             Case $03
+                local1 = (Int ((20.0 * menuscale) + (Float (local1 + local3))))
+                local2 = (Int (580.0 * menuscale))
+                local3 = (Int (350.0 * menuscale))
+                drawframe(local0, local1, local2, local3)
                 local0 = (Int (159.0 * menuscale))
                 local1 = (Int (286.0 * menuscale))
                 local2 = (Int (400.0 * menuscale))
@@ -272,7 +289,7 @@ Function updatemainmenu%()
                 local0 = (Int (160.0 * menuscale))
                 local1 = (Int ((20.0 * menuscale) + (Float (local1 + local3))))
                 local2 = (Int (580.0 * menuscale))
-                local3 = (Int (300.0 * menuscale))
+                local3 = (Int (350.0 * menuscale))
                 setfont(font1)
                 text((Int ((20.0 * menuscale) + (Float local0))), (Int ((20.0 * menuscale) + (Float local1))), "Mouse sensitivity:", $00, $00)
                 mousesens = ((slidebar((Int ((240.0 * menuscale) + (Float local0))), (Int ((20.0 * menuscale) + (Float local1))), (Int (150.0 * menuscale)), ((mousesens + 0.5) * 100.0)) / 100.0) - 0.5)
@@ -294,6 +311,51 @@ Function updatemainmenu%()
                 color($FF, $FF, $FF)
                 text((Int ((20.0 * menuscale) + (Float local0))), (Int ((180.0 * menuscale) + (Float local1))), "Enable bump mapping:", $00, $00)
                 bumpenabled = drawtick((Int ((200.0 * menuscale) + (Float local0))), (Int ((178.0 * menuscale) + (Float local1))), bumpenabled, $00)
+                text((Int ((20.0 * menuscale) + (Float local0))), (Int ((220.0 * menuscale) + (Float local1))), "Control configuration:", $00, $00)
+                text((Int ((20.0 * menuscale) + (Float local0))), (Int ((240.0 * menuscale) + (Float local1))), "Right", $00, $00)
+                inputbox((Int ((170.0 * menuscale) + (Float local0))), (Int ((240.0 * menuscale) + (Float local1))), $64, $14, keyname((Int min((Float key_right), 210.0))), $04)
+                text((Int ((20.0 * menuscale) + (Float local0))), (Int ((260.0 * menuscale) + (Float local1))), "Left", $00, $00)
+                inputbox((Int ((170.0 * menuscale) + (Float local0))), (Int ((260.0 * menuscale) + (Float local1))), $64, $14, keyname((Int min((Float key_left), 210.0))), $03)
+                text((Int ((20.0 * menuscale) + (Float local0))), (Int ((280.0 * menuscale) + (Float local1))), "Up", $00, $00)
+                inputbox((Int ((170.0 * menuscale) + (Float local0))), (Int ((280.0 * menuscale) + (Float local1))), $64, $14, keyname((Int min((Float key_up), 210.0))), $05)
+                text((Int ((20.0 * menuscale) + (Float local0))), (Int ((300.0 * menuscale) + (Float local1))), "Down", $00, $00)
+                inputbox((Int ((170.0 * menuscale) + (Float local0))), (Int ((300.0 * menuscale) + (Float local1))), $64, $14, keyname((Int min((Float key_down), 210.0))), $06)
+                text((Int ((300.0 * menuscale) + (Float local0))), (Int ((240.0 * menuscale) + (Float local1))), "Blink", $00, $00)
+                inputbox((Int ((450.0 * menuscale) + (Float local0))), (Int ((240.0 * menuscale) + (Float local1))), $64, $14, keyname((Int min((Float key_blink), 210.0))), $07)
+                text((Int ((300.0 * menuscale) + (Float local0))), (Int ((260.0 * menuscale) + (Float local1))), "Sprint", $00, $00)
+                inputbox((Int ((450.0 * menuscale) + (Float local0))), (Int ((260.0 * menuscale) + (Float local1))), $64, $14, keyname((Int min((Float key_sprint), 210.0))), $08)
+                text((Int ((300.0 * menuscale) + (Float local0))), (Int ((280.0 * menuscale) + (Float local1))), "Inventory", $00, $00)
+                inputbox((Int ((450.0 * menuscale) + (Float local0))), (Int ((280.0 * menuscale) + (Float local1))), $64, $14, keyname((Int min((Float key_inv), 210.0))), $09)
+                text((Int ((300.0 * menuscale) + (Float local0))), (Int ((300.0 * menuscale) + (Float local1))), "Crouch", $00, $00)
+                inputbox((Int ((450.0 * menuscale) + (Float local0))), (Int ((300.0 * menuscale) + (Float local1))), $64, $14, keyname((Int min((Float key_crouch), 210.0))), $0A)
+                For local6 = $00 To $E3 Step $01
+                    If (keyhit(local6) <> 0) Then
+                        local15 = local6
+                        Exit
+                    EndIf
+                Next
+                If (local15 <> $00) Then
+                    debuglog((Str local15))
+                    Select selectedinputbox
+                        Case $03
+                            key_left = local15
+                        Case $04
+                            key_right = local15
+                        Case $05
+                            key_up = local15
+                        Case $06
+                            key_down = local15
+                        Case $07
+                            key_blink = local15
+                        Case $08
+                            key_sprint = local15
+                        Case $09
+                            key_inv = local15
+                        Case $0A
+                            key_crouch = local15
+                    End Select
+                    selectedinputbox = $00
+                EndIf
         End Select
     EndIf
     If (fullscreen <> 0) Then

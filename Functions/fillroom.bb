@@ -583,7 +583,7 @@ Function fillroom%(arg0.rooms)
                 entityparent(local4\Field0, arg0\Field2, $01)
             EndIf
             local4 = createitem("S-NAV 300 Navigator", "nav", ((124.0 * roomscale) + arg0\Field3), (arg0\Field4 - (368.0 * roomscale)), (arg0\Field5 - (648.0 * roomscale)))
-            local4\Field5 = 20.0
+            local4\Field7 = 20.0
             entityparent(local4\Field0, arg0\Field2, $01)
             arg0\Field11[$00] = createpivot(arg0\Field2)
             positionentity(arg0\Field11[$00], ((736.0 * roomscale) + arg0\Field3), (-512.0 * roomscale), (arg0\Field5 - (400.0 * roomscale)), $01)
@@ -642,7 +642,7 @@ Function fillroom%(arg0.rooms)
             local4 = createitem("Level 2 Key Card", "key2", (arg0\Field3 - (156.0 * roomscale)), ((151.0 * roomscale) + arg0\Field4), ((72.0 * roomscale) + arg0\Field5))
             entityparent(local4\Field0, arg0\Field2, $01)
             local4 = createitem("S-NAV 300 Navigator", "nav", ((372.0 * roomscale) + arg0\Field3), ((153.0 * roomscale) + arg0\Field4), ((944.0 * roomscale) + arg0\Field5))
-            local4\Field5 = 20.0
+            local4\Field7 = 20.0
             entityparent(local4\Field0, arg0\Field2, $01)
             local4 = createitem("Notification", "paper", (arg0\Field3 - (137.0 * roomscale)), ((153.0 * roomscale) + arg0\Field4), ((464.0 * roomscale) + arg0\Field5))
             entityparent(local4\Field0, arg0\Field2, $01)
@@ -666,7 +666,7 @@ Function fillroom%(arg0.rooms)
             EndIf
             entityparent(local4\Field0, arg0\Field2, $01)
             local4 = createitem("S-NAV 300 Navigator", "nav", (arg0\Field3 - (336.0 * roomscale)), (arg0\Field4 - (48.0 * roomscale)), (arg0\Field5 - (480.0 * roomscale)))
-            local4\Field5 = 28.0
+            local4\Field7 = 28.0
             entityparent(local4\Field0, arg0\Field2, $01)
             arg0\Field11[$00] = loadmesh("GFX\npcs\duck_low_res.b3d", $00)
             scaleentity(arg0\Field11[$00], 0.07, 0.07, 0.07, $00)

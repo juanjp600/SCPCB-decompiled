@@ -40,15 +40,15 @@ Function updatenpcs%()
                             local0\Field29 = entityy(collider, $01)
                             local0\Field30 = entityz(collider, $01)
                         EndIf
-                    ElseIf (24.0 < local6) Then
+                    ElseIf (28.0 < local6) Then
                         If (rand($32, $01) = $01) Then
                             For local15 = Each waypoints
                                 If (((local15\Field1 = Null) And (rand($05, $01) = $01)) <> 0) Then
                                     local9 = (Abs (entityx(local0\Field4, $00) - entityx(local15\Field0, $01)))
-                                    If (((28.0 > local9) And (20.0 < local9)) <> 0) Then
+                                    If (((24.0 > local9) And (18.0 < local9)) <> 0) Then
                                         local11 = (Abs (entityz(local0\Field4, $00) - entityz(local15\Field0, $01)))
-                                        If (((28.0 > local11) And (20.0 < local11)) <> 0) Then
-                                            debuglog(("TELEPORTING 173 - " + local15\Field2\Field7\Field4))
+                                        If (((24.0 > local11) And (18.0 < local11)) <> 0) Then
+                                            debuglog(("MOVING 173 TO " + local15\Field2\Field7\Field4))
                                             positionentity(local0\Field4, entityx(local15\Field0, $01), (entityy(local15\Field0, $01) + 0.25), entityz(local15\Field0, $01), $00)
                                             resetentity(local0\Field4)
                                             Exit
@@ -99,21 +99,20 @@ Function updatenpcs%()
                                             If (local2\Field3[local5] <> $00) Then
                                                 If (((0.5 > (Abs (entityx(local0\Field4, $00) - entityx(local2\Field3[local5], $00)))) And (0.5 > (Abs (entityz(local0\Field4, $00) - entityz(local2\Field3[local5], $00))))) <> 0) Then
                                                     If (((180.0 <= local2\Field7) Or (0.0 >= local2\Field7)) <> 0) Then
-                                                        local14 = createpivot($00)
-                                                        positionentity(local14, entityx(local0\Field4, $00), (entityy(local0\Field4, $00) + 0.5), entityz(local0\Field4, $00), $00)
-                                                        pointentity(local14, local2\Field3[local5], 0.0)
-                                                        moveentity(local14, 0.0, 0.0, (local0\Field17 * 0.6))
-                                                        If (entitypick(local14, 0.5) = local2\Field3[local5]) Then
+                                                        local18 = createpivot($00)
+                                                        positionentity(local18, entityx(local0\Field4, $00), (entityy(local0\Field4, $00) + 0.5), entityz(local0\Field4, $00), $00)
+                                                        pointentity(local18, local2\Field3[local5], 0.0)
+                                                        moveentity(local18, 0.0, 0.0, (local0\Field17 * 0.6))
+                                                        If (entitypick(local18, 0.5) = local2\Field3[local5]) Then
                                                             usedoor(local2, $00)
                                                         EndIf
-                                                        freeentity(local14)
+                                                        freeentity(local18)
                                                     EndIf
                                                 EndIf
                                             EndIf
                                         Next
                                     EndIf
                                 Next
-                            ElseIf (rand($0F, $01) = $01) Then
                             EndIf
                             If (local14 <> 0) Then
                                 If (0.65 > local6) Then
@@ -154,7 +153,7 @@ Function updatenpcs%()
                                 EndIf
                             Else
                                 moveentity(local0\Field4, 0.0, 0.0, ((local0\Field17 * 0.8) * fpsfactor))
-                                turnentity(local0\Field4, 0.0, (8.0 * fpsfactor), 0.0, $00)
+                                turnentity(local0\Field4, 0.0, (8.0 * fpsfactor), 10.0, $00)
                             EndIf
                         EndIf
                     EndIf
@@ -250,10 +249,10 @@ Function updatenpcs%()
                                         Else
                                             local0\Field33 = max((local0\Field33 - fpsfactor), 0.0)
                                             If (local0\Field32 = $02) Then
-                                                debuglog("ei reitti?")
+                                                debuglog("no path found")
                                                 local0\Field18 = 0.0
                                             ElseIf (local0\Field32 = $01) Then
-                                                debuglog("reitti l?ydetty")
+                                                debuglog("path found")
                                                 If (local0\Field31[local0\Field34] = Null) Then
                                                     If (local0\Field34 > $13) Then
                                                         local0\Field34 = $00
@@ -319,7 +318,6 @@ Function updatenpcs%()
                                 EndIf
                             EndIf
                             If (-250.0 > falltimer) Then
-                                debuglog("dskljdnfkmndgfkljmnjetklmesnrbr")
                                 For local4 = Each rooms
                                     If (local4\Field7\Field4 = "pocketdimension") Then
                                         falltimer = 0.0
@@ -377,7 +375,8 @@ Function updatenpcs%()
                             local18 = createpivot($00)
                             positionentity(local18, entityx(local0\Field4, $00), entityy(local0\Field4, $00), entityz(local0\Field4, $00), $01)
                             pointentity(local18, camera, 0.0)
-                            If (55.0 > (Abs wrapangle((entityyaw(local18, $00) - entityyaw(local0\Field4, $00))))) Then
+                            local8 = wrapangle((entityyaw(local18, $00) - entityyaw(local0\Field4, $00)))
+                            If (((55.0 > local8) Or (305.0 < local8)) <> 0) Then
                                 If (entityinview(local0\Field4, camera) <> 0) Then
                                     If (entityvisible(collider, local0\Field4) <> 0) Then
                                         stopchannel(local0\Field15)
@@ -398,7 +397,7 @@ Function updatenpcs%()
                         EndIf
                         local6 = entitydistance(collider, local0\Field4)
                         If ((entityvisible(collider, local0\Field4) And (0.0 <= killtimer)) <> 0) Then
-                            local0\Field33 = 210.0
+                            local0\Field33 = max(210.0, local0\Field33)
                             local0\Field32 = $00
                             If (0.6 > local6) Then
                                 local0\Field18 = curvevalue(0.0, local0\Field18, 5.0)
@@ -435,7 +434,6 @@ Function updatenpcs%()
                                 local0\Field10 = 0.0
                             EndIf
                         ElseIf (local0\Field32 = $01) Then
-                            debuglog("reitti l?ydetty")
                             If (local0\Field31[local0\Field34] = Null) Then
                                 If (local0\Field34 > $13) Then
                                     local0\Field34 = $00
@@ -444,25 +442,25 @@ Function updatenpcs%()
                                     local0\Field34 = (local0\Field34 + $01)
                                 EndIf
                             Else
-                                If (local0\Field31[local0\Field34]\Field1 <> Null) Then
-                                    If (local0\Field31[local0\Field34]\Field1\Field5 = $00) Then
-                                        local0\Field31[local0\Field34]\Field1\Field5 = $01
-                                        local0\Field31[local0\Field34]\Field1\Field8 = $01
-                                        playsound2(opendoorfastsfx, camera, local0\Field31[local0\Field34]\Field1\Field0, 10.0, 1.0, $01)
-                                    EndIf
-                                EndIf
                                 pointentity(local0\Field0, local0\Field31[local0\Field34]\Field0, 0.0)
                                 rotateentity(local0\Field4, 0.0, curveangle(entityyaw(local0\Field0, $00), entityyaw(local0\Field4, $00), 5.0), 0.0, $00)
                                 local0\Field18 = curvevalue(local0\Field17, local0\Field18, 10.0)
                                 moveentity(local0\Field4, 0.0, 0.0, local0\Field18)
                                 animate2(local0\Field0, animtime(local0\Field0), $210, $238, (local0\Field18 * 15.0), $01)
                                 If (0.2 > entitydistance(local0\Field4, local0\Field31[local0\Field34]\Field0)) Then
+                                    If (local0\Field31[local0\Field34]\Field1 <> Null) Then
+                                        If (local0\Field31[local0\Field34]\Field1\Field5 = $00) Then
+                                            local0\Field31[local0\Field34]\Field1\Field5 = $01
+                                            local0\Field31[local0\Field34]\Field1\Field8 = $01
+                                            playsound2(opendoorfastsfx, camera, local0\Field31[local0\Field34]\Field1\Field0, 10.0, 1.0, $01)
+                                        EndIf
+                                    EndIf
                                     local0\Field34 = (local0\Field34 + $01)
                                 EndIf
                             EndIf
                         Else
                             animate2(local0\Field0, animtime(local0\Field0), $C8, $DC, 0.1, $01)
-                            local0\Field33 = max(0.0, ((Float local0\Field32) - fpsfactor))
+                            local0\Field33 = max(0.0, (local0\Field33 - fpsfactor))
                             If (0.0 >= local0\Field33) Then
                                 local0\Field32 = findpath(local0, entityx(collider, $00), (entityy(collider, $00) + 0.2), entityz(collider, $00))
                                 local0\Field33 = 350.0

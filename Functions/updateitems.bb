@@ -1,39 +1,30 @@
 Function updateitems%()
     Local local0%
     Local local1.items
-    Local local2#
-    Local local3#
-    Local local4#
-    Local local5#
+    Local local2%
+    Local local3%
+    Local local4%
     closestitem = Null
     For local1 = Each items
-        If (local1\Field7 = $00) Then
-            local5 = 0.0
-            local2 = (Abs (entityx(collider, $00) - entityx(local1\Field0, $01)))
-            local4 = (Abs (entityz(collider, $00) - entityz(local1\Field0, $01)))
-            If (1.2 > local2) Then
-                If (1.2 > local4) Then
-                    local3 = (Abs (entityy(collider, $00) - entityy(local1\Field0, $01)))
-                    If (1.2 > local3) Then
-                        local5 = sqr((((local2 * local2) + (local3 * local3)) + (local4 * local4)))
-                        If (1.2 > local5) Then
-                            If (closestitem = Null) Then
-                                If (entityinview(local1\Field0, camera) <> 0) Then
-                                    closestitem = local1
-                                EndIf
-                            ElseIf (local5 < entitydistance(collider, closestitem\Field0)) Then
-                                If (entityinview(local1\Field0, camera) <> 0) Then
-                                    closestitem = local1
-                                EndIf
-                            EndIf
-                        EndIf
+        If (local1\Field9 = $00) Then
+            If (0.0 >= local1\Field6) Then
+                local1\Field5 = entitydistance(collider, local1\Field0)
+                local1\Field6 = (Float rand($32, $5A))
+            Else
+                local1\Field6 = max(0.0, (local1\Field6 - fpsfactor))
+            EndIf
+            If (1.2 > local1\Field5) Then
+                If (closestitem = Null) Then
+                    If (entityinview(local1\Field0, camera) <> 0) Then
+                        closestitem = local1
+                    EndIf
+                ElseIf (local1\Field5 < entitydistance(collider, closestitem\Field0)) Then
+                    If (entityinview(local1\Field0, camera) <> 0) Then
+                        closestitem = local1
                     EndIf
                 EndIf
             EndIf
-            If (0.0 = local5) Then
-                local5 = sqr((((local2 * local2) + local4) + local4))
-            EndIf
-            If (local5 < (hidedistance * 0.5)) Then
+            If (local1\Field5 < (hidedistance * 0.5)) Then
                 If (entitycollided(local1\Field0, $01) <> 0) Then
                     local1\Field2 = 0.0
                 Else
@@ -65,7 +56,7 @@ Function updateitems%()
                                 msgtimer = 420.0
                                 Exit
                             Case "firstaid","finefirstaid","veryfinefirstaid","firstaid2"
-                                closestitem\Field5 = 0.0
+                                closestitem\Field7 = 0.0
                             Case "navigator","nav"
                                 If (closestitem\Field1\Field0 = "S-NAV Navigator Ultimate") Then
                                     achvsnav = $01
@@ -74,7 +65,7 @@ Function updateitems%()
                         If (closestitem\Field1\Field2 <> $42) Then
                             playsound(picksfx(closestitem\Field1\Field2))
                         EndIf
-                        closestitem\Field7 = $01
+                        closestitem\Field9 = $01
                         closestitem\Field1\Field3 = $01
                         inventory(local0) = closestitem
                         hideentity(closestitem\Field0)

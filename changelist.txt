@@ -1,7 +1,18 @@
 
 ----------------------------------------------------------------------------------
 
-v0.6
+V0.6.2
+- SCP-096 is now faster and easier to provoke
+- fixed a bug that caused severe framerate drops when SCP-096 was unable to
+find a path to the player
+- key configuration options in the main menu
+- putting the first aid kit in SCP-914 on Very Fine no longer crashes the game
+- new gunshot sound clips
+- some minor bugfixes
+
+----------------------------------------------------------------------------------
+
+v0.6.1
 - fixed the bug that crashed the game when equipping a navigator or a radio
 
 ----------------------------------------------------------------------------------

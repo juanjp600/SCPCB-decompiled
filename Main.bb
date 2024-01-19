@@ -1,5 +1,5 @@
-; SCP - Containment Breach v0.6.1_disasm
-; Decompiled on 1/19/2024 5:28:07 PM
+; SCP - Containment Breach v0.6.2_disasm
+; Decompiled on 1/19/2024 5:29:37 PM
 
 Include "Globals.bb"
 
@@ -160,6 +160,7 @@ Dim gorepics%(0)
 Dim horrorsfx%(0)
 Dim introsfx%(0)
 Dim inventory.items(0)
+Dim keyname$(0)
 Dim lightspritetex%(0)
 Dim mapfound%(0, 0, 0)
 Dim mapname$(0, 0)
