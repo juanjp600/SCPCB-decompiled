@@ -1,0 +1,46 @@
+
+----------------------------------------------------------------------------------
+
+v0.2
+- changed BlitzMax to Blitz3D and got an engine expansion, which made it possible
+to implement these:
+	- bump and specular mapping
+	- better lighting, moving objects are now lit properly
+- added SCP-106's pocket dimension
+- new SCP-173 model
+- fixed a bug that made SCP-173 "flicker" through walls at times
+- added some new rooms, items and sound effects
+- made it possible to choose the map seed
+- started putting stuff in the options menu
+- fixed a bug that prevented the screen from going black when blinking with
+the navigator equipped
+
+----------------------------------------------------------------------------------
+v0.1.2
+- added two new rooms
+- modified some of the textures
+- added some new items
+- added some new sound effects
+- press F3 for a surprise
+- fixed some bugs in the saving system
+
+----------------------------------------------------------------------------------
+v0.1.1 
+- added the option to select the graphics- and audio device in the launcher
+- fixed the bug that occasionally stops the door from opening in the first room
+- fixed the collision problems with the containment doors (glitching through the
+  floor when near the doors or getting stuck inside them)
+- fixed the bug that made it possible to walk through walls in the first room
+- 173 can't kill you through the walls anymore
+- made some of the rooms a bit brighter
+- fixed some bugs that occurred when starting a new game after dying
+	- some of the items sometimes stayed in the inventory
+	- gas mask stayed on if it was equipped in the previous game
+	- the rapid blinking caused by smoke stayed for a while in the
+	  new game
+- new menu music
+- saving system works now, though there are still probably some bugs in it
+- disabled Y button from teleporting you to SCP-914
+- fixed some typos in the code, not sure if they were causing any actual
+bugs or crashes
+- fixed the bug that made it possible duplicate the SCP-420-J

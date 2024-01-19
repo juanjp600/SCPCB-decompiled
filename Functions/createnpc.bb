@@ -1,0 +1,75 @@
+Function createnpc.npcs(arg0%, arg1#, arg2#, arg3#)
+    Local local0.npcs
+    Local local2%
+    Local local3%
+    Local local4%
+    Local local5#
+    Local local6%
+    Local local7%
+    Local local8%
+    local0 = (New npcs)
+    local0\Field3 = arg0
+    Select arg0
+        Case $01
+            local0\Field2 = createpivot($00)
+            entityradius(local0\Field2, 0.32, 0.0)
+            entitytype(local0\Field2, $02, $00)
+            local0\Field5 = $01
+            local0\Field0 = loadmesh("GFX\npcs\173mesh.3ds", $00)
+            scaleentity(local0\Field0, (0.35 / meshdepth(local0\Field0)), (0.35 / meshdepth(local0\Field0)), (0.35 / meshdepth(local0\Field0)), $00)
+            local2 = loadtexture("GFX\npcs\173tex2.jpg", $01)
+            local3 = loadtexture("GFX\npcs\173_norm.jpg", $01)
+            local4 = loadtexture("GFX\npcs\173_spec.jpg", $01)
+            textureblend(local3, $1603)
+            textureblend(local4, $1200)
+            entitytexture(local0\Field0, local3, $00, $00)
+            entitytexture(local0\Field0, local4, $00, $01)
+            entitytexture(local0\Field0, local2, $00, $02)
+            local0\Field11 = (getinifloat("DATA\SCPs.ini", "SCP-173", "speed") / 100.0)
+        Case $02
+            local0\Field2 = createpivot($00)
+            entityradius(local0\Field2, 0.2, 0.0)
+            entitytype(local0\Field2, $02, $00)
+            local0\Field0 = loadanimmesh("GFX\npcs\106.b3d", $00)
+            local0\Field6 = 20000.0
+            local5 = (0.25 / meshwidth(local0\Field0))
+            scaleentity(local0\Field0, local5, local5, local5, $00)
+            local6 = loadtexture("GFX\npcs\oldmaneyes.jpg", $01)
+            local0\Field11 = (getinifloat("DATA\SCPs.ini", "SCP-106", "speed") / 100.0)
+            local0\Field1 = createsprite($00)
+            scalesprite(local0\Field1, 0.03, 0.03)
+            entitytexture(local0\Field1, local6, $00, $00)
+            entityblend(local0\Field1, local7)
+            entityfx(local0\Field1, $09)
+            spriteviewmode(local0\Field1, $02)
+        Case $03
+            local0\Field2 = createpivot($00)
+            entityradius(local0\Field2, 0.2, 0.0)
+            entitytype(local0\Field2, $02, $00)
+            local0\Field0 = loadanimmesh("GFX\npcs\guard.b3d", $00)
+            local5 = (0.4 / meshwidth(local0\Field0))
+            scaleentity(local0\Field0, local5, local5, local5, $00)
+        Case $04
+            local0\Field2 = createpivot($00)
+            entityradius(local0\Field2, 0.32, 0.0)
+            entitytype(local0\Field2, $02, $00)
+            local0\Field0 = loadanimmesh("GFX\npcs\106.b3d", $00)
+            local8 = loadtexture("GFX\npcs\classd.jpg", $01)
+            entitytexture(local0\Field0, local8, $00, $00)
+            local0\Field6 = 200.0
+            local5 = (0.25 / meshwidth(local0\Field0))
+            scaleentity(local0\Field0, local5, local5, local5, $00)
+        Case $05
+            local0\Field2 = createpivot($00)
+            entityradius(local0\Field2, 0.32, 0.0)
+            entitytype(local0\Field2, $02, $00)
+            local0\Field0 = loadsprite("GFX\npcs\bll.png", $05, $00)
+            scalesprite(local0\Field0, 0.6, 0.6)
+            local0\Field12 = $01
+    End Select
+    positionentity(local0\Field2, arg1, arg2, arg3, $00)
+    positionentity(local0\Field0, arg1, arg2, arg3, $00)
+    resetentity(local0\Field2)
+    Return local0
+    Return Null
+End Function
